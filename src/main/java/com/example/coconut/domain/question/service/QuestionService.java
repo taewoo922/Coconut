@@ -1,4 +1,4 @@
 package com.example.coconut.domain.question.service;
 
-public class QuestionS {
+public class QuestionService {
 }

@@ -1,4 +1,4 @@
 package com.example.coconut.domain.question.controller;
 
-public class QuestionC {
+public class QuestionController {
 }
