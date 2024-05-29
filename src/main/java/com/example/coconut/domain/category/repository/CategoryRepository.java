@@ -1,4 +1,4 @@
 package com.example.coconut.domain.category.repository;
 
-public class CategoryR {
+public class CategoryRepository {
 }
