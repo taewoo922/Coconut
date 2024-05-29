@@ -4,21 +4,29 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="https://kit.fontawesome.com/eb860590bd.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+    </script>
     <!-- sbb CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
-    <title>Hello, sbb!</title>
+    <title>coconut</title>
+
 </head>
 <body>
 
-<!--내비게이션 바-->
+<!-- 내비게이션 바 -->
 <nav th:replace="~{common/navbar :: navbarFragment}"></nav>
 
 <!-- 기본 템플릿 안에 삽입될 내용 시작 -->
 <th:block layout:fragment="content"></th:block>
 <!-- 기본 템플릿 안에 삽입될 내용 끝 -->
+
 <!-- 자바스크립트 Start -->
-<th:block layout:fragment="script"></th:block>
+<script th:src="@{/navbar/function.js}"></script>
 <!-- 자바스크립트 End -->
+
 </body>
 </html>

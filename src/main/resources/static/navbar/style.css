@@ -64,6 +64,11 @@ a{
     padding-top: 80px; /* 네비게이션 바의 높이만큼 여백 추가 */
 }
 
+.nav__login{
+    color : darkgray;
+    font-size: 10px;
+}
+
 @media screen and (max-width:770px){
     .nav{
         flex-direction: column;
@@ -79,8 +84,7 @@ a{
         display: block;
     }
 
-    .nav__main.active,
-    .nav__icon.active{
+    .nav__main.active{
         display: flex;
     }
 
