@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- sbb CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/navbar_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
     <title>Hello, sbb!</title>
 </head>
 <body>
 
 <!--내비게이션 바-->
-<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<nav th:replace="~{common/navbar :: navbarFragment}"></nav>
 
 <!-- 기본 템플릿 안에 삽입될 내용 시작 -->
 <th:block layout:fragment="content"></th:block>
