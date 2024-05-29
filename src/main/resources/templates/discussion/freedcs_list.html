@@ -1,1 +1,23 @@
-<div>임시</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>썸네일</th>
+        <th>제목</th>
+        <th>작성자</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="freedcs : ${freedcsList}">
+        <td>
+            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" height=100px width=100px alt="12314">
+        </td>
+        <td th:text="${freedcs.title}"></td>
+        <td th:text="${freedcs.content}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<a href="/discussion/free_create">게시글 등록</a>
