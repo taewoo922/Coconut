@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSS 파일 포함 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar/navbar_style.css}">
+    <title>Hello, sbb!</title>
+
+    <script src="https://kit.fontawesome.com/eb860590bd.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+    </script>
+
+</head>
+<body>
+<!-- 내비게이션 바 -->
+<nav th:replace="~{common/navbar :: navbarFragment}"></nav>
+
+<!-- 기본 템플릿 안에 삽입될 내용 시작 -->
+<div layout:fragment="content"></div>
+<!-- 기본 템플릿 안에 삽입될 내용 끝 -->
+
+<script th:src="@{/navbar/navbar.js}"></script>
+</body>
+</html>

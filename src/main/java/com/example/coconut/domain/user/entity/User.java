@@ -48,5 +48,8 @@ public class User extends BaseEntity {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(columnDefinition = "BOOLEAN DEFAULT false")
+    private boolean checkedAdmin;
+
 
 }
