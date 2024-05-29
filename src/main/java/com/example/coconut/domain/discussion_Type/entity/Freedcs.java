@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+
 @Entity
 @Getter
 @Setter
@@ -16,4 +17,7 @@ import lombok.experimental.SuperBuilder;
 public class Freedcs extends BaseEntity {
     private String title;
     private String content;
+    private String nickname;
+    private String thumbnailImg;
+    private String category;
 }

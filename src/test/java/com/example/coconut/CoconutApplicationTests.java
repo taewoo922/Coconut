@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @SpringBootTest
 class CoconutApplicationTests {
 
-	@Autowired
-	private QuestionRepository questionRepository;
+//	@Autowired
+//	private QuestionRepository questionRepository;
 
 	@Test
 	void contextLoads() {
