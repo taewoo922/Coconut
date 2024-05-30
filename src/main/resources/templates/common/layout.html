@@ -1,19 +1,21 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://kit.fontawesome.com/eb860590bd.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
-    </script>
-    <!-- sbb CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
-    <title>coconut</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
+
+    <!-- 페이지별 추가 CSS -->
+    <th:block th:replace="~{common/css :: additionalStyles}"></th:block>
+
+    <title>coconut</title>
 </head>
 <body>
 
@@ -21,7 +23,9 @@
 <nav th:replace="~{common/navbar :: navbarFragment}"></nav>
 
 <!-- 기본 템플릿 안에 삽입될 내용 시작 -->
-<th:block layout:fragment="content"></th:block>
+<div class="content-area">
+    <th:block layout:fragment="content"></th:block>
+</div>
 <!-- 기본 템플릿 안에 삽입될 내용 끝 -->
 
 <!-- 자바스크립트 Start -->

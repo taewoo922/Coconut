@@ -28,7 +28,18 @@ public class BaseEntity{
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
+    // Getters
+    public Long getId() {
+        return id;
+    }
 
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
 
 
 }

@@ -1,5 +1,32 @@
-<html layout:decorate="~{common/layout}">
-<div layout:fragment="content">
-    <div>QnA 페이지</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{common/layout}">
+<head>
+    <th:block th:replace="~{common/css :: additionalStyles}">
+        <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/bootstrap.min.css}">
+    </th:block>
+</head>
+<body>
+<div layout:fragment="content" class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="report, loop : ${reportList}">
+            <td th:text="${loop.count}"></td>
+            <td>
+                <a th:href="@{|/report/detail/${report.id}|}" th:text="${report.title}"></a>
+            </td>
+            <td th:text="${report.content}"></td>
+            <td th:text="${#temporals.format(report.createDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+</body>
 </html>
