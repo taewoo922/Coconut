@@ -1,6 +1,17 @@
 <div>게시글 등록</div>
+<!--SELECT-->
+<div>
+    <div>카테고리</div>
+    <select th:field="*{categories}" class="form-select">
+        <option value="">==전체==</option>
+        <option th:each="category : ${categories}" th:value="${category.code}"
+                th:text="${category.displayName}">Politics</option>
+    </select>
+</div>
 
-<form action="/discussion/free_create" method="post" enctype="multipart/form-data">
+<!--<form action="/discussion/free_create" method="post">-->
+    <form action="/discussion/free_create" method="post" enctype="multipart/form-data">
+
 
     <h3>제목</h3>
     <input type="text" name="title">

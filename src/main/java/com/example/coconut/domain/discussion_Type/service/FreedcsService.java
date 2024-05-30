@@ -1,5 +1,10 @@
 package com.example.coconut.domain.discussion_Type.service;
 
+<<<<<<< HEAD
+=======
+
+import com.example.coconut.domain.category.entity.Category;
+>>>>>>> a34b5d6 (카테고리)
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +30,14 @@ public class FreedcsService {
         return freedcsRepository.findAll();
     }
 
+<<<<<<< HEAD
     public void free_create(String title, String content,MultipartFile thumbnail) {
+=======
+
+
+
+    public void free_create(String title, String content, MultipartFile thumbnail) {
+>>>>>>> a34b5d6 (카테고리)
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" +thumbnailRelPath);
 
@@ -39,6 +51,7 @@ public class FreedcsService {
                 .title(title)
                 .content(content)
                 .thumbnailImg(thumbnailRelPath)
+//                .category(category)
                 .build();
         freedcsRepository.save(freedcs);
     }

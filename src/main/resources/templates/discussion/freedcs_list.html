@@ -5,6 +5,7 @@
     <tr>
         <th>썸네일</th>
         <th>제목</th>
+        <th>분류</th>
         <th>작성자</th>
     </tr>
     </thead>
@@ -14,6 +15,7 @@
             <img th:src="@{|/file/${freedcs.thumbnailImg}|}" height=100px width=100px alt="12314">
         </td>
         <td th:text="${freedcs.title}"></td>
+        <td><span th:text="${freedcs.displayName}"></span></td>
         <td th:text="${freedcs.content}"></td>
     </tr>
     </tbody>

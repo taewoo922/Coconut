@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class CoconutApplicationTests {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Autowired
 	private ReportRepository reportRepository;
 
@@ -34,6 +35,21 @@ class CoconutApplicationTests {
 
 	@Test
 	void contextLoads() {
+=======
+//<<<<<<< HEAD
+//	@Autowired
+//	private QuestionRepository questionRepository;
+//=======
+//	@Autowired
+//	private ReportRepository reportRepository;
+//
+//	@Autowired
+//	private ReportReplyRepository reportReplyRepository;
+//>>>>>>> 50ef4ea5bf25f95a01cbc6b9815889c129beaf0f
+//
+//	@Test
+//	void contextLoads() {
+>>>>>>> a34b5d6 (카테고리)
 //		Report r1 = new Report();
 //		r1.setTitle("질문1");
 //		r1.setContent("없어요");
@@ -52,6 +68,6 @@ class CoconutApplicationTests {
 //		a.setContent("네");
 //		a.setReport(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
 //		this.reportReplyRepository.save(a);
-	}
+//	}
 
 }
