@@ -21,11 +21,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class CoconutApplicationTests {
 
+<<<<<<< HEAD
 	@Autowired
 	private ReportRepository reportRepository;
 
 	@Autowired
 	private ReportReplyRepository reportReplyRepository;
+=======
+//	@Autowired
+//	private QuestionRepository questionRepository;
+>>>>>>> ea574b7 (자유토론 #2)
 
 	@Test
 	void contextLoads() {
