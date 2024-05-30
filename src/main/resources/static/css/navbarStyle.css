@@ -10,11 +10,11 @@ a{
     color: inherit;
 }
 
-.sec {
+.nav__sec {
     margin-top: 60px; /* 네비게이션 바의 높이에 따라 조정 가능 */
 }
 
-.nav{
+.nav_container{
     position: fixed;
     top: 0;
     left: 0;
@@ -64,14 +64,11 @@ a{
     padding-top: 80px; /* 네비게이션 바의 높이만큼 여백 추가 */
 }
 
-<<<<<<< HEAD
 .nav__login{
     color : darkgray;
     font-size: 10px;
 }
 
-=======
->>>>>>> c9d37a3 (navbar 추가)
 @media screen and (max-width:770px){
     .nav{
         flex-direction: column;
@@ -87,12 +84,13 @@ a{
         display: block;
     }
 
-<<<<<<< HEAD
+
     .nav__main.active{
-=======
+
     .nav__main.active,
     .nav__icon.active{
->>>>>>> c9d37a3 (navbar 추가)
+
+    .nav__main.active{
         display: flex;
     }
 

@@ -1,5 +1,6 @@
 package com.example.coconut.domain.reportReply.service;
 
+<<<<<<< HEAD
 
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.reportReply.entity.ReportReply;
@@ -19,4 +20,7 @@ public class ReportReplyService {
         reportReply.setReport(report);
         this.reportReplyRepository.save(reportReply);
     }
+=======
+public class ReportReplyService {
+>>>>>>> b29ce59 (navbar 수정, reportReply 추가)
 }

@@ -1,10 +1,9 @@
 package com.example.coconut.domain.discussion_Type.service;
 
-<<<<<<< HEAD
-=======
+
 
 import com.example.coconut.domain.category.entity.Category;
->>>>>>> a34b5d6 (카테고리)
+
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import lombok.RequiredArgsConstructor;
