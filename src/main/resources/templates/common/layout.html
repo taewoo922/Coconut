@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -34,3 +35,29 @@
 
 </body>
 </html>
+=======
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- sbb CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
+    <title>Hello, sbb!</title>
+</head>
+<body>
+
+<!--내비게이션 바-->
+<nav th:replace="~{common/navbar :: navbarFragment}"></nav>
+
+<!-- 기본 템플릿 안에 삽입될 내용 시작 -->
+<th:block layout:fragment="content"></th:block>
+<!-- 기본 템플릿 안에 삽입될 내용 끝 -->
+<!-- 자바스크립트 Start -->
+<th:block layout:fragment="script"></th:block>
+<!-- 자바스크립트 End -->
+</body>
+</html>
+>>>>>>> c9d37a3 (navbar 추가)

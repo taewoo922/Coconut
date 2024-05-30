@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 
+=======
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content">
+  <ul>
+    <li>Report 1</li>
+    <li>Report 2</li>
+    <li>Report 3</li>
+  </ul>
+
+</div>
+
+</html>
+>>>>>>> c9d37a3 (navbar 추가)
 <nav th:fragment="navbarFragment">
   <section class="sec">
     <nav class="nav">
@@ -15,7 +29,11 @@
       <ul class="nav__login">
         <div>
           <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>
+<<<<<<< HEAD
           <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>|
+=======
+          <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>
+>>>>>>> c9d37a3 (navbar 추가)
           <a sec:authorize="isAuthenticated()" href="/user/mypage">마이페이지</a>
           <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a>
         </div>
@@ -28,4 +46,8 @@
   <div class="content-area">
 
   </div>
+<<<<<<< HEAD
 </nav>
+=======
+</nav>
+>>>>>>> c9d37a3 (navbar 추가)
