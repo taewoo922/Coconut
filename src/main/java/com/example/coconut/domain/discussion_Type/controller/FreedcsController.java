@@ -1,11 +1,9 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
-<<<<<<< HEAD
-=======
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.entity.CategoryCode;
+
 import com.example.coconut.domain.category.service.CategoryService;
->>>>>>> a34b5d6 (카테고리)
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import jakarta.validation.Valid;
@@ -13,23 +11,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-=======
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
->>>>>>> a34b5d6 (카테고리)
 import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -67,8 +54,7 @@ public class FreedcsController {
         return "redirect:/discussion/freedcs_list";
     }
 
-<<<<<<< HEAD
-=======
+
     @ModelAttribute("categories")
     public List<Category> categories() {
         List<Category> categories = new ArrayList<>();
@@ -78,7 +64,6 @@ public class FreedcsController {
         return categories;
     }
 
->>>>>>> a34b5d6 (카테고리)
 
 
 }

@@ -21,13 +21,10 @@ public class Freedcs extends BaseEntity {
     private String content;
     private String nickname;
     private String thumbnailImg;
-<<<<<<< HEAD
     private String category;
-=======
     private String code;
     private String displayName;
 
 
 
->>>>>>> a34b5d6 (카테고리)
 }

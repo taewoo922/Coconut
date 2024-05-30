@@ -30,14 +30,10 @@ public class FreedcsService {
         return freedcsRepository.findAll();
     }
 
-<<<<<<< HEAD
+
     public void free_create(String title, String content,MultipartFile thumbnail) {
-=======
 
 
-
-    public void free_create(String title, String content, MultipartFile thumbnail) {
->>>>>>> a34b5d6 (카테고리)
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" +thumbnailRelPath);
 
