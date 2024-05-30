@@ -21,44 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class CoconutApplicationTests {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b29ce59 (navbar 수정, reportReply 추가)
 	@Autowired
 	private ReportRepository reportRepository;
 
 	@Autowired
 	private ReportReplyRepository reportReplyRepository;
-<<<<<<< HEAD
-=======
-//	@Autowired
-//	private QuestionRepository questionRepository;
->>>>>>> ea574b7 (자유토론 #2)
+
 
 	@Test
 	void contextLoads() {
-=======
-//<<<<<<< HEAD
-//	@Autowired
-//	private QuestionRepository questionRepository;
-//=======
-//	@Autowired
-//	private ReportRepository reportRepository;
-//
-//	@Autowired
-//	private ReportReplyRepository reportReplyRepository;
-//>>>>>>> 50ef4ea5bf25f95a01cbc6b9815889c129beaf0f
-//
-//	@Test
-//	void contextLoads() {
->>>>>>> a34b5d6 (카테고리)
-=======
-
-	@Test
-	void contextLoads() {
->>>>>>> b29ce59 (navbar 수정, reportReply 추가)
 //		Report r1 = new Report();
 //		r1.setTitle("질문1");
 //		r1.setContent("없어요");
@@ -77,10 +48,6 @@ class CoconutApplicationTests {
 //		a.setContent("네");
 //		a.setReport(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
 //		this.reportReplyRepository.save(a);
-<<<<<<< HEAD
-//	}
-=======
-	}
->>>>>>> b29ce59 (navbar 수정, reportReply 추가)
 
+	}
 }

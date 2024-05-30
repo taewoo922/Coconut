@@ -27,4 +27,5 @@ public class Report extends BaseEntity {
     @OneToMany(mappedBy = "report", cascade = CascadeType.REMOVE)
     private List<ReportReply> replyList;
 
+
 }

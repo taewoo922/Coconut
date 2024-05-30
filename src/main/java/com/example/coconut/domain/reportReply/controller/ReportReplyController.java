@@ -23,9 +23,10 @@ public class ReportReplyController {
     private final ReportReplyService reportReplyService;
 
     @PostMapping("/create/{id}")
-    public String createReply(Model model, @PathVariable("id") Long id, @RequestParam(value = "content") String content) {
+    public String createReply(Model model, @PathVariable("id") Long id, @RequestParam(value = "content") String content){
         Report report = this.reportService.getReport(id);
         this.reportReplyService.create(report, content);
         return "redirect:/report/detail/%s".formatted(id);
     }
+
 }
