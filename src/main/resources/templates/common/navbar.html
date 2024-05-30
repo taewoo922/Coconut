@@ -1,0 +1,41 @@
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content">
+  <ul>
+    <li>Report 1</li>
+    <li>Report 2</li>
+    <li>Report 3</li>
+  </ul>
+
+</div>
+
+</html>
+<nav th:fragment="navbarFragment">
+  <section class="sec">
+    <nav class="nav">
+      <div class="nav__logo">
+        <a href="#">logo</a>
+      </div>
+      <ul class="nav__main">
+        <li><a href="#">자유토론</a></li>
+        <li>|</li>
+        <li><a href="#">찬반토론</a></li>
+        <li>|</li>
+        <li><a href="/report/list">QnA</a></li>
+      </ul>
+      <ul class="nav__login">
+        <div>
+          <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>
+          <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>|
+          <a sec:authorize="isAuthenticated()" href="/user/mypage">마이페이지</a>
+          <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a>
+        </div>
+      </ul>
+      <a href="#" class="nav__bar">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+    </nav>
+  </section>
+  <div class="content-area">
+
+  </div>
+</nav>
