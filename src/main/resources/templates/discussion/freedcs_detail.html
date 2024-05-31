@@ -1,0 +1,13 @@
+
+<h1 th:text="${freedcs.title}"></h1>
+<div th:text="${freedcs.content}"></div>
+<form th:action="@{|/answer/create/${freedcs.id}|}" method="post">
+    <textarea name="content" id="content" rows="15"></textarea>
+    <h5 th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>
+    <div>
+        <ul>
+            <li th:each="answer : ${freedcs.answerList}" th:text="${answer.content}"></li>
+        </ul>
+    </div>
+    <input type="submit" value="답변등록">
+</form>

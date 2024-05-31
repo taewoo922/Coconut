@@ -2,6 +2,7 @@ package com.example.coconut.domain.discussion_Type.service;
 
 
 
+import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.category.entity.Category;
 
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -49,6 +51,15 @@ public class FreedcsService {
 //                .category(category)
                 .build();
         freedcsRepository.save(freedcs);
+    }
+
+    public Freedcs getFreedcs(Integer id) {
+        Optional<Freedcs> freedcs = this.freedcsRepository.findById(Long.valueOf(id));
+        if (freedcs.isPresent()) {
+            return freedcs.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+        }
     }
 
 

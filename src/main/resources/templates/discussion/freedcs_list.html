@@ -14,12 +14,13 @@
         <td>
             <img th:src="@{|/file/${freedcs.thumbnailImg}|}" height=100px width=100px alt="12314">
         </td>
-        <td th:text="${freedcs.title}"></td>
+        <td>
+            <a th:href="@{|/discussion/free_detail/${freedcs.id}|}" th:text="${freedcs.title}"></a>
+        </td>
         <td><span th:text="${freedcs.displayName}"></span></td>
         <td th:text="${freedcs.content}"></td>
     </tr>
     </tbody>
 </table>
 
-
-<a href="/discussion/free_create">게시글 등록</a>
+<a th:href="@{/discussion/free_create}" class="btn btn-primary">질문 등록하기</a>

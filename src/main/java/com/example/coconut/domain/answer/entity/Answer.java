@@ -1,5 +1,6 @@
 package com.example.coconut.domain.answer.entity;
 
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.question.entity.Question;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;
@@ -10,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -22,5 +24,13 @@ public class Answer extends BaseEntity {
 
     @ManyToOne // table의 관계에서 반드시 작성해주어야함
     private Question question;
+
+    @ManyToOne
+    private Freedcs freedcs;
+
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+
+
 
 }

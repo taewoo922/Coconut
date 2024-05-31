@@ -1,7 +1,8 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
 import com.example.coconut.domain.category.entity.Category;
-import com.example.coconut.domain.category.entity.CategoryCode;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.coconut.domain.category.service.CategoryService;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,13 +48,24 @@ public class FreedcsController {
     }
 
     @PostMapping("/free_create")
-    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("thumbnail") MultipartFile thumbnail) {
+    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
+                              @RequestParam("thumbnail") MultipartFile thumbnail) {
 
         freedcsService.free_create(title,content,thumbnail);
 
 
         return "redirect:/discussion/freedcs_list";
     }
+
+    @GetMapping(value = "/free_detail/{id}")
+    public String free_detail(Model model, @PathVariable("id") Integer id) {
+
+        Freedcs freedcs = this.freedcsService.getFreedcs(id);
+        model.addAttribute("freedcs", freedcs);
+
+        return "discussion/freedcs_detail";
+    }
+
 
 
     @ModelAttribute("categories")
