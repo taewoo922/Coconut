@@ -1,0 +1,133 @@
+
+/* Container Styling */
+.reportForm_container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.reportForm_create {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+    text-align: center;
+}
+
+/* Error Message Container Styling */
+.report_error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    text-align: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Icon Styling */
+.report_error::before {
+    content: '⚠️'; /* You can also use an icon font like FontAwesome */
+    margin-right: 10px;
+    font-size: 1.2em;
+
+}
+
+/* Form Group Styling */
+.reportForm_title, .reportForm_body {
+    margin-bottom: 15px;
+}
+
+/* Label Styling */
+.reportForm_title_label, .reportForm_content_label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Input Styling */
+.reportForm_title_input, .reportForm_content_input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #d4d9e1;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+/* Input Focus Styling */
+.reportForm_title_input:focus, .reportForm_content_input:focus {
+    border-color: #1a73e8;
+    outline: none;
+}
+
+/* Textarea Styling */
+.reportForm_content_input {
+    resize: vertical;
+}
+
+/* Checkbox Container Styling */
+.reportForm_isSecret {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Checkbox Input Styling */
+.reportForm_check_input {
+    appearance: none; /* Remove default appearance */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1a73e8; /* Border color */
+    border-radius: 3px; /* Rounded corners */
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Custom Checkbox Indicator Styling */
+.reportForm_check_input:checked {
+    background-color: #1a73e8; /* Check indicator color when checked */
+}
+
+/* Checkbox Label Styling */
+.reportForm-check-label {
+    font-size: 1em;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Checkbox Label Hover Styling */
+.reportForm-check-label:hover {
+    text-decoration: underline; /* Underline label text on hover */
+}
+
+
+/* Submit Button Styling */
+.reportForm_create_btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #1a73e8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit Button Hover Styling */
+.reportForm_create_btn:hover {
+    background-color: #1558b0;
+}

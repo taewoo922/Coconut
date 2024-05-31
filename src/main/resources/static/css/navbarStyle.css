@@ -33,6 +33,12 @@ a{
     text-align: center;
 }
 
+.main_logo img {
+    width: 110px; /* 이미지 너비 조정 */
+    height: auto; /* 높이 자동 조정 */
+    /* 다른 스타일 추가 가능 */
+}
+
 .nav__main{
     display: flex;
     list-style: none;
