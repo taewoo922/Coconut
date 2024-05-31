@@ -23,12 +23,32 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin(
                         formLogin -> formLogin
-                                .loginPage("/member/login")
+                                .loginPage("/user/login")
                                 .defaultSuccessUrl("/")
                 )
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
+                        .requestMatchers("/oauth-login/info").authenticated()
+                        .anyRequest().permitAll()
+                )
+                .formLogin((auth) -> auth.loginPage("/user/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/user/login")
+                        .permitAll())
+                .oauth2Login((auth) -> auth.loginPage("/user/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/user/login")
+                        .permitAll())
+                .logout((auth) -> auth
+                        .logoutUrl("/logout")
+                )
+                .csrf((auth) -> auth.disable())
                 .logout(
                         logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                                 .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
                 )

@@ -3,10 +3,7 @@ package com.example.coconut.domain.user.entity;
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.question.entity.Question;
 import com.example.coconut.global.jpa.BaseEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,26 +24,30 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class User extends BaseEntity {
-
     @Comment("유저 아이디")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String username;
 
-    @Comment("비밀번호")
-    @Column(nullable = false)
     private String password;
 
-    @Comment("전화번호")
-    @Column(unique = true, nullable = false)
-    private String phone;
-
-    @Comment("닉네임")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String nickname;
 
-    @Comment("이메일")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
+
     private String email;
 
+    private String phone;
+
+    private String provider;
+
+    // providerId : 구굴 로그인 한 유저의 고유 ID가 들어감
+    private String providerId;
+
+    private String profileImage; // 프로필 이미지 URL 추가
+    private String bio; // 사용자 소개 추가
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 }
