@@ -27,4 +27,11 @@ public class ReportService {
             throw new DataNotFoundException("report not found");
         }
     }
+
+    public void create(String title, String content){
+        Report r = new Report();
+        r.setTitle(title);
+        r.setContent(content);
+        this.reportRepository.save(r);
+    }
 }

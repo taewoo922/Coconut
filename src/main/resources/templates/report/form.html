@@ -1,0 +1,21 @@
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content" class="reportForm_container">
+    <h5 class="reportForm_create">질문등록</h5>
+    <form th:action="@{/report/create}" th:object="${reportForm}" method="post">
+        <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
+        <div class="reportForm_title">
+            <label for="title" class="reportForm_title_label">제목</label>
+            <input type="text" th:field="*{title}" name="title" id="title" class="reportForm_title_input">
+        </div>
+        <div class="reportForm_body">
+            <label for="content" class="reportForm_content_label">내용</label>
+            <textarea th:field="*{content}" name="content" id="content" class="reportForm_content_input" rows="10"></textarea>
+        </div>
+        <div class="reportForm_isSecret">
+            <input type="checkbox" class="reportForm_check_input" id="isSecret" name="isSecret" th:checked="${reportForm.isSecret}">
+            <label class="reportForm-check-label" for="isSecret">비밀글</label>
+        </div>
+        <input type="submit" value="저장하기" class="reportForm_create_btn">
+    </form>
+</div>
+</html>
