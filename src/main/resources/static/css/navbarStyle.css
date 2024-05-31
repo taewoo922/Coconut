@@ -10,11 +10,11 @@ a{
     color: inherit;
 }
 
-.sec {
+.nav__sec{
     margin-top: 60px; /* 네비게이션 바의 높이에 따라 조정 가능 */
 }
 
-.nav{
+.nav_container{
     position: fixed;
     top: 0;
     left: 0;
@@ -70,7 +70,7 @@ a{
 }
 
 @media screen and (max-width:770px){
-    .nav{
+    .nav_container{
         flex-direction: column;
     }
     .nav__main{
@@ -83,6 +83,12 @@ a{
     .nav__bar{
         display: block;
     }
+
+    .nav__main.active{
+
+    .nav__main.active,
+    .nav__icon.active{
+
 
     .nav__main.active{
         display: flex;

@@ -1,0 +1,37 @@
+
+.reportList_container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding: 20px;
+}
+
+.reportList_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/*헤드 데이터, 바디데이터*/
+.reportList_head_id,.reportList_head_title,.reportList_head_username,.reportList_head_createDate,
+ .reportList_id,.reportList_title,.reportList_content,.reportList_createDate{
+
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/*헤드데이터*/
+.reportList_head_id,.reportList_head_title,.reportList_head_username,.reportList_head_createDate
+  {
+   border-radius: 10px 10px 0 0;
+    background-color: #f2f2f2;
+}
+
+/*바디데이터*/
+.reportList_body_data{
+     text-align: center;
+}
+
+.reportList_body_data:hover {
+
+    background-color: #f2f2f2;
+}

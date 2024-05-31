@@ -1,9 +1,8 @@
-
 <nav th:fragment="navbarFragment">
-  <section class="sec">
-    <nav class="nav">
+  <section class="nav__sec">
+    <nav class="nav_container">
       <div class="nav__logo">
-        <a href="#">logo</a>
+        <a href="#" class="main_logo">logo</a>
       </div>
       <ul class="nav__main">
         <li><a href="#">자유토론</a></li>
@@ -13,19 +12,17 @@
         <li><a href="/report/list">QnA</a></li>
       </ul>
       <ul class="nav__login">
-        <div>
-          <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>
-          <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>|
-          <a sec:authorize="isAuthenticated()" href="/user/mypage">마이페이지</a>
-          <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a>
-        </div>
+        <a sec:authorize="isAnonymous()" href="/user/login">로그인</a></li>
+
+        <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a></li>
+        <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a></li>
+
+        <a sec:authorize="isAuthenticated()" href="/user/mypage">마이페이지</a></li>
       </ul>
       <a href="#" class="nav__bar">
         <i class="fa-solid fa-bars"></i>
       </a>
     </nav>
   </section>
-  <div class="content-area">
-
-  </div>
+  <div class="content-area"></div>
 </nav>

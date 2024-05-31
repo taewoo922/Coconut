@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 네브바 폰트 -->
     <script src="https://kit.fontawesome.com/eb860590bd.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <!-- 공통 CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/navbar/style.css}">
-
-    <!-- 페이지별 추가 CSS -->
-    <th:block th:replace="~{common/css :: additionalStyles}"></th:block>
+    <!-- 네브바 CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbarStyle.css}">
+    <!-- Report CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reportList.css}">
 
     <title>coconut</title>
+
 </head>
 <body>
 
@@ -28,9 +31,8 @@
 </div>
 <!-- 기본 템플릿 안에 삽입될 내용 끝 -->
 
-<!-- 자바스크립트 Start -->
-<script th:src="@{/navbar/function.js}"></script>
-<!-- 자바스크립트 End -->
+<!-- js -->
+<script th:src="@{/js/navbarFunction.js}"></script>
 
 </body>
 </html>

@@ -13,10 +13,11 @@ public class ReportReplyService {
 
     private final ReportReplyRepository reportReplyRepository;
 
-    public void create(Report report, String content){
+    public void create(Report report, String content) {
         ReportReply reportReply = new ReportReply();
         reportReply.setContent(content);
         reportReply.setReport(report);
         this.reportReplyRepository.save(reportReply);
     }
+
 }

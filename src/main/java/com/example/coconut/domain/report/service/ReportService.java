@@ -24,7 +24,7 @@ public class ReportService {
         if (report.isPresent()) {
             return report.get();
         } else {
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("report not found");
         }
     }
 }

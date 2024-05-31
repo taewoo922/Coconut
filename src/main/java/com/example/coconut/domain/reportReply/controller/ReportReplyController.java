@@ -1,5 +1,6 @@
 package com.example.coconut.domain.reportReply.controller;
 
+
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.report.service.ReportService;
@@ -27,4 +28,5 @@ public class ReportReplyController {
         this.reportReplyService.create(report, content);
         return "redirect:/report/detail/%s".formatted(id);
     }
+
 }

@@ -1,32 +1,25 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{common/layout}">
-<head>
-    <th:block th:replace="~{common/css :: additionalStyles}">
-        <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/bootstrap.min.css}">
-    </th:block>
-</head>
-<body>
-<div layout:fragment="content" class="container my-3">
-    <table class="table">
-        <thead class="table-dark">
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>내용</th>
-            <th>작성일시</th>
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content" class="reportList_container">
+    <table class="reportList_table">
+        <thead class="reportList_table_head">
+        <tr class="reportList_head_data">
+            <th class="reportList_head_id">번호</th>
+            <th class="reportList_head_title">제목</th>
+            <th class="reportList_head_username">작성자</th>
+            <th class="reportList_head_createDate">작성일</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:each="report, loop : ${reportList}">
-            <td th:text="${loop.count}"></td>
-            <td>
+        <tbody class="reportList_table_body">
+        <tr th:each="report, loop : ${reportList}" class="reportList_body_data">
+            <td th:text="${loop.count}" class="reportList_id"></td>
+            <td class="reportList_title">
                 <a th:href="@{|/report/detail/${report.id}|}" th:text="${report.title}"></a>
             </td>
-            <td th:text="${report.content}"></td>
-            <td th:text="${#temporals.format(report.createDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
+            <td th:text="${report.content}" class="reportList_content"></td>
+            <td th:text="${#temporals.format(report.createDate, 'yyyy년 MM월 dd일 HH시 mm분')}" class="reportList_createDate"></td>
         </tr>
         </tbody>
     </table>
 </div>
-</body>
 </html>
+
