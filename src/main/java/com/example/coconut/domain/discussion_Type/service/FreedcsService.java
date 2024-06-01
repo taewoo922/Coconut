@@ -2,8 +2,11 @@ package com.example.coconut.domain.discussion_Type.service;
 
 
 
+
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.category.entity.Category;
+
+
 
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
