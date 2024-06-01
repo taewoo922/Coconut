@@ -67,7 +67,7 @@ a{
 }
 
 .content-area {
-    padding-top: 80px; /* 네비게이션 바의 높이만큼 여백 추가 */
+    padding-top: 50px; /* 네비게이션 바의 높이만큼 여백 추가 */
 }
 
 .nav__login{

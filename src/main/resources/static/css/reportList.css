@@ -1,64 +1,125 @@
+/* 색상 팔레트 정의 */
+:root {
+    --coconut-brown: #8B4513;
+    --coconut-green: #2E8B57;
+    --beige: #F5F5DC;
+    --white: #FFFFFF;
+}
+
+/* 기본 컨테이너 스타일 */
 .reportList_container {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     padding: 20px;
-    padding-left : 200px;
-    padding-right : 200px;
+    padding-left: 200px;
+    padding-right: 200px;
+    background-color: var(--beige);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 테이블 스타일 */
 .reportList_table {
     width: 100%;
     border-collapse: collapse;
-
 }
 
-/*헤드 데이터, 바디데이터*/
-.reportList_head_id,.reportList_head_title,.reportList_head_username,.reportList_head_createDate,
- .reportList_id,.reportList_title,.reportList_content,.reportList_createDate{
-
+/* 헤드 데이터, 바디 데이터 */
+.reportList_head_id, .reportList_head_title, .reportList_head_username, .reportList_head_createDate,
+.reportList_id, .reportList_title, .reportList_content, .reportList_createDate {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-/*헤드데이터*/
-.reportList_head_id,.reportList_head_title,.reportList_head_username,.reportList_head_createDate
-  {
-   border-radius: 10px 10px 0 0;
-    background-color: #f2f2f2;
+/* 헤드 데이터 */
+.reportList_head_id, .reportList_head_title, .reportList_head_username, .reportList_head_createDate {
+    border-radius: 10px 10px 0 0;
+    background-color: var(--coconut-brown);
+    color: var(--beige);
 }
 
-/*바디데이터*/
-.reportList_body_data{
-     text-align: center;
+/* 바디 데이터 */
+.reportList_body_data {
+    text-align: center;
+}
+
+.reportList_title{
+    text-align: start;
 }
 
 .reportList_body_data:hover {
-
     background-color: #f2f2f2;
 }
 
-/*작성 데이터*/
-.reportList_create_btn{
-
-   background: blue;
-   border: none;
-   border-radius: 8px;
-   color: white;
-   padding: 10px 20px;
-   font-size: 16px;
-   cursor: pointer;
-   transition: all 0.3s ease;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   padding : 10px;
-       }
-.reportList_create_btn:hover{
-   background: black;
-     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
+/* 답변 개수 출력 */
+.reportList_reply_count {
+    color: red;
+    font-size: 12px; /* 글자 크기 지정 */
+    font-weight: bold; /* 글자 굵기를 볼드로 지정 */
+    margin-left: 10px;
 }
 
-.fas fa-lock{
-background-color : black;}
+/* 작성 데이터 버튼 */
+.reportList_create_btn {
+    background: var(--coconut-brown);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+}
 
+.reportList_create_btn:hover {
+    background: var(--coconut-green);
+    transform: translateY(-2px);
+}
 
+/* 잠금 아이콘 스타일 */
+.fas.fa-lock {
+    background-color: black;
+    color: var(--white);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* 페이징 기능 */
+.pagination-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pagination {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination li {
+    display: inline;
+    margin-right: 5px;
+}
+
+.pagination li a {
+    color: black;
+    border: 1px solid black;
+    padding: 6px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.pagination li.disabled a {
+    color: #6c757d;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}

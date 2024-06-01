@@ -27,6 +27,9 @@ public class Report extends BaseEntity {
     @OneToMany(mappedBy = "report", cascade = CascadeType.REMOVE)
     private List<ReportReply> replyList;
 
+    @ManyToOne
+    private User author;
+
     private boolean isSecret;  // 비밀글 여부 필드 추가
 
 }

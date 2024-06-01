@@ -1,29 +1,42 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="reportDetail_container">
+    <!-- 질문 -->
     <h1 class="reportDetail_title" th:text="${report.title}"></h1>
         <div class="reportDetail_reportList">
+            <div class="reportDetail_userData">
+                <div class="reportDetail_username">
+                    <span th:if="${report.author != null}" th:text="${report.author.username}"></span>
+                </div>
+                <div class="reportDetail_createDate"
+                     th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+
+            </div>
             <div class="reportDetail_content" style="white-space: pre-line;" th:text="${report.content}"></div>
-            <div class="reportDetail_createDate" th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"></div>
         </div>
     <!-- 답변의 갯수 표시 -->
     <h5 class="reportDetail_replyList"
         th:text="|${#lists.size(report.replyList)}개의 답변이 있습니다.|"></h5>
     <!-- 답변 반복 시작 -->
     <div class="reportDetail_reply" th:each="reportReply : ${report.replyList}">
-        <div class="reportDetail_reply_body">
-            <div class="reportDetail_content" style="white-space: pre-line;" th:text="${reportReply.content}"></div>
-
+        <div class="reportDetail_replyList">
+            <div class="reportDetail_userData">
+                <div class="reportDetail_username">
+                    <span th:if="${reportReply.author != null}" th:text="${reportReply.author.username}"></span>
+                </div>
                 <div class="reportDetail_createDate">
                     <div th:text="${#temporals.format(reportReply.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
 
+            </div>
+            <div class="reportDetail_content" style="white-space: pre-line;" th:text="${reportReply.content}"></div>
         </div>
     </div>
     <!-- 답변 반복 끝  -->
     <!-- 답변 작성 -->
     <form class="reportDetail_create" th:action="@{|/reportReply/create/${report.id}|}" th:object="${reportReplyForm}" method="post">
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
-        <textarea th:field="*{content}" class="reportDetail_create_text" name="content" id="content" rows="15"></textarea>
+        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="reportDetail_create_text" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="reportDetail_create_text" rows="10"></textarea>
         <input class="reportDetail_create_btn" type="submit" value="답변등록">
     </form>
 </div>

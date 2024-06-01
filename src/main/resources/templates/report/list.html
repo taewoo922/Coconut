@@ -4,26 +4,54 @@
         <thead class="reportList_table_head">
         <tr class="reportList_head_data">
             <th class="reportList_head_id">번호</th>
-            <th class="reportList_head_title">제목</th>
+            <th style="width:50%" class="reportList_head_title">제목</th>
             <th class="reportList_head_username">작성자</th>
             <th class="reportList_head_createDate">작성일</th>
         </tr>
         </thead>
         <tbody class="reportList_table_body">
-        <tr th:each="report, loop : ${reportList}" class="reportList_body_data">
-            <td th:text="${loop.count}" class="reportList_id"></td>
+        <tr th:each="report, loop : ${paging}" class="reportList_body_data">
+            <td class="reportList_id" th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
             <td class="reportList_title">
-                <a th:href="@{|/report/detail/${report.id}|}" th:text="${report.title}"></a>
+                <a th:href="@{|/report/detail/${report.id}|}">
+                    <span th:text="${report.title}"></span>
+                    <span class="reportList_reply_count"
+                          th:if="${#lists.size(report.replyList) > 0}"
+                          th:text="${#lists.size(report.replyList)}">
+                    </span>
+                </a>
             </td>
-            <td th:text="${report.content}" class="reportList_content"></td>
-            <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}" class="reportList_createDate"></td>
+            <td><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
+            <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
+                class="reportList_createDate"></td>
             <i th:if="${report.isSecret}" class="fas fa-lock"></i>
         </tr>
-
         </tbody>
     </table>
-
-    <a class="reportList_create_btn" th:href="@{/report/create}">질문 등록하기</a>
+    <!-- 페이징처리 시작 -->
+    <div th:if="${!paging.isEmpty()}" class="pagination-container">
+        <ul class="pagination">
+            <li th:class="${!paging.hasPrevious} ? 'disabled'">
+                <a th:href="@{|?page=${paging.number-1}|}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                th:class="${page == paging.number} ? 'active' : ''">
+                <a th:text="${page}" th:href="@{|?page=${page}|}"></a>
+            </li>
+            <li th:class="${!paging.hasNext} ? 'disabled'">
+                <a th:href="@{|?page=${paging.number+1}|}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
     </div>
+    <!-- 페이징처리 끝 -->
+    <a class="reportList_create_btn" th:href="@{/report/create}">질문 등록하기</a>
+</div>
 </html>
 

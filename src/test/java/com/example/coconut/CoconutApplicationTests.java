@@ -5,6 +5,7 @@ import com.example.coconut.domain.question.entity.Question;
 import com.example.coconut.domain.question.repository.QuestionRepository;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
+import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.reportReply.repository.ReportReplyRepository;
 import org.junit.jupiter.api.Test;
@@ -25,11 +26,19 @@ class CoconutApplicationTests {
 	private ReportRepository reportRepository;
 
 	@Autowired
+	private ReportService reportService;
+
+	@Autowired
 	private ReportReplyRepository reportReplyRepository;
 
 
 	@Test
 	void contextLoads() {
+		for (int i = 1; i <= 300; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.reportService.create(subject, content, null);
+		}
 //		Report r1 = new Report();
 //		r1.setTitle("질문1");
 //		r1.setContent("없어요");
