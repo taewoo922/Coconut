@@ -1,4 +1,3 @@
-/*
 package com.example.coconut.global.security;
 
 import lombok.AllArgsConstructor;
@@ -29,4 +28,4 @@ public class KakaoUserDetails implements CustomOauth2UserDetails.OAuth2UserInfo 
     public String getName() {
         return (String) ((Map) attributes.get("properties")).get("nickname");
     }
-}*/
+}

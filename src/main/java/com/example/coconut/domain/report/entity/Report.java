@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class Report extends BaseEntity {
     private User author;
 
     @ManyToMany
-    Set<User> voter;
+    private Set<User> voter = new HashSet<>();
 
 
 }

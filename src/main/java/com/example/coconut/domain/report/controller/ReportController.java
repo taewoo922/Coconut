@@ -34,6 +34,7 @@ public class ReportController {
     private final ReportService reportService;
     private final UserService userService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Report> paging = this.reportService.getList(page, kw);
@@ -42,6 +43,7 @@ public class ReportController {
         return "report/list";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Long id, ReportReplyForm reportReplyForm){
         Report report = this.reportService.getReport(id);
@@ -112,5 +114,13 @@ public class ReportController {
         User user = this.userService.getUser(principal.getName());
         this.reportService.vote(report, user);
         return "redirect:/report/detail/%s".formatted(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/best_report")
+    public String getTopReports(Model model) {
+        List<Report> topReports = reportService.getTop5ReportsByVoterCount();
+        model.addAttribute("topReports", topReports);
+        return "report/best_report"; // View name
     }
 }

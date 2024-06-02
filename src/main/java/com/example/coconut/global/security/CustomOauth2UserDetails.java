@@ -1,4 +1,3 @@
-/*
 package com.example.coconut.global.security;
 
 import com.example.coconut.domain.user.entity.User;
@@ -74,4 +73,3 @@ public class CustomOauth2UserDetails implements UserDetails, OAuth2User{
         String getName();
     }
 }
-*/

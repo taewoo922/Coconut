@@ -88,4 +88,9 @@ public class ReportService {
         report.getVoter().add(user);
         this.reportRepository.save(report);
     }
+
+    public List<Report> getTop5ReportsByVoterCount() {
+        Pageable topFive = PageRequest.of(0, 5);
+        return reportRepository.findTop5ByOrderByVoterCountDesc(topFive);
+    }
 }

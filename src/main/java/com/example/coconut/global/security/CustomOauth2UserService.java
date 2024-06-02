@@ -1,4 +1,3 @@
-/*
 package com.example.coconut.global.security;
 
 import com.example.coconut.domain.user.entity.User;
@@ -69,4 +68,3 @@ public class CustomOauth2UserService extends DefaultOAuth2UserService {
         return new CustomOauth2UserDetails(user, oAuth2User.getAttributes());
     }
 }
-*/

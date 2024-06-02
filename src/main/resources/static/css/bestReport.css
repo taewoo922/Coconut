@@ -1,0 +1,76 @@
+/* Best Report Container */
+.best_report_container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Best Report Title */
+.best_report {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Best Report Table */
+.best_report_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Best Report Table Header */
+.best_report_table_head {
+    background-color: white;
+    color: #fff;
+}
+
+/* Best Report Table Header Row */
+.best_report_head_data {
+    border-bottom: 2px solid #8B4513; /* 코코넛 색상 */
+}
+
+/* Best Report Table Header Title */
+.best_report_head_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #8B4513; /* 코코넛 색상 */
+    padding: 10px;
+}
+
+/* Best Report Table Body Title */
+.best_report_body_title {
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* 회색 테두리 */
+}
+
+.best_report_body_title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.best_report_body_title a:hover {
+    color: #007bff;
+}
+
+/* QnA Button Container */
+.qna_button_container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* QnA Button */
+.qna_button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.qna_button:hover {
+    background-color: #0056b3;
+}

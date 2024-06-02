@@ -1,4 +1,3 @@
-/*
 package com.example.coconut.global.security;
 
 import java.util.Map;
@@ -31,4 +30,3 @@ public class GoogleUserDetails implements CustomOauth2UserDetails.OAuth2UserInfo
         return (String) attributes.get("name");
     }
 }
-*/
