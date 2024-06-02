@@ -35,6 +35,7 @@
         th:text="|${#lists.size(report.replyList)}개의 답변이 있습니다.|"></h5>
     <!-- 답변 반복 시작 -->
     <div class="reportDetail_reply" th:each="reportReply : ${report.replyList}">
+        <a th:id="|reportReply_${reportReply.id}|"></a>
         <div class="reportDetail_replyList">
             <div class="reportDetail_userData">
                 <div class="reportDetail_username">

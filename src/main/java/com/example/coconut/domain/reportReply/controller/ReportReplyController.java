@@ -42,8 +42,8 @@ public class ReportReplyController {
             model.addAttribute("report", report);
             return "report/detail";
         }
-        this.reportReplyService.create(report, reportReplyForm.getContent(), user);
-        return "redirect:/report/detail/%s".formatted(id);
+        ReportReply reportReply = this.reportReplyService.create(report, reportReplyForm.getContent(), user);
+        return "redirect:/report/detail/%s#reportReply_%s".formatted(reportReply.getReport().getId(), reportReply.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -69,7 +69,7 @@ public class ReportReplyController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         this.reportReplyService.modify(reportReply, reportReplyForm.getContent());
-        return String.format("redirect:/report/detail/%s", reportReply.getReport().getId());
+        return String.format("redirect:/report/detail/%s#reportReply_%s", reportReply.getReport().getId(), reportReply.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -89,7 +89,7 @@ public class ReportReplyController {
         ReportReply reportReply = this.reportReplyService.getReportReply(id);
         User user = this.userService.getUser(principal.getName());
         this.reportReplyService.vote(reportReply, user);
-        return "redirect:/report/detail/%s".formatted(reportReply.getReport().getId());
+        return "redirect:/report/detail/%s#reportReply_%s".formatted(reportReply.getReport().getId(), reportReply.getId());
     }
 
 }
