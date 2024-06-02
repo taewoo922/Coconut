@@ -26,11 +26,11 @@ public class SecurityConfig {
                                 .loginPage("/user/login")
                                 .defaultSuccessUrl("/")
                 )
-                .authorizeHttpRequests((auth) -> auth
+               /* .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
                         .requestMatchers("/oauth-login/info").authenticated()
                         .anyRequest().permitAll()
-                )
+                )*/
                 .formLogin((auth) -> auth.loginPage("/user/login")
                         .loginProcessingUrl("/login")
                         .usernameParameter("username")
@@ -38,10 +38,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/")
                         .failureUrl("/user/login")
                         .permitAll())
-               .oauth2Login((auth) -> auth.loginPage("/user/login")
+               /* .oauth2Login((auth) -> auth.loginPage("/user/login")
                         .defaultSuccessUrl("/")
                         .failureUrl("/user/login")
-                        .permitAll())
+                        .permitAll())*/
                 .logout((auth) -> auth
                         .logoutUrl("/logout")
                 )

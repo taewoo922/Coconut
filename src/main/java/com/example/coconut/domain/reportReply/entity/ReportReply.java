@@ -6,12 +6,15 @@ import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,5 +32,8 @@ public class ReportReply extends BaseEntity {
 
     @ManyToOne
     private User author;
+
+    @ManyToMany
+    Set<User> voter;
 
 }

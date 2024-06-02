@@ -144,6 +144,55 @@ textarea:disabled {
     background-color: #1558b0;
 }
 
+/*질문 수정 삭제*/
+.reportDetail_content_function{
+     display: flex;
+     justify-content: space-between;
+     margin-top: 8px;
+     margin-bottom: 8px;
+     gap: 10px; /* 간격 추가 */
+}
+
+/*질문 수정 버튼*/
+.reportDetail_content_modify_btn{
+    font-size: 15px;
+    color: #007bff;
+
+}
+
+/*질문 삭제 버튼*/
+.reportDetail_content_delete_btn{
+    font-size: 15px;
+    color: #dc3545;
+
+}
+
+/*추천 버튼*/
+.reportDetail_vote {
+   display: inline-flex;
+   align-items: center;
+   background-color: #f0f8ff; /* 코코넛 느낌의 연한 파란색 배경 */
+   color: #008080; /* 코코넛 느낌의 청록색 글자 */
+   border: 2px solid #008080; /* 테두리 색상 */
+   border-radius: 10px; /* 둥근 모서리 */
+   padding: 1px 15px; /* 패딩 */
+   font-family: 'Gasoek One', sans-serif; /* 코코넛 느낌의 폰트 */
+   font-size: 1rem; /* 폰트 크기 */
+   cursor: pointer;
+   transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.reportDetail_vote:hover {
+    background-color: #008080; /* 호버 시 배경색 */
+    color: #f0f8ff; /* 호버 시 글자색 */
+}
+
+.reportDetail_voterCount {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
 /* 에러 메세지 출력 */
 .report_error {
     background-color: #f8d7da;
@@ -164,3 +213,4 @@ textarea:disabled {
     margin-right: 10px;
     font-size: 1.2em;
 }
+

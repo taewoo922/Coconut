@@ -9,6 +9,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,6 +31,8 @@ public class Report extends BaseEntity {
     @ManyToOne
     private User author;
 
-    private boolean isSecret;  // 비밀글 여부 필드 추가
+    @ManyToMany
+    Set<User> voter;
+
 
 }

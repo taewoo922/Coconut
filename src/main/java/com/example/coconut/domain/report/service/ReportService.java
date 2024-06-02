@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,5 +49,20 @@ public class ReportService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return  this.reportRepository.findAll(pageable);
+    }
+
+    public void modify(Report report, String title, String content) {
+        report.setTitle(title);
+        report.setContent(content);
+        this.reportRepository.save(report);
+    }
+
+    public void delete(Report report){
+        this.reportRepository.delete(report);
+    }
+
+    public void vote(Report report, User user){
+        report.getVoter().add(user);
+        this.reportRepository.save(report);
     }
 }

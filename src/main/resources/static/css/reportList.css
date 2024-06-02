@@ -79,13 +79,6 @@
     transform: translateY(-2px);
 }
 
-/* 잠금 아이콘 스타일 */
-.fas.fa-lock {
-    background-color: black;
-    color: var(--white);
-    padding: 2px 4px;
-    border-radius: 4px;
-}
 
 /* 페이징 기능 */
 .pagination-container {

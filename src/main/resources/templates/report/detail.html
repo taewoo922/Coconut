@@ -12,6 +12,23 @@
 
             </div>
             <div class="reportDetail_content" style="white-space: pre-line;" th:text="${report.content}"></div>
+            <div class="reportDetail_content_function">
+                <a href="javascript:void(0);" class="reportDetail_vote"
+                   th:data-uri="@{|/report/vote/${report.id}|}">
+                    추천
+                    <span class="reportDetail_voterCount" th:text="${#lists.size(report.voter)}"></span>
+                </a>
+                <div class="reportDetail_content_modifyAndDelete">
+                <a th:href="@{|/report/modify/${report.id}|}" class="reportDetail_content_modify_btn"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${report.author != null and #authentication.getPrincipal().getUsername() == report.author.username}"
+                   th:text="수정"></a>
+                <a href="javascript:void(0);" th:data-uri="@{|/report/delete/${report.id}|}"
+                   class="reportDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                   th:if="${report.author != null and #authentication.getPrincipal().getUsername() == report.author.username}"
+                   th:text="삭제"></a>
+                </div>
+            </div>
         </div>
     <!-- 답변의 갯수 표시 -->
     <h5 class="reportDetail_replyList"
@@ -29,6 +46,23 @@
 
             </div>
             <div class="reportDetail_content" style="white-space: pre-line;" th:text="${reportReply.content}"></div>
+            <div class="reportDetail_content_function">
+                <a href="javascript:void(0);" class="reportDetail_vote"
+                   th:data-uri="@{|/reportReply/vote/${reportReply.id}|}">
+                    추천
+                    <span class="reportDetail_voterCount" th:text="${#lists.size(reportReply.voter)}"></span>
+                </a>
+                <div class="reportDetail_content_modifyAndDelete">
+                <a th:href="@{|/reportReply/modify/${reportReply.id}|}" class="reportDetail_content_modify_btn"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username}"
+                   th:text="수정"></a>
+                <a href="javascript:void(0);" th:data-uri="@{|/reportReply/delete/${reportReply.id}|}"
+                   class="reportDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                   th:if="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username}"
+                   th:text="삭제"></a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- 답변 반복 끝  -->

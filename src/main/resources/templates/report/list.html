@@ -24,7 +24,6 @@
             <td><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
             <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
                 class="reportList_createDate"></td>
-            <i th:if="${report.isSecret}" class="fas fa-lock"></i>
         </tr>
         </tbody>
     </table>
