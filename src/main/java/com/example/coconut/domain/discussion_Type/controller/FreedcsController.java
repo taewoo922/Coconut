@@ -1,6 +1,9 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
 import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -25,6 +28,7 @@ import java.util.List;
 @RequestMapping("/discussion")
 public class FreedcsController {
     private final FreedcsService freedcsService;
+    private final UserService userService;
 
     @Autowired
     private CategoryService categoryService;
@@ -67,6 +71,16 @@ public class FreedcsController {
     }
 
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    public String free_Vote(Principal principal, @PathVariable("id") Integer id) {
+        Freedcs freedcs = this.freedcsService.getFreedcs(id);
+        User user = this.userService.getUser(principal.getName());
+
+        this.freedcsService.vote(freedcs, user);
+
+        return String.format("redirect:/discussion/freedcs_detail/%s".formatted(id));
+    }
 
     @ModelAttribute("categories")
     public List<Category> categories() {
