@@ -8,7 +8,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,6 +29,11 @@ public class Report extends BaseEntity {
     @OneToMany(mappedBy = "report", cascade = CascadeType.REMOVE)
     private List<ReportReply> replyList;
 
-    private boolean isSecret;  // 비밀글 여부 필드 추가
+    @ManyToOne
+    private User author;
+
+    @ManyToMany
+    private Set<User> voter = new HashSet<>();
+
 
 }

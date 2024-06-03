@@ -3,26 +3,24 @@
     <nav class="nav_container">
       <div class="nav__logo">
         <a href="/" class="main_logo">
-        <img th:src="@{/images/coconut.png}" alt="이미지">
-      </a>
+          <img th:src="@{/images/coconut.png}" alt="이미지">
+        </a>
       </div>
       <ul class="nav__main">
         <li><a href="/discussion/freedcs_list">자유토론</a></li>
         <li>|</li>
         <li><a href="#">찬반토론</a></li>
         <li>|</li>
-        <li><a href="/report/list">QnA</a></li>
+        <li><a href="/report/best_report">QnA</a></li>
       </ul>
       <ul class="nav__login">
         <a sec:authorize="isAnonymous()" href="/user/login">로그인</a></li>
-
         <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a></li>
         <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a></li>
-
         <a sec:authorize="isAuthenticated()" href="/user/mypage">마이페이지</a></li>
       </ul>
       <a href="#" class="nav__bar">
-        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-bars icon"></i>
       </a>
     </nav>
   </section>
