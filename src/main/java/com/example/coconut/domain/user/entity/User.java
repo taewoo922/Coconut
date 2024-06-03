@@ -4,10 +4,7 @@ import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.question.entity.Question;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.LazyCollection;
@@ -19,6 +16,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor

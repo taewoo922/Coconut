@@ -2,11 +2,15 @@ package com.example.coconut.domain.discussion_Type.service;
 
 
 
+
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.category.entity.Category;
 
+
+
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -54,7 +58,7 @@ public class FreedcsService {
     }
 
     public Freedcs getFreedcs(Integer id) {
-        Optional<Freedcs> freedcs = this.freedcsRepository.findById(Long.valueOf(id));
+        Optional<Freedcs> freedcs = this.freedcsRepository.findById(id);
         if (freedcs.isPresent()) {
             return freedcs.get();
         } else {
@@ -62,5 +66,11 @@ public class FreedcsService {
         }
     }
 
+    public void vote(Freedcs freedcs, User voter) {
+        freedcs.addVoter(voter);
+
+        this.freedcsRepository.save(freedcs);
+
+    }
 
 }

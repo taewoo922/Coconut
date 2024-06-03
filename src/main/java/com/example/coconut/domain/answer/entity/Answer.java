@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
@@ -25,12 +26,19 @@ public class Answer extends BaseEntity {
     @ManyToOne // table의 관계에서 반드시 작성해주어야함
     private Question question;
 
-    @ManyToOne
-    private Freedcs freedcs;
-
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
 
+    //Many= Answer, one=Question
+    //필수
+    @ManyToOne
+    private Freedcs freedcs;
 
+    @ManyToMany
+    Set<User> voters = new LinkedHashSet<>();
+    //HashSet은 순서가 보장이 안됨 LinkedHashSet은 순서가 보장됨
 
+    public void addVoter(User voter) {
+        voters.add(voter);
+    }
 }
