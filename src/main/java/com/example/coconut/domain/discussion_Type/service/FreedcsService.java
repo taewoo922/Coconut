@@ -10,6 +10,7 @@ import com.example.coconut.domain.category.entity.Category;
 
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,29 +36,7 @@ public class FreedcsService {
         return freedcsRepository.findAll();
     }
 
-
-    public void free_create(String title, String content,MultipartFile thumbnail) {
-
-
-        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
-        File thumbnailFile = new File(fileDirPath + "/" +thumbnailRelPath);
-
-        try {
-            thumbnail.transferTo(thumbnailFile);
-        } catch( IOException e ) {
-            throw new RuntimeException(e);
-        }
-
-        Freedcs freedcs = Freedcs.builder()
-                .title(title)
-                .content(content)
-                .thumbnailImg(thumbnailRelPath)
-//                .category(category)
-                .build();
-        freedcsRepository.save(freedcs);
-    }
-
-    public Freedcs getFreedcs(Integer id) {
+    public Freedcs getFreedcs(Long id) {
         Optional<Freedcs> freedcs = this.freedcsRepository.findById(id);
         if (freedcs.isPresent()) {
             return freedcs.get();
@@ -66,11 +45,64 @@ public class FreedcsService {
         }
     }
 
-    public void vote(Freedcs freedcs, User voter) {
-        freedcs.addVoter(voter);
+    public Freedcs free_create(String title, String content, User user){
+        Freedcs f = new Freedcs();
+        f.setTitle(title);
+        f.setContent(content);
+        f.setAuthor(user);
+        this.freedcsRepository.save(f);
+        return f;
+    }
+
+
+
+//    public void free_create(String title, String content,MultipartFile thumbnail) {
+//
+//
+//        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
+//        File thumbnailFile = new File(fileDirPath + "/" +thumbnailRelPath);
+//
+//        try {
+//            thumbnail.transferTo(thumbnailFile);
+//        } catch( IOException e ) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        Freedcs freedcs = Freedcs.builder()
+//                .title(title)
+//                .content(content)
+//                .thumbnailImg(thumbnailRelPath)
+////                .category(category)
+//                .build();
+//        freedcsRepository.save(freedcs);
+//    }
+
+    public void modify(Freedcs freedcs, String title, String content) {
+        freedcs.setTitle(title);
+        freedcs.setContent(content);
+        this.freedcsRepository.save(freedcs);
+    }
+
+    public void delete(Freedcs freedcs){
+        this.freedcsRepository.delete(freedcs);
+    }
+
+
+
+    public void vote(Freedcs freedcs, User user) {
+        freedcs.getVoter().add(user);
 
         this.freedcsRepository.save(freedcs);
 
     }
+
+//    public void vote(Freedcs freedcs, User voter) {
+//        freedcs.addVoter(voter);
+//
+//        this.freedcsRepository.save(freedcs);
+//
+//    }
+
+
 
 }

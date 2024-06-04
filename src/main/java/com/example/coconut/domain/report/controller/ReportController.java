@@ -29,8 +29,6 @@ import java.util.List;
 @RequestMapping("/report")
 public class ReportController {
 
-
-
     private final ReportService reportService;
     private final UserService userService;
 
