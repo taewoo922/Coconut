@@ -1,18 +1,10 @@
 package com.example.coconut.domain.user.entity;
 
-import com.example.coconut.domain.answer.entity.Answer;
-import com.example.coconut.domain.question.entity.Question;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

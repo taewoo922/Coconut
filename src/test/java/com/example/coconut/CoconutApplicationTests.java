@@ -1,20 +1,11 @@
 package com.example.coconut;
 
-import com.example.coconut.domain.answer.repository.AnswerRepository;
-import com.example.coconut.domain.question.entity.Question;
-import com.example.coconut.domain.question.repository.QuestionRepository;
-import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.report.service.ReportService;
-import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.reportReply.repository.ReportReplyRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
