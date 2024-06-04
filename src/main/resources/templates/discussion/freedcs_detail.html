@@ -1,77 +1,78 @@
-<html layout:decorate="~{common/layout}">
+<html layout:decorate="~{common/layout_f}">
 <div layout:fragment="content" class="freedcsDetail_container">
-    <h2 class="border-bottom py-2" th:text="${freedcs.title}"></h2>
-    <div th:text="${freedcs.content}"></div>
-    <div class="card my-3">
-        <div class="card-body">
-            <div class="d-flex justify-content-end">
-<!--                <div class="badge bg-light text-dark p-2 text-start">-->
-<!--                    <div th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>-->
-<!--                </div>-->
+    <!-- 질문 -->
+    <h1 class="freedcsDetail_title" th:text="${freedcs.title}"></h1>
+    <div class="freedcsDetail_freedcsList">
+        <div class="freedcsDetail_userData">
+            <div class="freedcsDetail_username">
+                <span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span>
             </div>
-            <div class="my-3">
+            <div class="freedcsDetail_createDate"
+                 th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 
-                <a onclick="return confirm('정말로 추천하시겠습니까?');" class="btn btn-sm btn-outline-secondary"
-                   th:href="@{|/discussion/vote/${freedcs.id}|}">
-<!--                    th:href="@{|/discussion/vote/${freedcs.id}|}">-->
-                    추천
-                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(freedcs.voters)}"></span>
-                </a>
+        </div>
+        <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
+        <div class="freedcsDetail_content_function">
+            <a href="javascript:void(0);" class="freedcsDetail_vote"
+               th:data-uri="@{|/discussion/vote/${freedcs.id}|}">
+                추천
+                <span class="freedcsDetail_voterCount" th:text="${#lists.size(freedcs.voter)}"></span>
+            </a>
+            <div class="freedcsDetail_content_modifyAndDelete">
+                <a th:href="@{|/discussion/modify/${freedcs.id}|}" class="freedcsDetail_content_modify_btn"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
+                   th:text="수정"></a>
+                <a href="javascript:void(0);" th:data-uri="@{|/discussion/delete/${freedcs.id}|}"
+                   class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                   th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
+                   th:text="삭제"></a>
             </div>
         </div>
     </div>
-    <h5 class="border-bottom my-3 py-2"
+    <!-- 답변의 갯수 표시 -->
+    <h5 class="freedcsDetail_answerList"
         th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>
-    <div th:id="|answer_${answer.id}" class="card my-3" th:each="answer : ${freedcs.answerList}">
-        <div class="card-body">
-            <div class="d-flex justify-content-end">
-<!--                <div class="badge bg-light text-dark p-2 text-start">-->
-<!--                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>-->
-<!--                </div>-->
+    <!-- 답변 반복 시작 -->
+    <div class="freedcsDetail_answer" th:each="answer : ${freedcs.answerList}">
+        <a th:id="|answer_${answer.id}|"></a>
+        <div class="freedcsDetail_answer">
+            <div class="freedcsDetail_userData">
+                <div class="freedcsDetail_username">
+                    <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                </div>
+                <div class="freedcsDetail_createDate">
+                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+
             </div>
-            <div class="my-3">
-                <!--추천 기능-->
-                <a onclick="return confirm('정말로 추천하시겠습니까?');" class="btn btn-sm btn-outline-secondary"
-                   th:href="@{|/discussion/free_detail/${answer.id}|}">
-<!--                    th:href="@{|/answer/vote/${answer.id}|}"-->
+            <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
+            <div class="freedcsDetail_content_function">
+                <a href="javascript:void(0);" class="freedcsDetail_vote"
+                   th:data-uri="@{|/answer/vote/${answer.id}|}">
                     추천
-                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voters)}"></span>
+                    <span class="freedcsDetail_voterCount" th:text="${#lists.size(answer.voter)}"></span>
                 </a>
+                <div class="freedcsDetail_content_modifyAndDelete">
+                    <a th:href="@{|/answer/modify/${answer.id}|}" class="freedcsDetail_content_modify_btn"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                       th:text="수정"></a>
+                    <a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
+                       class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                       th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                       th:text="삭제"></a>
+                </div>
             </div>
         </div>
     </div>
-    <form th:action="@{|/answer/create/${freedcs.id}|}" method="post" class="my-3">
-        <textarea name="content" id="content" rows="15"></textarea>
-        <div>
-            <ul>
-                <li th:each="answer : ${freedcs.answerList}" th:text="${answer.content}"></li>
-            </ul>
-        </div>
-<!--        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">-->
-<!--            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
-<!--        </div>-->
-<!--        <textarea sec:authorize="isAnonymous()" disabled placeholder="로그인 후 이용해주세요" th:field="*{content}" rows="3" class="form-control"></textarea>-->
-<!--        <textarea sec:authorize="isAuthenticated()" required maxlength="20000" placeholder="내용(20,000자 이하)" th:field="*{content}" rows="7" class="form-control"></textarea>-->
-        <input type="submit" value="답변등록" class="btn btn-primary my-2">
+    <!-- 답변 반복 끝  -->
+    <!-- 답변 작성 -->
+    <form class="freedcsDetail_create" th:action="@{|/answer/create/${freedcs.id}|}" th:object="${answerForm}" method="post">
+        <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
+        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
+        <input class="freedcsDetail_create_btn" type="submit" value="답변등록">
     </form>
 </div>
 </html>
-<!--<h1 th:text="${freedcs.title}"></h1>-->
-<!--<div th:text="${freedcs.content}"></div>-->
-<!--<div class="my-3">-->
-<!--    &lt;!&ndash;추천 기능&ndash;&gt;-->
-<!--    <a th:href="@{|/answer/vote/${answer?.id}|}" onclick="return confirm('정말로 추천하시겠습니까?');" class="btn btn-sm btn-outline-secondary">-->
-<!--        추천-->
-<!--        <span class="badge rounded-pill bg-success" th:text="|${#lists.size(answer?.voters)}|"></span>-->
-<!--    </a>-->
-<!--</div>-->
-<!--<form th:action="@{|/answer/create/${freedcs.id}|}" method="post">-->
-<!--    <textarea name="content" id="content" rows="15"></textarea>-->
-<!--    <h5 th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>-->
-<!--    <div>-->
-<!--        <ul>-->
-<!--            <li th:each="answer : ${freedcs.answerList}" th:text="${answer.content}"></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--    <input type="submit" value="답변등록">-->
-<!--</form>-->

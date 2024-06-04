@@ -5,21 +5,15 @@ import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.answer.service.AnswerService;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
-import com.example.coconut.domain.question.service.QuestionService;
-import com.example.coconut.domain.report.entity.Report;
-import com.example.coconut.domain.reportReply.entity.ReportReply;
-import com.example.coconut.domain.reportReply.form.ReportReplyForm;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 

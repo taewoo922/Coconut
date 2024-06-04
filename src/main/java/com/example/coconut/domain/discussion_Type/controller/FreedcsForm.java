@@ -18,7 +18,7 @@ public class FreedcsForm {
     @Size(max=20000, message = "내용을 20000자 이하로 입력해주세요.")
     private String content;
 
-    @NotBlank(message="카테고리 선택은 필수사항입니다.")
-    private String category;
+//    @NotBlank(message="카테고리 선택은 필수사항입니다.")
+//    private String category;
 
 }
