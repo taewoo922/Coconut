@@ -24,7 +24,6 @@ public class User extends BaseEntity {
     private String nickname;
 
     @Column(unique = true)
-
     private String email;
 
     private String phone;
