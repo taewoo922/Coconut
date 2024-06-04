@@ -1,6 +1,6 @@
 package com.example.coconut.domain.report.entity;
 
-import com.example.coconut.domain.answer.entity.Answer;
+
 import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;

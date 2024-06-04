@@ -1,6 +1,8 @@
+
 .swiper_head {
     height: calc(65vh - 80px);
     overflow: hidden;
+
 }
 
 .swiper_body {
@@ -26,6 +28,7 @@
     justify-content: center;
     align-items: center;
     position: relative; /* 절대 위치 img를 포함하기 위해 추가 */
+
 }
 
 .swiper-slide img {
@@ -66,12 +69,12 @@
        font-size: 30px;
         text-align: center;
         margin-bottom: 20px;
+        font-family: 'Noto Sans KR', sans-serif;
     }
 
     .MSec {
         display: flex;
         height: 500px;
-
     }
 
     .dcsInfo {
