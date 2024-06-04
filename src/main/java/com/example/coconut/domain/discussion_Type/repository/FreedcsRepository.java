@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FreedcsRepository extends JpaRepository<Freedcs, Integer> {
+public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
 
 
 }

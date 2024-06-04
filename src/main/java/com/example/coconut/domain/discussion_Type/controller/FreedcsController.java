@@ -1,6 +1,8 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
+import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,9 +32,8 @@ public class FreedcsController {
     private final FreedcsService freedcsService;
     private final UserService userService;
 
-    @Autowired
-    private CategoryService categoryService;
-
+//    @Autowired
+//    private CategoryService categoryService;
 
 
     @GetMapping("/freedcs_list")
@@ -52,17 +53,24 @@ public class FreedcsController {
     }
 
     @PostMapping("/free_create")
-    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
-                              @RequestParam("thumbnail") MultipartFile thumbnail) {
-
-        freedcsService.free_create(title,content,thumbnail);
-
-
-        return "redirect:/discussion/freedcs_list";
+    public String reportCreate(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal){
+        if(bindingResult.hasErrors()){
+            return "discussion/free_create_form";
+        }
+        User user = this.userService.getUser(principal.getName());
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+        return "redirect:/dicussion/freedcs_list";
+//    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
+//                              @RequestParam("thumbnail") MultipartFile thumbnail) {
+//
+//        freedcsService.free_create(title,content,thumbnail);
+//
+//
+//        return "redirect:/discussion/freedcs_list";
     }
 
     @GetMapping(value = "/free_detail/{id}")
-    public String free_detail(Model model, @PathVariable("id") Integer id) {
+    public String free_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
 
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         model.addAttribute("freedcs", freedcs);
@@ -73,7 +81,7 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
-    public String free_Vote(Principal principal, @PathVariable("id") Integer id) {
+    public String free_Vote(Principal principal, @PathVariable("id") Long id) {
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         User user = this.userService.getUser(principal.getName());
 

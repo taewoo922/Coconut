@@ -33,16 +33,14 @@ public class Freedcs extends BaseEntity {
     private String displayName;
 
     @OneToMany(mappedBy = "freedcs", cascade = CascadeType.REMOVE)
-    @LazyCollection(LazyCollectionOption.EXTRA)
     private List<Answer> answerList;
 
-    @ManyToMany
-    Set<User> voters = new LinkedHashSet<>();
-    //HashSet은 순서가 보장이 안됨 LinkedHashSet은 순서가 보장됨
+    @ManyToOne
+    private User author;
 
-    public void addVoter(User voter) {
-        voters.add(voter);
-    }
+    @ManyToMany
+    Set<User> voter = new LinkedHashSet<>();
+
 
 
 
