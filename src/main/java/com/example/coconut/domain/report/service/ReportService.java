@@ -1,7 +1,7 @@
 package com.example.coconut.domain.report.service;
 
 import com.example.coconut.DataNotFoundException;
-import com.example.coconut.domain.answer.entity.Answer;
+
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.reportReply.entity.ReportReply;

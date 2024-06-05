@@ -1,10 +1,76 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content">
-<!--    <div>메인</div>-->
-<!--    <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>-->
-<!--    <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>-->
-<!--    <a href="/user/signup">회원가입</a>-->
-<!--    <a href="/discussion/freedcs_list">자유토론</a>-->
+
+    <!-- Swiper -->
+    <div class="swiper_head">
+    <div class="swiper_body">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_1.jpg}" alt="이미지 1"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_2.jpg}" alt="이미지 2"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_3.jpg}" alt="이미지 3"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_4.jpg}" alt="이미지 4"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_5.jpg}" alt="이미지 5"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_6.jpg}" alt="이미지 6"></div>
+            <div class="swiper-slide"><img th:src="@{/images/slideImage_7.jpg}" alt="이미지 7"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    </div>
+    </div>
+
+    <div class="main_container">
+        <div class="main_body">
+            <div class="main_Hot_Topic">
+                <div class="main_Hot_Topic_title mTitle">🔥오늘의 인기 토론🔥</div>
+                <div class="Hot_Topic_section MSec">
+                    <div class="main_Hot_Topic_1 dcsInfo">
+                        <a href="#">인기 토론 1 이미지</a>
+                        <div class="dcsInfo_text">인기 토론 1</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_2 dcsInfo">
+                        <a href="#">인기 토론 2 이미지</a>
+                        <div class="dcsInfo_text">인기 토론 2</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_3 dcsInfo">
+                        <a href="#">인기 토론 3 이미지</a>
+                        <div class="dcsInfo_text">인기 토론 3</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_4 dcsInfo">
+                        <a href="#">인기 토론 4 이미지</a>
+                        <div class="dcsInfo_text">인기 토론 4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_Latest">
+                <div class="main_Latest_title mTitle">💡최신 토론💡</div>
+                <div class="Latest_section MSec">
+                    <div class="main_Latest_1 dcsInfo">
+                        <a href="#">최신 토론 1 이미지</a>
+                        <div class="dcsInfo_text">최신 토론 1</div>
+                    </div>
+                    <div class="main_Latest_2 dcsInfo">
+                        <a href="#">최신 토론 2 이미지</a>
+                        <div class="dcsInfo_text">최신 토론 2</div>
+                    </div>
+                    <div class="main_Latest_3 dcsInfo">
+                        <a href="#">최신 토론 3 이미지</a>
+                        <div class="dcsInfo_text">최신 토론 3</div>
+                    </div>
+                    <div class="main_Latest_4 dcsInfo">
+                        <a href="#">최신 토론 4 이미지</a>
+                        <div class="dcsInfo_text">최신 토론 4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{common/footer :: footerFragment}"></footer>
 </div>
 </html>
 

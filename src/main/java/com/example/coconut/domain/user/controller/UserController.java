@@ -1,5 +1,6 @@
 package com.example.coconut.domain.user.controller;
 
+import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +10,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +61,7 @@ public class UserController {
         private String password_confirm;
 
         @NotBlank
-        @Length(min = 3)
+        @Length(min = 2)
         private String nickname;
 
         @NotBlank

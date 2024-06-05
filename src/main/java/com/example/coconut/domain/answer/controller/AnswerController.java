@@ -38,7 +38,6 @@ public class AnswerController {
         Answer answer = this.answerService.create(freedcs, answerForm.getContent(), user);
         return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
     }
-
 //@PreAuthorize("isAuthenticated()")
 //@GetMapping("/modify/{id}")
 //public String reportReplyModify(ReportReplyForm reportReplyForm, @PathVariable("id") Long id, Principal principal){

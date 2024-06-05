@@ -25,7 +25,6 @@ public class Answer extends BaseEntity {
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
 
-
     //Many= Answer, one=Question
     //필수
     @ManyToOne
