@@ -68,13 +68,13 @@ public class FreedcsService {
         }
     }
 
-    public Freedcs free_create(String title, String content, User user){
+    public void free_create(String title, String content, User user){
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);
         f.setAuthor(user);
         this.freedcsRepository.save(f);
-        return f;
+//        return f;
     }
 
     public Page<Freedcs> getList(int page, String kw){

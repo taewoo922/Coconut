@@ -26,8 +26,10 @@ public class AnswerController {
     private final AnswerService answerService;
     private final UserService userService;
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,BindingResult bindingResult, Principal principal) {
+    public String createAnswer(Model model, @PathVariable("id") Long id,
+                               @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {

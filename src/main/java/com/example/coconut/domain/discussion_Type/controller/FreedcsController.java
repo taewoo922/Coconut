@@ -74,7 +74,7 @@ public class FreedcsController {
         }
         User user = this.userService.getUser(principal.getName());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
-        return "redirect:/dicussion/freedcs_list";
+        return "redirect:/discussion/freedcs_list";
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {
 //
