@@ -1,6 +1,7 @@
 package com.example.coconut.domain.report.repository;
 
 import com.example.coconut.domain.report.entity.Report;
+import com.example.coconut.domain.user.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -17,4 +18,8 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
 
  @Query("SELECT r FROM Report r ORDER BY SIZE(r.voter) DESC")
  List<Report> findTop5ByOrderByVoterCountDesc(Pageable pageable);
+
+ List<Report> findAllByAuthorId(Long userId);
+
+ List<Report> findAllByAuthor(User user);
 }

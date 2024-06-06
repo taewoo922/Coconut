@@ -1,0 +1,56 @@
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content">
+
+    <div class="search_container">
+        <div class="search_body">
+            <div class="search_scrap">
+                <div class="search_scrap_title sTitle">🔥스크랩 게시글🔥</div>
+                <div class="search_scrap_section sSec">
+                    <div class="search_scrap_Info sInfo">
+                        <a href="#">인기 토론 1 이미지</a>
+                        <div class="sInfo_text">인기 토론 1</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_2 dcsInfo">
+                        <a href="#">인기 토론 2 이미지</a>
+                        <div class="sInfo_text">인기 토론 2</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_3 dcsInfo">
+                        <a href="#">인기 토론 3 이미지</a>
+                        <div class="sInfo_text">인기 토론 3</div>
+                    </div>
+
+                    <div class="main_Hot_Topic_4 dcsInfo">
+                        <a href="#">인기 토론 4 이미지</a>
+                        <div class="sInfo_text">인기 토론 4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="search_myList">
+                <div class="search_myList_title sTitle">💡내가 쓴 게시글💡</div>
+                <div class="search_myList_section sSec">
+                    <div class="search_myList_Info sInfo" th:each="report, loop : ${reportList}">
+                        <a th:href="@{|/report/detail/${report.id}|}">내가 쓴 게시글 이미지</a>
+                        <div class="sInfo_text" th:text="${report.title}"></div>
+                    </div>
+                    <button class="prevBtn1">&#10094;</button>
+                    <button class="nextBtn1">&#10095;</button>
+                </div>
+            </div>
+
+            <div class="search_report">
+                <div class="search_report_title sTitle">💡나의 QnA💡</div>
+                <div class="search_report_section sSec">
+                    <div class="search_report_Info sInfo" th:each="report, loop : ${reportList}">
+                        <a th:href="@{|/report/detail/${report.id}|}">나의 QnA</a>
+                        <div class="sInfo_text" th:text="${report.title}"></div>
+                    </div>
+                    <button class="prevBtn2">&#10094;</button>
+                    <button class="nextBtn2">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

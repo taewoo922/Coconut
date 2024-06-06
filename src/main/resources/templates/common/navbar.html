@@ -13,7 +13,10 @@
         <li>|</li>
         <li><a href="/report/best_report">QnA</a></li>
       </ul>
-      <ul class="nav__login">
+      <ul class="nav__loginAndSearch">
+        <a sec:authorize="isAuthenticated()" class="nav__search" href="/user/search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
         <a sec:authorize="isAnonymous()" href="/user/login">로그인</a></li>
         <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a></li>
         <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a></li>

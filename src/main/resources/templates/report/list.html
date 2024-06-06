@@ -36,7 +36,7 @@
                     </span>
                 </a>
             </td>
-            <td><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
+            <td class="reportList_username RBList"><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
             <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
                 class="reportList_createDate RBList"></td>
         </tr>

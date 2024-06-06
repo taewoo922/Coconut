@@ -6,6 +6,7 @@ import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ import java.util.Optional;
 public class ReportService {
 
     private final ReportRepository reportRepository;
+    private final UserRepository userRepository;
 
     private Specification<Report> search(String kw) {
         return new Specification<>() {
@@ -96,4 +98,15 @@ public class ReportService {
         Pageable topFive = PageRequest.of(0, 5);
         return reportRepository.findTop5ByOrderByVoterCountDesc(topFive);
     }
+
+    public List<Report> getListByUserId(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return reportRepository.findAllByAuthor(user);
+        } else {
+            throw new DataNotFoundException("User not found with id: " + id);
+        }
+    }
+
 }
