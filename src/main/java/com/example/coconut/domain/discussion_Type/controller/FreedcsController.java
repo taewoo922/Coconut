@@ -46,6 +46,7 @@ public class FreedcsController {
         Page<Freedcs> paging = this.freedcsService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
+
         List<Freedcs> freedcsList = this.freedcsService.getList();
         model.addAttribute("freedcsList",freedcsList);
         return "discussion/freedcs_list";
@@ -68,12 +69,17 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
-    public String free_Create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal){
+    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal){
         if(bindingResult.hasErrors()){
             return "discussion/free_create_form";
         }
+<<<<<<< HEAD
         User user = this.userService.getUser(principal.getName());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+=======
+        User siteUser = this.userService.getUser(principal.getName());
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
+>>>>>>> 1e4494d (충돌1)
         return "redirect:/discussion/freedcs_list";
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {

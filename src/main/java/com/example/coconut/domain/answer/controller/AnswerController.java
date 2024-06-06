@@ -28,16 +28,22 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
+
     public String createAnswer(Model model, @PathVariable("id") Long id,
                                @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
+
+    public String createAnswer(Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,
+                               BindingResult bindingResult, Principal principal) {
+
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
-        User user = this.userService.getUser(principal.getName());
+
+        User siteUser = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("freedcs", freedcs);
             return "discussion/freedcs_detail";
         }
-
-        Answer answer = this.answerService.create(freedcs, answerForm.getContent(), user);
+//아래코드에 오류때문에 user 인자 임시 삭제
+        Answer answer = this.answerService.create(freedcs, answerForm.getContent(), siteUser);
         return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
     }
 //@PreAuthorize("isAuthenticated()")
