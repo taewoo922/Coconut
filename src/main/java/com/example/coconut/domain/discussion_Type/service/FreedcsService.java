@@ -68,12 +68,11 @@ public class FreedcsService {
         }
     }
 
-<<<<<<< HEAD
+
     public void free_create(String title, String content, User user){
-=======
+
 //    오류때문에 우선 User user 인자 제거함
     public Freedcs free_create(String title, String content, User author){
->>>>>>> 1e4494d (충돌1)
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);

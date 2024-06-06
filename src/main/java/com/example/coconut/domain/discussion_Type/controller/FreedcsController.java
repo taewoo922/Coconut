@@ -73,13 +73,13 @@ public class FreedcsController {
         if(bindingResult.hasErrors()){
             return "discussion/free_create_form";
         }
-<<<<<<< HEAD
+
         User user = this.userService.getUser(principal.getName());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
-=======
+
         User siteUser = this.userService.getUser(principal.getName());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
->>>>>>> 1e4494d (충돌1)
+
         return "redirect:/discussion/freedcs_list";
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {

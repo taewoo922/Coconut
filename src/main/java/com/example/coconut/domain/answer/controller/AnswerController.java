@@ -32,20 +32,20 @@ public class AnswerController {
     public String createAnswer(Model model, @PathVariable("id") Long id,
                                @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
 
-    public String createAnswer(Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,
-                               BindingResult bindingResult, Principal principal) {
+        public String createAnswer (Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,
+                BindingResult bindingResult, Principal principal){
 
-        Freedcs freedcs = this.freedcsService.getFreedcs(id);
+            Freedcs freedcs = this.freedcsService.getFreedcs(id);
 
-        User siteUser = this.userService.getUser(principal.getName());
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("freedcs", freedcs);
-            return "discussion/freedcs_detail";
-        }
+            User siteUser = this.userService.getUser(principal.getName());
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("freedcs", freedcs);
+                return "discussion/freedcs_detail";
+            }
 //아래코드에 오류때문에 user 인자 임시 삭제
-        Answer answer = this.answerService.create(freedcs, answerForm.getContent(), siteUser);
-        return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
-    }
+            Answer answer = this.answerService.create(freedcs, answerForm.getContent(), siteUser);
+            return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
+        }
 //@PreAuthorize("isAuthenticated()")
 //@GetMapping("/modify/{id}")
 //public String reportReplyModify(ReportReplyForm reportReplyForm, @PathVariable("id") Long id, Principal principal){
@@ -83,13 +83,14 @@ public class AnswerController {
 //        return String.format("redirect:/report/detail/%s", reportReply.getReport().getId());
 //    }
 
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/vote/{id}")
-    public String answerVote(Principal principal, @PathVariable("id") Long id) {
-        Answer answer = this.answerService.getAnswer(id);
-        User user = this.userService.getUser(principal.getName());
-        this.answerService.vote(answer, user);
+        @PreAuthorize("isAuthenticated()")
+        @GetMapping("/vote/{id}")
+        public String answerVote (Principal principal, @PathVariable("id") Long id){
+            Answer answer = this.answerService.getAnswer(id);
+            User user = this.userService.getUser(principal.getName());
+            this.answerService.vote(answer, user);
 
-        return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
+            return "redirect:/discussion/free_detail/%s#answer_%s".formatted(answer.getFreedcs().getId(), answer.getId());
+        }
     }
 }
