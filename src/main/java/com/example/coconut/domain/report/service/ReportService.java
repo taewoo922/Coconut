@@ -39,7 +39,8 @@ public class ReportService {
                         cb.like(q.get("content"), "%" + kw + "%"),      // 내용
                         cb.like(u1.get("username"), "%" + kw + "%"),    // 질문 작성자
                         cb.like(a.get("content"), "%" + kw + "%"),      // 답변 내용
-                        cb.like(u2.get("username"), "%" + kw + "%"));   // 답변 작성자
+                        cb.like(u2.get("username"), "%" + kw + "%"),    // 답변 작성자
+                        cb.like(q.get("category"), "%" + kw + "%"));    // 카테고리
             }
         };
     }
@@ -57,11 +58,12 @@ public class ReportService {
         }
     }
 
-    public Report create(String title, String content, User user){
+    public Report create(String title, String content, User user, String category){
         Report r = new Report();
         r.setTitle(title);
         r.setContent(content);
         r.setAuthor(user);
+        r.setCategory(category);
         this.reportRepository.save(r);
         return r;
     }
@@ -74,9 +76,10 @@ public class ReportService {
         return  this.reportRepository.findAll(spec, pageable);
     }
 
-    public void modify(Report report, String title, String content) {
+    public void modify(Report report, String title, String content, String category) {
         report.setTitle(title);
         report.setContent(content);
+        report.setCategory(category);
         this.reportRepository.save(report);
     }
 

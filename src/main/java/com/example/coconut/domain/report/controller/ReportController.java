@@ -62,7 +62,7 @@ public class ReportController {
             return "report/form";
         }
         User user = this.userService.getUser(principal.getName());
-        this.reportService.create(reportForm.getTitle(), reportForm.getContent(), user);
+        this.reportService.create(reportForm.getTitle(), reportForm.getContent(), user, reportForm.getCategory());
         return "redirect:/report/list";
 
     }
@@ -76,6 +76,7 @@ public class ReportController {
         }
         reportForm.setTitle(report.getTitle());
         reportForm.setContent(report.getContent());
+        reportForm.setCategory(report.getCategory());
         return "report/form";
     }
 
@@ -90,7 +91,7 @@ public class ReportController {
         if(!report.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        this.reportService.modify(report, reportForm.getTitle(), reportForm.getContent());
+        this.reportService.modify(report, reportForm.getTitle(), reportForm.getContent(), reportForm.getCategory());
         return "redirect:/report/detail/%s".formatted(id);
     }
 
