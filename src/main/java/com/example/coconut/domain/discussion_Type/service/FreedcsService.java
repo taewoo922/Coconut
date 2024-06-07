@@ -14,6 +14,7 @@ import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class FreedcsService {
     private final FreedcsRepository freedcsRepository;
+    private final UserRepository userRepository;
 
     @Value("${custom.fileDirPath}")
     private String fileDirPath;
@@ -147,6 +149,24 @@ public class FreedcsService {
         this.freedcsRepository.save(f);
 
     }
+
+    //메인 페이지에 최신순으로 게시글 나열
+    public List<Freedcs> findAllDiscussionsOrderByCreateDateDesc() {
+        return freedcsRepository.findAllByOrderByCreateDateDesc();
+    }
+
+    //검색 페이지에 내가쓴 게시글 나열
+
+    public List<Freedcs> getListByUserId(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return freedcsRepository.findAllByAuthor(user);
+        } else {
+            throw new DataNotFoundException("User not found with id: " + id);
+        }
+    }
+
 
 //    public void vote(Freedcs freedcs, User voter) {
 //        freedcs.addVoter(voter);
