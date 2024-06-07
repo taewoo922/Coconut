@@ -68,6 +68,7 @@ public class FreedcsService {
         }
     }
 
+<<<<<<< HEAD
     public void free_create(String title, String content, MultipartFile thumbnail, User user){
 
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
@@ -95,6 +96,15 @@ public class FreedcsService {
 //        f.setAuthor(user);
 //        this.freedcsRepository.save(f);
 ////        return f;
+=======
+    public void free_create(String title, String content, User user){
+        Freedcs f = new Freedcs();
+        f.setTitle(title);
+        f.setContent(content);
+        f.setAuthor(user);
+        this.freedcsRepository.save(f);
+//        return f;
+>>>>>>> f0650f4 (..)
     }
 
     public Page<Freedcs> getList(int page, String kw){
