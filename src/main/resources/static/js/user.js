@@ -9,10 +9,6 @@ const reportList = document.querySelectorAll('.search_report_Info');
 let index1 = 0;
 let index2 = 0;
 let index3 = 0;
-function showItems() {
-    mainLatest1List.forEach((item, i) => {
-        if (i >= index && i < index + 4) {
-
 
 function showItems1() {
     scrapList.forEach((item, i) => {
@@ -49,20 +45,6 @@ function showItems3() {
 showItems1();
 showItems2();
 showItems3();
-
-
-document.querySelector('.nextBtn1').addEventListener('click', () => {
-    index1 = Math.min(index1 + 4, scrapList.length - 4);
-    showItems1();
-});
-
-document.querySelector('.prevBtn1').addEventListener('click', () => {
-    index1 = Math.max(index1 - 4, 0);
-    showItems1();
-});
-
-document.querySelector('.nextBtn2').addEventListener('click', () => {
-    index2 = Math.min(index2 + 4, reportList.length - 4);
 
 document.querySelector('.nextBtn1').addEventListener('click', () => {
     index1 = Math.min(index1 + 4, myListList.length - 4);
