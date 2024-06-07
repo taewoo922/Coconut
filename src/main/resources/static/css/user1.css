@@ -189,6 +189,20 @@
     font-weight: bold;
     font-size: 20px;
     color: gray;
+ .prevBtn1,
+ .prevBtn2 {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     left: 0;
+ }
+
+ .nextBtn1,
+ .nextBtn2 {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     right: 0;
  }
 
 
