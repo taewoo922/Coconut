@@ -41,6 +41,7 @@ public class UserService {
         }
     }
 
+
     public List<Report> getListByUserId(Long userId) {
         return this.reportRepository.findAllByAuthorId(userId); // 사용자의 ID로 해당 사용자가 작성한 게시물들을 가져오는 메서드
     }
@@ -49,5 +50,9 @@ public class UserService {
         Optional<User> userOptional = userRepository.findByUsername(username);
         return userOptional.orElseThrow(() -> new DataNotFoundException("User not found with username: " + username));
     }
+
+
+
+
 
 }
