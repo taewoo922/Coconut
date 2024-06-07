@@ -54,15 +54,15 @@ class CoconutApplicationTests {
 
 =======
 
-<<<<<<< HEAD
-	@Test
-	void contextLoads() {
-		for (int i = 1; i <= 300; i++) {
-			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-			String content = "내용무";
-			this.reportService.create(subject, content, null, "자유토론");
-		}
-=======
+
+//	@Test
+//	void contextLoads() {
+//		for (int i = 1; i <= 300; i++) {
+//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+//			String content = "내용무";
+//			this.reportService.create(subject, content, null, "자유토론");
+//		}
+
 	@Autowired
 	private FreedcsRepository freedcsRepository;
 
@@ -73,8 +73,12 @@ class CoconutApplicationTests {
 //			String content = "내용무";
 //			this.reportService.create(subject, content, null);
 //		}
+<<<<<<< HEAD
 >>>>>>> 7b4ad57 (테스트데이터, freedcsList css 위치조정)
 >>>>>>> 904d249 (충돌해결2)
+=======
+
+>>>>>>> 9b0c7f6 (다시)
 //		Report r1 = new Report();
 //		r1.setTitle("질문1");
 //		r1.setContent("없어요");
@@ -100,10 +104,14 @@ class CoconutApplicationTests {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
 <<<<<<< HEAD
+<<<<<<< HEAD
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 =======
 			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
 >>>>>>> 904d249 (충돌해결2)
+=======
+			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
+>>>>>>> 9b0c7f6 (다시)
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 			this.freedcsService.create(subject, content, thumbnailImg);
