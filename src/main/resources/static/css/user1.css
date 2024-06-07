@@ -121,17 +121,55 @@
  .prevBtn1,
  .prevBtn2 {
      position: absolute;
-     top: 50%;
-     transform: translateY(-50%);
-     left: 0;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
  }
 
- .nextBtn1,
- .nextBtn2 {
+ .prevBtn3 {
      position: absolute;
-     top: 50%;
-     transform: translateY(-50%);
-     right: 0;
+     bottom = 100px;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
+ }
+
+ .nextBtn1{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn2{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn3{
+     position: absolute;
+    background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nullReportText{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
  }
 
 
