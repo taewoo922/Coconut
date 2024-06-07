@@ -1,0 +1,49 @@
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content">
+
+    <div class="search_container">
+        <div class="search_body">
+
+            <div class="search_scrap">
+                <div class="search_scrap_title sTitle">🔥스크랩 게시글🔥</div>
+                <div class="search_scrap_section sSec">
+                    <div class="search_scrap_Info sInfo" th:each="report, loop : ${reportList}">
+                         <a th:href="@{|/report/detail/${report.id}|}">스크랩 게시글</a>
+
+                         <div class="sInfo_text" th:text="${report.title}"></div>
+                    </div>
+                         <button th:if="${#lists.size(reportList) > 4}" class="prevBtn1">&#10094;</button>
+                         <button th:if="${#lists.size(reportList) > 4}" class="nextBtn1">&#10095;</button>
+                        <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
+                </div>
+            </div>
+
+            <div class="search_myList">
+                <div class="search_myList_title sTitle">💡내가 쓴 게시글💡</div>
+                <div class="search_myList_section sSec">
+                    <div class="search_myList_Info sInfo" th:each="report, loop : ${reportList}">
+                        <a th:href="@{|/report/detail/${report.id}|}">내가 쓴 게시글 이미지</a>
+                        <div class="sInfo_text" th:text="${report.title}"></div>
+                    </div>
+                    <button th:if="${#lists.size(reportList) > 4}" class="prevBtn2">&#10094;</button>
+                    <button th:if="${#lists.size(reportList) > 4}" class="nextBtn2">&#10095;</button>
+                    <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
+                </div>
+            </div>
+
+            <div class="search_report">
+                <div class="search_report_title sTitle">💡나의 QnA💡</div>
+                <div class="search_report_section sSec">
+                    <div class="search_report_Info sInfo" th:each="report, loop : ${reportList}">
+                        <a th:href="@{|/report/detail/${report.id}|}" th:text="${report.title}">
+                            </a>
+                    </div>
+                    <button th:if="${#lists.size(reportList) > 4}" class="prevBtn3">&#10094;</button>
+                    <button th:if="${#lists.size(reportList) > 4}" class="nextBtn3">&#10095;</button>
+                    <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

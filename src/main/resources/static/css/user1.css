@@ -1,0 +1,123 @@
+.search_container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin-top: 20px;
+       text-align: center;
+    }
+
+    .search_body {
+        width: 1100px;
+    }
+
+
+    .search_report,
+    .search_myList, .search_scrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 300px;
+        margin-bottom: 100px;
+    }
+
+    .sTitle{
+       font-weight: bold;
+       font-size: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .sSec {
+        display: flex;
+        height: 500px;
+    }
+
+    .sInfo {
+        width: 235px;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 200px;
+        border: 1px solid black;
+    }
+
+    .sInfo > a {
+        width: 235px; height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .sInfo_text {
+        display: block;
+        text-align: center; /* 텍스트를 가운데 정렬 */
+        margin-top: 10px; /* 이미지와 텍스트 사이의 간격 조정 */
+        font-weight: bold; /* 텍스트 굵게 표시 */
+    }
+
+ .prevBtn1 {
+      position: absolute;
+      bottom = 100px;
+      transform: translateY(110%);
+      font-size: 40px;
+     background:none;
+    border: none;
+      left: 200px;
+  }
+
+ .prevBtn2{
+     position: absolute;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
+ }
+
+ .prevBtn3 {
+     position: absolute;
+     bottom = 100px;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
+ }
+
+ .nextBtn1{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn2{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn3{
+     position: absolute;
+    background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nullReportText{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
+ }
+
+

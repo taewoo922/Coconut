@@ -15,17 +15,19 @@
     <table class="reportList_table">
         <thead class="reportList_table_head">
         <tr class="reportList_head_data">
-            <th class="reportList_head_id">번호</th>
-            <th style="width:50%" class="reportList_head_title">제목</th>
-            <th class="reportList_head_username">작성자</th>
-            <th class="reportList_head_createDate">작성일</th>
+            <th class="reportList_head_id RHList">번호</th>
+            <th class="reportList_head_category RHList">카테고리</th>
+            <th style="width:50%" class="reportList_head_title RHList">제목</th>
+            <th class="reportList_head_username RHList">작성자</th>
+            <th class="reportList_head_createDate RHList">작성일</th>
         </tr>
         </thead>
         <tbody class="reportList_table_body">
         <tr th:each="report, loop : ${paging}" class="reportList_body_data">
-            <td class="reportList_id"
+            <td class="reportList_id RBList"
                 th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-            <td class="reportList_title">
+            <td class="reportList_category RBList"><span th:text="${report.category}"></span></td>
+            <td class="reportList_title RBList">
                 <a th:href="@{|/report/detail/${report.id}|}">
                     <span th:text="${report.title}"></span>
                     <span class="reportList_reply_count"
@@ -34,9 +36,9 @@
                     </span>
                 </a>
             </td>
-            <td><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
+            <td class="reportList_username RBList"><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
             <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
-                class="reportList_createDate"></td>
+                class="reportList_createDate RBList"></td>
         </tr>
         </tbody>
     </table>

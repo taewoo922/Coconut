@@ -26,6 +26,8 @@ public class Report extends BaseEntity {
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
 
+    private String category;
+
     @OneToMany(mappedBy = "report", cascade = CascadeType.REMOVE)
     private List<ReportReply> replyList;
 

@@ -77,14 +77,13 @@
 }
 
 /* 헤드 데이터, 바디 데이터 */
-.reportList_head_id, .reportList_head_title, .reportList_head_username, .reportList_head_createDate,
-.reportList_id, .reportList_title, .reportList_content, .reportList_createDate {
+.RHList, .RBList{
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
 /* 헤드 데이터 */
-.reportList_head_id, .reportList_head_title, .reportList_head_username, .reportList_head_createDate {
+.RHList {
     border-radius: 10px 10px 0 0;
     background-color: var(--coconut-brown);
     color: var(--beige);
