@@ -2,9 +2,12 @@ package com.example.coconut.domain.discussion_Type.controller;
 
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.category.repository.CategoryRepository;
+import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.repository.UserRepository;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -27,6 +30,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -36,9 +40,11 @@ public class FreedcsController {
 
     private final FreedcsService freedcsService;
     private final UserService userService;
-
-//    @Autowired
-//    private CategoryService categoryService;
+    private final UserRepository userRepository;
+    @Autowired
+    private final FreedcsRepository freedcsRepository;
+    @Autowired
+    private final CategoryRepository categoryRepository;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
@@ -64,16 +70,21 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/free_create")
-    public String free_create(FreedcsForm freedcsForm) {
+    public String free_create(FreedcsForm freedcsForm, Model model) {
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+
         return "discussion/free_create_form";
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
-    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
-                              @RequestParam("thumbnail") MultipartFile thumbnail)
+    public String free_create(@Valid @ModelAttribute FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
+                              @RequestParam("thumbnail") MultipartFile thumbnail, Model model)
     {
         if(bindingResult.hasErrors()){
+            List<Category> categories = categoryRepository.findAll();
+            model.addAttribute("categories", categories);
             return "discussion/free_create_form";
         }
 
@@ -81,6 +92,7 @@ public class FreedcsController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 3dd7a62 (충돌해결)
@@ -88,6 +100,9 @@ public class FreedcsController {
 
 >>>>>>> 904d249 (충돌해결2)
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
+=======
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, freedcsForm.getCategory().getId());
+>>>>>>> 067364e (category #1)
 
 //        User siteUser = this.userService.getUser(principal.getName());
 //        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
@@ -129,6 +144,7 @@ public class FreedcsController {
         }
         freedcsForm.setTitle(freedcs.getTitle());
         freedcsForm.setContent(freedcs.getContent());
+        freedcsForm.setCategory(freedcs.getCategory());
         return "discussion/free_create_form";
     }
 
@@ -170,18 +186,4 @@ public class FreedcsController {
 
         return String.format("redirect:/discussion/freedcs_detail/%s".formatted(id));
     }
-
-
-
-    @ModelAttribute("categories")
-    public List<Category> categories() {
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("Politics", "정치"));
-        categories.add(new Category("Economy", "경제"));
-        categories.add(new Category("Sports", "스포츠"));
-        return categories;
-    }
-
-
-
 }

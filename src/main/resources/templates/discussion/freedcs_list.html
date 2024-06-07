@@ -2,22 +2,8 @@
 <div layout:fragment="content" class="freedcsList_container">
 
     <!--카테고리-->
-    <div id="category-bar">
-        <button class="category-botton">
-            <div>전체</div>
-        </button>
-        <button class="category-botton">
-            <div>경제</div>
-        </button>
-        <button class="category-botton">
-            <div>스포츠</div>
-        </button>
-        <button class="category-botton">
-            <div>연예</div>
-        </button>
-        <button class="category-botton">
-            <div>기타</div>
-        </button>
+    <div class="add-category-btn">
+        <a href="/categories">카테고리 추가</a>
     </div>
 
     <div class="freedcsList_head_row">
@@ -34,6 +20,14 @@
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
+            <!--카테고리-->
+            <div class="categories">
+                <button class="category-botton" th:each="category  : ${categories}"
+                        th:text="category.name"
+                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">
+<!--                    th:attr="onclick=|location.href='@{/category/{id}(id=${category.id})}'|">-->
+                </button>
+            </div>
             <div th:each="freedcs : ${freedcsList}" class="post">
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
@@ -43,37 +37,41 @@
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
+<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div>-->
+                        <div class="post-categories">
+                            <span th:each="category : ${freedcs.categories}" th:text="${category.name}"></span>
+                        </div>
                     </div>
                 </a>
             </div>
-            <div class="post">
-                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
-                <div class="post-info">
-                    <div class="post-title">게시글 제목 1</div>
-                    <div class="post-author">작성자 1</div>
-                </div>
-            </div>
-            <div class="post">
-                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
-                <div class="post-info">
-                    <div class="post-title">게시글 제목 1</div>
-                    <div class="post-author">작성자 1</div>
-                </div>
-            </div>
-            <div class="post">
-                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
-                <div class="post-info">
-                    <div class="post-title">게시글 제목 1</div>
-                    <div class="post-author">작성자 1</div>
-                </div>
-            </div>
-            <div class="post">
-                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
-                <div class="post-info">
-                    <div class="post-title">게시글 제목 1</div>
-                    <div class="post-author">작성자 1</div>
-                </div>
-            </div>
+<!--            <div class="post">-->
+<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
+<!--                <div class="post-info">-->
+<!--                    <div class="post-title">게시글 제목 1</div>-->
+<!--                    <div class="post-author">작성자 1</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="post">-->
+<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
+<!--                <div class="post-info">-->
+<!--                    <div class="post-title">게시글 제목 1</div>-->
+<!--                    <div class="post-author">작성자 1</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="post">-->
+<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
+<!--                <div class="post-info">-->
+<!--                    <div class="post-title">게시글 제목 1</div>-->
+<!--                    <div class="post-author">작성자 1</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="post">-->
+<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
+<!--                <div class="post-info">-->
+<!--                    <div class="post-title">게시글 제목 1</div>-->
+<!--                    <div class="post-author">작성자 1</div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
     <!-- 페이징처리 시작 -->

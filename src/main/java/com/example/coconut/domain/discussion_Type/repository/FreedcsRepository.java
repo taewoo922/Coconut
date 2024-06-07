@@ -13,6 +13,7 @@ import java.util.List;
 
 @Repository
 public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
+    List<Freedcs> findByCategoryId(Long categoryId);
     Page<Freedcs> findAll(Pageable pageable);
     Page<Freedcs> findAll(Specification<Freedcs> spec, Pageable pageable);
 //    @Query("SELECT f FROM Freedcs f ORDER BY SIZE(f.voter) DESC")

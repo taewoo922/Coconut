@@ -1,6 +1,7 @@
 package com.example.coconut.domain.discussion_Type.entity;
 
 import com.example.coconut.domain.answer.entity.Answer;
+import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
@@ -31,6 +32,10 @@ public class Freedcs extends BaseEntity {
 //    private String category;
 //    private String code;
 //    private String displayName;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @OneToMany(mappedBy = "freedcs", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;

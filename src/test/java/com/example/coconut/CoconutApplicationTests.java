@@ -6,11 +6,13 @@ import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.reportReply.repository.ReportReplyRepository;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,6 +34,13 @@ class CoconutApplicationTests {
 	private FreedcsService freedcsService;
 <<<<<<< HEAD
 
+	@Autowired
+	private FreedcsRepository freedcsRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+
 
 //	@Test
 //	void contextLoads() {
@@ -41,8 +50,7 @@ class CoconutApplicationTests {
 //			this.reportService.create(subject, content, null, "자유토론");
 //		}
 
-	@Autowired
-	private FreedcsRepository freedcsRepository;
+
 
 //	@Test
 //	void contextLoads() {
@@ -106,6 +114,7 @@ class CoconutApplicationTests {
 <<<<<<< HEAD
 <<<<<<< HEAD
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
+<<<<<<< HEAD
 =======
 			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
 >>>>>>> 904d249 (충돌해결2)
@@ -113,8 +122,24 @@ class CoconutApplicationTests {
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 >>>>>>> 9b0c7f6 (다시)
 
+=======
+>>>>>>> 067364e (category #1)
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
-			this.freedcsService.create(subject, content, thumbnailImg);
+			User author = null;
+			if (Math.random() < 0.5) {
+				// 사용자 이름으로 해당 사용자 객체 조회
+				String authorName = "작성자" + i;
+				Optional<User> userOptional = userRepository.findByUsername(authorName);
+				author = userOptional.orElseGet(() -> {
+					User newUser = new User();
+					newUser.setUsername(authorName);
+					// 다른 필드 설정
+					return userRepository.save(newUser); // 새로운 사용자를 저장하고 반환
+				});
+			}
+
+
+			this.freedcsService.create(subject, content, thumbnailImg, author);
 		}
 	}
 }

@@ -8,7 +8,7 @@ import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
 
 
-
+import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.report.entity.Report;
@@ -33,6 +33,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class FreedcsService {
     private final FreedcsRepository freedcsRepository;
+    private final CategoryRepository categoryRepository;
 
     @Value("${custom.fileDirPath}")
     private String fileDirPath;
@@ -79,6 +80,7 @@ public class FreedcsService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+<<<<<<< HEAD
     public void free_create(String title, String content, MultipartFile thumbnail, User user) {
 =======
 <<<<<<< HEAD
@@ -88,6 +90,9 @@ public class FreedcsService {
 
     public void free_create(String title, String content, MultipartFile thumbnail, User user) {
 >>>>>>> 904d249 (충돌해결2)
+=======
+    public void free_create(String title, String content, MultipartFile thumbnail, User user, Long categoryId) {
+>>>>>>> 067364e (category #1)
 
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
@@ -99,11 +104,15 @@ public class FreedcsService {
             throw new RuntimeException(e);
         }
 
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("카테고리를 찾을 수 없습니다."));
+
         Freedcs f = Freedcs.builder()
                 .title(title)
                 .content(content)
                 .thumbnailImg(thumbnailRelPath)
                 .author(user)
+                .category(category)
                 .build();
         freedcsRepository.save(f);
 
@@ -170,11 +179,12 @@ public class FreedcsService {
         this.freedcsRepository.save(freedcs);
     }
 
-    public void create(String title, String content, String thumbnail) {
+    public void create(String title, String content, String thumbnail, User author) {
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);
         f.setThumbnailImg(thumbnail);
+        f.setAuthor(author);
 
         this.freedcsRepository.save(f);
 
