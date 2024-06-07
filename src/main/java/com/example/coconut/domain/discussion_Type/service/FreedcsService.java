@@ -59,6 +59,14 @@ public class FreedcsService {
         return freedcsRepository.findAll();
     }
 
+    public Page<Freedcs> getList(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        Specification<Freedcs> spec = search(kw);
+        return  this.freedcsRepository.findAll(spec, pageable);
+    }
+
     public Freedcs getFreedcs(Long id) {
         Optional<Freedcs> freedcs = this.freedcsRepository.findById(id);
         if (freedcs.isPresent()) {
@@ -68,8 +76,8 @@ public class FreedcsService {
         }
     }
 
-<<<<<<< HEAD
-    public void free_create(String title, String content, MultipartFile thumbnail, User user){
+
+    public void free_create(String title, String content, MultipartFile thumbnail, User user) {
 
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
@@ -77,7 +85,7 @@ public class FreedcsService {
 
         try {
             thumbnail.transferTo(thumbnailFile);
-        } catch ( IOException e ) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -89,32 +97,7 @@ public class FreedcsService {
                 .build();
         freedcsRepository.save(f);
 
-//        Freedcs f = new Freedcs();
-//        f.setTitle(title);
-//        f.setContent(content);
-//        f.setThumbnailImg(thumbnail);
-//        f.setAuthor(user);
-//        this.freedcsRepository.save(f);
-////        return f;
-=======
-    public void free_create(String title, String content, User user){
-        Freedcs f = new Freedcs();
-        f.setTitle(title);
-        f.setContent(content);
-        f.setAuthor(user);
-        this.freedcsRepository.save(f);
-//        return f;
->>>>>>> f0650f4 (..)
     }
-
-    public Page<Freedcs> getList(int page, String kw){
-        List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
-        Specification<Freedcs> spec = search(kw);
-        return  this.freedcsRepository.findAll(spec, pageable);
-    }
-
     public void modify(Freedcs freedcs, String title, String content) {
         freedcs.setTitle(title);
         freedcs.setContent(content);
@@ -155,13 +138,21 @@ public class FreedcsService {
         this.freedcsRepository.save(freedcs);
     }
 
+    public void create(String title, String content, String thumbnail) {
+        Freedcs f = new Freedcs();
+        f.setTitle(title);
+        f.setContent(content);
+        f.setThumbnailImg(thumbnail);
+
+        this.freedcsRepository.save(f);
+
+    }
+
 //    public void vote(Freedcs freedcs, User voter) {
 //        freedcs.addVoter(voter);
 //
 //        this.freedcsRepository.save(freedcs);
 //
 //    }
-
-
 
 }

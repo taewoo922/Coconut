@@ -78,7 +78,7 @@ public class FreedcsController {
         }
 
         User user = this.userService.getUser(principal.getName());
-<<<<<<< HEAD
+
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
 
 //        User siteUser = this.userService.getUser(principal.getName());
@@ -86,10 +86,10 @@ public class FreedcsController {
 
         return "redirect:/discussion/freedcs_list";
 
-=======
-        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
-        return "redirect:/discussion/freedcs_list";
->>>>>>> f0650f4 (..)
+
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+//        return "redirect:/discussion/freedcs_list";
+
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {
 //

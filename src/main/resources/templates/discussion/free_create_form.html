@@ -1,10 +1,5 @@
 <html layout:decorate="~{common/layout_f}">
-<<<<<<< HEAD
 <div layout:fragment="content" class="freedcsForm_container">
-
-=======
-<div layout:fragment="content" class="container">
->>>>>>> f0650f4 (..)
     <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
