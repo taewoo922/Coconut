@@ -1,5 +1,25 @@
 <html layout:decorate="~{common/layout_f}">
 <div layout:fragment="content" class="freedcsList_container">
+
+    <!--카테고리-->
+    <div id="category-bar">
+        <button class="category-botton">
+            <div>전체</div>
+        </button>
+        <button class="category-botton">
+            <div>경제</div>
+        </button>
+        <button class="category-botton">
+            <div>스포츠</div>
+        </button>
+        <button class="category-botton">
+            <div>연예</div>
+        </button>
+        <button class="category-botton">
+            <div>기타</div>
+        </button>
+    </div>
+
     <div class="freedcsList_head_row">
         <!-- 질문 등록하기 버튼 -->
         <a class="freedcsList_create_btn" th:href="@{/discussion/free_create}">
@@ -12,34 +32,78 @@
         </div>
     </div>
 
-    <table class="freedcsList_table">
-        <thead class="freedcsList_table_head">
-        <tr class="freedcsList_head_data">
-            <th class="freedcsList_head_id">번호</th>
-            <th style="width:50%" class="freedcs_head_title">제목</th>
-            <th class="freedcsList_head_username">작성자</th>
-            <th class="freedcsList_head_createDate">작성일</th>
-        </tr>
-        </thead>
-        <tbody class="freedcsList_table_body">
-        <tr th:each="freedcs, loop : ${paging}" class="freedcsList_body_data">
-            <td class="freedcsList_id"
-                th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-            <td class="freedcsList_title">
-                <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
-                    <span th:text="${freedcs.title}"></span>
-                    <span class="freedcsList_reply_count"
-                          th:if="${#lists.size(freedcs.answerList) > 0}"
-                          th:text="${#lists.size(freedcs.answerList)}">
-                    </span>
-                </a>
-            </td>
-            <td><span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span></td>
-            <td th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"
-                class="freedcsList_createDate"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="freedcs-container">
+        <div class="freedcs_body">
+            <div th:each="freedcs : ${freedcsList}" class="post">
+                <div class="thumbnail">
+                    <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일">
+                </div>
+    <!--            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="12314" class="thumbnail">-->
+                <div class="post-info">
+                    <div class="post-title" th:text="${freedcs.title}"></div>
+                    <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
+                </div>
+            </div>
+            <div class="post">
+                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
+                <div class="post-info">
+                    <div class="post-title">게시글 제목 1</div>
+                    <div class="post-author">작성자 1</div>
+                </div>
+            </div>
+            <div class="post">
+                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
+                <div class="post-info">
+                    <div class="post-title">게시글 제목 1</div>
+                    <div class="post-author">작성자 1</div>
+                </div>
+            </div>
+            <div class="post">
+                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
+                <div class="post-info">
+                    <div class="post-title">게시글 제목 1</div>
+                    <div class="post-author">작성자 1</div>
+                </div>
+            </div>
+            <div class="post">
+                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">
+                <div class="post-info">
+                    <div class="post-title">게시글 제목 1</div>
+                    <div class="post-author">작성자 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--개별 게시글-->
+<!--    <table class="freedcsList_table">-->
+<!--        <thead class="freedcsList_table_head">-->
+<!--        <tr class="freedcsList_head_data">-->
+<!--            <th class="freedcsList_head_id">번호</th>-->
+<!--            <th style="width:50%" class="freedcs_head_title">제목</th>-->
+<!--            <th class="freedcsList_head_username">작성자</th>-->
+<!--            <th class="freedcsList_head_createDate">작성일</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody class="freedcsList_table_body">-->
+<!--        <tr th:each="freedcs, loop : ${paging}" class="freedcsList_body_data">-->
+<!--            <td class="freedcsList_id"-->
+<!--                th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
+<!--            <td class="freedcsList_title">-->
+<!--                <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">-->
+<!--                    <span th:text="${freedcs.title}"></span>-->
+<!--                    <span class="freedcsList_reply_count"-->
+<!--                          th:if="${#lists.size(freedcs.answerList) > 0}"-->
+<!--                          th:text="${#lists.size(freedcs.answerList)}">-->
+<!--                    </span>-->
+<!--                </a>-->
+<!--            </td>-->
+<!--            <td><span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span></td>-->
+<!--            <td th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"-->
+<!--                class="freedcsList_createDate"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
     <!-- 페이징처리 시작 -->
     <div th:if="${!paging.isEmpty()}" class="pagination-container">
         <ul class="pagination">

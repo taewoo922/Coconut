@@ -37,9 +37,4 @@ public class UserService {
         }
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ecd062a (free 수정#2)
 }

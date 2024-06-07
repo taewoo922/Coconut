@@ -68,13 +68,33 @@ public class FreedcsService {
         }
     }
 
-    public void free_create(String title, String content, User user){
-        Freedcs f = new Freedcs();
-        f.setTitle(title);
-        f.setContent(content);
-        f.setAuthor(user);
-        this.freedcsRepository.save(f);
-//        return f;
+    public void free_create(String title, String content, MultipartFile thumbnail, User user){
+
+        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
+        File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
+
+
+        try {
+            thumbnail.transferTo(thumbnailFile);
+        } catch ( IOException e ) {
+            throw new RuntimeException(e);
+        }
+
+        Freedcs f = Freedcs.builder()
+                .title(title)
+                .content(content)
+                .thumbnailImg(thumbnailRelPath)
+                .author(user)
+                .build();
+        freedcsRepository.save(f);
+
+//        Freedcs f = new Freedcs();
+//        f.setTitle(title);
+//        f.setContent(content);
+//        f.setThumbnailImg(thumbnail);
+//        f.setAuthor(user);
+//        this.freedcsRepository.save(f);
+////        return f;
     }
 
     public Page<Freedcs> getList(int page, String kw){

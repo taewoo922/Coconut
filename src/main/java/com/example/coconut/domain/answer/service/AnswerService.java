@@ -19,12 +19,12 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
 
-
+//    User author 오류때문에 임시 삭제
     public Answer create(Freedcs freedcs, String content, User author) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setFreedcs(freedcs);
-        answer.setAuthor(author);
+        answer.setAuthor(author); //오류때문에 임시 주석
         this.answerRepository.save(answer);
         return answer;
     }
