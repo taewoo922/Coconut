@@ -79,10 +79,14 @@ public class FreedcsController {
 
         User user = this.userService.getUser(principal.getName());
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
 >>>>>>> 3dd7a62 (충돌해결)
+=======
+
+>>>>>>> 904d249 (충돌해결2)
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
 
 //        User siteUser = this.userService.getUser(principal.getName());
@@ -91,16 +95,22 @@ public class FreedcsController {
         return "redirect:/discussion/freedcs_list";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 904d249 (충돌해결2)
 
 //        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
 //        return "redirect:/discussion/freedcs_list";
 
+<<<<<<< HEAD
 =======
 =======
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
         return "redirect:/discussion/freedcs_list";
 >>>>>>> f0650f4 (..)
 >>>>>>> 3dd7a62 (충돌해결)
+=======
+>>>>>>> 904d249 (충돌해결2)
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {
 //
