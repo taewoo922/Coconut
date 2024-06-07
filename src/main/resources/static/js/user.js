@@ -1,14 +1,17 @@
-const latestSection = document.querySelector('.search_myList_section');
-const mainLatest1List = document.querySelectorAll('.search_myList_Info');
-const latestSection2 = document.querySelector('.search_report_section');
-const mainLatest1List2 = document.querySelectorAll('.search_report_Info');
+const scrapSection = document.querySelector('.search_scrap_section');
+const scrapList = document.querySelectorAll('.search_scrap_Info');
+const myListSection = document.querySelector('.search_myList_section');
+const myListList = document.querySelectorAll('.search_myList_Info');
+const reportSection = document.querySelector('.search_report_section');
+const reportList = document.querySelectorAll('.search_report_Info');
 
-let index = 0;
+let index1 = 0;
 let index2 = 0;
+let index3 = 0;
 
-function showItems() {
-    mainLatest1List.forEach((item, i) => {
-        if (i >= index && i < index + 4) {
+function showItems1() {
+    scrapList.forEach((item, i) => {
+        if (i >= index1 && i < index1 + 4) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
@@ -17,34 +20,55 @@ function showItems() {
 }
 
 function showItems2() {
-    mainLatest1List2.forEach((item2, i) => {
+    myListList.forEach((item, i) => {
         if (i >= index2 && i < index2 + 4) {
-            item2.style.display = 'block';
+            item.style.display = 'block';
         } else {
-            item2.style.display = 'none';
+            item.style.display = 'none';
         }
     });
 }
 
-showItems();
+function showItems3() {
+    reportList.forEach((item, i) => {
+        if (i >= index3 && i < index3 + 4) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+showItems1();
 showItems2();
+showItems3();
 
 document.querySelector('.nextBtn1').addEventListener('click', () => {
-    index = Math.min(index + 4, mainLatest1List.length - 4);
-    showItems();
+    index1 = Math.min(index1 + 4, myListList.length - 4);
+    showItems1();
 });
 
 document.querySelector('.prevBtn1').addEventListener('click', () => {
-    index = Math.max(index - 4, 0);
-    showItems();
+    index1 = Math.max(index1 - 4, 0);
+    showItems1();
 });
 
 document.querySelector('.nextBtn2').addEventListener('click', () => {
-    index2 = Math.min(index2 + 4, mainLatest1List2.length - 4);
+    index2 = Math.min(index2 + 4, reportList.length - 4);
     showItems2();
 });
 
 document.querySelector('.prevBtn2').addEventListener('click', () => {
     index2 = Math.max(index2 - 4, 0);
     showItems2();
+});
+
+document.querySelector('.nextBtn3').addEventListener('click', () => {
+    index3 = Math.min(index3 + 4, scrapList.length - 4);
+    showItems3();
+});
+
+document.querySelector('.prevBtn3').addEventListener('click', () => {
+    index3 = Math.max(index3 - 4, 0);
+    showItems3();
 });
