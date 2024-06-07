@@ -26,7 +26,7 @@ public class Freedcs extends BaseEntity {
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
 
-//    private String nickname;
+    private String nickname;
     private String thumbnailImg;
 //    private String category;
 //    private String code;
