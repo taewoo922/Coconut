@@ -8,10 +8,9 @@ const reportList = document.querySelectorAll('.search_report_Info');
 let index1 = 0;
 let index2 = 0;
 let index3 = 0;
-
-function showItems1() {
-    scrapList.forEach((item, i) => {
-        if (i >= index1 && i < index1 + 4) {
+function showItems() {
+    mainLatest1List.forEach((item, i) => {
+        if (i >= index && i < index + 4) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
@@ -55,6 +54,19 @@ document.querySelector('.prevBtn1').addEventListener('click', () => {
 
 document.querySelector('.nextBtn2').addEventListener('click', () => {
     index2 = Math.min(index2 + 4, reportList.length - 4);
+
+document.querySelector('.nextBtn1').addEventListener('click', () => {
+    index = Math.min(index + 4, mainLatest1List.length - 4);
+    showItems();
+});
+
+document.querySelector('.prevBtn1').addEventListener('click', () => {
+    index = Math.max(index - 4, 0);
+    showItems();
+});
+
+document.querySelector('.nextBtn2').addEventListener('click', () => {
+    index2 = Math.min(index2 + 4, mainLatest1List2.length - 4);
     showItems2();
 });
 
