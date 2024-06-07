@@ -27,7 +27,7 @@ public class Freedcs extends BaseEntity {
     private String content;
 
 //    private String nickname;
-//    private String thumbnailImg;
+    private String thumbnailImg;
 //    private String category;
 //    private String code;
 //    private String displayName;

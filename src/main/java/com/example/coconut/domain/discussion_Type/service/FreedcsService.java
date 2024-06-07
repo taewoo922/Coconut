@@ -68,17 +68,33 @@ public class FreedcsService {
         }
     }
 
+    public void free_create(String title, String content, MultipartFile thumbnail, User user){
 
-    public void free_create(String title, String content, User user){
+        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
+        File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
 
-//    오류때문에 우선 User user 인자 제거함
-    public Freedcs free_create(String title, String content, User author){
-        Freedcs f = new Freedcs();
-        f.setTitle(title);
-        f.setContent(content);
-        f.setAuthor(author); // user 오류나서 우선 주석처리
-        this.freedcsRepository.save(f);
-//        return f;
+
+        try {
+            thumbnail.transferTo(thumbnailFile);
+        } catch ( IOException e ) {
+            throw new RuntimeException(e);
+        }
+
+        Freedcs f = Freedcs.builder()
+                .title(title)
+                .content(content)
+                .thumbnailImg(thumbnailRelPath)
+                .author(user)
+                .build();
+        freedcsRepository.save(f);
+
+//        Freedcs f = new Freedcs();
+//        f.setTitle(title);
+//        f.setContent(content);
+//        f.setThumbnailImg(thumbnail);
+//        f.setAuthor(user);
+//        this.freedcsRepository.save(f);
+////        return f;
     }
 
     public Page<Freedcs> getList(int page, String kw){

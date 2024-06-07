@@ -1,0 +1,50 @@
+.freedcs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+    .freedcs_body {
+        width: 1920px;
+    }
+
+/* 개별 게시글 스타일 */
+.post {
+    width: 23%; /* 너비를 고정값으로 설정 */
+    margin: 1%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.post:hover {
+    transform: translateY(-10px);
+}
+
+/* 썸네일 이미지 스타일 */
+.freedcs-container .body .post .thumbnail {
+    width: 100px;
+    height: 100px;
+}
+
+/* 게시글 정보 컨테이너 */
+.post-info {
+    padding: 10px;
+}
+
+/* 제목 스타일 */
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+/* 작성자 스타일 */
+.post-author {
+    font-size: 14px;
+    color: #777;
+}

@@ -1,11 +1,8 @@
 <html layout:decorate="~{common/layout_f}">
-<<<<<<< HEAD
-<div layout:fragment="content" class="container">
-=======
 <div layout:fragment="content" class="freedcsForm_container">
->>>>>>> 1e4494d (충돌1)
+
     <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
-    <form th:object="${freedcsForm}" method="post">
+    <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
         <div class="freedcsForm_title">
@@ -16,7 +13,11 @@
             <label for="content" class="freedcsForm_content_label">내용</label>
             <textarea th:field="*{content}" name="content" id="content" class="freedcsForm_content_input" rows="10"></textarea>
         </div>
-        <input type="submit" value="저장하기" class="reportForm_create_btn">
+<!--        <div class="freedcsForm_thumbnail">-->
+            <h3>사진</h3>
+            <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg">
+<!--        </div>-->
+        <input type="submit" value="저장하기" class="freedcsForm_create_btn">
     </form>
 <!--    <form th:action="@{/discussion/free_create}" th:object="${freedcsForm}"method="post" enctype="multipart/form-data">-->
 <!--        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">-->

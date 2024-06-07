@@ -42,7 +42,8 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw) {
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+                       @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Freedcs> paging = this.freedcsService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
@@ -69,18 +70,21 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
-    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal){
+    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
+                              @RequestParam("thumbnail") MultipartFile thumbnail)
+    {
         if(bindingResult.hasErrors()){
             return "discussion/free_create_form";
         }
 
         User user = this.userService.getUser(principal.getName());
-        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
 
-        User siteUser = this.userService.getUser(principal.getName());
-        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
+//        User siteUser = this.userService.getUser(principal.getName());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
 
         return "redirect:/discussion/freedcs_list";
+
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
 //                              @RequestParam("thumbnail") MultipartFile thumbnail) {
 //
