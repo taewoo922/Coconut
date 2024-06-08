@@ -58,8 +58,8 @@
                         <span th:text="${#strings.length(freedcs.title) > 18 ? #strings.substring(freedcs.title, 0, 18) + '....' : freedcs.title}"></span>
                         </div>
                     </div>
-                    <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn4">&#10094;</button>
-                    <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn4">&#10095;</button>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn4 pB">&#10094;</button>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn4 nB">&#10095;</button>
                     <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
