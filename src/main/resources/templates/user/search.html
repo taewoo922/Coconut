@@ -21,9 +21,13 @@
             <div class="search_myList">
                 <div class="search_myList_title sTitle">💡내가 쓴 게시글💡</div>
                 <div class="search_myList_section sSec">
-                    <div class="search_myList_Info sInfo" th:each="report, loop : ${reportList}">
-                        <a th:href="@{|/report/detail/${report.id}|}">내가 쓴 게시글 이미지</a>
-                        <div class="sInfo_text" th:text="${report.title}"></div>
+                    <div class="search_myList_Info sInfo" th:each="freedcs : ${freedcsList}">
+                        <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
+                            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="thumbnail">
+                        </a>
+                        <div class="sInfo_text">
+                            <span th:text="${#strings.length(freedcs.title) > 18 ? #strings.substring(freedcs.title, 0, 18) + '....' : freedcs.title}"></span>
+                        </div>
                     </div>
                     <button th:if="${#lists.size(reportList) > 4}" class="prevBtn2">&#10094;</button>
                     <button th:if="${#lists.size(reportList) > 4}" class="nextBtn2">&#10095;</button>
@@ -43,6 +47,7 @@
                     <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

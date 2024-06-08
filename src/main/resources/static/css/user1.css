@@ -86,6 +86,77 @@
      left: 200px;
  }
 
+  .prevBtn4 {
+      position: absolute;
+      bottom = 100px;
+      transform: translateY(110%);
+      font-size: 40px;
+     background:none;
+    border: none;
+      left: 200px;
+  }
+
+ .nextBtn1{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn2{
+     position: absolute;
+   background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn3{
+     position: absolute;
+    background:none;
+   border: none;
+   font-size: 40px;
+     transform: translateY(110%);
+     right: 200px;
+ }
+
+ .nextBtn4{
+      position: absolute;
+     background:none;
+    border: none;
+    font-size: 40px;
+      transform: translateY(110%);
+      right: 200px;
+  }
+
+ .nullReportText{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
+ .prevBtn1,
+ .prevBtn2 {
+     position: absolute;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
+ }
+
+ .prevBtn3 {
+     position: absolute;
+     bottom = 100px;
+     transform: translateY(110%);
+     font-size: 40px;
+    background:none;
+   border: none;
+     left: 200px;
+ }
+
  .nextBtn1{
      position: absolute;
    background:none;

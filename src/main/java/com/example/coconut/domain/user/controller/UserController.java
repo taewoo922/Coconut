@@ -1,5 +1,7 @@
 package com.example.coconut.domain.user.controller;
 
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
+import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.user.entity.User;
@@ -31,6 +33,7 @@ public class UserController {
 
     private final UserService userService;
     private final ReportService reportService;
+    private final FreedcsService freedcsService;
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
@@ -56,8 +59,15 @@ public class UserController {
         User user = userService.getUserByUsername(username); // 사용자 이름을 이용하여 사용자 정보 가져오기
         List<Report> reportList = reportService.getListByUserId(user.getId()); // 사용자 ID를 이용하여 해당 사용자의 게시물 가져오기
         model.addAttribute("reportList", reportList);
+
+        // 사용자가 작성한 freedcs 테이블의 게시물 가져오기
+        List<Freedcs> freedcsList = freedcsService.getListByUserId(user.getId());
+        model.addAttribute("freedcsList", freedcsList);
+
         return "user/search";
     }
+
+
 
 
     @Getter
