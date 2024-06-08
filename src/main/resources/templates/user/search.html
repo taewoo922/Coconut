@@ -48,6 +48,9 @@
                     <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                     <button class="prevBtn1">&#10094;</button>
                     <button class="nextBtn1">&#10095;</button>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn2">&#10094;</button>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn2">&#10095;</button>
+                    <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
 

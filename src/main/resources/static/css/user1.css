@@ -184,6 +184,15 @@
      right: 200px;
  }
 
+ .nextBtn4{
+      position: absolute;
+     background:none;
+    border: none;
+    font-size: 40px;
+      transform: translateY(110%);
+      right: 200px;
+  }
+
  .nullReportText{
     text-align: center;
     font-weight: bold;
