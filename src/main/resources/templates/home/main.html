@@ -13,6 +13,7 @@
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_5.jpg}" alt="이미지 5"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_6.jpg}" alt="이미지 6"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_7.jpg}" alt="이미지 7"></div>
+                    <div class="swiper-slide"><img th:src="@{/images/slideImage_8.jpg}" alt="이미지 8"></div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -65,11 +66,18 @@
             </div>
         </div>
     </div>
+    <section class="free_Sec">
+        <h1 class="free_Sec_Title">JOIN FREE DISCUSSION</h1>
+        <a class="free_Sec_Content" href="/discussion/freedcs_list"><span class="arrow">&rarr;</span>Go to Free Discussion</a>
+    </section>
+    <section class="pcd_Sec">
+        <a class="pcd_Sec_Content" href="/discussion/freedcs_list"><span class="arrow">&rarr;</span>Go to Pro-Con Debate</a>
+    </section>
     <footer th:replace="~{common/footer :: footerFragment}"></footer>
 </div>
 </html>
 <script>
-    const latestSection = document.querySelector('.Latest_section');
+const latestSection = document.querySelector('.Latest_section');
 const latestList = document.querySelectorAll('.main_Latest_Info');
     let index4 = 0;
     function showItems4() {
@@ -91,4 +99,41 @@ document.querySelector('.prevBtn4').addEventListener('click', () => {
     index4 = Math.max(index4 - 4, 0);
     showItems4();
 });
+
+
+
+let free_Sec_Title = document.querySelector(".free_Sec_Title");
+let free_Sec_Content = document.querySelector(".free_Sec_Content");
+
+let pcd_Sec_Content = document.querySelector(".pcd_Sec_Content");
+
+window.addEventListener('scroll', function(){
+    let value = this.window.scrollY
+    console.log("scrollY", value);
+
+
+    if(value>1700 || value < 850){
+        free_Sec_Title.style.animation= "disappear 1s ease-out forwards";
+    }else if(value>800){
+        free_Sec_Title.style.animation= "slide 1s ease-out";
+    }
+
+     if(value>1800 || value < 1200){
+        free_Sec_Content.style.animation= "disappear 1s ease-out forwards";
+    }else if(value>1200){
+        free_Sec_Content.style.animation= "slide 1s ease-out";
+    }
+
+
+
+     if(value>3000 || value < 2100){
+        pcd_Sec_Content.style.animation= "down 1s ease-out forwards";
+    }else if(value>2300){
+        pcd_Sec_Content.style.animation= "up 1s ease-out";
+    }
+
+
+
+
+})
 </script>

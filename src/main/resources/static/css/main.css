@@ -1,4 +1,6 @@
-
+body{
+    height : 5000px;
+}
 .swiper_head {
     height: calc(65vh - 80px);
     overflow: hidden;
@@ -13,6 +15,7 @@
     margin: 0;
     padding: 0;
     height: 50vh; /* 필요에 따라 조정 */
+
 }
 
 .swiper {
@@ -34,12 +37,9 @@
 .swiper-slide img {
     transition: all 4s;
     width: 100%;
-    height: 500px; /* 높이를 auto로 변경 */
-    object-fit: cover; /* cover 유지 */
-    top: 0;
-    left: 0;
-    display: block;
-    position: absolute;
+    height: 100%;
+
+
 }
 
  .main_container {
@@ -72,11 +72,13 @@
                color: #333;
                margin-bottom: 10px;
                text-align: center;
+
     }
 
     .MSec {
         display: flex;
         height: 500px;
+
     }
 
     .dcsInfo {
@@ -121,4 +123,112 @@
     width: 100%;
     height: 200px;
     border-radius: 8px;
+}
+
+/*중간 섹션 부분*/
+.free_Sec {
+    height: 800px;
+    background: url('/images/freebackImg.jpg') center center fixed no-repeat #45434c;
+    background-size: cover;
+    background-position: center bottom;
+    width: 100%;
+}
+
+.pcd_Sec {
+    height: 1000px;
+    background: url('/images/procon.jpg') center center fixed no-repeat #45434c;
+    background-size: cover;
+    background-position: center bottom;
+    width: 100%;
+}
+
+.free_Sec_Title{
+    font-size: 5em;
+    width: 250px;
+    color: black;
+    font-family: sans-serif;
+    position: absolute;
+    top: 1500px;
+    left: 400px;
+    animation: slide 2s ease-out;
+}
+
+.free_Sec_Content {
+ position: absolute;
+    top: 2000px;
+    left: 350px;
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  animation: slide 2s ease-out;
+}
+
+
+.pcd_Sec_Content {
+ position: absolute;
+    top: 3000px;
+    left: 650px;
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  animation: up 2s ease-out;
+}
+
+
+.free_Sec_Content:hover {
+  color: blue;
+}
+
+.pcd_Sec_Content:hover {
+  color: blue;
+}
+.arrow {
+  font-size: 50px;
+}
+
+
+@keyframes slide{
+    from{
+        left: -400px;
+        opacity: 0;
+    }
+    to{
+        left: 400px;
+        opacity: 1;
+    }
+}
+
+@keyframes disappear{
+    from{
+        left: 400px;
+        opacity: 1;
+    }
+    to{
+        left: -400px;
+        opacity: 0;
+    }
+}
+
+@keyframes up{
+    from{
+        top: 0px;
+        opacity: 0;
+    }
+    to{
+        top: 3000px;
+        opacity: 1;
+    }
+}
+
+@keyframes down{
+    from{
+        top: 3000px;
+        opacity: 1;
+    }
+    to{
+        top: 0px;
+        opacity: 0;
+    }
 }
