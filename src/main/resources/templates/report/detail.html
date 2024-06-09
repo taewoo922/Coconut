@@ -40,7 +40,8 @@
         <div class="reportDetail_replyList">
             <div class="reportDetail_userData">
                 <div class="reportDetail_username">
-                    <span th:if="${reportReply.author != null}" th:text="${reportReply.author.username}"></span>
+                    <span th:if="${reportReply.author != null}" th:text="${reportReply.author.username}"
+                          th:class="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username} ? 'myReply' : ''"></span>
                 </div>
                 <div class="reportDetail_createDate">
                     <div th:text="${#temporals.format(reportReply.createDate, 'yyyy-MM-dd HH:mm')}"></div>

@@ -14,6 +14,8 @@
                     </div>
                          <button th:if="${#lists.size(reportList) > 4}" class="prevBtn1 pB">&#10094;</button>
                          <button th:if="${#lists.size(reportList) > 4}" class="nextBtn1 nB">&#10095;</button>
+                        <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn1 pB">&nbsp;</button>
+                        <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn1 nB">&nbsp;</button>
                         <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
@@ -31,6 +33,8 @@
                     </div>
                     <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn2 pB">&#10094;</button>
                     <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn2 nB">&#10095;</button>
+                    <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn2 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn2 nB">&nbsp;</button>
                     <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
@@ -44,6 +48,8 @@
                     </div>
                     <button th:if="${#lists.size(reportList) > 4}" class="prevBtn3 pB">&#10094;</button>
                     <button th:if="${#lists.size(reportList) > 4}" class="nextBtn3 nB">&#10095;</button>
+                    <button th:if="${#lists.size(reportList) <= 4}" class="prevBtn3 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(reportList) <= 4}" class="nextBtn3 nB">&nbsp;</button>
                     <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>

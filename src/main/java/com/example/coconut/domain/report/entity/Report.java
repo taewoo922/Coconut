@@ -38,4 +38,8 @@ public class Report extends BaseEntity {
     private Set<User> voter = new HashSet<>();
 
 
+    @Transient
+    private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
+
+
 }

@@ -17,9 +17,9 @@ public class Dev {
     @Bean
     public ApplicationRunner init(UserService userService) {
         return args -> {
-            userService.signup("test", "1234", "test", "test@test.com", "01012341234");
-            userService.signup("user", "1234", "user", "user@test.com", "01012341234");
-            userService.signup("esong", "1234", "esong", "esong@test.com", "01012341234");
+            userService.signup("test", "1234", "testnickname", "test@test.com", "01012341234");
+            userService.signup("user", "1234", "usernickname", "user@test.com", "01012341234");
+            userService.signup("esong", "1234", "esongnickname", "esong@test.com", "01012341234");
 
         };
     }

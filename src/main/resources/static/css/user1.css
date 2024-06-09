@@ -75,7 +75,7 @@
  .pB{
       position: absolute;
       transform: translateY(110%);
-      font-size: 40px;
+      font-size: 50px;
       background-color: transparent;
       border: none;
       left: 200px;
@@ -91,7 +91,7 @@
  .nB{
      position: absolute;
      transform: translateY(110%);
-     font-size: 40px;
+     font-size: 50px;
      background-color: transparent;
      border: none;
      right: 200px;
