@@ -105,8 +105,11 @@
 
 
  .nullReportText{
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
+    width: 235px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: gray;
+    margin-bottom: 400px;
  }
