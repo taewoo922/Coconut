@@ -21,6 +21,7 @@
             <th class="reportList_head_username RHList">작성자</th>
             <th class="reportList_head_createDate RHList">작성일</th>
             <th class="reportList_head_recommendation RHList">추천수</th>
+            <th class="reportList_head_isSecret RHList">공개 여부</th>
         </tr>
         </thead>
         <tbody class="reportList_table_body">
@@ -41,6 +42,7 @@
             <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
                 class="reportList_createDate RBList"></td>
             <td class="reportList_recommendation RBList"><span th:text="${#lists.size(report.voter)}"></span></td>
+            <td class="reportList_secret RBList"><span th:text="${report.secret ? '비밀' : '공개'}"></span></td>
         </tr>
         </tbody>
     </table>

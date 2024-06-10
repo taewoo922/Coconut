@@ -76,3 +76,13 @@
 .reportForm_create_btn:hover {
     background-color: #45a049;
 }
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 16px;
+}
