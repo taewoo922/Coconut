@@ -89,6 +89,14 @@
     border-radius: 8px;
 }
 
+.myReply {
+    background-color: yellow;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+
 /* 답변 내용 */
 .reportDetail_reply_content {
     font-size: 10px;

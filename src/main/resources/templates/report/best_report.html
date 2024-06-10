@@ -1,7 +1,7 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="best_report_container">
     <h5 class="best_report"
-        th:text="|${#authentication.principal.username}님 질문 있으신가요?|"></h5>
+        th:text="|${user.nickname}님 질문 있으신가요?|"></h5>
     <table class="best_report_table">
         <thead class="best_report_table_head">
         <tr class="best_report_head_data">

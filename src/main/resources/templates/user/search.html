@@ -12,8 +12,10 @@
 
                          <div class="sInfo_text" th:text="${report.title}"></div>
                     </div>
-                         <button th:if="${#lists.size(reportList) > 4}" class="prevBtn1">&#10094;</button>
-                         <button th:if="${#lists.size(reportList) > 4}" class="nextBtn1">&#10095;</button>
+                         <button th:if="${#lists.size(reportList) > 4}" class="prevBtn1 pB">&#10094;</button>
+                         <button th:if="${#lists.size(reportList) > 4}" class="nextBtn1 nB">&#10095;</button>
+                        <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn1 pB">&nbsp;</button>
+                        <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn1 nB">&nbsp;</button>
                         <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
@@ -29,9 +31,11 @@
                             <span th:text="${#strings.length(freedcs.title) > 18 ? #strings.substring(freedcs.title, 0, 18) + '....' : freedcs.title}"></span>
                         </div>
                     </div>
-                    <button th:if="${#lists.size(reportList) > 4}" class="prevBtn2">&#10094;</button>
-                    <button th:if="${#lists.size(reportList) > 4}" class="nextBtn2">&#10095;</button>
-                    <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn2 pB">&#10094;</button>
+                    <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn2 nB">&#10095;</button>
+                    <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn2 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn2 nB">&nbsp;</button>
+                    <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
 
@@ -42,8 +46,10 @@
                         <a th:href="@{|/report/detail/${report.id}|}" th:text="${report.title}">
                             </a>
                     </div>
-                    <button th:if="${#lists.size(reportList) > 4}" class="prevBtn3">&#10094;</button>
-                    <button th:if="${#lists.size(reportList) > 4}" class="nextBtn3">&#10095;</button>
+                    <button th:if="${#lists.size(reportList) > 4}" class="prevBtn3 pB">&#10094;</button>
+                    <button th:if="${#lists.size(reportList) > 4}" class="nextBtn3 nB">&#10095;</button>
+                    <button th:if="${#lists.size(reportList) <= 4}" class="prevBtn3 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(reportList) <= 4}" class="nextBtn3 nB">&nbsp;</button>
                     <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
@@ -52,3 +58,83 @@
     </div>
 </div>
 </html>
+<script>
+const scrapSection = document.querySelector('.search_scrap_section');
+const scrapList = document.querySelectorAll('.search_scrap_Info');
+const myListSection = document.querySelector('.search_myList_section');
+const myListList = document.querySelectorAll('.search_myList_Info');
+const reportSection = document.querySelector('.search_report_section');
+const reportList = document.querySelectorAll('.search_report_Info');
+
+
+let index1 = 0;
+let index2 = 0;
+let index3 = 0;
+
+function showItems1() {
+    scrapList.forEach((item, i) => {
+        if (i >= index1 && i < index1 + 4) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function showItems2() {
+    myListList.forEach((item, i) => {
+        if (i >= index2 && i < index2 + 4) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function showItems3() {
+    reportList.forEach((item, i) => {
+        if (i >= index3 && i < index3 + 4) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+
+
+showItems1();
+showItems2();
+showItems3();
+
+document.querySelector('.nextBtn1').addEventListener('click', () => {
+    index1 = Math.min(index1 + 4, scrapList.length - 4);
+    showItems1();
+});
+
+document.querySelector('.prevBtn1').addEventListener('click', () => {
+    index1 = Math.max(index1 - 4, 0);
+    showItems1();
+});
+
+document.querySelector('.nextBtn2').addEventListener('click', () => {
+    index2 = Math.min(index2 + 4, myListList.length - 4);
+    showItems2();
+});
+
+document.querySelector('.prevBtn2').addEventListener('click', () => {
+    index2 = Math.max(index2 - 4, 0);
+    showItems2();
+});
+
+document.querySelector('.nextBtn3').addEventListener('click', () => {
+    index3 = Math.min(index3 + 4, reportList.length - 4);
+    showItems3();
+});
+
+document.querySelector('.prevBtn3').addEventListener('click', () => {
+    index3 = Math.max(index3 - 4, 0);
+    showItems3();
+});
+
+</script>

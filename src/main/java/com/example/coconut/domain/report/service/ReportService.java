@@ -54,7 +54,11 @@ public class ReportService {
     public Report getReport(Long id){
         Optional<Report> report = this.reportRepository.findById(id);
         if (report.isPresent()) {
-            return report.get();
+            Report reportEntity = report.get();
+            User author = reportEntity.getAuthor(); // 작성자 정보 가져오기
+            String nickname = author.getNickname(); // 작성자의 닉네임 가져오기
+            reportEntity.setAuthorNickname(nickname); // Report 엔티티에 작성자의 닉네임 설정
+            return reportEntity;
         } else {
             throw new DataNotFoundException("report not found");
         }
@@ -108,5 +112,7 @@ public class ReportService {
             throw new DataNotFoundException("User not found with id: " + id);
         }
     }
+
+
 
 }

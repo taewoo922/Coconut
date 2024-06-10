@@ -6,16 +6,83 @@ footer {
     margin:0;
 }
 
-.footer-info {
+.footer_info {
     margin-bottom: 20px;
 }
 
-.footer-info h3 {
+.footer_info h3 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-.footer-info p {
+.footer_info p {
     margin: 5px 0;
 }
 
+.footer_body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer_button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+
+  margin: 0 10px;
+  overflow: hidden;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.5s ease-out;
+}
+.footer_button:hover{
+  width: 220px;
+  background-color: white;
+}
+.footer_icon{
+color: black;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.5s ease-out;
+}
+.btn1:hover .footer_icon{
+  background: #4267B2;
+}
+.btn2:hover .footer_icon{
+  background: #1DA1F2;
+}
+.btn3:hover .footer_icon{
+  background: #E1306C;
+}
+
+.footer_icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.5s ease-out;
+}
+.footer_button:hover .footer_icon i{
+  color: white;
+}
+.footer_name{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.5s ease-out;
+}
+.name1{
+  color: #4267B2;
+}
+.name2{
+  color: #1DA1F2;
+}
+.name3{
+  color: #E1306C;
+}

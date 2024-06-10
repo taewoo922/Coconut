@@ -117,9 +117,13 @@ public class ReportController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/best_report")
-    public String getTopReports(Model model) {
+    public String getTopReports(Model model, Principal principal) {
         List<Report> topReports = reportService.getTop5ReportsByVoterCount();
         model.addAttribute("topReports", topReports);
+
+        String username = principal.getName(); // 현재 로그인된 사용자의 이름
+        User user = userService.getUserByUsername(username); // 사용자 이름을 이용하여 사용자 정보 가져오기
+        model.addAttribute("user", user);
         return "report/best_report"; // View name
     }
 }

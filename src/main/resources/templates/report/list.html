@@ -20,6 +20,7 @@
             <th style="width:50%" class="reportList_head_title RHList">제목</th>
             <th class="reportList_head_username RHList">작성자</th>
             <th class="reportList_head_createDate RHList">작성일</th>
+            <th class="reportList_head_recommendation RHList">추천수</th>
         </tr>
         </thead>
         <tbody class="reportList_table_body">
@@ -39,6 +40,7 @@
             <td class="reportList_username RBList"><span th:if="${report.author != null}" th:text="${report.author.username}"></span></td>
             <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
                 class="reportList_createDate RBList"></td>
+            <td class="reportList_recommendation RBList"><span th:text="${#lists.size(report.voter)}"></span></td>
         </tr>
         </tbody>
     </table>
