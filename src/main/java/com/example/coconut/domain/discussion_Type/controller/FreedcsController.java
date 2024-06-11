@@ -36,6 +36,7 @@ public class FreedcsController {
 
     private final FreedcsService freedcsService;
     private final UserService userService;
+    private final CategoryService categoryService;
 
 //    @Autowired
 //    private CategoryService categoryService;
@@ -43,13 +44,34 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
-                       @RequestParam(value = "kw", defaultValue = "") String kw) {
-        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
+                       @RequestParam(value = "kw", defaultValue = "") String kw,
+                       @RequestParam(value = "category", required = false) Long categoryId) {
+        Page<Freedcs> paging;
+//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
+        List<Freedcs> freedcsList;
+
+        if (categoryId == null) {
+            paging = this.freedcsService.getList(page, kw);
+            freedcsList = this.freedcsService.getList();
+        } else {
+            paging = this.freedcsService.getListByCategory(page, kw, categoryId);
+            freedcsList = this.freedcsService.getPostsByCategory(categoryId);
+        }
+
+
+//                       @RequestParam(value = "kw", defaultValue = "") String kw) {
+//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
+
+
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
+        model.addAttribute("freedcsList", freedcsList);
 
-        List<Freedcs> freedcsList = this.freedcsService.getList();
-        model.addAttribute("freedcsList",freedcsList);
+//        List<Freedcs> freedcsList = this.freedcsService.getList();
+//        model.addAttribute("freedcsList",freedcsList);
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+
         return "discussion/freedcs_list";
 
     }
@@ -64,30 +86,39 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/free_create")
-    public String free_create(FreedcsForm freedcsForm) {
+    public String free_create(FreedcsForm freedcsForm, Model model) {
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
         return "discussion/free_create_form";
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
     public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
-                              @RequestParam("thumbnail") MultipartFile thumbnail)
-    {
-        if(bindingResult.hasErrors()){
+                              @RequestParam("thumbnail") MultipartFile thumbnail) {
+        if (bindingResult.hasErrors()) {
             return "discussion/free_create_form";
         }
 
         User user = this.userService.getUser(principal.getName());
 
-        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
+        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
+
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
 
 //        User siteUser = this.userService.getUser(principal.getName());
 //        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
 
+
         return "redirect:/discussion/freedcs_list";
 
 
-//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
+
+//        User siteUser = this.userService.getUser(principal.getName());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
+
 //        return "redirect:/discussion/freedcs_list";
 
 //    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
@@ -97,17 +128,29 @@ public class FreedcsController {
 //
 //
 //        return "redirect:/discussion/freedcs_list";
+
+//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
+//
+//        return "redirect:/discussion/freedcs_list";
     }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String freedcsModify(FreedcsForm freedcsForm, @PathVariable("id") Long id, Principal principal){
+    public String freedcsModify(FreedcsForm freedcsForm, @PathVariable("id") Long id, Principal principal, Model model){
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         if(!freedcs.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         freedcsForm.setTitle(freedcs.getTitle());
         freedcsForm.setContent(freedcs.getContent());
+        freedcsForm.setCategory(freedcs.getCategory().getId());
+
+
+
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+
         return "discussion/free_create_form";
     }
 
@@ -122,7 +165,12 @@ public class FreedcsController {
         if(!freedcs.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent());
+
+        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+
+//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+
+        this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/freedcs_detail/%s".formatted(id);
     }
 
@@ -152,14 +200,7 @@ public class FreedcsController {
 
 
 
-    @ModelAttribute("categories")
-    public List<Category> categories() {
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("Politics", "정치"));
-        categories.add(new Category("Economy", "경제"));
-        categories.add(new Category("Sports", "스포츠"));
-        return categories;
-    }
+
 
 
 
