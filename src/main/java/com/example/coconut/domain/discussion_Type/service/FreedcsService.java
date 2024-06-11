@@ -1,18 +1,12 @@
 package com.example.coconut.domain.discussion_Type.service;
 
 
-
-
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
-
-
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
-import com.example.coconut.domain.report.entity.Report;
-import com.example.coconut.domain.reportReply.entity.ReportReply;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.persistence.criteria.*;
@@ -28,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -58,9 +54,6 @@ public class FreedcsService {
         };
     }
 
-//    public List<Category> getAllCategories() {
-//        return categoryRepository.findAll();
-//    }
 
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
@@ -68,11 +61,13 @@ public class FreedcsService {
     }
 
     public Page<Freedcs> getList(int page, String kw) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
         if (kw == null || kw.isBlank()) {
             return freedcsRepository.findAll(pageable);
         }
-        return freedcsRepository.findAll(search(kw), pageable);
+//        return freedcsRepository.findAll(search(kw), pageable);
+        return freedcsRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
@@ -80,7 +75,12 @@ public class FreedcsService {
         if (kw == null || kw.isBlank()) {
             return freedcsRepository.findAllByCategory_Id(categoryId, pageable);
         }
-        return freedcsRepository.findAllByCategory_IdAndSearch(categoryId, kw, pageable);
+//        return freedcsRepository.findAllByCategory_IdAndSearch(categoryId, kw, pageable);
+        return freedcsRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.and(
+                        criteriaBuilder.equal(root.get("category").get("id"), categoryId),
+                        criteriaBuilder.like(root.get("title"), "%" + kw + "%")
+                ), pageable);
     }
 
     public List<Freedcs> getPostsByCategory(Long categoryId) {
