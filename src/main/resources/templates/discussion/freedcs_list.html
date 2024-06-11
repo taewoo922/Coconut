@@ -1,124 +1,63 @@
 <html layout:decorate="~{common/layout_f}">
 <div layout:fragment="content" class="freedcsList_container">
-    <div id="category-bar">
-        <button class="category-button" onclick="filterByCategory(null)">
-            <div>전체</div>
-        </button>
-        <th:block th:each="category : ${categories}">
-            <button class="category-button" th:attr="onclick='filterByCategory(\'' + ${category.id} + '\')'">
-                <div th:text="${category.name}"></div>
+    <div class="freedcs_menu">
+        <div id="category-bar">
+            <button class="category-button" onclick="filterByCategory(null)">
+                <div>전체</div>
             </button>
-        </th:block>
+            <th:block th:each="category : ${categories}">
+                <button class="category-button" th:attr="onclick='filterByCategory(\'' + ${category.id} + '\')'">
+                    <div th:text="${category.name}"></div>
+                </button>
+            </th:block>
+        </div>
 
-    <!--카테고리-->
-    <div class="add-category-btn">
-        <a href="/categories">카테고리 추가</a>
-    </div>
+    <!--    관리자 권한이 있을때만 보이게 해주는 코드-->
+    <!--    <div class="category_create" th:if="${#authorization.expression('isAuthenticated() and hasRole(''ADMIN'')')}">-->
+        <div class="right-container">
+            <div class="category_create">
+                <a th:href="@{/category/create}">카테고리 만들기</a>
+            </div>
 
-    <div>
-        <a th:href="@{/category/create}">카테고리 만들기</a>
-    </div>
-
-
-    <div class="freedcsList_head_row">
-        <!-- 질문 등록하기 버튼 -->
-        <a class="freedcsList_create_btn" th:href="@{/discussion/free_create}">
-            질문 등록하기
-        </a>
-        <!-- 검색 창과 버튼 -->
-<!--        <div class="freedcsList_input_group">-->
-<!--            <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="검색어 입력">-->
-<!--            <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>-->
-<!--        </div>-->
+            <!-- 질문 등록하기 버튼 -->
+            <div class="freedcsList_head_row">
+                <a class="freedcsList_create_btn" th:href="@{/discussion/free_create}">질문 등록하기</a>
+            </div>
+            <!-- 검색 창 -->
+            <div class="freedcsList_input_group">
+                <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="검색어 입력">
+                <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+        </div>
     </div>
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
             <!--카테고리-->
-            <div class="categories">
-                <button class="category-botton" th:each="category  : ${categories}"
-                        th:text="category.name"
-                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">
-<!--                    th:attr="onclick=|location.href='@{/category/{id}(id=${category.id})}'|">-->
-                </button>
-            </div>
+<!--            <div class="categories">-->
+<!--                <button class="category-botton" th:each="category  : ${categories}"-->
+<!--                        th:text="${category.name}"-->
+<!--                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">-->
+<!--&lt;!&ndash;                    th:attr="onclick=|location.href='@{/category/{id}(id=${category.id})}'|">&ndash;&gt;-->
+<!--                </button>-->
+<!--            </div>-->
             <div th:each="freedcs : ${freedcsList}" class="post">
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
                         <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일">
                     </div>
-                <!--            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="12314" class="thumbnail">-->
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
-                        <div class="post-category" th:text="${freedcs.category.name}"></div> <!-- 카테고리 표시 -->
-<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div>-->
+<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <div class="post-categories">
-                            <span th:each="category : ${freedcs.categories}" th:text="${category.name}"></span>
+                            <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
                         </div>
                     </div>
                 </a>
             </div>
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
     </div>
-
-    <!--개별 게시글-->
-<!--    <table class="freedcsList_table">-->
-<!--        <thead class="freedcsList_table_head">-->
-<!--        <tr class="freedcsList_head_data">-->
-<!--            <th class="freedcsList_head_id">번호</th>-->
-<!--            <th style="width:50%" class="freedcs_head_title">제목</th>-->
-<!--            <th class="freedcsList_head_username">작성자</th>-->
-<!--            <th class="freedcsList_head_createDate">작성일</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody class="freedcsList_table_body">-->
-<!--        <tr th:each="freedcs, loop : ${paging}" class="freedcsList_body_data">-->
-<!--            <td class="freedcsList_id"-->
-<!--                th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
-<!--            <td class="freedcsList_title">-->
-<!--                <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">-->
-<!--                    <span th:text="${freedcs.title}"></span>-->
-<!--                    <span class="freedcsList_reply_count"-->
-<!--                          th:if="${#lists.size(freedcs.answerList) > 0}"-->
-<!--                          th:text="${#lists.size(freedcs.answerList)}">-->
-<!--                    </span>-->
-<!--                </a>-->
-<!--            </td>-->
-<!--            <td><span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span></td>-->
-<!--            <td th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"-->
-<!--                class="freedcsList_createDate"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
 
     <!-- 페이징처리 시작 -->
         <div th:if="${!paging.isEmpty()}" class="pagination-container">
@@ -158,6 +97,5 @@
         document.getElementById('categoryForm').submit();
     }
 </script>
-        </div>
     </div>
 </html>

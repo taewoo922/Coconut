@@ -1,19 +1,21 @@
 <html layout:decorate="~{common/layout_f}">
-<div layout:fragment="content" class="freedcsList_container">
-<div class="container">
-    <h1>카테고리 관리</h1>
-    <form action="/add-category" method="post">
-        <div>
-            <label for="categoryName">카테고리 이름:</label>
-            <input type="text" id="categoryName" name="categoryName" required>
-        </div>
-        <button type="submit">카테고리 추가</button>
-    </form>
+    <div layout:fragment="content" class="freedcsList_container">
+    <div class="container">
+        <h1>카테고리 관리</h1>
+        <form action="/add-category" method="post">
+            <div>
+                <label for="categoryName">카테고리 이름:</label>
+                <input type="text" id="categoryName" name="categoryName" required>
+            </div>
+            <button type="submit">카테고리 추가</button>
+        </form>
 
-    <h2>카테고리 목록</h2>
-    <ul>
-        <li th:each="category : ${categories}">
-            <a th:href="@{|/category/${category.id}|}" th:text="${category.name}"></a>
-        </li>
-    </ul>
-</div>
+        <h2>카테고리 목록</h2>
+        <ul>
+            <li th:each="category : ${categories}">
+                <a th:href="@{|/category/${category.id}|}" th:text="${category.name}"></a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</html>

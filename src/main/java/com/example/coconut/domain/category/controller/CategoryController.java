@@ -5,11 +5,13 @@ import com.example.coconut.domain.category.CategoryForm;
 import com.example.coconut.domain.category.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,24 +25,31 @@ public class CategoryController {
     public String listCategories(Model model) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        return "category/category_list";
+        return "category/category_manage";
     }
 
     @GetMapping("/category/create")
     public String showCreateCategoryForm(CategoryForm categoryForm, Model model) {
         model.addAttribute("categoryForm", categoryForm);
-        return "category/category_create_form";
+        return "category/category_manage";
     }
 
-    @PostMapping("/category/create")
-    public String createCategory(@Valid CategoryForm categoryForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "category/category_create_form";
-        }
+//    @PostMapping("/category/create")
+//    public String createCategory(@Valid CategoryForm categoryForm, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "category/category_manage";
+//        }
+//
+//        categoryService.createCategory(categoryForm.getName());
+//        return "/category/category_manage";
+////        return "redirect:/category/category_create_form";
+//    }
 
-        categoryService.createCategory(categoryForm.getName());
-        return "/category/category_create_form";
-//        return "redirect:/category/category_create_form";
+//    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/add-category")
+    public String addCategory(@RequestParam("categoryName") String categoryName) {
+        categoryService.addCategory(categoryName);
+        return "redirect:/categories";
     }
 
 }
