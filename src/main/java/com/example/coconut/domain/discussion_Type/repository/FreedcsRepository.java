@@ -14,7 +14,6 @@ import java.util.List;
 
 @Repository
 public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
-    List<Freedcs> findByCategoryId(Long categoryId);
     Page<Freedcs> findAll(Pageable pageable);
     Page<Freedcs> findAllByCategory_Id(Long categoryId, Pageable pageable);
     Page<Freedcs> findAll(Specification<Freedcs> spec, Pageable pageable);
