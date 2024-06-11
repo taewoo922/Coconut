@@ -18,4 +18,5 @@ public class ReportForm {
     @NotBlank(message="카테고리선택은 필수항목입니다.")
     private String category;
 
+    private boolean secret; // 비밀글 체크박스
 }

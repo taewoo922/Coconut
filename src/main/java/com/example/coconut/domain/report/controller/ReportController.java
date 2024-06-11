@@ -62,14 +62,14 @@ public class ReportController {
             return "report/form";
         }
         User user = this.userService.getUser(principal.getName());
-        this.reportService.create(reportForm.getTitle(), reportForm.getContent(), user, reportForm.getCategory());
+        this.reportService.create(reportForm.getTitle(), reportForm.getContent(), user, reportForm.getCategory(), reportForm.isSecret());
         return "redirect:/report/list";
 
     }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String reportModify(ReportForm reportForm, @PathVariable("id") Long id, Principal principal){
+    public String reportModify(Model model,ReportForm reportForm, @PathVariable("id") Long id, Principal principal){
         Report report = this.reportService.getReport(id);
         if(!report.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
@@ -77,6 +77,8 @@ public class ReportController {
         reportForm.setTitle(report.getTitle());
         reportForm.setContent(report.getContent());
         reportForm.setCategory(report.getCategory());
+        reportForm.setSecret(report.isSecret());
+        model.addAttribute("reportForm", reportForm);
         return "report/form";
     }
 
@@ -91,7 +93,7 @@ public class ReportController {
         if(!report.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        this.reportService.modify(report, reportForm.getTitle(), reportForm.getContent(), reportForm.getCategory());
+        this.reportService.modify(report, reportForm.getTitle(), reportForm.getContent(), reportForm.getCategory(), reportForm.isSecret());
         return "redirect:/report/detail/%s".formatted(id);
     }
 

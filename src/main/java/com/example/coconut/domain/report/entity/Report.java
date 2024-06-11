@@ -41,5 +41,6 @@ public class Report extends BaseEntity {
     @Transient
     private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
 
+    private boolean isSecret; // 비밀글 여부 추가
 
 }

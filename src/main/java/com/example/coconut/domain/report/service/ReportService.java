@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -58,18 +59,29 @@ public class ReportService {
             User author = reportEntity.getAuthor(); // 작성자 정보 가져오기
             String nickname = author.getNickname(); // 작성자의 닉네임 가져오기
             reportEntity.setAuthorNickname(nickname); // Report 엔티티에 작성자의 닉네임 설정
+
+            // Check if the report is secret and the current user is not the author or an admin
+            if (reportEntity.isSecret() && !isCurrentUserAuthorOrAdmin(reportEntity)) {
+                throw new DataNotFoundException("You are not authorized to view this report.");
+            }
             return reportEntity;
         } else {
             throw new DataNotFoundException("report not found");
         }
     }
 
-    public Report create(String title, String content, User user, String category){
+    private boolean isCurrentUserAuthorOrAdmin(Report report) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        return currentUsername.equals(report.getAuthor().getUsername()) || currentUsername.equals("admin");
+    }
+
+    public Report create(String title, String content, User user, String category, boolean isSecret){
         Report r = new Report();
         r.setTitle(title);
         r.setContent(content);
         r.setAuthor(user);
         r.setCategory(category);
+        r.setSecret(isSecret);
         this.reportRepository.save(r);
         return r;
     }
@@ -82,10 +94,11 @@ public class ReportService {
         return  this.reportRepository.findAll(spec, pageable);
     }
 
-    public void modify(Report report, String title, String content, String category) {
+    public void modify(Report report, String title, String content, String category, boolean isSecret) {
         report.setTitle(title);
         report.setContent(content);
         report.setCategory(category);
+        report.setSecret(isSecret);
         this.reportRepository.save(report);
     }
 
