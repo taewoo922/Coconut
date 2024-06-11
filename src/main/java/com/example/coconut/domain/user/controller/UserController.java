@@ -18,11 +18,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -67,6 +66,43 @@ public class UserController {
         return "user/search";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/profile")
+    public String profilePage(Model model) {
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "user/profile";
+    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/profile/edit")
+    public String editProfilePage(Model model) {
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "user/edit-profile";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/profile/edit")
+    public String editProfile(@Valid EditProfileForm form, @RequestParam("profileImageFile") MultipartFile profileImageFile) throws IOException {
+        userService.updateProfile(form, profileImageFile);
+        return "redirect:/user/profile";
+    }
+
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/posts")
+    public String myPostsPage(Model model) {
+        // 사용자의 게시물
+        return "user/posts";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/scrap")
+    public String myScrapPage(Model model) {
+        // 사용자의 스크랩 목록
+        return "user/scrap";
+    }
+
 
 
 
@@ -97,5 +133,21 @@ public class UserController {
         @NotBlank
         @Length(min = 4)
         private String phone;
+    }
+    @Getter
+    @Setter
+    @ToString
+    public static class EditProfileForm {
+
+        @NotBlank
+        private String nickname;
+
+        // 비밀번호가 비어도 수정할 수 있도록 변경
+        private String password;
+
+        @NotBlank
+        private String phone;
+
+        private MultipartFile profileImageFile;  // 추가
     }
 }
