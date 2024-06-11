@@ -1,6 +1,8 @@
 <html layout:decorate="~{common/layout_f}">
 <div layout:fragment="content" class="freedcsForm_container">
 
+
+<div layout:fragment="content" class="container">
     <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
 
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
@@ -12,6 +14,12 @@
             <select id="category" th:field="*{category}" class="freedcsForm_category_select">
                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
             </select>
+        <div class="form-group">
+            <label for="category" class="form-label">카테고리</label>
+            <select id="category" name="category" th:field="*{category}" class="form-select">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
         </div>
         <div class="freedcsForm_title">
             <label for="title" class="freedcsForm_title_label">제목</label>
