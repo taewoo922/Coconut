@@ -1,11 +1,97 @@
-#category-bar {
+/* 전체 메뉴 컨테이너 */
+.freedcs_menu {
     display: flex;
-    padding: 0 40px;
-    gap: 32px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* 왼쪽 카테고리 바 */
+#category-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 오른쪽 컨테이너 */
+.right-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 버튼 간의 간격을 조절 */
+}
+
+/* 카테고리 버튼 */
 .category-button {
     color: #717171;
     font-size: 12px;
     font-weight: 600;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.category-button:hover {
+    background-color: #ced4da;
+}
+
+/* 카테고리 만들기 버튼 */
+.category_create {
+    margin-bottom: 0; /* 기존 여백 제거 */
+}
+
+.category_create a {
+    display: inline-block;
+    background-color: #28a745; /* 예시 색상 */
+    color: #fff; /* 텍스트 색상 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.category_create a:hover {
+    background-color: #218838; /* 호버 시 배경색 변경 */
+}
+
+/* 질문 등록하기 버튼 */
+.freedcsList_create_btn {
+    display: inline-block;
+    background-color: #17a2b8; /* 예시 색상 */
+    color: #fff; /* 텍스트 색상 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.freedcsList_create_btn:hover {
+    background-color: #138496; /* 호버 시 배경색 변경 */
+}
+
+/* 검색 창과 아이콘 */
+.freedcsList_input_group {
+    position: relative;
+    width: 100%; /* 가로로 차지할 공간 */
+}
+
+.freedcsList_input_group input[type="text"] {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가 */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* 내용 영역을 패딩과 테두리를 포함한 크기로 지정 */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* 입력창 오른쪽에 아이콘 배치 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    cursor: pointer;
 }

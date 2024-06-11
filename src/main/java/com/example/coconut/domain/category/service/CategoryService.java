@@ -20,20 +20,24 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    @Transactional
-    public Category createCategory(String name) {
-        Category category = new Category();
-        category.setName(name);
-        return categoryRepository.save(category);
-    }
+//    @Transactional
+//    public Category createCategory(String name) {
+//        Category category = new Category();
+//        category.setName(name);
+//        return categoryRepository.save(category);
+//    }
 
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new DataNotFoundException("Category not found"));
     }
-    
 
-
+    @Transactional
+    public void addCategory(String categoryName) {
+        Category category = new Category();
+        category.setName(categoryName);
+        categoryRepository.save(category);
+    }
 
 
 }
