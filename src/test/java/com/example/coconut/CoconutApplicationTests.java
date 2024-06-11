@@ -6,11 +6,13 @@ import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.reportReply.repository.ReportReplyRepository;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +33,13 @@ class CoconutApplicationTests {
 	@Autowired
 	private FreedcsService freedcsService;
 
+	@Autowired
+	private FreedcsRepository freedcsRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+
 
 //	@Test
 //	void contextLoads() {
@@ -40,8 +49,27 @@ class CoconutApplicationTests {
 //			this.reportService.create(subject, content, null, "자유토론");
 //		}
 
-	@Autowired
-	private FreedcsRepository freedcsRepository;
+
+
+//	@Test
+//	void contextLoads() {
+//		for (int i = 1; i <= 300; i++) {
+//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+//			String content = "내용무";
+//			this.reportService.create(subject, content, null);
+//		}
+
+
+
+//	@Test
+//	void contextLoads() {
+//		for (int i = 1; i <= 300; i++) {
+//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+//			String content = "내용무";
+//			this.reportService.create(subject, content, null, "자유토론");
+//		}
+
+
 
 //	@Test
 //	void contextLoads() {
@@ -85,9 +113,25 @@ class CoconutApplicationTests {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
+//			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
+//			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
-			this.freedcsService.create(subject, content, thumbnailImg);
+			User author = null;
+			if (Math.random() < 0.5) {
+				// 사용자 이름으로 해당 사용자 객체 조회
+				String authorName = "작성자" + i;
+				Optional<User> userOptional = userRepository.findByUsername(authorName);
+				author = userOptional.orElseGet(() -> {
+					User newUser = new User();
+					newUser.setUsername(authorName);
+					// 다른 필드 설정
+					return userRepository.save(newUser); // 새로운 사용자를 저장하고 반환
+				});
+			}
+
+
+//			this.freedcsService.create(subject, content, thumbnailImg, author);
 		}
 	}
 }
