@@ -1,4 +1,4 @@
-package com.example.coconut.domain.discussion_Type.controller;
+package com.example.coconut.domain.discussion_Type;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

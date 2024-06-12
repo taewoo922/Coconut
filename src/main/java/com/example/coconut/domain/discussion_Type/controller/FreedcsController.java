@@ -2,8 +2,7 @@ package com.example.coconut.domain.discussion_Type.controller;
 
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
-import com.example.coconut.domain.report.entity.Report;
-import com.example.coconut.domain.report.form.ReportForm;
+import com.example.coconut.domain.discussion_Type.FreedcsForm;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
@@ -17,7 +16,6 @@ import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -136,7 +133,7 @@ public class FreedcsController {
 //        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
-        return "redirect:/discussion/freedcs_detail/%s".formatted(id);
+        return "redirect:/discussion/free_detail/%s".formatted(id);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -160,6 +157,6 @@ public class FreedcsController {
 
         this.freedcsService.vote(freedcs, user);
 
-        return String.format("redirect:/discussion/freedcs_detail/%s".formatted(id));
+        return String.format("redirect:/discussion/free_detail/%s".formatted(id));
     }
 }

@@ -2,6 +2,7 @@ package com.example.coconut.domain.answer.service;
 
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.answer.entity.Answer;
+import com.example.coconut.domain.discussion_Type.entity.Debate;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.answer.repository.AnswerRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
@@ -20,10 +21,19 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
 //    User author 오류때문에 임시 삭제
-    public Answer create(Freedcs freedcs, String content, User author) {
+    public Answer f_create(Freedcs freedcs, String content, User author) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setFreedcs(freedcs);
+        answer.setAuthor(author); //오류때문에 임시 주석
+        this.answerRepository.save(answer);
+        return answer;
+    }
+
+    public Answer d_create(Debate debate, String content, User author) {
+        Answer answer = new Answer();
+        answer.setContent(content);
+        answer.setDebate(debate);
         answer.setAuthor(author); //오류때문에 임시 주석
         this.answerRepository.save(answer);
         return answer;
