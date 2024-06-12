@@ -1,0 +1,93 @@
+<html layout:decorate="~{common/layout_f}">
+<div layout:fragment="content" class="freedcsList_container">
+    <div class="freedcs_menu">
+        <div id="category-bar">
+            <button class="category-button" onclick="filterByCategory(null)">
+                <div>전체</div>
+            </button>
+            <th:block th:each="category : ${categories}">
+                <button class="category-button" th:attr="onclick='filterByCategory(\'' + ${category.id} + '\')'">
+                    <div th:text="${category.name}"></div>
+                </button>
+            </th:block>
+        </div>
+
+    <!--    관리자 권한이 있을때만 보이게 해주는 코드-->
+    <!--    <div class="category_create" th:if="${#authorization.expression('isAuthenticated() and hasRole(''ADMIN'')')}">-->
+        <div class="right-container">
+            <div class="category_create">
+                <a th:href="@{/category/create}">카테고리 만들기</a>
+            </div>
+
+            <!-- 질문 등록하기 버튼 -->
+            <div class="freedcsList_head_row">
+                <a class="freedcsList_create_btn" th:href="@{/discussion/d_create}">질문 등록하기</a>
+            </div>
+            <!-- 검색 창 -->
+            <div class="freedcsList_input_group">
+                <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="검색어 입력">
+                <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+        </div>
+    </div>
+    <!--게시물-->
+    <div class="freedcs-container">
+        <div class="freedcs_body">
+            <div th:each="debate : ${debateList}" class="post">
+                <a th:href="@{|/discussion/d_detail/${debate.id}|}">
+                    <div class="thumbnail">
+                        <img th:src="@{|/file/${debate.thumbnailImg}|}" alt="썸네일">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title" th:text="${debate.title}"></div>
+                        <div class="post-author" th:if="${debate.author != null}" th:text="${debate.author.username}"></div>
+<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
+                        <div class="post-categories">
+                            <span th:each="category : ${debate.category}" th:text="${category.name}"></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페이징처리 시작 -->
+    <div th:if="${!paging.isEmpty()}" class="pagination-container">
+        <ul class="pagination">
+            <li th:class="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link" ref="javascript:void(0)" th:data-page="${paging.number-1}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                th:class="${page == paging.number} ? 'active' : ''">
+                <a class="page-link" th:text="${page}" href="javascript:void(0)" th:data-page="${page}"></a>
+            </li>
+            <li th:class="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+        <!-- 페이징처리 끝 -->
+    <form th:action="@{/discussion/debate_list}" method="get" id="searchForm">
+        <input type="hidden" id="kw" name="kw" th:value="${kw}">
+        <input type="hidden" id="page" name="page" th:value="${paging.number}">
+    </form>
+
+    <form id="categoryForm" th:action="@{/discussion/debate_list}" method="get">
+        <input type="hidden" id="categoryId" name="category" value="">
+    </form>
+
+    <script th:inline="javascript">
+        function filterByCategory(categoryId) {
+            document.getElementById('categoryId').value = categoryId;
+            document.getElementById('categoryForm').submit();
+        }
+    </script>
+    </div>
+</html>
