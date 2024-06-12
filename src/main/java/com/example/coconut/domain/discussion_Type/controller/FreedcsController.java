@@ -104,14 +104,15 @@ public class FreedcsController {
         if(!freedcs.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
+
         freedcsForm.setTitle(freedcs.getTitle());
         freedcsForm.setContent(freedcs.getContent());
         freedcsForm.setCategory(freedcs.getCategory().getId());
 
 
-
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
+
 
         return "discussion/free_create_form";
     }
@@ -129,8 +130,6 @@ public class FreedcsController {
         }
 
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
-
-//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/free_detail/%s".formatted(id);

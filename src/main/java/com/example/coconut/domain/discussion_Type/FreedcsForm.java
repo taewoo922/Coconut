@@ -26,6 +26,7 @@ public class FreedcsForm {
     @NotNull(message="카테고리 선택은 필수사항입니다.")
     private Long category;
 
+
 //    private Long categoryId;  // 카테고리 ID 필드 추가
 
 }

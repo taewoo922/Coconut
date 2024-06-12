@@ -71,12 +71,12 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
     public String answerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal){
-        Freedcs freedcs = this.freedcsService.getFreedcs(id);
-        if(!freedcs.getAuthor().getUsername().equals(principal.getName())){
+        Answer answer = this.answerService.getAnswer(id);
+        if(!answer.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        answerForm.setContent(freedcs.getContent());
-        return "answer/answerform";
+        answerForm.setContent(answer.getContent());
+        return "/answer/answerform";
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -84,7 +84,7 @@ public class AnswerController {
     public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
                                     @PathVariable("id") Long id, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return "answer/answerform";
+            return "/answer/answerform";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
@@ -97,12 +97,12 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/debate/modify/{id}")
     public String d_answerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal){
-        Debate debate = this.debateService.getDebate(id);
-        if(!debate.getAuthor().getUsername().equals(principal.getName())){
+        Answer answer = this.answerService.getAnswer(id);
+        if(!answer.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        answerForm.setContent(debate.getContent());
-        return "answer/answerform";
+        answerForm.setContent(answer.getContent());
+        return "/answer/d_answerform";
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -110,7 +110,7 @@ public class AnswerController {
     public String d_answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
                                @PathVariable("id") Long id, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return "answer/answerform";
+            return "/answer/d_answerform";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
