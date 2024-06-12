@@ -13,6 +13,7 @@ public class ReportForm {
     private String title;
 
     @NotBlank(message="내용은 필수항목입니다.")
+    @Size(max = 500)
     private String content;
 
     @NotBlank(message="카테고리선택은 필수항목입니다.")

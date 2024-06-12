@@ -2,6 +2,7 @@ package com.example.coconut.domain.report.controller;
 
 
 
+import com.example.coconut.domain.ProfanityFilter;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.report.service.ReportService;
@@ -10,6 +11,7 @@ import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.modeler.BaseAttributeFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -57,15 +60,24 @@ public class ReportController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public String reportCreate(@Valid ReportForm reportForm, BindingResult bindingResult, Principal principal){
+    public String reportCreate(@Valid ReportForm reportForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal){
         if(bindingResult.hasErrors()){
             return "report/form";
         }
+
+        if (ProfanityFilter.containsProfanity(reportForm.getTitle()) || ProfanityFilter.containsProfanity(reportForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addAttribute("error", "profanity");
+            return "redirect:/report/create";
+        }
+
         User user = this.userService.getUser(principal.getName());
         this.reportService.create(reportForm.getTitle(), reportForm.getContent(), user, reportForm.getCategory(), reportForm.isSecret());
         return "redirect:/report/list";
-
     }
+
+
+
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")

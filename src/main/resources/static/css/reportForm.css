@@ -86,3 +86,8 @@
 .form-check-label {
     font-size: 16px;
 }
+
+.reportForm_bottom{
+    display:flex;
+    justify-content: space-between;
+}

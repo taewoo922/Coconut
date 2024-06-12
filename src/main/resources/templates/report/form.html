@@ -18,11 +18,15 @@
         </div>
         <div class="reportForm_body">
             <label for="content" class="reportForm_content_label">내용</label>
-            <textarea th:field="*{content}" name="content" id="content" class="reportForm_content_input" rows="10"></textarea>
+            <textarea th:field="*{content}" name="content" id="content" class="reportForm_content_input" rows="10" placeholder="500자 이하로 적어주세요"></textarea>
         </div>
+
+        <div class="reportForm_bottom">
         <div class="form-group form-check">
             <input type="checkbox" th:field="*{secret}" class="form-check-input" id="secret" />
             <label class="form-check-label" for="secret">비밀글</label>
+        </div>
+        <div class="profanity" style="color: red; font-weight: bold;">⚠️ 비속어 사용 금지 ⚠️</div>
         </div>
         <input type="submit" value="저장하기" class="reportForm_create_btn">
     </form>
