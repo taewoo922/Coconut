@@ -2,6 +2,7 @@ package com.example.coconut.domain.report.controller;
 
 
 
+import com.example.coconut.UnauthorizedAccessException;
 import com.example.coconut.domain.ProfanityFilter;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
@@ -46,10 +47,15 @@ public class ReportController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Long id, ReportReplyForm reportReplyForm){
-        Report report = this.reportService.getReport(id);
-        model.addAttribute("report", report);
-        return "report/detail";
+    public String detail(Model model, @PathVariable("id") Long id, ReportReplyForm reportReplyForm, RedirectAttributes redirectAttributes){
+        try {
+            Report report = this.reportService.getReport(id);
+            model.addAttribute("report", report);
+            return "report/detail";
+        } catch (UnauthorizedAccessException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/report/list";
+        }
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -67,7 +73,7 @@ public class ReportController {
 
         if (ProfanityFilter.containsProfanity(reportForm.getTitle()) || ProfanityFilter.containsProfanity(reportForm.getContent())) {
             // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
-            redirectAttributes.addAttribute("error", "profanity");
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
             return "redirect:/report/create";
         }
 

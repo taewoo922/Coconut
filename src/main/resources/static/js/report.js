@@ -32,3 +32,11 @@
         document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.
         document.getElementById('searchForm').submit();
     });
+
+    //alert 창 닫기
+ function closeAlert_list() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+  function closeAlert_form() {
+             document.getElementById('error').style.display = 'none';
+         }

@@ -2,6 +2,7 @@ package com.example.coconut.domain.report.service;
 
 import com.example.coconut.DataNotFoundException;
 
+import com.example.coconut.UnauthorizedAccessException;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.reportReply.entity.ReportReply;
@@ -52,7 +53,7 @@ public class ReportService {
         return this.reportRepository.findAll();
     }
 
-    public Report getReport(Long id){
+    public Report getReport(Long id) {
         Optional<Report> report = this.reportRepository.findById(id);
         if (report.isPresent()) {
             Report reportEntity = report.get();
@@ -62,11 +63,11 @@ public class ReportService {
 
             // Check if the report is secret and the current user is not the author or an admin
             if (reportEntity.isSecret() && !isCurrentUserAuthorOrAdmin(reportEntity)) {
-                throw new DataNotFoundException("You are not authorized to view this report.");
+                throw new UnauthorizedAccessException("게시물을 열람하실 수 없습니다.");
             }
             return reportEntity;
         } else {
-            throw new DataNotFoundException("report not found");
+            throw new DataNotFoundException("게시물을 찾을 수 없습니다.");
         }
     }
 
