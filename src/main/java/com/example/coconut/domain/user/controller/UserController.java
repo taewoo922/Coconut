@@ -148,6 +148,6 @@ public class UserController {
         @NotBlank
         private String phone;
 
-        private MultipartFile profileImageFile;  // 추가
+        private MultipartFile profileImageFile;
     }
 }
