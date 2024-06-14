@@ -167,3 +167,35 @@
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
+
+ .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+.close {
+   cursor: pointer;
+   float: right;
+   font-size: 20px;
+   font-weight: bold;
+   line-height: 20px;
+   color: #000;
+   text-shadow: 0 1px 0 #fff;
+   opacity: .2;
+}
+
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .5;
+}
