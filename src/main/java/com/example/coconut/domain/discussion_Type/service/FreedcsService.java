@@ -141,40 +141,16 @@ public class FreedcsService {
     }
 
 
-
-
-//    public void free_create(String title, String content,MultipartFile thumbnail) {
-//
-//
-//        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
-//        File thumbnailFile = new File(fileDirPath + "/" +thumbnailRelPath);
-//
-//        try {
-//            thumbnail.transferTo(thumbnailFile);
-//        } catch( IOException e ) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Freedcs freedcs = Freedcs.builder()
-//                .title(title)
-//                .content(content)
-//                .thumbnailImg(thumbnailRelPath)
-////                .category(category)
-//                .build();
-//        freedcsRepository.save(freedcs);
-//    }
-
-
     public void vote(Freedcs freedcs, User user) {
         freedcs.getVoter().add(user);
         this.freedcsRepository.save(freedcs);
     }
 
-    public void create(String title, String content, String thumbnail) {
+    public void create(String title, String content) {
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);
-        f.setThumbnailImg(thumbnail);
+//        f.setThumbnailImg(thumbnail);
 
         this.freedcsRepository.save(f);
 
@@ -198,15 +174,6 @@ public class FreedcsService {
     }
 
 
-//    public void create(String title, String content, String thumbnail) {
-//        Freedcs f = new Freedcs();
-//        f.setTitle(title);
-//        f.setContent(content);
-//        f.setThumbnailImg(thumbnail);
-//
-//        this.freedcsRepository.save(f);
-//
-//    }
 
 
 }

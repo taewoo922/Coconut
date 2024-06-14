@@ -1,6 +1,6 @@
-<html layout:decorate="~{common/layout_f}">
+<html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsForm_container">
-    <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
+    <div class="my-3 border-bottom pb-2">자유토론 주제</div>
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -23,7 +23,7 @@
             <h3>사진</h3>
             <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg">
         </div>
-        <input type="submit" value="저장하기" class="freedcsForm_create_btn">
+        <input type="submit" value="등록하기" class="freedcsForm_create_btn">
     </form>
     </div>
 </html>

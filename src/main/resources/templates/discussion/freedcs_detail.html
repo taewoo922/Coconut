@@ -1,16 +1,15 @@
-<html layout:decorate="~{common/layout_f}">
+<html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsDetail_container">
     <!-- 질문 -->
     <h1 class="freedcsDetail_title" th:text="${freedcs.title}"></h1>
     <div class="freedcsDetail_freedcsList">
+        <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
         <div class="freedcsDetail_userData">
             <div class="freedcsDetail_username">
                 <span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span>
             </div>
-            <div class="freedcsDetail_createDate"
-                 th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+            <div class="freedcsDetail_createDate" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
         </div>
-        <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
         <div class="freedcsDetail_content_function">
             <a href="javascript:void(0);" class="freedcsDetail_vote"
                th:data-uri="@{|/discussion/vote/${freedcs.id}|}">

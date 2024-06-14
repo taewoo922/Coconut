@@ -1,0 +1,99 @@
+.freedcsDetail_container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    max-width: 1280px;
+}
+
+.freedcsDetail_title,
+.freedcsDetail_content {
+    text-align: center;
+}
+
+.freedcsDetail_userData {
+    text-align: right;
+   /* margin-top: 10px; */
+}
+
+.freedcsDetail_content_function {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+   /* margin-top: 10px;*/
+}
+
+.freedcsDetail_vote,
+.freedcsDetail_content_modify_btn,
+.freedcsDetail_content_delete_btn {
+    display: inline-block;
+    /*vertical-align: middle;*/
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.freedcsDetail_vote:hover,
+.freedcsDetail_content_modify_btn:hover,
+.freedcsDetail_content_delete_btn:hover {
+    background-color: #0056b3;
+}
+
+.freedcsDetail_answerList {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.freedcsDetail_answer {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.freedcsDetail_answer .freedcsDetail_userData {
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.freedcsDetail_answer .freedcsDetail_content {
+    margin-bottom: 10px;
+}
+
+.freedcsDetail_answer .freedcsDetail_content_function {
+    display: flex; /* 요소들을 가로로 배치 */
+    flex-direction: row;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.freedcsDetail_create {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.freedcsDetail_create_text {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.freedcsDetail_create_btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.freedcsDetail_create_btn:hover {
+    background-color: #218838;
+}
