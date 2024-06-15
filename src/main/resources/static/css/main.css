@@ -126,7 +126,7 @@
 
 /*중간 섹션 부분*/
 .free_Sec {
-    height: 800px;
+    height: 1000px;
     background: url('/images/freebackImg.jpg') center center fixed no-repeat #45434c;
     background-size: cover;
     background-position: center bottom;
