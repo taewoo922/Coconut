@@ -24,8 +24,8 @@ public class DebateForm {
     @NotNull(message="사진을 선택해주세요")
     private MultipartFile thumbnail;
 
-    @NotNull(message="카테고리선택은 필수항목입니다.")
-    private Category category;
+//    @NotNull(message="카테고리선택은 필수항목입니다.")
+//    private Category category;
 
     @NotNull(message="카테고리 선택은 필수사항입니다.")
     private Long category;

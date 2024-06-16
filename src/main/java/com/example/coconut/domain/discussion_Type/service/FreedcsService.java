@@ -68,18 +68,11 @@ public class FreedcsService {
             return freedcsRepository.findAll(pageable);
         }
 //        return freedcsRepository.findAll(search(kw), pageable);
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return freedcsRepository.findAll(pageable);
-        }
+
 
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return freedcsRepository.findAll(pageable);
-        }
-        return freedcsRepository.findAll(search(kw), pageable);
+
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
@@ -93,7 +86,6 @@ public class FreedcsService {
                         criteriaBuilder.equal(root.get("category").get("id"), categoryId),
                         criteriaBuilder.like(root.get("title"), "%" + kw + "%")
                 ), pageable);
-        return freedcsRepository.findAllByCategory_IdAndSearch(categoryId, kw, pageable);
     }
 
     public List<Freedcs> getPostsByCategory(Long categoryId) {
@@ -122,14 +114,6 @@ public class FreedcsService {
         freedcs.setView(freedcs.getView() + 1);
         freedcsRepository.save(freedcs);
     }
-
-    public void free_create(String title, String content, MultipartFile thumbnail, User user, Category category){
-
-    public void free_create(String title, String content, MultipartFile thumbnail, User user) {
-    public void free_create(String title, String content, MultipartFile thumbnail, User user){
-
-    public void free_create(String title, String content, MultipartFile thumbnail, User user) {
-    public void free_create(String title, String content, MultipartFile thumbnail, User user, Long categoryId) {
 
 
     public void free_create(String title, String content, MultipartFile thumbnail, User user, Category category){
@@ -179,12 +163,6 @@ public class FreedcsService {
         f.setTitle(title);
         f.setContent(content);
 //        f.setThumbnailImg(thumbnail);
-    public void create(String title, String content, String thumbnail, User author) {
-    public void create(String title, String content, String thumbnail) {
-        Freedcs f = new Freedcs();
-        f.setTitle(title);
-        f.setContent(content);
-        f.setThumbnailImg(thumbnail);
 
         this.freedcsRepository.save(f);
 
