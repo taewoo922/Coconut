@@ -114,9 +114,10 @@ public class FreedcsService {
     }
 
 
-
     public void free_create(String title, String content, MultipartFile thumbnail, User user, Category category){
 
+    public void free_create(String title, String content, MultipartFile thumbnail, User user) {
+    public void free_create(String title, String content, MultipartFile thumbnail, User user){
 
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
@@ -137,6 +138,21 @@ public class FreedcsService {
                 .category(category)
                 .build();
         freedcsRepository.save(f);
+
+//        Freedcs f = new Freedcs();
+//        f.setTitle(title);
+//        f.setContent(content);
+//        f.setThumbnailImg(thumbnail);
+//        f.setAuthor(user);
+//        this.freedcsRepository.save(f);
+////        return f;
+    public void free_create(String title, String content, User user){
+        Freedcs f = new Freedcs();
+        f.setTitle(title);
+        f.setContent(content);
+        f.setAuthor(user);
+        this.freedcsRepository.save(f);
+//        return f;
     }
 
 
