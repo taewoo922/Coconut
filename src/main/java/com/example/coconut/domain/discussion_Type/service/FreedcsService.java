@@ -119,6 +119,8 @@ public class FreedcsService {
     public void free_create(String title, String content, MultipartFile thumbnail, User user) {
     public void free_create(String title, String content, MultipartFile thumbnail, User user){
 
+    public void free_create(String title, String content, MultipartFile thumbnail, User user) {
+
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
 

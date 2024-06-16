@@ -104,6 +104,7 @@ public class FreedcsController {
 
 //        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
 
+
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
 
 
@@ -115,6 +116,14 @@ public class FreedcsController {
 //        User siteUser = this.userService.getUser(principal.getName());
 //        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
 
+//        return "redirect:/discussion/freedcs_list";
+
+        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+        return "redirect:/discussion/freedcs_list";
+        return "redirect:/discussion/freedcs_list";
+
+
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
 //        return "redirect:/discussion/freedcs_list";
 
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
