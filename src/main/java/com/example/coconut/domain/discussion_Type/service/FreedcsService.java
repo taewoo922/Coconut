@@ -120,6 +120,7 @@ public class FreedcsService {
     public void free_create(String title, String content, MultipartFile thumbnail, User user){
 
     public void free_create(String title, String content, MultipartFile thumbnail, User user) {
+    public void free_create(String title, String content, MultipartFile thumbnail, User user, Long categoryId) {
 
         String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
@@ -131,6 +132,9 @@ public class FreedcsService {
         } catch ( IOException e ) {
             throw new RuntimeException(e);
         }
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("카테고리를 찾을 수 없습니다."));
 
         Freedcs f = Freedcs.builder()
                 .title(title)
@@ -180,6 +184,12 @@ public class FreedcsService {
         f.setTitle(title);
         f.setContent(content);
 //        f.setThumbnailImg(thumbnail);
+    public void create(String title, String content, String thumbnail, User author) {
+        Freedcs f = new Freedcs();
+        f.setTitle(title);
+        f.setContent(content);
+        f.setThumbnailImg(thumbnail);
+        f.setAuthor(author);
 
         this.freedcsRepository.save(f);
 
