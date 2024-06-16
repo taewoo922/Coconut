@@ -5,6 +5,10 @@
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data" class="freedcsForm_form">
 =======
 
+<html layout:decorate="~{common/layout_f}">
+<div layout:fragment="content" class="freedcsForm_container">
+
+<div layout:fragment="content" class="container">
     <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
 
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
