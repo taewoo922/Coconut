@@ -48,7 +48,6 @@ public class FreedcsController {
                        @RequestParam(value = "kw", defaultValue = "") String kw,
                        @RequestParam(value = "category", required = false) Long categoryId) {
         Page<Freedcs> paging;
-//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
         List<Freedcs> freedcsList;
 
         if (categoryId == null) {
@@ -60,16 +59,11 @@ public class FreedcsController {
         }
 
 
-//                       @RequestParam(value = "kw", defaultValue = "") String kw) {
-//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
-
-
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
 
-//        List<Freedcs> freedcsList = this.freedcsService.getList();
-//        model.addAttribute("freedcsList",freedcsList);
+
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
@@ -79,7 +73,8 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/free_detail/{id}")
-    public String free_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
+    public String free_detail(Model model, @PathVariable("id") Long id, @RequestParam(value = "view", defaultValue = "0") int view, AnswerForm answerForm) {
+        this.freedcsService.incrementViews(id);
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         model.addAttribute("freedcs", freedcs);
         return "discussion/freedcs_detail";

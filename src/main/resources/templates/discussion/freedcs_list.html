@@ -87,14 +87,16 @@
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
 <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
+                        <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
                         <div class="post-category" th:text="${freedcs.category.name}"></div> <!-- 카테고리 표시 -->
-=======
->>>>>>> 9fee2bd (asd)
 <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div>-->
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.categories}" th:text="${category.name}"></span>
+                        </div>
+                        <div class="post-view">
+                            <span th:text="${freedcs.view}">조회수</span>
                         </div>
                     </div>
                 </a>
@@ -190,6 +192,9 @@
 <!--        </tr>-->
 <!--        </tbody>-->
 <!--    </table>-->
+
+        </div>
+    </div>
 
     <!-- 페이징처리 시작 -->
     <div th:if="${!paging.isEmpty()}" class="pagination-container">
