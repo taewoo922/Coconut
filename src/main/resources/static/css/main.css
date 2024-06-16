@@ -166,8 +166,8 @@
 .pcd_Sec_Title {
     position: absolute;
     width: 400px;
-    top: 2500px;
-    right: 400px;
+    top: 2600px;
+    left: 1000px;
     font-family: sans-serif;
     color: white;
     font-size: 5em;
@@ -176,8 +176,8 @@
 
 .pcd_Sec_Content {
     position: absolute;
-    top: 3000px;
-    right: 400px;
+    top: 3100px;
+    left: 1000px;
     text-decoration: none;
     font-size: 30px;
     color: white;
@@ -222,22 +222,22 @@
 
 @keyframes slide2{
     from{
-        right: -400px;
+        left: -1000px;
         opacity: 0;
     }
     to{
-        right: 400px;
+        left: 1000px;
         opacity: 1;
     }
 }
 
 @keyframes disappear2{
     from{
-        right: 400px;
+        left: 1000px;
         opacity: 1;
     }
     to{
-        right: -400px;
+        left: -1000px;
         opacity: 0;
     }
 }
