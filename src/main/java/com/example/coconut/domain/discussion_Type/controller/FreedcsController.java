@@ -8,7 +8,6 @@ import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.user.entity.User;
-import com.example.coconut.domain.user.repository.UserRepository;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -43,11 +41,6 @@ public class FreedcsController {
 
 //    @Autowired
 //    private CategoryService categoryService;
-    private final UserRepository userRepository;
-    @Autowired
-    private final FreedcsRepository freedcsRepository;
-    @Autowired
-    private final CategoryRepository categoryRepository;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
@@ -97,9 +90,6 @@ public class FreedcsController {
     public String free_create(FreedcsForm freedcsForm, Model model) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
-
         return "discussion/free_create_form";
     }
 
@@ -108,12 +98,6 @@ public class FreedcsController {
     public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
                               @RequestParam("thumbnail") MultipartFile thumbnail) {
         if (bindingResult.hasErrors()) {
-    public String free_create(@Valid @ModelAttribute FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
-                              @RequestParam("thumbnail") MultipartFile thumbnail, Model model)
-    {
-        if(bindingResult.hasErrors()){
-            List<Category> categories = categoryRepository.findAll();
-            model.addAttribute("categories", categories);
             return "discussion/free_create_form";
         }
 
@@ -127,6 +111,8 @@ public class FreedcsController {
 
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, freedcsForm.getCategory().getId());
+//        User siteUser = this.userService.getUser(principal.getName());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
 
 
         return "redirect:/discussion/freedcs_list";
@@ -184,7 +170,6 @@ public class FreedcsController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
-        freedcsForm.setCategory(freedcs.getCategory());
         return "discussion/free_create_form";
     }
 

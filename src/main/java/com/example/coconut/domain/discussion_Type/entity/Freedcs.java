@@ -36,10 +36,6 @@ public class Freedcs extends BaseEntity {
     private Category category;
 
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
     @OneToMany(mappedBy = "freedcs", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
 
