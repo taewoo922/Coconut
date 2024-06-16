@@ -4,6 +4,8 @@ package com.example.coconut.domain.discussion_Type.service;
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
+
+
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
@@ -54,6 +56,9 @@ public class FreedcsService {
         };
     }
 
+//    public List<Category> getAllCategories() {
+//        return categoryRepository.findAll();
+//    }
 
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
@@ -68,6 +73,11 @@ public class FreedcsService {
 //        return freedcsRepository.findAll(search(kw), pageable);
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        if (kw == null || kw.isBlank()) {
+            return freedcsRepository.findAll(pageable);
+        }
+        return freedcsRepository.findAll(search(kw), pageable);
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
@@ -81,6 +91,7 @@ public class FreedcsService {
                         criteriaBuilder.equal(root.get("category").get("id"), categoryId),
                         criteriaBuilder.like(root.get("title"), "%" + kw + "%")
                 ), pageable);
+        return freedcsRepository.findAllByCategory_IdAndSearch(categoryId, kw, pageable);
     }
 
     public List<Freedcs> getPostsByCategory(Long categoryId) {
@@ -174,6 +185,16 @@ public class FreedcsService {
     }
 
 
+
+//    public void create(String title, String content, String thumbnail) {
+//        Freedcs f = new Freedcs();
+//        f.setTitle(title);
+//        f.setContent(content);
+//        f.setThumbnailImg(thumbnail);
+//
+//        this.freedcsRepository.save(f);
+//
+//    }
 
 
 }
