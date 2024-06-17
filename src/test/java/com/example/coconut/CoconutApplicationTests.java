@@ -38,7 +38,7 @@ class CoconutApplicationTests {
 	private FreedcsRepository freedcsRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userRepository;}
 
 
 
@@ -132,3 +132,5 @@ class CoconutApplicationTests {
 		}
 	}
 }
+
+	 */
