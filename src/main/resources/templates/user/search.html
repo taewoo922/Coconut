@@ -5,7 +5,7 @@
         <div class="search_body">
 
             <div class="search_scrap">
-                <div class="search_scrap_title sTitle">🔥스크랩 게시글🔥</div>
+                <div class="search_scrap_title sTitle">⭐스크랩 게시글⭐</div>
                 <div class="search_scrap_section sSec">
                     <div class="search_scrap_Info sInfo" th:each="report, loop : ${reportList}">
                          <a th:href="@{|/report/detail/${report.id}|}">스크랩 게시글</a>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="search_myList">
-                <div class="search_myList_title sTitle">💡내가 쓴 게시글💡</div>
+                <div class="search_myList_title sTitle">📚내가 쓴 게시글📚</div>
                 <div class="search_myList_section sSec">
                     <div class="search_myList_Info sInfo" th:each="freedcs : ${freedcsList}">
                         <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">

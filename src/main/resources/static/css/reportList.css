@@ -132,23 +132,23 @@
 
 
 /* 페이징 기능 */
-.pagination-container {
+.report_pagination_container {
     text-align: center;
     margin-top: 10px;
 }
 
-.pagination {
+.report_pagination {
     display: inline-block;
     margin: 0;
     padding: 0;
 }
 
-.pagination li {
+.report_pagination li {
     display: inline;
     margin-right: 5px;
 }
 
-.pagination li a {
+.report_pagination li a {
     color: black;
     border: 1px solid black;
     padding: 6px 12px;
@@ -156,13 +156,13 @@
     text-decoration: none;
 }
 
-.pagination li.active a {
+.report_pagination li.active a {
     background-color: #007bff;
     border-color: #007bff;
     color: #fff;
 }
 
-.pagination li.disabled a {
+.report_pagination li.disabled a {
     color: #6c757d;
     background-color: #e9ecef;
     border-color: #dee2e6;

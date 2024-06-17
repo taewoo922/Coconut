@@ -11,7 +11,7 @@
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_3.jpg}" alt="이미지 3"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_4.jpg}" alt="이미지 4"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_5.jpg}" alt="이미지 5"></div>
-                    <div class="swiper-slide"><img th:src="@{/images/slideImage_6.jpg}" alt="이미지 6"></div>
+                    <div class="swiper-slide"><img th:src="@{/images/slideImage_6.png}" alt="이미지 6"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_7.jpg}" alt="이미지 7"></div>
                     <div class="swiper-slide"><img th:src="@{/images/slideImage_8.jpg}" alt="이미지 8"></div>
                 </div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="main_Latest">
-                <div class="main_Latest_title mTitle">💡최신 토론💡</div>
+                <div class="main_Latest_title mTitle">🆕최신 토론🆕</div>
                 <div class="Latest_section MSec">
                     <div class="main_Latest_Info dcsInfo" th:each="freedcs : ${freedcsList}" >
                         <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
@@ -74,7 +74,7 @@
     </section>
     <section class="pcd_Sec">
         <h1 class="pcd_Sec_Title">JOIN!! Pro-Con Debate</h1>
-        <a class="pcd_Sec_Content" href="/discussion/freedcs_list"><span class="arrow">&rarr;</span>Go to Pro-Con Debate</a>
+        <a class="pcd_Sec_Content" href="/discussion/debate_list"><span class="arrow">&rarr;</span>Go to Pro-Con Debate</a>
     </section>
     <footer th:replace="~{common/footer :: footerFragment}"></footer>
 </div>
