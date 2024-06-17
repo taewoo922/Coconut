@@ -25,6 +25,10 @@ public class HomeController {
     public String home(Model model) {
         List<Freedcs> freedcsList = freedcsService.findAllDiscussionsOrderByCreateDateDesc();
         model.addAttribute("freedcsList", freedcsList);
+
+        List<Freedcs> freedcsBestList = freedcsService.findAllDiscussionsOrderByViewDesc();
+        model.addAttribute("freedcsBestList", freedcsBestList);
+
         return "home/main";
     }
 

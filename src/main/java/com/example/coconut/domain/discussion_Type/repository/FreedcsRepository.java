@@ -28,6 +28,8 @@ public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
 
     Page<Freedcs> findAllByCategory_IdAndSearch(Long categoryId, String kw, Pageable pageable);
 
+    List<Freedcs> findAllByOrderByViewDesc(); //자유토론이 조회수 순으로 가져와 줌
+
 //    @Query("SELECT f FROM Freedcs f ORDER BY SIZE(f.voter) DESC")
 //    List<Freedcs> findTop5ByOrderByVoterCountDesc(Pageable pageable);
 
