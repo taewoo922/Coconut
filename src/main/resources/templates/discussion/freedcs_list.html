@@ -30,15 +30,14 @@
             </div>
         </div>
     </div>
+
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
-            <!--카테고리-->
 <!--            <div class="categories">-->
 <!--                <button class="category-botton" th:each="category  : ${categories}"-->
-<!--                        th:text="${category.name}"-->
+<!--                        th:text="category.name"-->
 <!--                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">-->
-<!--&lt;!&ndash;                    th:attr="onclick=|location.href='@{/category/{id}(id=${category.id})}'|">&ndash;&gt;-->
 <!--                </button>-->
 <!--            </div>-->
             <div th:each="freedcs : ${freedcsList}" class="post">
@@ -49,9 +48,12 @@
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
-<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
+                        <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
+                        </div>
+                        <div class="post-view">
+                            <span th:text="${freedcs.view}">조회수</span> <!--//조회수 완성!-->
                         </div>
                     </div>
                 </a>
@@ -82,20 +84,21 @@
         </ul>
     </div>
         <!-- 페이징처리 끝 -->
-    <form th:action="@{/discussion/freedcs_list}" method="get" id="searchForm">
-        <input type="hidden" id="kw" name="kw" th:value="${kw}">
-        <input type="hidden" id="page" name="page" th:value="${paging.number}">
-    </form>
+        <form th:action="@{/discussion/freedcs_list}" method="get" id="searchForm">
+            <input type="hidden" id="kw" name="kw" th:value="${kw}">
+            <input type="hidden" id="page" name="page" th:value="${paging.number}">
+        </form>
 
-    <form id="categoryForm" th:action="@{/discussion/freedcs_list}" method="get">
-        <input type="hidden" id="categoryId" name="category" value="">
-    </form>
+        <form id="categoryForm" th:action="@{/discussion/freedcs_list}" method="get">
+            <input type="hidden" id="categoryId" name="category" value="">
+        </form>
 
-    <script th:inline="javascript">
-        function filterByCategory(categoryId) {
-            document.getElementById('categoryId').value = categoryId;
-            document.getElementById('categoryForm').submit();
-        }
-    </script>
+        <script th:inline="javascript">
+            function filterByCategory(categoryId) {
+                document.getElementById('categoryId').value = categoryId;
+                document.getElementById('categoryForm').submit();
+            }
+        </script>
+        </div>
     </div>
 </html>

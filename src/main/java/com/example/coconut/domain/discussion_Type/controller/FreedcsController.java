@@ -3,6 +3,10 @@ package com.example.coconut.domain.discussion_Type.controller;
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.discussion_Type.FreedcsForm;
+import com.example.coconut.domain.category.repository.CategoryRepository;
+import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.report.entity.Report;
+import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
@@ -35,13 +39,15 @@ public class FreedcsController {
     private final UserService userService;
     private final CategoryService categoryService;
 
+//    @Autowired
+//    private CategoryService categoryService;
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw,
                        @RequestParam(value = "category", required = false) Long categoryId) {
         Page<Freedcs> paging;
-//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
         List<Freedcs> freedcsList;
 
         if (categoryId == null) {
@@ -52,9 +58,11 @@ public class FreedcsController {
             freedcsList = this.freedcsService.getPostsByCategory(categoryId);
         }
 
+
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
+
 
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
@@ -65,7 +73,8 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/free_detail/{id}")
-    public String free_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
+    public String free_detail(Model model, @PathVariable("id") Long id, @RequestParam(value = "view", defaultValue = "0") int view, AnswerForm answerForm) {
+        this.freedcsService.incrementViews(id);
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         model.addAttribute("freedcs", freedcs);
         return "discussion/freedcs_detail";
@@ -91,7 +100,6 @@ public class FreedcsController {
 
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
-
 
         return "redirect:/discussion/freedcs_list";
 
@@ -133,6 +141,7 @@ public class FreedcsController {
 
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/free_detail/%s".formatted(id);
+
     }
 
     @PreAuthorize("isAuthenticated()")

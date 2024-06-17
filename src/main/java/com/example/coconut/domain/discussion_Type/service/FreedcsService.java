@@ -4,6 +4,8 @@ package com.example.coconut.domain.discussion_Type.service;
 import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
+
+
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -54,7 +57,6 @@ public class FreedcsService {
         };
     }
 
-
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new DataNotFoundException("Category not found"));
@@ -66,8 +68,11 @@ public class FreedcsService {
             return freedcsRepository.findAll(pageable);
         }
 //        return freedcsRepository.findAll(search(kw), pageable);
+
+
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
+
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
@@ -102,6 +107,13 @@ public class FreedcsService {
         }
     }
 
+    @Transactional
+    public void incrementViews(Long id) {
+        Freedcs freedcs = freedcsRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("Freedcs not found"));
+        freedcs.setView(freedcs.getView() + 1);
+        freedcsRepository.save(freedcs);
+    }
 
 
     public void free_create(String title, String content, MultipartFile thumbnail, User user, Category category){
@@ -174,6 +186,16 @@ public class FreedcsService {
     }
 
 
+
+//    public void create(String title, String content, String thumbnail) {
+//        Freedcs f = new Freedcs();
+//        f.setTitle(title);
+//        f.setContent(content);
+//        f.setThumbnailImg(thumbnail);
+//
+//        this.freedcsRepository.save(f);
+//
+//    }
 
 
 }
