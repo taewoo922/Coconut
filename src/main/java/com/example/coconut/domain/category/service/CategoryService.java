@@ -26,6 +26,12 @@ public class CategoryService {
 //        category.setName(name);
 //        return categoryRepository.save(category);
 //    }
+    @Transactional
+    public Category createCategory(String name) {
+        Category category = new Category();
+        category.setName(name);
+        return categoryRepository.save(category);
+    }
 
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
@@ -38,6 +44,9 @@ public class CategoryService {
         category.setName(categoryName);
         categoryRepository.save(category);
     }
+    
+
+
 
 
 }

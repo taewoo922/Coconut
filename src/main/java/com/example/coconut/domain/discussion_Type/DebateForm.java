@@ -1,5 +1,6 @@
 package com.example.coconut.domain.discussion_Type;
 
+import com.example.coconut.domain.category.entity.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +24,11 @@ public class DebateForm {
     @NotNull(message="사진을 선택해주세요")
     private MultipartFile thumbnail;
 
+//    @NotNull(message="카테고리선택은 필수항목입니다.")
+//    private Category category;
+
     @NotNull(message="카테고리 선택은 필수사항입니다.")
     private Long category;
+
+//    private Long categoryId;  // 카테고리 ID 필드 추가
 }

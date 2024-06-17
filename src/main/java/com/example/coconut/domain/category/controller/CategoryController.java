@@ -10,8 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.example.coconut.domain.category.repository.CategoryRepository;
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
+import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.report.entity.Report;
+import com.example.coconut.domain.report.repository.ReportRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -51,5 +62,7 @@ public class CategoryController {
         categoryService.addCategory(categoryName);
         return "redirect:/categories";
     }
+
+
 
 }

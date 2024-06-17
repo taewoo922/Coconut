@@ -48,4 +48,6 @@ public class Freedcs extends BaseEntity {
     @Transient
     private String search;
 
+//    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int view;
 }

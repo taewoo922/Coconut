@@ -71,6 +71,8 @@ class CoconutApplicationTests {
 
 
 
+
+
 //	@Test
 //	void contextLoads() {
 //		for (int i = 1; i <= 300; i++) {
@@ -114,7 +116,6 @@ class CoconutApplicationTests {
 			String content = "내용무";
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 //			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
-//			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 			User author = null;
@@ -129,7 +130,6 @@ class CoconutApplicationTests {
 					return userRepository.save(newUser); // 새로운 사용자를 저장하고 반환
 				});
 			}
-
 
 //			this.freedcsService.create(subject, content, thumbnailImg, author);
 		}
