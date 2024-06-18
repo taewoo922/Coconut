@@ -35,7 +35,6 @@ public class AnswerController {
     private final DebateService debateService;
     private final AnswerService answerService;
     private final CategoryService categoryService;
-
     private final UserService userService;
 
     @PreAuthorize("isAuthenticated()")
@@ -56,7 +55,8 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/debate/create/{id}")
     public String d_createAnswer(Model model, @PathVariable("id") Long id,
-                               @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
+                               @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal,
+                                 @RequestParam("isSupport") boolean isSupport) {
         Debate debate = this.debateService.getDebate(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
@@ -64,7 +64,7 @@ public class AnswerController {
             return "discussion/d_detail";
         }
 
-        Answer answer = this.answerService.d_create(debate, answerForm.getContent(), user);
+        Answer answer = this.answerService.d_create(debate, answerForm.getContent(), user, isSupport);
         return "redirect:/discussion/d_detail/%s#answer_%s".formatted(answer.getDebate().getId(), answer.getId());
     }
 

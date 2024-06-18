@@ -157,6 +157,11 @@ public class DebateService {
 
     }
 
+    public void save(Debate debate) {
+        debateRepository.save(debate);
+    }
+
+
 //    //메인 페이지에 최신순으로 게시글 나열
 //    public List<Freedcs> findAllDiscussionsOrderByCreateDateDesc() {
 //        return freedcsRepository.findAllByOrderByCreateDateDesc();

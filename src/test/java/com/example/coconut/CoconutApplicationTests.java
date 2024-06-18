@@ -103,6 +103,8 @@ class CoconutApplicationTests {
 			this.reportService.create(title, content, null, "자유토론", true);
 		}
 	}
+	*/
+
 	@Test
 
 	@DisplayName("report 데이터 저장")
