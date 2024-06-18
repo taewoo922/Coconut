@@ -47,7 +47,6 @@
 .reportDetail_username {
     font-size: 20px;
     font-weight: bold;
-
     color: black;
 }
 
@@ -88,7 +87,6 @@
     border-radius: 10px;
     position: relative;
     display: flex;
-
     flex-direction: column;
     max-width: 25%;
     word-wrap: break-word;
@@ -109,7 +107,7 @@
 .reportDetail_reply::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     left: 10px;
     border-width: 10px;
     border-style: solid;
@@ -120,6 +118,7 @@
 .myReply::before {
     left: auto;
     right: 10px;
+    bottom: -20px;
     border-color: #d1ecf1 transparent transparent transparent;
 }
 
@@ -140,7 +139,8 @@
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
-    gap: 10px; /* 간격 추가 */
+    margin-bottom: 8px;
+    gap: 140px; /* 간격 추가 */
 }
 
 .reportDetail_vote {
@@ -234,27 +234,6 @@ textarea:disabled {
 
 .reportDetail_create_btn:hover {
     background-color: #1558b0;
-}
-
-/* 질문 수정 삭제 */
-.reportDetail_content_function {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    gap: 10px; /* 간격 추가 */
-}
-
-/* 질문 수정 버튼 */
-.reportDetail_content_modify_btn {
-    font-size: 15px;
-    color: #007bff;
-}
-
-/* 질문 삭제 버튼 */
-.reportDetail_content_delete_btn {
-    font-size: 15px;
-    color: #dc3545;
 }
 
 /* 에러 메시지 출력 */

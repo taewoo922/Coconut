@@ -35,14 +35,14 @@
     <h5 class="reportDetail_replyList"
         th:text="|${#lists.size(report.replyList)}개의 답변이 있습니다.|"></h5>
     <!-- 답변 반복 시작 -->
-    <div class="reportDetail_reply" th:each="reportReply : ${report.replyList}"
-         th:class="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username} ? 'reportDetail_reply myReply' : 'reportDetail_reply otherReply'">
+    <div th:each="reportReply : ${report.replyList}"
+         th:classappend="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username} ? 'myReply' : 'otherReply'"
+         class="reportDetail_reply">
         <a th:id="|reportReply_${reportReply.id}|"></a>
         <div class="reportDetail_userData">
             <div class="reportDetail_username">
                 <span th:if="${reportReply.author != null}" th:text="${reportReply.author.username}"></span>
             </div>
-
         </div>
         <div class="reportDetail_reply_content" th:text="${reportReply.content}"></div>
         <div class="reportDetail_createDate">
@@ -55,12 +55,14 @@
                 <span class="reportDetail_voterCount" th:text="${#lists.size(reportReply.voter)}"></span>
             </a>
             <div class="reportDetail_content_modifyAndDelete">
-                <a th:href="@{|/reportReply/modify/${reportReply.id}|}" class="reportDetail_content_modify_btn">
-                    수정
-                </a>
-                <a th:href="@{|/reportReply/delete/${reportReply.id}|}" class="reportDetail_content_delete_btn">
-                    삭제
-                </a>
+                <a th:href="@{|/reportReply/modify/${reportReply.id}|}" class="reportDetail_content_modify_btn"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username}"
+                   th:text="수정"></a>
+                <a href="javascript:void(0);" th:data-uri="@{|/reportReply/delete/${reportReply.id}|}"
+                   class="reportDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                   th:if="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username}"
+                   th:text="삭제"></a>
             </div>
         </div>
     </div>
