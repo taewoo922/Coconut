@@ -122,11 +122,9 @@ class CoconutApplicationTests {
 			String content = "내용무";
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 //			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
-<<<<<<< HEAD
-=======
 //			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
->>>>>>> 7d98074 (충돌해결 3/7)
+			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 			User author = null;
