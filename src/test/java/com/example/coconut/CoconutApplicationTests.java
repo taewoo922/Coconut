@@ -38,7 +38,7 @@ class CoconutApplicationTests {
 	private FreedcsRepository freedcsRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userRepository;}
 
 
 
@@ -117,7 +117,6 @@ class CoconutApplicationTests {
 //	}
 
 	@Test
-
 	@DisplayName("report 데이터 저장")
 	void reportTest() {
 		for (int i = 1; i <= 300; i++) {
@@ -127,7 +126,6 @@ class CoconutApplicationTests {
 		}
 	}
 	@Test
-
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {
 		for (int i = 1; i <= 5; i++) {
@@ -155,5 +153,3 @@ class CoconutApplicationTests {
 		}
 	}
 }
-
-
