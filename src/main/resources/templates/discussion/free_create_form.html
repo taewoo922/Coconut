@@ -1,7 +1,14 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsForm_container">
     <div class="my-3 border-bottom pb-2">자유토론 주제</div>
+<<<<<<< HEAD
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data" class="freedcsForm_form">
+=======
+
+    <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
+
+    <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
+>>>>>>> 4c5d66d (충돌해결1/7)
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
@@ -25,7 +32,34 @@
         </div>
         <input type="submit" value="등록하기" class="freedcsForm_create_btn">
     </form>
+<<<<<<< HEAD
 </div>
+=======
+        <input type="submit" value="저장하기" class="freedcsForm_create_btn">
+    </form>
+<!--    <form th:action="@{/discussion/free_create}" th:object="${freedcsForm}"method="post" enctype="multipart/form-data">-->
+<!--        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">-->
+<!--            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="title" class="form-label">제목</label>-->
+<!--            <input type="text" th:field="*{title}" class="form-control" >-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="content" class="form-label">내용</label>-->
+<!--            <textarea th:field="*{content}" class="form-control" rows="10" ></textarea>-->
+<!--        </div>-->
+
+<!--        <div class="mb-3">-->
+<!--        <h3>사진</h3>-->
+<!--        <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg">-->
+<!--        </div>-->
+
+<!--        <input type="submit" value="등록" class="btn btn-primary my-2">-->
+            </div>
+        </form>
+    </div>
+>>>>>>> 4c5d66d (충돌해결1/7)
 </html>
 
 

@@ -59,11 +59,17 @@ public class FreedcsController {
         }
 
 
+//                       @RequestParam(value = "kw", defaultValue = "") String kw) {
+//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
+
+
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
 
 
+//        List<Freedcs> freedcsList = this.freedcsService.getList();
+//        model.addAttribute("freedcsList",freedcsList);
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
@@ -101,8 +107,32 @@ public class FreedcsController {
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
 
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), user);
+
+
+
         return "redirect:/discussion/freedcs_list";
 
+
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user);
+
+//        User siteUser = this.userService.getUser(principal.getName());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), siteUser);
+
+//        return "redirect:/discussion/freedcs_list";
+
+//    public String free_create(@RequestParam("title") String title, @RequestParam("content") String content,
+//                              @RequestParam("thumbnail") MultipartFile thumbnail) {
+//
+//        freedcsService.free_create(title,content,thumbnail);
+//
+//
+//        return "redirect:/discussion/freedcs_list";
+
+//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+//        this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
+//
+//        return "redirect:/discussion/freedcs_list";
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -121,6 +151,10 @@ public class FreedcsController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
+
+
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
 
         return "discussion/free_create_form";
     }
@@ -142,6 +176,10 @@ public class FreedcsController {
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/free_detail/%s".formatted(id);
 
+//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
+
+        this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
+        return "redirect:/discussion/freedcs_detail/%s".formatted(id);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -167,4 +205,11 @@ public class FreedcsController {
 
         return String.format("redirect:/discussion/free_detail/%s".formatted(id));
     }
+
+
+
+
+
+
+
 }

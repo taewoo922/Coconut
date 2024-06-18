@@ -37,6 +37,7 @@ public class CategoryController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         return "category/category_manage";
+        return "category/category_list";
     }
 
     @GetMapping("/category/create")
@@ -61,6 +62,18 @@ public class CategoryController {
     public String addCategory(@RequestParam("categoryName") String categoryName) {
         categoryService.addCategory(categoryName);
         return "redirect:/categories";
+        return "category/category_create_form";
+    }
+
+    @PostMapping("/category/create")
+    public String createCategory(@Valid CategoryForm categoryForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "category/category_create_form";
+        }
+
+        categoryService.createCategory(categoryForm.getName());
+        return "/category/category_create_form";
+//        return "redirect:/category/category_create_form";
     }
 
 
