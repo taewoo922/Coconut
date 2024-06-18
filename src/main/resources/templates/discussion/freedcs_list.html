@@ -31,6 +31,23 @@
         </div>
     </div>
 
+    <div>
+        <a th:href="@{/category/create}">카테고리 만들기</a>
+    </div>
+
+
+    <div class="freedcsList_head_row">
+        <!-- 질문 등록하기 버튼 -->
+        <a class="freedcsList_create_btn" th:href="@{/discussion/free_create}">
+            질문 등록하기
+        </a>
+        <!-- 검색 창과 버튼 -->
+<!--        <div class="freedcsList_input_group">-->
+<!--            <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="검색어 입력">-->
+<!--            <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>-->
+<!--        </div>-->
+    </div>
+
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
@@ -54,6 +71,7 @@
                         </div>
                         <div class="post-view">
                             <span th:text="${freedcs.view}">조회수</span> <!--//조회수 완성!-->
+                            <span th:text="${freedcs.view}">조회수</span>
                         </div>
                     </div>
                 </a>
@@ -85,6 +103,11 @@
     </div>
         <!-- 페이징처리 끝 -->
         <form th:action="@{/discussion/freedcs_list}" method="get" id="searchForm">
+    <form th:action="@{/discussion/freedcs_list}" method="get" id="searchForm">
+        <input type="hidden" id="kw" name="kw" th:value="${kw}">
+        <input type="hidden" id="page" name="page" th:value="${paging.number}">
+    </form>
+        <form th:action="@{/freedcs/freedcs_list}" method="get" id="searchForm">
             <input type="hidden" id="kw" name="kw" th:value="${kw}">
             <input type="hidden" id="page" name="page" th:value="${paging.number}">
         </form>
@@ -99,6 +122,18 @@
                 document.getElementById('categoryForm').submit();
             }
         </script>
+    <script th:inline="javascript">
+        function filterByCategory(categoryId) {
+            document.getElementById('categoryId').value = categoryId;
+            document.getElementById('categoryForm').submit();
+        }
+    </script>
+<script th:inline="javascript">
+    function filterByCategory(categoryId) {
+        document.getElementById('categoryId').value = categoryId;
+        document.getElementById('categoryForm').submit();
+    }
+</script>
         </div>
     </div>
 </html>

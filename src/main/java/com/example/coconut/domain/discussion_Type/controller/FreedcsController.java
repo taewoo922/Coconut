@@ -64,6 +64,8 @@ public class FreedcsController {
         model.addAttribute("freedcsList", freedcsList);
 
 
+//        List<Freedcs> freedcsList = this.freedcsService.getList();
+//        model.addAttribute("freedcsList",freedcsList);
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
@@ -141,6 +143,8 @@ public class FreedcsController {
 
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/free_detail/%s".formatted(id);
+
+//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
     }
 

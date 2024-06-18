@@ -38,7 +38,7 @@ class CoconutApplicationTests {
 	private FreedcsRepository freedcsRepository;
 
 	@Autowired
-	private UserRepository userRepository;}
+	private UserRepository userRepository;
 
 
 
@@ -75,6 +75,15 @@ class CoconutApplicationTests {
 
 
 
+//	@Test
+//	void contextLoads() {
+//		for (int i = 1; i <= 300; i++) {
+//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+//			String content = "내용무";
+//			this.reportService.create(subject, content, null, "자유토론");
+//		}
+//	@Autowired
+//	private FreedcsRepository freedcsRepository;
 
 //	@Test
 //	void contextLoads() {
@@ -94,18 +103,20 @@ class CoconutApplicationTests {
 			this.reportService.create(title, content, null, "자유토론", true);
 		}
 	}
-	@Test
+	*/
 
-	@DisplayName("report 데이터 저장")
-	void reportTest() {
-		for (int i = 1; i <= 300; i++) {
-			String title = String.format("테스트 데이터입니다:[%03d]", i);
-			String content = "내용무";
-			this.reportService.create(title, content, null, "자유토론", true);
-		}
-	}
-	@Test
+//	@Test
+//
+//	@DisplayName("report 데이터 저장")
+//	void reportTest() {
+//		for (int i = 1; i <= 300; i++) {
+//			String title = String.format("테스트 데이터입니다:[%03d]", i);
+//			String content = "내용무";
+//			this.reportService.create(title, content, null, "자유토론", true);
+//		}
+//	}
 
+	@Test
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {
 		for (int i = 1; i <= 5; i++) {
@@ -115,6 +126,7 @@ class CoconutApplicationTests {
 //			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
+
 			User author = null;
 			if (Math.random() < 0.5) {
 				// 사용자 이름으로 해당 사용자 객체 조회
@@ -133,4 +145,4 @@ class CoconutApplicationTests {
 	}
 }
 
-	 */
+

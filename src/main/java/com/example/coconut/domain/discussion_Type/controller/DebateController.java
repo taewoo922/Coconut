@@ -83,7 +83,7 @@ public class DebateController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/d_create")
     public String d_create(@Valid DebateForm debateForm, BindingResult bindingResult, Principal principal,
-                              @RequestParam("thumbnail") MultipartFile thumbnail) {
+                           @RequestParam("thumbnail") MultipartFile thumbnail) {
         if (bindingResult.hasErrors()) {
             return "discussion/d_create_form";
         }

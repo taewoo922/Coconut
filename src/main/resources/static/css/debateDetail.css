@@ -1,0 +1,155 @@
+/* debateDetail_container 스타일 */
+.debateDetail_container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* debateDetail_title 스타일 */
+.debateDetail_title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* debateDetail_debateList 스타일 */
+.debateDetail_debateList {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* debateDetail_userData 스타일 */
+.debateDetail_userData {
+    margin-bottom: 10px;
+}
+
+/* debateDetail_username 스타일 */
+.debateDetail_username {
+    font-weight: bold;
+}
+
+/* debateDetail_createDate 스타일 */
+.debateDetail_createDate {
+    color: #666;
+}
+
+/* debateDetail_content 스타일 */
+.debateDetail_content {
+    margin-bottom: 10px;
+}
+
+/* debateDetail_content_function 스타일 */
+.debateDetail_content_function {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* debateDetail_vote 스타일 */
+.debateDetail_vote {
+    text-decoration: none;
+    color: blue;
+}
+
+/* debateDetail_content_modifyAndDelete 스타일 */
+.debateDetail_content_modifyAndDelete a {
+    margin-left: 10px;
+    color: red;
+    text-decoration: none;
+}
+
+/* debateDetail_answerList 스타일 */
+.debateDetail_answerList {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* debateDetail_answers 스타일 */
+.debateDetail_answers {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* debateDetail_support, debateDetail_opposition 스타일 */
+.debateDetail_support, .debateDetail_opposition {
+    width: 48%;
+}
+
+/* debateDetail_support h3, .debateDetail_opposition h3 스타일 */
+.debateDetail_support h3, .debateDetail_opposition h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* debateDetail_answer 스타일 */
+.debateDetail_answer {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* debateDetail_create 스타일 */
+.debateDetail_create {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* debateDetail_create_text 스타일 */
+.debateDetail_create_text {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* debateDetail_create_buttons 스타일 */
+.debateDetail_create_buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* debateDetail_create_btn, debateDetail_support_btn, debateDetail_opposition_btn 스타일 */
+.debateDetail_create_btn, .debateDetail_support_btn, .debateDetail_opposition_btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    transition: background-color 0.3s ease; /* 배경색 변경 시 부드러운 전환 효과 */
+}
+
+/* debateDetail_support_btn 기본 배경색 */
+.debateDetail_support_btn {
+    background-color: #4CAF50; /* 초록색 */
+}
+
+/* debateDetail_opposition_btn 기본 배경색 */
+.debateDetail_opposition_btn {
+    background-color: #f44336; /* 빨간색 */
+}
+
+/* 클릭된 상태 스타일 */
+.debateDetail_support_btn.checked, .debateDetail_opposition_btn.checked {
+    background-color: #2e7d32; /* 짙은 초록색 */
+}
+
+/* 마우스 호버 시 스타일 */
+.debateDetail_support_btn:hover, .debateDetail_opposition_btn:hover {
+    opacity: 0.8; /* 마우스 호버 시 투명도 조정 */
+}
+
+@media (max-width: 768px) {
+    .debateDetail_create_buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .debateDetail_create_btn, .debateDetail_support_btn, .debateDetail_opposition_btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
