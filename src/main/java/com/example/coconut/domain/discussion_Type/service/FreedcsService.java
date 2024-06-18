@@ -57,10 +57,6 @@ public class FreedcsService {
         };
     }
 
-//    public List<Category> getAllCategories() {
-//        return categoryRepository.findAll();
-//    }
-
     public Category getCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new DataNotFoundException("Category not found"));
@@ -73,6 +69,10 @@ public class FreedcsService {
         }
 //        return freedcsRepository.findAll(search(kw), pageable);
 
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        if (kw == null || kw.isBlank()) {
+            return freedcsRepository.findAll(pageable);
+        }
 
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);

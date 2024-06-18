@@ -59,10 +59,6 @@ public class FreedcsController {
         }
 
 
-//                       @RequestParam(value = "kw", defaultValue = "") String kw) {
-//        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
-
-
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
