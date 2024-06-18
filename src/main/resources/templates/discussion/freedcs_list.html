@@ -29,19 +29,6 @@
                 <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>
             </div>
         </div>
-    <div id="category-bar">
-        <button class="category-button" onclick="filterByCategory(null)">
-            <div>전체</div>
-        </button>
-        <th:block th:each="category : ${categories}">
-            <button class="category-button" th:attr="onclick='filterByCategory(\'' + ${category.id} + '\')'">
-                <div th:text="${category.name}"></div>
-            </button>
-        </th:block>
-
-    <!--카테고리-->
-    <div class="add-category-btn">
-        <a href="/categories">카테고리 추가</a>
     </div>
 
     <div>
@@ -70,13 +57,6 @@
 <!--                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">-->
 <!--                </button>-->
 <!--            </div>-->
-            <div class="categories">
-                <button class="category-botton" th:each="category  : ${categories}"
-                        th:text="category.name"
-                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">
-<!--                    th:attr="onclick=|location.href='@{/category/{id}(id=${category.id})}'|">-->
-                </button>
-            </div>
             <div th:each="freedcs : ${freedcsList}" class="post">
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
@@ -85,14 +65,9 @@
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
-<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
-                        <div class="post-category" th:text="${freedcs.category.name}"></div> <!-- 카테고리 표시 -->
-<!--                        <div class="post-category" th:text="${freedcs.category.name}"></div>-->
-                        <div class="post-categories">
-                            <span th:each="category : ${freedcs.categories}" th:text="${category.name}"></span>
                         </div>
                         <div class="post-view">
                             <span th:text="${freedcs.view}">조회수</span> <!--//조회수 완성!-->
@@ -101,98 +76,6 @@
                     </div>
                 </a>
             </div>
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-        </div>
-    </div>
-
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="post">-->
-<!--                <img src="thumbnail1.jpg" alt="썸네일" class="thumbnail">-->
-<!--                <div class="post-info">-->
-<!--                    <div class="post-title">게시글 제목 1</div>-->
-<!--                    <div class="post-author">작성자 1</div>-->
-<!--                </div>-->
-<!--            </div>-->
-        </div>
-    </div>
-
-    <!--개별 게시글-->
-<!--    <table class="freedcsList_table">-->
-<!--        <thead class="freedcsList_table_head">-->
-<!--        <tr class="freedcsList_head_data">-->
-<!--            <th class="freedcsList_head_id">번호</th>-->
-<!--            <th style="width:50%" class="freedcs_head_title">제목</th>-->
-<!--            <th class="freedcsList_head_username">작성자</th>-->
-<!--            <th class="freedcsList_head_createDate">작성일</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody class="freedcsList_table_body">-->
-<!--        <tr th:each="freedcs, loop : ${paging}" class="freedcsList_body_data">-->
-<!--            <td class="freedcsList_id"-->
-<!--                th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
-<!--            <td class="freedcsList_title">-->
-<!--                <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">-->
-<!--                    <span th:text="${freedcs.title}"></span>-->
-<!--                    <span class="freedcsList_reply_count"-->
-<!--                          th:if="${#lists.size(freedcs.answerList) > 0}"-->
-<!--                          th:text="${#lists.size(freedcs.answerList)}">-->
-<!--                    </span>-->
-<!--                </a>-->
-<!--            </td>-->
-<!--            <td><span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span></td>-->
-<!--            <td th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"-->
-<!--                class="freedcsList_createDate"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-
         </div>
     </div>
 

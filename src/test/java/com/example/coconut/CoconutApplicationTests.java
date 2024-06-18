@@ -43,13 +43,6 @@ class CoconutApplicationTests {
 
 
 
-	@Autowired
-	private FreedcsRepository freedcsRepository;
-
-	@Autowired
-	private UserRepository userRepository;
-
-
 
 //	@Test
 //	void contextLoads() {
@@ -129,9 +122,6 @@ class CoconutApplicationTests {
 			String content = "내용무";
 			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 //			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
-//			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
-			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
-			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 			User author = null;
@@ -148,7 +138,6 @@ class CoconutApplicationTests {
 			}
 
 //			this.freedcsService.create(subject, content, thumbnailImg, author);
-			this.freedcsService.create(subject, content, thumbnailImg, author);
 		}
 	}
 }

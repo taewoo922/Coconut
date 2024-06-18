@@ -1,9 +1,7 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsForm_container">
     <div class="my-3 border-bottom pb-2">자유토론 주제</div>
-<<<<<<< HEAD
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data" class="freedcsForm_form">
-=======
 
 <html layout:decorate="~{common/layout_f}">
 <div layout:fragment="content" class="freedcsForm_container">
@@ -15,7 +13,6 @@
 
     <div class="my-3 border-bottom pb-2">자유토론 주제</div>
     <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
->>>>>>> 4c5d66d (충돌해결1/7)
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
@@ -39,9 +36,7 @@
         </div>
         <input type="submit" value="등록하기" class="freedcsForm_create_btn">
     </form>
-<<<<<<< HEAD
 </div>
-=======
         <input type="submit" value="저장하기" class="freedcsForm_create_btn">
     </form>
 <!--    <form th:action="@{/discussion/free_create}" th:object="${freedcsForm}"method="post" enctype="multipart/form-data">-->
@@ -66,7 +61,7 @@
             </div>
         </form>
     </div>
->>>>>>> 4c5d66d (충돌해결1/7)
+</div>
 </html>
 
 
