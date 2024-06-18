@@ -16,7 +16,7 @@ public class Dev {
     PasswordEncoder passwordEncoder;
 
     @Bean
-    public ApplicationRunner init(UserService userService) {
+    public ApplicationRunner init(UserService userService, FreedcsService freedcsService) {
         return args -> {
             userService.signup("test", "1234", "testnickname", "test@test.com", "01012341234");
             userService.signup("user", "1234", "usernickname", "user@test.com", "01012341234");

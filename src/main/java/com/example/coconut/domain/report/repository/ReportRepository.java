@@ -22,4 +22,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
  List<Report> findAllByAuthorId(Long userId);
 
  List<Report> findAllByAuthor(User user);
+
+
 }

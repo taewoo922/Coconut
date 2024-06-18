@@ -1,6 +1,9 @@
 const latestSection = document.querySelector('.Latest_section');
 const latestList = document.querySelectorAll('.main_Latest_Info');
+const hotTopicSection = document.querySelector('.Hot_Topic_section');
+const hotTopicList = document.querySelectorAll('.main_Hot_Topic_Info');
     let index4 = 0;
+    let index5 = 0;
     function showItems4() {
     latestList.forEach((item, i) => {
         if (i >= index4 && i < index4 + 4) {
@@ -10,7 +13,19 @@ const latestList = document.querySelectorAll('.main_Latest_Info');
         }
     });
 }
+
+function showItems5() {
+    hotTopicList.forEach((item, i) => {
+        if (i >= index5 && i < index5 + 4) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
     showItems4();
+    showItems5();
+
     document.querySelector('.nextBtn4').addEventListener('click', () => {
     index4 = Math.min(index4 + 4, latestList.length - 4);
     showItems4();
@@ -19,6 +34,16 @@ const latestList = document.querySelectorAll('.main_Latest_Info');
 document.querySelector('.prevBtn4').addEventListener('click', () => {
     index4 = Math.max(index4 - 4, 0);
     showItems4();
+});
+
+    document.querySelector('.nextBtn5').addEventListener('click', () => {
+    index5 = Math.min(index5 + 4, latestList.length - 4);
+    showItems5();
+});
+
+document.querySelector('.prevBtn5').addEventListener('click', () => {
+    index5 = Math.max(index5 - 4, 0);
+    showItems5();
 });
 
 

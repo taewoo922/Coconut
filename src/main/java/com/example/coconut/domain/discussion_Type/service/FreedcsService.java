@@ -185,6 +185,9 @@ public class FreedcsService {
         }
     }
 
+    public List<Freedcs> findAllDiscussionsOrderByViewDesc() {
+        return freedcsRepository.findAllByOrderByViewDesc();
+    }
 
 
 //    public void create(String title, String content, String thumbnail) {
