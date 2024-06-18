@@ -63,38 +63,4 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-
-
-
-
-    @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
-    private FreedcsRepository freedcsRepository;
-    @Autowired
-    private ReportRepository reportRepository;
-
-    @GetMapping("/categories")
-    public String showCategories(Model model) {
-        List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
-        return "category/category_manage";
-    }
-
-    @PostMapping("/add-category")
-    public String addCategory(@RequestParam("categoryName") String categoryName, Model model) {
-        Category category = new Category();
-        category.setName(categoryName); // 기본 생성자를 사용하여 인스턴스 생성 후 필드 설정
-        categoryRepository.save(category);
-        return "redirect:/categories";
-    }
-
-    @GetMapping("/category/{id}")
-    public String showPostsByCategory(@PathVariable("id") Long categoryId, Model model) {
-        List<Freedcs> freedcs = freedcsRepository.findByCategoryId(categoryId);
-        List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
-        model.addAttribute("freedcs", freedcs);
-        return "category/category_manage"; // categories.html 템플릿
-    }
 }

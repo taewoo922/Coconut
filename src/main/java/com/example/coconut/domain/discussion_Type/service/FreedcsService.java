@@ -69,19 +69,10 @@ public class FreedcsService {
         }
 //        return freedcsRepository.findAll(search(kw), pageable);
 
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return freedcsRepository.findAll(pageable);
-        }
 
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
 
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return freedcsRepository.findAll(pageable);
-        }
-        return freedcsRepository.findAll(search(kw), pageable);
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
