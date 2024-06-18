@@ -43,6 +43,13 @@ class CoconutApplicationTests {
 
 
 
+	@Autowired
+	private FreedcsRepository freedcsRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+
 
 //	@Test
 //	void contextLoads() {
@@ -141,6 +148,7 @@ class CoconutApplicationTests {
 			}
 
 //			this.freedcsService.create(subject, content, thumbnailImg, author);
+			this.freedcsService.create(subject, content, thumbnailImg, author);
 		}
 	}
 }
