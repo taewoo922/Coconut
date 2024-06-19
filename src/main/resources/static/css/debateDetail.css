@@ -172,6 +172,7 @@
          align-items: center;
          border-radius: 5px;
          overflow: hidden;
+         text-align:center;
      }
 
      .debateDetail_chart_support {
