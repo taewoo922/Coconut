@@ -21,6 +21,7 @@ public class Dev {
             userService.signup("test", "1234", "testnickname", "test@test.com", "01012341234");
             userService.signup("user", "1234", "usernickname", "user@test.com", "01012341234");
             userService.signup("esong", "1234", "esongnickname", "esong@test.com", "01012341234");
+            userService.signup("admin", "1234", "admin", "admin@test.com", "01012341234");
 
         };
     }

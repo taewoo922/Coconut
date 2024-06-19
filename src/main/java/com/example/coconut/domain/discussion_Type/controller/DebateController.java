@@ -1,6 +1,7 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
 import com.example.coconut.domain.answer.AnswerForm;
+import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.service.CategoryService;
 import com.example.coconut.domain.discussion_Type.DebateForm;
@@ -68,7 +69,9 @@ public class DebateController {
     @GetMapping(value = "/d_detail/{id}")
     public String d_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
         Debate debate = this.debateService.getDebate(id);
+
         model.addAttribute("debate", debate);
+
         return "discussion/d_detail";
     }
 
@@ -160,4 +163,5 @@ public class DebateController {
 
         return String.format("redirect:/discussion/d_detail/%s".formatted(id));
     }
+
 }

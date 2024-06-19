@@ -1,5 +1,6 @@
 package com.example.coconut.global.security;
 
+import com.example.coconut.domain.user.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+
+
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -27,11 +31,11 @@ public class SecurityConfig {
                                 .loginPage("/user/login")
                                 .defaultSuccessUrl("/")
                 )
-               .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
-                        .requestMatchers("/oauth-login/info").authenticated()
-                        .anyRequest().permitAll()
-                )
+//               .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+//                        .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
+//                        .requestMatchers("/oauth-login/info").authenticated()
+//                        .anyRequest().permitAll()
+//                )
                 .formLogin((auth) -> auth.loginPage("/user/login")
                         .loginProcessingUrl("/login")
                         .usernameParameter("username")

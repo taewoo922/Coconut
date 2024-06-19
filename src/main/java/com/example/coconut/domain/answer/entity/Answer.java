@@ -24,7 +24,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Answer extends BaseEntity {
 
-
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
 

@@ -5,6 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +23,7 @@ public class User extends BaseEntity {
     @Comment("유저 아이디")
     @Column(unique = true)
     private String username;
+
 
     private String password;
 
@@ -38,5 +45,11 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+
+
+//    private String role;
+
+
 
 }
