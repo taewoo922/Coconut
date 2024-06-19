@@ -67,8 +67,6 @@ public class FreedcsService {
         if (kw == null || kw.isBlank()) {
             return freedcsRepository.findAll(pageable);
         }
-//        return freedcsRepository.findAll(search(kw), pageable);
-
 
         return freedcsRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);

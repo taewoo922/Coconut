@@ -22,8 +22,6 @@ public interface FreedcsRepository extends JpaRepository<Freedcs, Long>, JpaSpec
 
     List<Freedcs> findAllByOrderByCreateDateDesc(); //자유토론의 모든 게시글을 최신순으로 가져와 줌
 
-
-
     List<Freedcs> findAllByAuthor(User user);
 
     List<Freedcs> findAllByCategoryId(Long categoryId);

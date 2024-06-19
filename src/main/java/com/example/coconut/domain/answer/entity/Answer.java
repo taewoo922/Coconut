@@ -43,7 +43,7 @@ public class Answer extends BaseEntity {
     Set<User> voter;
     //HashSet은 순서가 보장이 안됨 LinkedHashSet은 순서가 보장됨
 
-    @Column(nullable = false)
+
     private boolean isSupport;  // true: 찬성, false: 반대
 
 }

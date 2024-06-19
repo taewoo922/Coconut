@@ -1,6 +1,7 @@
 package com.example.coconut.domain.user.service;
 
 import com.example.coconut.DataNotFoundException;
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.user.controller.UserController;
@@ -9,6 +10,10 @@ import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,7 +59,6 @@ public class UserService  {
         return signup(username, "", nickname, "", ""); // 최초 로그인 시 딱 한 번 실행
     }
 
-
     public User getUser(String username) {
 
         Optional<User> siteUser = this.userRepository.findByUsername(username);
@@ -65,9 +69,6 @@ public class UserService  {
         }
 
     }
-
-
-
 
     public User getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -108,7 +109,6 @@ public class UserService  {
         return newFilename;
     }
 
-
     public List<Report> getListByUserId(Long userId) {
         return this.reportRepository.findAllByAuthorId(userId); // 사용자의 ID로 해당 사용자가 작성한 게시물들을 가져오는 메서드
     }
@@ -118,6 +118,18 @@ public class UserService  {
         return userOptional.orElseThrow(() -> new DataNotFoundException("User not found with username: " + username));
     }
 
+    public List<User> getList() {
+        return userRepository.findAll();
+    }
 
+    public Page<User> getList(int page, String kw) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        if (kw == null || kw.isBlank()) {
+            return userRepository.findAll(pageable);
+        }
 
+        return userRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
+
+    }
 }

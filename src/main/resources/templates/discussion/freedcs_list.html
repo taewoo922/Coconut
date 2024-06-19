@@ -36,12 +36,6 @@
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
-            <!--            <div class="categories">-->
-            <!--                <button class="category-botton" th:each="category  : ${categories}"-->
-            <!--                        th:text="category.name"-->
-            <!--                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">-->
-            <!--                </button>-->
-            <!--            </div>-->
             <div th:each="freedcs : ${freedcsList}" class="post">
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">

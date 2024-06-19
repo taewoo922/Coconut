@@ -1,4 +1,4 @@
 package com.example.coconut.domain.admin.repository;
 
-public class AdminR {
+public class AdminRepository {
 }
