@@ -117,15 +117,16 @@
         font-weight: bold; /* 텍스트 굵게 표시 */
     }
 
-     .nullReportText{
-        width: 235px;
-        height: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: gray;
-        margin-bottom: 400px;
-     }
+
+.nullReportText{
+    width: 235px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    margin-bottom: 400px;
+}
 
  /*공통썸네일 크기*/
 .main_thumbnail {

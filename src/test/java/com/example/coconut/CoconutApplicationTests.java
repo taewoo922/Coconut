@@ -40,81 +40,15 @@ class CoconutApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
 
-
-
-
-
-//	@Test
-//	void contextLoads() {
-//		for (int i = 1; i <= 300; i++) {
-//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(subject, content, null, "자유토론");
-//		}
-
-
-
-//	@Test
-//	void contextLoads() {
-//		for (int i = 1; i <= 300; i++) {
-//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(subject, content, null);
-//		}
-
-
-
-//	@Test
-//	void contextLoads() {
-//		for (int i = 1; i <= 300; i++) {
-//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(subject, content, null, "자유토론");
-//		}
-
-
-
-
-//	@Test
-//	void contextLoads() {
-//		for (int i = 1; i <= 300; i++) {
-//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(subject, content, null, "자유토론");
-//		}
-//	@Autowired
-//	private FreedcsRepository freedcsRepository;
-
-//	@Test
-//	void contextLoads() {
-//		for (int i = 1; i <= 300; i++) {
-//			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(subject, content, null);
-//		}
-
-
-	/*@Test
-	void contextLoads() {
-
+	@Test
+	@DisplayName("report 데이터 저장")
+	void reportTest() {
 		for (int i = 1; i <= 300; i++) {
 			String title = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
 			this.reportService.create(title, content, null, "자유토론", true);
 		}
 	}
-	*/
-
-//	@Test
-//
-//	@DisplayName("report 데이터 저장")
-//	void reportTest() {
-//		for (int i = 1; i <= 300; i++) {
-//			String title = String.format("테스트 데이터입니다:[%03d]", i);
-//			String content = "내용무";
-//			this.reportService.create(title, content, null, "자유토론", true);
-//		}
-//	}
 
 	@Test
 	@DisplayName("토론 데이터 저장")
@@ -144,5 +78,4 @@ class CoconutApplicationTests {
 		}
 	}
 }
-
 
