@@ -189,6 +189,10 @@ public class FreedcsService {
         return freedcsRepository.findAllByOrderByViewDesc();
     }
 
+    public List<Freedcs> findByKeyword(String keyword) {
+        return freedcsRepository.findByKeyword(keyword);
+    }
+
 
 //    public void create(String title, String content, String thumbnail) {
 //        Freedcs f = new Freedcs();
