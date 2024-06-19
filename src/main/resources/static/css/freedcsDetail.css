@@ -27,7 +27,6 @@
 .freedcsDetail_content_modify_btn,
 .freedcsDetail_content_delete_btn {
     display: inline-block;
-    /*vertical-align: middle;*/
     margin-right: 10px;
     background-color: #007bff;
     color: #fff;
@@ -35,6 +34,9 @@
     border-radius: 3px;
     text-decoration: none;
     cursor: pointer;
+    position: relative; /* 상대 위치 지정 */
+    z-index: 1; /* 클릭 가능한 영역 설정 */
+    pointer-events: auto; /* 클릭 이벤트 가능 */
 }
 
 .freedcsDetail_vote:hover,

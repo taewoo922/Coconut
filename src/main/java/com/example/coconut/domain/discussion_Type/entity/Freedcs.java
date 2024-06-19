@@ -43,7 +43,8 @@ public class Freedcs extends BaseEntity {
     private User author;
 
     @ManyToMany
-    Set<User> voter = new LinkedHashSet<>();
+    Set<User> voter;
+//    Set<User> voter = new LinkedHashSet<>();
 
     @Transient
     private String search;

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -95,6 +96,7 @@ public class DebateService {
 
 
 
+
     public Debate getDebate(Long id) {
         Optional<Debate> debate = this.debateRepository.findById(id);
         if (debate.isPresent()) {
@@ -103,8 +105,6 @@ public class DebateService {
             throw new DataNotFoundException("question not found");
         }
     }
-
-
 
     public void d_create(String title, String content, MultipartFile thumbnail, User user, Category category){
 
