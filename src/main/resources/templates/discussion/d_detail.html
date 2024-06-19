@@ -7,6 +7,52 @@
                 <div class="debateDetail_username">
                     <span th:if="${debate.authorNickname != null}" th:text="${debate.authorNickname}"></span>
                     <span th:if="${debate.author != null}" th:text="${debate.author.username}"></span>
+<div layout:fragment="content" class="freedcsDetail_container">
+    <!-- 질문 -->
+    <h1 class="freedcsDetail_title" th:text="${debate.title}"></h1>
+    <div class="freedcsDetail_freedcsList">
+        <div class="freedcsDetail_userData">
+            <div class="freedcsDetail_username">
+                <span th:if="${debate.author != null}" th:text="${debate.author.username}"></span>
+            </div>
+            <div class="freedcsDetail_createDate" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+        </div>
+        <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${debate.content}"></div>
+        <div class="freedcsDetail_content_function">
+            <a href="javascript:void(0);" class="freedcsDetail_vote"
+               th:data-uri="@{|/discussion/d_vote/${debate.id}|}">
+                추천
+                <span class="freedcsDetail_voterCount" th:text="${#lists.size(debate.voter)}"></span>
+            </a>
+            <div class="freedcsDetail_content_modifyAndDelete">
+                <!--게시물 수정-->
+                <a th:href="@{|/discussion/d_modify/${debate.id}|}" class="freedcsDetail_content_modify_btn"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${debate.author != null and #authentication.getPrincipal().getUsername() == debate.author.username}"
+                   th:text="수정"></a>
+                <!--게시물 삭제-->
+                <a href="javascript:void(0);" th:data-uri="@{|/discussion/d_delete/${debate.id}|}"
+                   class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                   th:if="${debate.author != null and #authentication.getPrincipal().getUsername() == debate.author.username}"
+                   th:text="삭제"></a>
+            </div>
+        </div>
+    </div>
+    <!-- 답변의 갯수 표시 -->
+    <h5 class="freedcsDetail_answerList"
+        th:text="|${#lists.size(debate.answerList)}개의 답변이 있습니다.|"></h5>
+    <!-- 답변 반복 시작 -->
+    <div class="freedcsDetail_answer" th:each="answer : ${debate.answerList}">
+        <a th:id="|answer_${answer.id}|"></a>
+        <div class="freedcsDetail_answer">
+            <div class="freedcsDetail_userData">
+                <!--작성자-->
+                <div class="freedcsDetail_username">
+                    <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                </div>
+                <!--작성날짜-->
+                <div class="freedcsDetail_createDate">
+                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
                 <div class="debateDetail_createDate" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm')}"></div>
             </div>
