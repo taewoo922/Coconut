@@ -14,6 +14,8 @@
 
         <!--    관리자 권한이 있을때만 보이게 해주는 코드-->
         <!--    <div class="category_create" th:if="${#authorization.expression('isAuthenticated() and hasRole(''ADMIN'')')}">-->
+    <!--    관리자 권한이 있을때만 보이게 해주는 코드-->
+<!--        <div class="category_create" th:if="${#authorization.expression('isAuthenticated() and hasRole(''ADMIN'')')}">-->
         <div class="right-container">
             <div class="category_create">
                 <a th:href="@{/category/create}">카테고리 만들기</a>
@@ -34,12 +36,6 @@
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
-            <!--            <div class="categories">-->
-            <!--                <button class="category-botton" th:each="category  : ${categories}"-->
-            <!--                        th:text="category.name"-->
-            <!--                        th:attr="onclick=|location.href='@{/category/{id}}(id=${category.id})'|">-->
-            <!--                </button>-->
-            <!--            </div>-->
             <div th:each="freedcs : ${freedcsList}" class="post">
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
@@ -100,4 +96,5 @@
         }
     </script>
 </div>
+</html>
 </html>

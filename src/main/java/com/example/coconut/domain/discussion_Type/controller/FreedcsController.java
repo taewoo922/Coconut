@@ -47,6 +47,7 @@ public class FreedcsController {
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw,
                        @RequestParam(value = "category", required = false) Long categoryId) {
+
         Page<Freedcs> paging;
         List<Freedcs> freedcsList;
 

@@ -31,7 +31,30 @@
     <div class="debateDetail_answers">
         <div class="debateDetail_support">
             <h3>찬성 댓글</h3>
+            <div th:each="answer : ${debate.supportingAnswers}">
+                <div class="debateDetail_answer">
+                    <div class="debateDetail_userData">
+                        <div class="debateDetail_username">
+                            <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                        </div>
+                        <div class="debateDetail_createDate">
+                            <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                        </div>
+                    </div>
+                    <div class="debateDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                </div>
+            </div>
+        </div>
+    <!-- 답변의 갯수 표시 -->
+    <h5 class="debateDetail_answerList" th:text="|${#lists.size(debate.answerList)}개의 답변이 있습니다.|"></h5>
+    <!-- 답변 반복 시작 -->
+    <div class="debateDetail_answers">
+        <div class="debateDetail_support">
+            <h3>찬성 댓글</h3>
             <div th:each="answer : ${debate.answerList}" th:if="${answer.isSupport}">
+        <div class="debateDetail_opposition">
+            <h3>반대 댓글</h3>
+            <div th:each="answer : ${debate.opposingAnswers}">
                 <div class="debateDetail_answer">
                     <div class="debateDetail_userData">
                         <div class="debateDetail_username">
