@@ -11,6 +11,7 @@ import lombok.Setter;
 public class AnswerForm {
     @NotBlank(message = "내용은 필수항목입니다.")
     private String content;
+
     private boolean isSupport;
 
 }

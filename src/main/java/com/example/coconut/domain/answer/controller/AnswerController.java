@@ -162,23 +162,5 @@ public class AnswerController {
         return "redirect:/discussion/d_detail/%s#answer_%s".formatted(answer.getDebate().getId(), answer.getId());
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/provote/{id}")
-    public String p_answerVote(Principal principal, @PathVariable("id") Long id) {
-        Answer answer = this.answerService.getAnswer(id);
-        User user = this.userService.getUser(principal.getName());
-        this.answerService.vote(answer, user);
 
-        return "redirect:/discussion/d_detail/%s#answer_%s".formatted(answer.getDebate().getId(), answer.getId());
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/convote/{id}")
-    public String c_answerVote(Principal principal, @PathVariable("id") Long id) {
-        Answer answer = this.answerService.getAnswer(id);
-        User user = this.userService.getUser(principal.getName());
-        this.answerService.vote(answer, user);
-
-        return "redirect:/discussion/d_detail/%s#answer_%s".formatted(answer.getDebate().getId(), answer.getId());
-    }
 }

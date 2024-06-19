@@ -38,13 +38,6 @@ public class Debate extends BaseEntity {
     @OneToMany(mappedBy = "debate", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
 
-    @OneToMany(mappedBy = "debate", cascade = CascadeType.ALL)
-    private List<Answer> opposingAnswers;
-
-    @OneToMany(mappedBy = "debate", cascade = CascadeType.ALL)
-    private List<Answer> supportingAnswers;
-
-
     @ManyToOne
     private User author;
 

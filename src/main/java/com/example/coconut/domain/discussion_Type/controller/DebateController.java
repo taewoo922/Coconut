@@ -134,7 +134,6 @@ public class DebateController {
 
         Category category = this.categoryService.getCategoryById(debateForm.getCategory());
 
-//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
         this.debateService.modify(debate, debateForm.getTitle(), debateForm.getContent(), category);
         return "redirect:/discussion/d_detail/%s".formatted(id);
