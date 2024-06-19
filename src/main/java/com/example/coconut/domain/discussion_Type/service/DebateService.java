@@ -161,6 +161,10 @@ public class DebateService {
         debateRepository.save(debate);
     }
 
+    public List<Debate> findByKeyword(String keyword) {
+        return debateRepository.findByKeyword(keyword);
+    }
+
 
 
 //    //메인 페이지에 최신순으로 게시글 나열

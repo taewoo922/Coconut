@@ -7,13 +7,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
+public interface FreedcsRepository extends JpaRepository<Freedcs, Long>, JpaSpecificationExecutor<Freedcs> {
     Page<Freedcs> findAll(Pageable pageable);
     Page<Freedcs> findAllByCategory_Id(Long categoryId, Pageable pageable);
     Page<Freedcs> findAll(Specification<Freedcs> spec, Pageable pageable);
@@ -32,6 +34,11 @@ public interface FreedcsRepository extends JpaRepository<Freedcs, Long> {
 
 //    @Query("SELECT f FROM Freedcs f ORDER BY SIZE(f.voter) DESC")
 //    List<Freedcs> findTop5ByOrderByVoterCountDesc(Pageable pageable);
+
+    @Query("SELECT f FROM Freedcs f WHERE LOWER(f.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(f.content) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<Freedcs> findByKeyword(@Param("keyword") String keyword);
+
+
 
 
 }
