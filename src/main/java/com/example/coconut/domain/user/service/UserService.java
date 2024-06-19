@@ -5,23 +5,31 @@ import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.user.controller.UserController;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService  {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ReportRepository reportRepository;
@@ -46,6 +54,7 @@ public class UserService {
         return signup(username, "", nickname, "", ""); // 최초 로그인 시 딱 한 번 실행
     }
 
+
     public User getUser(String username) {
 
         Optional<User> siteUser = this.userRepository.findByUsername(username);
@@ -54,7 +63,12 @@ public class UserService {
         } else {
             throw new DataNotFoundException("user not found");
         }
+
     }
+
+
+
+
     public User getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));

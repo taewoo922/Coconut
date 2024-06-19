@@ -160,4 +160,5 @@ public class DebateController {
 
         return String.format("redirect:/discussion/d_detail/%s".formatted(id));
     }
+
 }
