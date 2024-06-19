@@ -41,11 +41,6 @@ public class AnswerService {
         answer.setSupport(isSupport);
         this.answerRepository.save(answer);
 
-        if (isSupport) {
-            debate.getSupportingAnswers().add(answer);
-        } else {
-            debate.getOpposingAnswers().add(answer);
-        }
 
         // Debate 객체를 업데이트하여 변경 사항을 저장
         // debateService.save(debate) 메소드가 있어야 합니다

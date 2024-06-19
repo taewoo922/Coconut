@@ -1,155 +1,275 @@
-/* debateDetail_container 스타일 */
+/* 전체 컨테이너 */
 .debateDetail_container {
-    max-width: 800px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-/* debateDetail_title 스타일 */
+/* 제목 */
 .debateDetail_title {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-/* debateDetail_debateList 스타일 */
-.debateDetail_debateList {
-    border: 1px solid #ccc;
-    padding: 10px;
+    text-align: center;
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
-/* debateDetail_userData 스타일 */
+/* 사용자 데이터 */
 .debateDetail_userData {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
-/* debateDetail_username 스타일 */
-.debateDetail_username {
-    font-weight: bold;
-}
-
-/* debateDetail_createDate 스타일 */
-.debateDetail_createDate {
-    color: #666;
-}
-
-/* debateDetail_content 스타일 */
+/* 내용 */
 .debateDetail_content {
-    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
 }
 
-/* debateDetail_content_function 스타일 */
+/* 콘텐츠 기능 (추천, 수정, 삭제) */
 .debateDetail_content_function {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
 }
 
-/* debateDetail_vote 스타일 */
+/* 추천 버튼 */
 .debateDetail_vote {
-    text-decoration: none;
-    color: blue;
+    cursor: pointer;
+    color: #007bff;
 }
 
-/* debateDetail_content_modifyAndDelete 스타일 */
+/* 수정, 삭제 링크 */
 .debateDetail_content_modifyAndDelete a {
     margin-left: 10px;
-    color: red;
-    text-decoration: none;
+    color: #007bff;
 }
 
-/* debateDetail_answerList 스타일 */
+/* 답변 개수 표시 */
 .debateDetail_answerList {
-    font-size: 16px;
-    margin-top: 20px;
+    margin-top: 30px;
+    font-size: 1.2em;
 }
 
-/* debateDetail_answers 스타일 */
+/* 답변 영역 */
 .debateDetail_answers {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
-/* debateDetail_support, debateDetail_opposition 스타일 */
+/* 찬성, 반대 영역 */
 .debateDetail_support, .debateDetail_opposition {
     width: 48%;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-/* debateDetail_support h3, .debateDetail_opposition h3 스타일 */
+/* 찬성, 반대 댓글 제목 */
 .debateDetail_support h3, .debateDetail_opposition h3 {
-    font-size: 20px;
+    text-align: center;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
 }
 
-/* debateDetail_answer 스타일 */
+/* 각 답변 */
 .debateDetail_answer {
-    border: 1px solid #ccc;
-    padding: 10px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
     margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* debateDetail_create 스타일 */
+/* 답변의 사용자 데이터 */
+.debateDetail_answer .debateDetail_userData {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* 답변 작성 폼 */
 .debateDetail_create {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
+    margin-top: 40px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
-/* debateDetail_create_text 스타일 */
+/* 답변 작성 텍스트 영역 */
 .debateDetail_create_text {
-    width: 100%;
+    width: 98%;
+    margin-bottom: 20px;
     padding: 10px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
 }
 
-/* debateDetail_create_buttons 스타일 */
+/* 찬반 라디오 버튼 그룹 */
 .debateDetail_create_buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: center;
+    gap: 20px;
 }
 
-/* debateDetail_create_btn, debateDetail_support_btn, debateDetail_opposition_btn 스타일 */
-.debateDetail_create_btn, .debateDetail_support_btn, .debateDetail_opposition_btn {
-    padding: 10px 20px;
+/* 라디오 버튼 스타일 */
+.radioLabel {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.radioLabel .radioText {
+    font-size: 16px;
+    color: #333;
     cursor: pointer;
-    border: none;
-    border-radius: 4px;
+    position: relative;
+    padding-left: 3px;
+
+}
+
+
+/* 댓글 작성 버튼 */
+.debateDetail_create_btn {
+    display: inline-flex; /* 아이콘과 텍스트를 가로로 정렬합니다 */
+    align-items: center; /* 세로 정렬을 맞춥니다 */
+    gap: 5px; /* 아이콘과 텍스트 사이의 간격을 조정합니다 */
+    background-color: #007bff;
     color: white;
-    transition: background-color 0.3s ease; /* 배경색 변경 시 부드러운 전환 효과 */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* debateDetail_support_btn 기본 배경색 */
-.debateDetail_support_btn {
-    background-color: #4CAF50; /* 초록색 */
+/* 댓글 작성 버튼 호버 효과 */
+.debateDetail_create_btn:hover {
+    background-color: #0056b3;
 }
 
-/* debateDetail_opposition_btn 기본 배경색 */
-.debateDetail_opposition_btn {
-    background-color: #f44336; /* 빨간색 */
-}
+ .debateDetail_chart {
+         margin-top: 20px;
+         display: flex;
+         justify-content: space-between;
+         background-color: #f9f9f9;
+         padding: 10px;
+         border-radius: 5px;
+         border: 1px solid #ccc;
+     }
 
-/* 클릭된 상태 스타일 */
-.debateDetail_support_btn.checked, .debateDetail_opposition_btn.checked {
-    background-color: #2e7d32; /* 짙은 초록색 */
-}
+     /* 찬성 도표 */
+     .debateDetail_chart_support,
+     .debateDetail_chart_opposition {
+         height: 40px;
+         display: flex;
+         align-items: center;
+         border-radius: 5px;
+         overflow: hidden;
+     }
 
-/* 마우스 호버 시 스타일 */
-.debateDetail_support_btn:hover, .debateDetail_opposition_btn:hover {
-    opacity: 0.8; /* 마우스 호버 시 투명도 조정 */
-}
+     .debateDetail_chart_support {
+         flex: calc(100% * (${supportCount} / (${supportCount} + ${oppositionCount})));
+         background-color: #007bff;
+         color: white;
+         padding: 5px;
+         text-align: center;
+         transition: flex 0.3s ease;
+     }
 
-@media (max-width: 768px) {
-    .debateDetail_create_buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    .debateDetail_create_btn, .debateDetail_support_btn, .debateDetail_opposition_btn {
-        width: 100%;
-        margin-top: 5px;
-    }
-}
+     .debateDetail_chart_opposition {
+         flex: calc(100% * (${oppositionCount} / (${supportCount} + ${oppositionCount})));
+         background-color: #ff0000;
+         color: white;
+         padding: 5px;
+         text-align: center;
+         transition: flex 0.3s ease;
+     }
+
+     /* 숫자 텍스트 */
+     .debateDetail_chart_support span,
+     .debateDetail_chart_opposition span {
+         font-weight: bold;
+     }
+
+
+        /*여기서 부터 debateFrom css*/
+         /* 전체 컨테이너 */
+                .debateForm_container {
+                    width: 80%;
+                    margin: 0 auto;
+                    padding: 20px;
+                    font-family: Arial, sans-serif;
+                    background-color: #f8f9fa;
+                    border: 1px solid #ced4da;
+                    border-radius: 5px;
+                }
+
+                /* 제목 */
+                .debateForm_container h5 {
+                    font-size: 1.5em;
+                    margin-bottom: 20px;
+                    color: #007bff;
+                }
+
+                /* 폼 요소들 */
+                .debateForm_category,
+                .debateForm_title,
+                .debateForm_body,
+                .debateForm_thumbnail {
+                    margin-bottom: 20px;
+                }
+
+                .debateForm_category_label,
+                .debateForm_title_label,
+                .debateForm_content_label {
+                    display: block;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    color: #007bff;
+                }
+
+                .debateForm_category_select,
+                .debateForm_title_input,
+                .debateForm_content_input,
+                .debateForm_thumbnail input[type="file"] {
+                    width: 100%;
+                    padding: 10px;
+                    font-size: 1em;
+                    border: 1px solid #ced4da;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                }
+
+                .debateForm_create_btn {
+                    background-color: #007bff;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
+
+                .debateForm_create_btn:hover {
+                    background-color: #0056b3;
+                }
+
+                /* 에러 메시지 스타일 */
+                .form-error-message {
+                    color: #dc3545;
+                    font-size: 0.9em;
+                    margin-top: 5px;
+                }
+
+                /* 사진 섹션 */
+                .debateForm_thumbnail h3 {
+                    color: #007bff;
+                    margin-bottom: 10px;
+                }
