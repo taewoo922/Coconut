@@ -39,9 +39,6 @@ public class FreedcsController {
     private final UserService userService;
     private final CategoryService categoryService;
 
-//    @Autowired
-//    private CategoryService categoryService;
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
@@ -131,7 +128,8 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String freedcsModify(@Valid FreedcsForm freedcsForm, BindingResult bindingResult,
-                               Principal principal, @PathVariable("id") Long id) {
+                                Principal principal, @PathVariable("id") Long id
+                                ) {
         if (bindingResult.hasErrors()) {
             return "discussion/free_create_form";
         }
@@ -140,12 +138,11 @@ public class FreedcsController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
 
+
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
         return "redirect:/discussion/free_detail/%s".formatted(id);
-
-//        Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
     }
 

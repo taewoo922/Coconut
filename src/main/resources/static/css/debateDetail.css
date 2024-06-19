@@ -93,6 +93,36 @@
     color: #555;
 }
 
+.debateDetail_content_modifyAndDelete {
+    margin-top: 10px;
+}
+
+.debateDetail_content_modifyAndDelete a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.debateDetail_content_modifyAndDelete a:hover {
+    background-color: #f0f0f0;
+}
+
+.debateDetail_content_modifyAndDelete a.th-text-delete {
+    color: #d9534f;
+    border-color: #d9534f;
+}
+
+.debateDetail_content_modifyAndDelete a.th-text-delete:hover {
+    background-color: #f2dede;
+}
+
+
 /* 답변 작성 폼 */
 .debateDetail_create {
     margin-top: 40px;

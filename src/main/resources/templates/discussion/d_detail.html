@@ -53,6 +53,23 @@
                             </div>
                         </div>
                         <div class="debateDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                        <div class="debateDetail_content_function">
+                            <a href="javascript:void(0);" class="debateDetail_vote"
+                               th:data-uri="@{|/answer/support/vote/${answer.id}|}">
+                                추천
+                                <span class="debateDetail_voterCount" th:text="${#lists.size(answer.voter)}"></span>
+                            </a>
+                            <div class="debateDetail_content_modifyAndDelete">
+                                <a th:href="@{|/answer/support/modify/${answer.id}|}" class="debateDetail_content_modify_btn"
+                                   sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="수정"></a>
+                                <a href="javascript:void(0);" th:data-uri="@{|/answer/support/delete/${answer.id}|}"
+                                   class="debateDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="삭제"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,6 +86,23 @@
                             </div>
                         </div>
                         <div class="debateDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                        <div class="debateDetail_content_function">
+                            <a href="javascript:void(0);" class="debateDetail_vote"
+                               th:data-uri="@{|/answer/opposition/vote/${answer.id}|}">
+                                추천
+                                <span class="debateDetail_voterCount" th:text="${#lists.size(answer.voter)}"></span>
+                            </a>
+                            <div class="debateDetail_content_modifyAndDelete">
+                                <a th:href="@{|/answer/opposition/modify/${answer.id}|}" class="debateDetail_content_modify_btn"
+                                   sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="수정"></a>
+                                <a href="javascript:void(0);" th:data-uri="@{|/answer/opposition/delete/${answer.id}|}"
+                                   class="debateDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="삭제"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
