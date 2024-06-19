@@ -23,7 +23,7 @@
                 <div class="search_myList_section sSec">
                     <div class="search_myList_Info sInfo" th:each="freedcs : ${freedcsList}">
                         <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
-                            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="thumbnail">
+                            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="search_thumbnail">
                         </a>
                         <div class="sInfo_text">
                             <span th:text="${#strings.length(freedcs.title) > 18 ? #strings.substring(freedcs.title, 0, 18) + '....' : freedcs.title}"></span>

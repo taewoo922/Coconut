@@ -76,11 +76,5 @@ public class AnswerService {
         answer.getVoter().add(user);
         this.answerRepository.save(answer);
     }
-    public List<Answer> getSupportAnswers(Debate debate) {
-        return answerRepository.findAllByDebateAndIsSupport(debate, true);
-    }
 
-    public List<Answer> getOppositionAnswers(Debate debate) {
-        return answerRepository.findAllByDebateAndIsSupport(debate, false);
-    }
 }

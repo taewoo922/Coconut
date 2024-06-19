@@ -31,7 +31,7 @@
     <div class="debateDetail_answers">
         <div class="debateDetail_support">
             <h3>찬성 댓글</h3>
-            <div th:each="answer : ${debate.supportingAnswers}">
+            <div th:each="answer : ${debate.answerList}" th:if="${answer.isSupport}">
                 <div class="debateDetail_answer">
                     <div class="debateDetail_userData">
                         <div class="debateDetail_username">
@@ -47,7 +47,7 @@
         </div>
         <div class="debateDetail_opposition">
             <h3>반대 댓글</h3>
-            <div th:each="answer : ${debate.opposingAnswers}">
+            <div th:each="answer : ${debate.answerList}" th:if="${!answer.isSupport}">
                 <div class="debateDetail_answer">
                     <div class="debateDetail_userData">
                         <div class="debateDetail_username">
