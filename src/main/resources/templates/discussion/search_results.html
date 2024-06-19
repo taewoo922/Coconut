@@ -1,5 +1,99 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
+<head>
+    <title>검색 결과 페이지</title>
+    <!-- 공통 헤드 섹션 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .py-5 {
+            padding-top: 1rem;
+            padding-bottom: 3rem;
+        }
+        .lead {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
+            width: calc(50% - 20px); /* 50% width with margin between items */
+            float: left;
+            margin-right: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-top {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .card-body {
+            padding: 1.25rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .text-muted {
+            color: #6c757d;
+        }
+        .date {
+            font-size: 0.875rem;
+        }
+        .align-items-center {
+            display: flex;
+            align-items: center;
+        }
+        .justify-content-between {
+            display: flex;
+            justify-content: space-between;
+        }
+        .fa-user-circle {
+            margin-right: 0.5rem;
+        }
+        .text-decoration-none {
+            text-decoration: none;
+            color: inherit;
+        }
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
 <body class="bg-light">
 <div layout:fragment="content" class="container">
     <div class="py-5 text-center">
@@ -8,54 +102,67 @@
             <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 검색 결과가 없습니다.
         </p>
         <p class="lead" th:if="${not #lists.isEmpty(debateList)}">
-            <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 찬반토론을
+            <strong th:text="${keyword}" class="context"></strong>해당하는 찬반토론을
             <span th:text="${debateList.size()}"></span>개 찾았습니다.
         </p>
         <p class="lead" th:if="${not #lists.isEmpty(freedcsList)}">
-            <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 자유토론을
+            <strong th:text="${keyword}" class="context"></strong>해당하는 자유토론을
             <span th:text="${freedcsList.size()}"></span>개 찾았습니다.
         </p>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="mb-3">찬반토론 결과</h2>
-            <!-- 토론 리스트 -->
+
+    <!-- 찬반토론 결과 -->
+    <div class="section">
+        <h2 class="section-title">찬반토론 결과</h2>
+        <div class="clearfix">
             <div th:each="debate : ${debateList}" class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <a th:href="@{/discussion/d_detail/{id}(id=${debate.id})}" class="text-decoration-none">
+                <a th:href="@{/discussion/d_detail/{id}(id=${debate.id})}" class="text-decoration-none">
+                    <div class="card-body">
                         <h5 class="card-title context" th:text="${debate.title}"></h5>
-                    </a>
-                    <p class="card-text" th:text="${debate.content}"></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">
-                            <i class="fa fa-user-circle"></i>
-                            <span th:text="${debate.author.username}"></span>
-                        </small>
-                        <small class="text-muted date" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                        <!-- 이미지 추가 -->
+                        <img th:if="${debate.thumbnailImg != null}" th:src="@{|/file/${debate.thumbnailImg}|}" class="card-img-top" alt="토론 이미지">
+                        <!-- 기본 이미지 -->
+                        <img th:unless="${debate.thumbnailImg != null}" src="기본이미지.jpg" class="card-img-top" alt="기본 이미지">
+                        <p class="card-text" th:text="${debate.content}"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fa fa-user-circle"></i>
+                                <span th:text="${debate.author.username}"></span>
+                            </small>
+                            <small class="text-muted date" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <h2 class="mb-3">자유토론 결과</h2>
-            <!-- 자유게시글 리스트 -->
-            <div th:each="freedcs : ${freedcsList}" class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <a th:href="@{/discussion/free_detail/{id}(id=${freedcs.id})}" class="text-decoration-none">
-                        <h5 class="card-title context" th:text="${freedcs.title}"></h5>
-                    </a>
-                    <p class="card-text" th:text="${freedcs.content}"></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">
-                            <i class="fa fa-user-circle"></i>
-                            <span th:text="${freedcs.author.username}"></span>
-                        </small>
-                        <small class="text-muted date" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm:ss')}"></small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
+
+    <!-- 자유토론 결과 -->
+    <div class="section">
+        <h2 class="section-title">자유토론 결과</h2>
+        <div class="clearfix">
+            <div th:each="freedcs : ${freedcsList}" class="card mb-4 shadow-sm">
+                <a th:href="@{/discussion/free_detail/{id}(id=${freedcs.id})}" class="text-decoration-none">
+                    <div class="card-body">
+                        <h5 class="card-title context" th:text="${freedcs.title}"></h5>
+                        <!-- 이미지 추가 -->
+                        <img th:if="${freedcs.thumbnailImg != null}" th:src="@{|/file/${freedcs.thumbnailImg}|}" class="card-img-top" alt="게시물 이미지">
+                        <!-- 기본 이미지 -->
+                        <img th:unless="${freedcs.thumbnailImg != null}" src="기본이미지.jpg" class="card-img-top" alt="기본 이미지">
+                        <p class="card-text" th:text="${freedcs.content}"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fa fa-user-circle"></i>
+                                <span th:text="${freedcs.author.username}"></span>
+                            </small>
+                            <small class="text-muted date" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
