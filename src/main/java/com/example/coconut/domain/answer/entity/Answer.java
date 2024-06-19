@@ -24,9 +24,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Answer extends BaseEntity {
 
-    private Long pid;
-    private Long cid;
-
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
 
