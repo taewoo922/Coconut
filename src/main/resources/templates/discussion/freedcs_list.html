@@ -36,7 +36,9 @@
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
-            <div th:each="freedcs : ${freedcsList}" class="post">
+            <div th:each="freedcs, loop : ${paging}" class="post">
+                <td class="reportList_id RBList"
+                    th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
                         <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일">
@@ -58,10 +60,10 @@
     </div>
 
     <!-- 페이징처리 시작 -->
-    <div th:if="${!paging.isEmpty()}" class="pagination-container">
-        <ul class="pagination">
-            <li th:class="${!paging.hasPrevious} ? 'disabled'">
-                <a class="page-link" ref="javascript:void(0)" th:data-page="${paging.number-1}" aria-label="Previous">
+    <div th:if="${!paging.isEmpty()}" class="freedcs_pagination_container">
+        <ul class="freedcs_pagination">
+            <li th:class="${!paging.hasPrevious} ? 'disabled' : ''">
+                <a class="freedcs_page_link" href="javascript:void(0)" th:attr="data-page=${paging.number > 0} ? ${paging.number-1} : 0" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -69,14 +71,15 @@
             <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
                 th:if="${page >= paging.number-5 and page <= paging.number+5}"
                 th:class="${page == paging.number} ? 'active' : ''">
-                <a class="page-link" th:text="${page}" href="javascript:void(0)" th:data-page="${page}"></a>
+                <a class="report_page_link" th:text="${page}" href="javascript:void(0)" th:data-page="${page}"></a>
             </li>
-            <li th:class="${!paging.hasNext} ? 'disabled'">
-                <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}" aria-label="Next">
+            <li th:class="${!paging.hasNext} ? 'disabled' : ''">
+                <a class="freedcs_page_link" href="javascript:void(0)" th:attr="data-page=${paging.number < paging.totalPages-1} ? ${paging.number+1} : ${paging.totalPages-1}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
             </li>
+
         </ul>
     </div>
     <!-- 페이징처리 끝 -->

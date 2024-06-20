@@ -48,22 +48,15 @@ public class FreedcsController {
         Page<Freedcs> paging;
         List<Freedcs> freedcsList;
 
-        if (categoryId == null) {
-            paging = this.freedcsService.getList(page, kw);
-            freedcsList = this.freedcsService.getList();
-        } else {
-            paging = this.freedcsService.getListByCategory(page, kw, categoryId);
-            freedcsList = this.freedcsService.getPostsByCategory(categoryId);
-        }
+        paging = this.freedcsService.getListByCategory(page, kw, categoryId);
+       freedcsList = this.freedcsService.getPostsByCategory(categoryId);
 
-
+        Page<Freedcs> paging2 = this.freedcsService.getList(page);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
 
 
-//        List<Freedcs> freedcsList = this.freedcsService.getList();
-//        model.addAttribute("freedcsList",freedcsList);
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 

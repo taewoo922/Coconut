@@ -174,19 +174,19 @@ body {
     color: #999;
 }
 
-.pagination-container {
+.freedcs_pagination_container {
     margin: 20px 0;
     text-align: center; /* 중앙 정렬 */
 }
 
-.pagination {
+.freedcs_pagination {
     list-style: none;
     padding: 0;
     display: inline-flex; /* inline-flex로 변경하여 중앙에 정렬 */
     gap: 5px;
 }
 
-.page-link {
+.freedcs_page_link {
     display: block;
     padding: 8px 12px;
     color: #007bff;
@@ -195,16 +195,16 @@ body {
     border-radius: 4px;
 }
 
-.page-link:hover {
+.freedcs_page_link:hover {
     background-color: #e9ecef;
 }
 
-.active .page-link {
+.active .freedcs_page_link {
     background-color: #007bff;
     color: #fff;
     border-color: #007bff;
 }
 
-.disabled .page-link {
+.disabled .freedcs_page_link {
     color: #6c757d;
 }

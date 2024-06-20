@@ -1,5 +1,7 @@
 package com.example.coconut;
 
+import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.repository.ReportRepository;
@@ -12,8 +14,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,6 +50,9 @@ class CoconutApplicationTests {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	@Test
 	@DisplayName("report 데이터 저장")
 	void reportTest() {
@@ -61,11 +70,12 @@ class CoconutApplicationTests {
 	@Test
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 300; i++) {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
 //			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
+			String thumbnailImg = "freedcs/" + "5c2b06d9-9250-4365-92fc-b94a593d7901" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 
