@@ -42,8 +42,8 @@ public class SearchController {
             List<Freedcs> freedcsList = freedcsService.findByKeyword(keyword);
 
             model.addAttribute("keyword", keyword); // 키워드를 넘겨줌
-            model.addAttribute("debateList", debateList); // 검색된 토론 리스트를 넘겨줌
-            model.addAttribute("freedcsList", freedcsList); // 검색된 자유토론 리스트를 넘겨줌
+            model.addAttribute("debateList", debateList);
+            model.addAttribute("freedcsList", freedcsList);
         }
 
         List<Category> categories = categoryService.getAllCategories();
