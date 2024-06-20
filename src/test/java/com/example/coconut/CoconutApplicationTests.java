@@ -7,6 +7,7 @@ import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.reportReply.repository.ReportReplyRepository;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.repository.UserRepository;
+import com.example.coconut.domain.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,17 @@ class CoconutApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private UserService userService;
+
 	@Test
 	@DisplayName("report 데이터 저장")
 	void reportTest() {
+		User user = userService.getUserByUsername("test");
 		for (int i = 1; i <= 300; i++) {
 			String title = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
-			this.reportService.create(title, content, null, "자유토론", true);
+			this.reportService.create(title, content, user, "자유토론", true);
 		}
 	}
 

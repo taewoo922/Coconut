@@ -108,6 +108,7 @@ public class DebateController {
 
     }
 
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/d_modify/{id}")
     public String dModify(DebateForm debateForm, @PathVariable("id") Long id, Principal principal, Model model){

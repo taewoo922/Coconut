@@ -24,7 +24,7 @@
             align-items: center;
             background-color: white;
             padding: 8px 10px;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid darkgray;
             z-index: 1000; /* 콘텐츠 위로 오도록 z-index 추가 */
         }
 
@@ -78,10 +78,13 @@
         .nav__loginAndSearch{
             color: darkgray;
             font-size: 10px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
         }
 
          /* 검색 아이콘 스타일 */
-         .nav__search {
+         .nav__search-form {
              position: relative;
              border: none;
              background: none;
@@ -89,10 +92,7 @@
              right: 10px;
              top: 50%;
          }
-         .nav__search i {
-             color: black;
-             font-size: 20px; /* 아이콘 크기 조정 */
-         }
+
 
 
         @media screen and (max-width: 770px) {
