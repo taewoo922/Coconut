@@ -149,6 +149,32 @@
     gap: 20px;
 }
 
+/* 답변 작성 폼 */
+.debateDetail_create {
+    margin-top: 40px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* 답변 작성 텍스트 영역 */
+.debateDetail_create_text {
+    width: 98%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* 찬반 라디오 버튼 그룹 */
+.debateDetail_create_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 /* 라디오 버튼 스타일 */
 .radioLabel {
     display: inline-block;
