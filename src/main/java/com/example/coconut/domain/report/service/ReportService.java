@@ -128,5 +128,15 @@ public class ReportService {
     }
 
 
+    public void deletereport(Long id) {
+
+        Optional<Report> question = reportRepository.findById(id);
+
+        if (question.isPresent()) {
+            reportRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("질문이 존재하지 않습니다.");
+        }
+    }
 
 }

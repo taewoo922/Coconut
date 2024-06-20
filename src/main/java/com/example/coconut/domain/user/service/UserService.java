@@ -129,7 +129,19 @@ public class UserService  {
         }
 
         return userRepository.findAll((root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
+                criteriaBuilder.like(root.get("username"), "%" + kw + "%"), pageable);
+
+    }
+
+    public void deleteUser(Long userId) {
+
+        Optional<User> siteUser = userRepository.findById(userId);
+
+        if (siteUser.isPresent()) {
+            userRepository.deleteById(userId);
+        } else {
+            throw new RuntimeException("회원이 존재하지 않습니다.");
+        }
 
     }
 }

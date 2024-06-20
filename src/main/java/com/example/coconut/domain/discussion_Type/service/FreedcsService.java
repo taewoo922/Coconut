@@ -9,6 +9,7 @@ import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.persistence.criteria.*;
@@ -156,11 +157,11 @@ public class FreedcsService {
         this.freedcsRepository.save(freedcs);
     }
 
-    public void create(String title, String content) {
+    public void create(String title, String content, String thumbnail) {
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);
-//        f.setThumbnailImg(thumbnail);
+        f.setThumbnailImg(thumbnail);
 
         this.freedcsRepository.save(f);
 
@@ -189,6 +190,17 @@ public class FreedcsService {
 
     public List<Freedcs> findByKeyword(String keyword) {
         return freedcsRepository.findByKeyword(keyword);
+    }
+
+    public void deletefreedcs(Long id) {
+        Optional<Freedcs> freedcs = freedcsRepository.findById(id);
+
+        if (freedcs.isPresent()) {
+            freedcsRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("게시글이 존재하지 않습니다.");
+        }
+
     }
 
 
