@@ -25,3 +25,45 @@
   function closeAlert_form() {
              document.getElementById('error').style.display = 'none';
          }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 찬성과 반대 댓글 수를 가져옵니다
+    const supportCount = parseInt(document.querySelector('.debateDetail_chart_support span').textContent);
+    const oppositionCount = parseInt(document.querySelector('.debateDetail_chart_opposition span').textContent);
+
+    // 전체 댓글 수
+    const totalCount = supportCount + oppositionCount;
+
+    // 찬성 바 너비 계산
+    const supportBar = document.querySelector('.debateDetail_chart_support');
+    let supportWidth = (supportCount / totalCount) * 100;
+
+    // 반대 바 너비 계산 및 표시 여부 설정
+    const oppositionBar = document.querySelector('.debateDetail_chart_opposition');
+    let oppositionWidth = (oppositionCount / totalCount) * 100;
+
+    // 반대 댓글이 0개인 경우 숨김
+    if (oppositionCount === 0) {
+        oppositionBar.style.display = 'none';
+    } else {
+        oppositionBar.style.display = 'block';
+        oppositionBar.style.width = oppositionWidth + '%';
+    }
+
+    // 찬성 댓글이 0개인 경우 숨김
+    if (supportCount === 0) {
+        supportBar.style.display = 'none';
+    } else {
+        supportBar.style.display = 'block';
+        supportBar.style.width = supportWidth + '%';
+    }
+
+    // 찬성과 반대 댓글이 모두 0인 경우 처음 상태 그대로 유지
+    if (supportCount === 0 && oppositionCount === 0) {
+        supportBar.style.display = 'block';
+        oppositionBar.style.display = 'block';
+    }
+});
+
+
+

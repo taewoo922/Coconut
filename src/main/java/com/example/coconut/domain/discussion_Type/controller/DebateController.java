@@ -69,8 +69,15 @@ public class DebateController {
     @GetMapping(value = "/d_detail/{id}")
     public String d_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
         Debate debate = this.debateService.getDebate(id);
+        List<Answer> answers = debate.getAnswerList();
+
+        long supportCount = answers.stream().filter(answer -> answer.isSupport()).count();
+        long oppositionCount = answers.stream().filter(answer -> !answer.isSupport()).count();
 
         model.addAttribute("debate", debate);
+        model.addAttribute("supportCount", supportCount);
+        model.addAttribute("oppositionCount", oppositionCount);
+
 
         return "discussion/d_detail";
     }

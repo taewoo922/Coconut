@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
-import java.util.List;
 
 @RequestMapping("/answer")
 @RequiredArgsConstructor
@@ -40,7 +39,7 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free/create/{id}")
     public String f_createAnswer(Model model, @PathVariable("id") Long id,
-                               @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
+                                 @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
@@ -55,7 +54,7 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/debate/create/{id}")
     public String d_createAnswer(Model model, @PathVariable("id") Long id,
-                               @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal,
+                                 @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal,
                                  @RequestParam("isSupport") boolean isSupport) {
         Debate debate = this.debateService.getDebate(id);
         User user = this.userService.getUser(principal.getName());
@@ -70,21 +69,21 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String answerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal){
+    public String answerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal) { //자유토론댓글 수정
         Answer answer = this.answerService.getAnswer(id);
-        if(!answer.getAuthor().getUsername().equals(principal.getName())){
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         answerForm.setContent(answer.getContent());
-        return "/answer/answerform";
+        return "discussion/freedcs_reply";
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-                                    @PathVariable("id") Long id, Principal principal) {
+                               @PathVariable("id") Long id, Principal principal) { //자유토론댓글 수정
         if (bindingResult.hasErrors()) {
-            return "/answer/answerform";
+            return "discussion/freedcs_reply";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
@@ -95,22 +94,48 @@ public class AnswerController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/modify/{id}")
-    public String d_answerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal){
+    @GetMapping("/support/modify/{id}")
+    public String supportAnswerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal) {
         Answer answer = this.answerService.getAnswer(id);
-        if(!answer.getAuthor().getUsername().equals(principal.getName())){
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         answerForm.setContent(answer.getContent());
-        return "/answer/d_answerform";
+        return "/discussion/debate_reply";
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/debate/modify/{id}")
-    public String d_answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-                               @PathVariable("id") Long id, Principal principal) {
+    @PostMapping("/support/modify/{id}")
+    public String supportAnswerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
+                                 @PathVariable("id") Long id, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return "/answer/d_answerform";
+            return "/discussion/debate_reply";
+        }
+        Answer answer = this.answerService.getAnswer(id);
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        this.answerService.modify(answer, answerForm.getContent());
+        return String.format("redirect:/discussion/d_detail/%s#answer_%s", answer.getDebate().getId(), answer.getId());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/opposition/modify/{id}")
+    public String oppositionAnswerModify(AnswerForm answerForm, @PathVariable("id") Long id, Principal principal) {
+        Answer answer = this.answerService.getAnswer(id);
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        answerForm.setContent(answer.getContent());
+        return "/discussion/debate_reply";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/opposition/modify/{id}")
+    public String oppositionAnswerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
+                                 @PathVariable("id") Long id, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            return "/discussion/debate_reply";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
@@ -122,9 +147,9 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
-    public String f_answer_Delete(Principal principal, @PathVariable("id") Long id){
+    public String f_answer_Delete(Principal principal, @PathVariable("id") Long id) { //자유토론 댓글 삭제 기능
         Answer answer = this.answerService.getAnswer(id);
-        if(!answer.getAuthor().getUsername().equals(principal.getName())){
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
         }
         this.answerService.delete(answer);
@@ -132,10 +157,21 @@ public class AnswerController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/delete/{id}")
-    public String d_answer_Delete(Principal principal, @PathVariable("id") Long id){
+    @GetMapping("/support/delete/{id}")
+    public String p_answer_Delete(Principal principal, @PathVariable("id") Long id) { //찬성 댓글 삭제 기능
         Answer answer = this.answerService.getAnswer(id);
-        if(!answer.getAuthor().getUsername().equals(principal.getName())){
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        this.answerService.delete(answer);
+        return String.format("redirect:/discussion/d_detail/%s", answer.getDebate().getId());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/opposition/delete/{id}")
+    public String c_answer_Delete(Principal principal, @PathVariable("id") Long id) { //반대 댓글 삭제 기능
+        Answer answer = this.answerService.getAnswer(id);
+        if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
         }
         this.answerService.delete(answer);
@@ -144,7 +180,7 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
-    public String f_answerVote(Principal principal, @PathVariable("id") Long id) {
+    public String f_answerVote(Principal principal, @PathVariable("id") Long id) { //자유토론댓글 추천 기능
         Answer answer = this.answerService.getAnswer(id);
         User user = this.userService.getUser(principal.getName());
         this.answerService.vote(answer, user);
@@ -153,19 +189,8 @@ public class AnswerController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/vote/{id}")
-    public String d_answerVote(Principal principal, @PathVariable("id") Long id) {
-        Answer answer = this.answerService.getAnswer(id);
-        User user = this.userService.getUser(principal.getName());
-        this.answerService.vote(answer, user);
-
-        return "redirect:/discussion/d_detail/%s#answer_%s".formatted(answer.getDebate().getId(), answer.getId());
-    }
-
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/provote/{id}")
-    public String p_answerVote(Principal principal, @PathVariable("id") Long id) {
+    @GetMapping("/support/vote/{id}")
+    public String p_answerVote(Principal principal, @PathVariable("id") Long id) { //찬성댓글 추천 기능
         Answer answer = this.answerService.getAnswer(id);
         User user = this.userService.getUser(principal.getName());
         this.answerService.vote(answer, user);
@@ -174,8 +199,8 @@ public class AnswerController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/debate/convote/{id}")
-    public String c_answerVote(Principal principal, @PathVariable("id") Long id) {
+    @GetMapping("/opposition/vote/{id}")
+    public String c_answerVote(Principal principal, @PathVariable("id") Long id) { //반대댓글 추천 기능
         Answer answer = this.answerService.getAnswer(id);
         User user = this.userService.getUser(principal.getName());
         this.answerService.vote(answer, user);
