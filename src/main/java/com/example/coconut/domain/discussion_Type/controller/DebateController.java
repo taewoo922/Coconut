@@ -42,13 +42,14 @@ public class DebateController {
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw,
                        @RequestParam(value = "category", required = false) Long categoryId) {
-        Page<Debate> paging;
+        Page<Debate> paging_category;
         List<Debate> debateList;
 
-       paging = this.debateService.getListByCategory(page, kw, categoryId);
+       paging_category = this.debateService.getListByCategory(page, kw, categoryId);
        debateList = this.debateService.getPostsByCategory(categoryId);
 
-
+        Page<Debate> paging = this.debateService.getList(page, kw);
+        model.addAttribute("paging_category", paging_category);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("debateList", debateList);

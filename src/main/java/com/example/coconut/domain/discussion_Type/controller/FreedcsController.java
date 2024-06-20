@@ -45,13 +45,14 @@ public class FreedcsController {
                        @RequestParam(value = "kw", defaultValue = "") String kw,
                        @RequestParam(value = "category", required = false) Long categoryId) {
 
-        Page<Freedcs> paging;
+        Page<Freedcs> paging_category;
         List<Freedcs> freedcsList;
 
-        paging = this.freedcsService.getListByCategory(page, kw, categoryId);
+        paging_category = this.freedcsService.getListByCategory(page, kw, categoryId);
         freedcsList = this.freedcsService.getPostsByCategory(categoryId);
 
-
+        Page<Freedcs> paging = this.freedcsService.getList(page, kw);
+        model.addAttribute("paging_category", paging_category);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
