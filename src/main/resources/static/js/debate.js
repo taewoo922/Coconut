@@ -1,3 +1,37 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const paginationLinks = document.querySelectorAll('.debate_page_link');
+
+    paginationLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const page = this.getAttribute('data-page');
+            if (page !== null) {
+                document.getElementById('page').value = page;
+                document.getElementById('searchForm').submit();
+            }
+        });
+    });
+
+    // 검색 버튼 클릭 시 검색어를 폼에 설정하고 제출
+    document.getElementById('btn_search').addEventListener('click', function() {
+        const kw = document.getElementById('search_kw').value;
+        document.getElementById('kw').value = kw;
+        document.getElementById('searchForm').submit();
+    });
+
+    // 검색창에서 Enter 키 눌렀을 때 폼 제출
+    document.getElementById('search_kw').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('btn_search').click();
+        }
+    });
+
+    // 경고창 닫기
+    window.closeAlert_list = function() {
+        document.getElementById('errorMessage').style.display = 'none';
+    };
+});
+
 // 삭제 버튼
     const debate_delete_elements = document.getElementsByClassName("debateDetail_content_delete_btn");
     Array.from(debate_delete_elements).forEach(function(element) {

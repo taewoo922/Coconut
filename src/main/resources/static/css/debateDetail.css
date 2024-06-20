@@ -340,3 +340,43 @@
         margin-top: 5px;
     }
 }
+
+
+/*
+여기부터 debate list*/
+/* 페이징 기능 */
+ .debate_pagination_container {
+     text-align: center;
+     margin-top: 10px;
+ }
+
+ .debate_pagination {
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+ }
+
+ .debate_pagination li {
+     display: inline;
+     margin-right: 5px;
+ }
+
+ .debate_pagination li a {
+     color: black;
+     border: 1px solid black;
+     padding: 6px 12px;
+     border-radius: 10px;
+     text-decoration: none;
+ }
+
+ .debate_pagination li.active a {
+     background-color: #007bff;
+     border-color: #007bff;
+     color: #fff;
+ }
+
+ .debate_pagination li.disabled a {
+     color: #6c757d;
+     background-color: #e9ecef;
+     border-color: #dee2e6;
+ }

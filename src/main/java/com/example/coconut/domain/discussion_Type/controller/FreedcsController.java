@@ -49,9 +49,9 @@ public class FreedcsController {
         List<Freedcs> freedcsList;
 
         paging = this.freedcsService.getListByCategory(page, kw, categoryId);
-       freedcsList = this.freedcsService.getPostsByCategory(categoryId);
+        freedcsList = this.freedcsService.getPostsByCategory(categoryId);
 
-        Page<Freedcs> paging2 = this.freedcsService.getList(page);
+
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);

@@ -37,7 +37,7 @@
     <div class="freedcs-container">
         <div class="freedcs_body">
             <div th:each="freedcs, loop : ${paging}" class="post">
-                <td class="reportList_id RBList"
+                <td class="freedcsList_id RBList"
                     th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                 <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                     <div class="thumbnail">
@@ -46,7 +46,6 @@
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
                         <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
-                        <!--                        <div class="post-category" th:text="${freedcs.category.name}"></div> &lt;!&ndash; 카테고리 표시 &ndash;&gt;-->
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
                         </div>

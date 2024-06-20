@@ -174,37 +174,39 @@ body {
     color: #999;
 }
 
-.freedcs_pagination_container {
-    margin: 20px 0;
-    text-align: center; /* 중앙 정렬 */
-}
+/* 페이징 기능 */
+ .freedcs_pagination_container {
+     text-align: center;
+     margin-top: 10px;
+ }
 
-.freedcs_pagination {
-    list-style: none;
-    padding: 0;
-    display: inline-flex; /* inline-flex로 변경하여 중앙에 정렬 */
-    gap: 5px;
-}
+ .freedcs_pagination {
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+ }
 
-.freedcs_page_link {
-    display: block;
-    padding: 8px 12px;
-    color: #007bff;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+ .freedcs_pagination li {
+     display: inline;
+     margin-right: 5px;
+ }
 
-.freedcs_page_link:hover {
-    background-color: #e9ecef;
-}
+ .freedcs_pagination li a {
+     color: black;
+     border: 1px solid black;
+     padding: 6px 12px;
+     border-radius: 10px;
+     text-decoration: none;
+ }
 
-.active .freedcs_page_link {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
+ .freedcs_pagination li.active a {
+     background-color: #007bff;
+     border-color: #007bff;
+     color: #fff;
+ }
 
-.disabled .freedcs_page_link {
-    color: #6c757d;
-}
+ .freedcs_pagination li.disabled a {
+     color: #6c757d;
+     background-color: #e9ecef;
+     border-color: #dee2e6;
+ }

@@ -2,7 +2,9 @@ package com.example.coconut;
 
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.repository.CategoryRepository;
+import com.example.coconut.domain.discussion_Type.repository.DebateRepository;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
+import com.example.coconut.domain.discussion_Type.service.DebateService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.report.service.ReportService;
@@ -43,6 +45,12 @@ class CoconutApplicationTests {
 
 	@Autowired
 	private FreedcsRepository freedcsRepository;
+
+	@Autowired
+	private DebateService debateService;
+
+	@Autowired
+	private DebateRepository debateRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -91,7 +99,7 @@ class CoconutApplicationTests {
 					return userRepository.save(newUser); // 새로운 사용자를 저장하고 반환
 				});
 			}
-
+			this.debateService.create(subject, content, thumbnailImg);
 			this.freedcsService.create(subject, content, thumbnailImg);
 		}
 	}
