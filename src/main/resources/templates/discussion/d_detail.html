@@ -27,26 +27,6 @@
         </div>
     <!-- 답변의 갯수 표시 -->
     <h5 class="debateDetail_answerList" th:text="|${#lists.size(debate.answerList)}개의 답변이 있습니다.|"></h5>
-    <!-- 답변 반복 시작 -->
-    <div class="debateDetail_answers">
-        <div class="debateDetail_support">
-            <h3>찬성 댓글</h3>
-            <div th:each="answer : ${debate.supportingAnswers}">
-                <div class="debateDetail_answer">
-                    <div class="debateDetail_userData">
-                        <div class="debateDetail_username">
-                            <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
-                        </div>
-                        <div class="debateDetail_createDate">
-                            <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-                        </div>
-                    </div>
-                    <div class="debateDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
-                </div>
-            </div>
-        </div>
-        <!-- 답변의 갯수 표시 -->
-        <h5 class="debateDetail_answerList" th:text="|${#lists.size(debate.answerList)}개의 답변이 있습니다.|"></h5>
         <!-- 찬반 결과 도표 -->
         <div class="debateDetail_chart">
             <!-- 찬성 도표 -->
@@ -71,20 +51,6 @@
                             <div class="debateDetail_createDate">
                                 <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                             </div>
-    <!-- 답변의 갯수 표시 -->
-    <h5 class="debateDetail_answerList" th:text="|${#lists.size(debate.answerList)}개의 답변이 있습니다.|"></h5>
-    <!-- 답변 반복 시작 -->
-    <div class="debateDetail_answers">
-        <div class="debateDetail_support">
-            <h3>찬성 댓글</h3>
-            <div th:each="answer : ${debate.answerList}" th:if="${answer.isSupport}">
-        <div class="debateDetail_opposition">
-            <h3>반대 댓글</h3>
-            <div th:each="answer : ${debate.opposingAnswers}">
-                <div class="debateDetail_answer">
-                    <div class="debateDetail_userData">
-                        <div class="debateDetail_username">
-                            <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
                         </div>
                         <div class="debateDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
                         <div class="debateDetail_content_function">
@@ -141,25 +107,6 @@
                 </div>
             </div>
         </div>
-        <!-- 답변 반복 끝  -->
-        <!-- 답변 작성 -->
-        <form class="debateDetail_create" th:action="@{|/answer/debate/create/${debate.id}|}" th:object="${answerForm}" method="post">
-            <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
-            <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="debateDetail_create_text" rows="10" placeholder="답변을 입력하세요..."></textarea>
-            <div class="debateDetail_create_buttons">
-                <label class="radioLabel">
-                    <input type="radio" id="supportRadio" name="isSupport" value="true" th:checked="${answerForm.isSupport == true}">
-                    <span class="radioText"  style="display: inline-block; margin-top: 5px;"><span style="color: #007bff;">찬성</span></span>
-                </label>
-                <label class="radioLabel">
-                    <input type="radio" id="oppositionRadio" name="isSupport" value="false" th:checked="${answerForm.isSupport == false}">
-                    <span class="radioText"  style="display: inline-block; margin-top: 5px;"><span style="color: #ff0000;">반대</span></span>
-                </label>
-            </div>
-            <button type="submit" class="debateDetail_create_btn">댓글 작성</button>
-            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-        </form>
-    </div>
     <!-- 답변 반복 끝  -->
     <!-- 답변 작성 -->
     <form class="debateDetail_create" th:action="@{|/answer/debate/create/${debate.id}|}" th:object="${answerForm}" method="post">
