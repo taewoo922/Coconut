@@ -52,14 +52,15 @@ class CoconutApplicationTests {
 
 
 
+
 	@Test
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {
 		for (int i = 1; i <= 5; i++) {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
-			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
-//			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
+//			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
+			String thumbnailImg = "freedcs/" + "1e4bb67e-e109-4b1d-aa1a-4635d62bac15" + ".jpg";
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 
@@ -76,7 +77,7 @@ class CoconutApplicationTests {
 				});
 			}
 
-//			this.freedcsService.create(subject, content, thumbnailImg, author);
+			this.freedcsService.create(subject, content, thumbnailImg);
 		}
 	}
 }

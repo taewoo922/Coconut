@@ -304,3 +304,13 @@
                     color: #007bff;
                     margin-bottom: 10px;
                 }
+@media (max-width: 768px) {
+    .debateDetail_create_buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .debateDetail_create_btn, .debateDetail_support_btn, .debateDetail_opposition_btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+}

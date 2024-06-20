@@ -165,7 +165,15 @@ public class DebateService {
         return debateRepository.findByKeyword(keyword);
     }
 
+    public void deletereport(Long id) {
+        Optional<Debate> debate = debateRepository.findById(id);
 
+        if (debate.isPresent()) {
+            debateRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("게시글이 존재하지 않습니다.");
+        }
+    }
 
 
 //    //메인 페이지에 최신순으로 게시글 나열

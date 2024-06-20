@@ -2,6 +2,7 @@ package com.example.coconut.domain.user.entity;
 
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
@@ -46,8 +47,6 @@ public class User extends BaseEntity {
     private UserRole role;
 
 
-
-//    private String role;
 
 
 
