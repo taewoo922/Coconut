@@ -102,11 +102,11 @@
             <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 검색 결과가 없습니다.
         </p>
         <p class="lead" th:if="${not #lists.isEmpty(debateList)}">
-            <strong th:text="${keyword}" class="context"></strong>해당하는 찬반토론을
+            <strong th:text="${keyword}" class="context"></strong>에 해당하는 찬반토론을
             <span th:text="${debateList.size()}"></span>개 찾았습니다.
         </p>
         <p class="lead" th:if="${not #lists.isEmpty(freedcsList)}">
-            <strong th:text="${keyword}" class="context"></strong>해당하는 자유토론을
+            <strong th:text="${keyword}" class="context"></strong>에 해당하는 자유토론을
             <span th:text="${freedcsList.size()}"></span>개 찾았습니다.
         </p>
     </div>
@@ -162,7 +162,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>
