@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,14 +31,20 @@ public class SearchController {
 
     @GetMapping("/search")
     public String search(@RequestParam(value = "kw", defaultValue = "") String keyword, Model model) {
+        if (keyword.isEmpty()) {
+            // 키워드가 비어 있는 경우
+            model.addAttribute("keyword", ""); // 빈 문자열을 넘겨줌
+            model.addAttribute("debateList", Collections.emptyList()); // 빈 리스트를 넘겨줌
+            model.addAttribute("freedcsList", Collections.emptyList()); // 빈 리스트를 넘겨줌
+        } else {
+            // 키워드가 있는 경우
+            List<Debate> debateList = debateService.findByKeyword(keyword);
+            List<Freedcs> freedcsList = freedcsService.findByKeyword(keyword);
 
-        List<Debate> debateList = debateService.findByKeyword(keyword);
-        model.addAttribute("debateList", debateList);
-
-
-        List<Freedcs> freedcsList = freedcsService.findByKeyword(keyword);
-        model.addAttribute("freedcsList", freedcsList);
-
+            model.addAttribute("keyword", keyword); // 키워드를 넘겨줌
+            model.addAttribute("debateList", debateList);
+            model.addAttribute("freedcsList", freedcsList);
+        }
 
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
