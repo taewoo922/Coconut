@@ -127,7 +127,8 @@ public class DebateController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/d_modify/{id}")
     public String dModify(@Valid DebateForm debateForm, BindingResult bindingResult,
-                               Principal principal, @PathVariable("id") Long id) {
+                               Principal principal, @PathVariable("id") Long id,
+                          @RequestParam("thumbnail") MultipartFile thumbnail) {
         if (bindingResult.hasErrors()) {
             return "discussion/d_create_form";
         }
@@ -139,7 +140,7 @@ public class DebateController {
         Category category = this.categoryService.getCategoryById(debateForm.getCategory());
 
 
-        this.debateService.modify(debate, debateForm.getTitle(), debateForm.getContent(), category);
+        this.debateService.modify(debate, debateForm.getTitle(), debateForm.getContent(), category, thumbnail);
         return "redirect:/discussion/d_detail/%s".formatted(id);
     }
 

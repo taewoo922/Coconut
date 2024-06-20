@@ -210,50 +210,59 @@
     background-color: #0056b3;
 }
 
- .debateDetail_chart {
-         margin-top: 20px;
-         display: flex;
-         justify-content: space-between;
-         background-color: #f9f9f9;
-         padding: 10px;
-         border-radius: 5px;
-         border: 1px solid #ccc;
-     }
+.debateDetail_chart {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-     /* 찬성 도표 */
-     .debateDetail_chart_support,
-     .debateDetail_chart_opposition {
-         height: 40px;
-         display: flex;
-         align-items: center;
-         border-radius: 5px;
-         overflow: hidden;
-         text-align:center;
-     }
+/* 도표 */
+.debateDetail_chart_support,
+.debateDetail_chart_opposition {
+    height: 40px;
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 5px;
+}
 
-     .debateDetail_chart_support {
-         flex: calc(100% * (${supportCount} / (${supportCount} + ${oppositionCount})));
-         background-color: #007bff;
-         color: white;
-         padding: 5px;
-         text-align: center;
-         transition: flex 0.3s ease;
-     }
+/* 찬성 도표 */
+.debateDetail_chart_support {
+    flex: calc(100% * (${supportCount} / (${supportCount} + ${oppositionCount})));
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    transition: flex 0.3s ease;
+    justify-content: center; /* 수평 가운데 정렬 */
+    line-height: 40px; /* 텍스트를 아래로 내리기 위한 line-height */
+}
 
-     .debateDetail_chart_opposition {
-         flex: calc(100% * (${oppositionCount} / (${supportCount} + ${oppositionCount})));
-         background-color: #ff0000;
-         color: white;
-         padding: 5px;
-         text-align: center;
-         transition: flex 0.3s ease;
-     }
+/* 반대 도표 */
+.debateDetail_chart_opposition {
+    flex: calc(100% * (${oppositionCount} / (${supportCount} + ${oppositionCount})));
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    transition: flex 0.3s ease;
+    justify-content: center; /* 수평 가운데 정렬 */
+    line-height: 40px; /* 텍스트를 아래로 내리기 위한 line-height */
+}
 
-     /* 숫자 텍스트 */
-     .debateDetail_chart_support span,
-     .debateDetail_chart_opposition span {
-         font-weight: bold;
-     }
+/* 숫자 텍스트 */
+.debateDetail_chart_support span,
+.debateDetail_chart_opposition span {
+    font-weight: bold;
+    vertical-align: middle; /* 수직 가운데 정렬 */
+}
+
+
+
+
 
 
         /*여기서 부터 debateFrom css*/

@@ -6,9 +6,7 @@ import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Debate;
-import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.DebateRepository;
-import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.repository.UserRepository;
 import jakarta.persistence.criteria.*;
@@ -24,11 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -130,10 +131,30 @@ public class DebateService {
     }
 
 
-    public void modify(Debate debate, String title, String content, Category category) {
+    public void modify(Debate debate, String title, String content, Category category, MultipartFile thumbnail) {
         debate.setTitle(title);
         debate.setContent(content);
         debate.setCategory(category);
+
+        if (!thumbnail.isEmpty()) {
+            try {
+                // 기존 썸네일 파일 삭제
+                if (debate.getThumbnailImg() != null) {
+                    java.nio.file.Path oldFilePath = Paths.get(fileDirPath, debate.getThumbnailImg());
+                    Files.deleteIfExists(oldFilePath);
+                }
+
+                // 새로운 썸네일 파일 저장
+                String originalFileName = thumbnail.getOriginalFilename();
+                String fileName = System.currentTimeMillis() + "_" + originalFileName;
+                Path filePath = Paths.get(fileDirPath, fileName);
+                Files.copy(thumbnail.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                debate.setThumbnailImg(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to save thumbnail file", e);
+            }
+        }
+
         this.debateRepository.save(debate);
     }
 
