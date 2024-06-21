@@ -71,7 +71,7 @@ class CoconutApplicationTests {
 			this.reportService.create(title, content, user, "자유토론", true);
 		}
 	}
-	*/
+
 
 
 
