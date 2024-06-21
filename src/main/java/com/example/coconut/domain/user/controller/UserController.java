@@ -46,7 +46,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(@Valid SignForm signForm) {
-        userService.signup(signForm.getUsername(), signForm.getPassword(), signForm.getNickname(), signForm.getEmail(), signForm.getPhone(), UserRole.ADMIN);
+        UserRole role = signForm.getUsername().equals("admin") ? UserRole.ADMIN : UserRole.USER;
         return "redirect:/user/login";
 
     }
