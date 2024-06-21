@@ -47,6 +47,12 @@ public class User extends BaseEntity {
     private UserRole role;
 
 
+    // 사용자 권한을 GrantedAuthority 리스트로 변환
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(this.role.getValue()));
+        return authorities;
+    }
 
 
 

@@ -34,7 +34,7 @@ public class AdminController {
     private final FreedcsService freedcsService;
     private final DebateService debateService;
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/userlist")
     public String userlist(Model model,
                            @RequestParam(value = "page", defaultValue = "0") int page,
@@ -49,7 +49,7 @@ public class AdminController {
         return "manager/admin";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/user/delete/{id}")
     public String deleteUser (@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 
@@ -62,7 +62,7 @@ public class AdminController {
         return "redirect:/userlist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/questionlist")
     public String questionlist(Model model,
                                @RequestParam(value = "page", defaultValue = "0") int page,
@@ -79,7 +79,7 @@ public class AdminController {
         return "manager/questionlist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/question/delete/{id}")
     public String deletequestion (@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 
@@ -92,7 +92,7 @@ public class AdminController {
         return "redirect:/questionlist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/freedcslist")
     public String freedcslist(Model model,
                               @RequestParam(value = "page", defaultValue = "0") int page,
@@ -106,7 +106,7 @@ public class AdminController {
         return "manager/freedcslist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/freedcs/delete/{id}")
     public String deletefreedcs (@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 
@@ -119,7 +119,7 @@ public class AdminController {
         return "redirect:/questionlist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/debatelist")
     public String debatelist(Model model,
                              @RequestParam(value = "page", defaultValue = "0") int page,
@@ -133,7 +133,7 @@ public class AdminController {
         return "manager/debatelist";
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/debate/delete/{id}")
     public String deletedebate (@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 

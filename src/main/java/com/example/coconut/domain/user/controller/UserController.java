@@ -5,6 +5,7 @@ import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.user.entity.User;
+import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -14,13 +15,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -48,7 +46,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(@Valid SignForm signForm) {
-        userService.signup(signForm.getUsername(), signForm.getPassword(), signForm.getNickname(), signForm.getEmail(), signForm.getPhone());
+        userService.signup(signForm.getUsername(), signForm.getPassword(), signForm.getNickname(), signForm.getEmail(), signForm.getPhone(), UserRole.ADMIN);
         return "redirect:/user/login";
 
     }

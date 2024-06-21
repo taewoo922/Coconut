@@ -25,6 +25,7 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                        .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin(
                         formLogin -> formLogin
@@ -43,7 +44,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/")
                         .failureUrl("/user/login")
                         .permitAll())
-               .oauth2Login((auth) -> auth.loginPage("/user/login")
+                .oauth2Login((auth) -> auth.loginPage("/user/login")
                         .defaultSuccessUrl("/")
                         .failureUrl("/user/login")
                         .permitAll())
@@ -58,8 +59,7 @@ public class SecurityConfig {
                                 .invalidateHttpSession(true)
                 )
                 .csrf((csrf) -> csrf //이상한 경로로 들어오는것을 막아줌
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
-        ;
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/**")));
         return http.build();
     }
 
