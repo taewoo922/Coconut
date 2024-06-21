@@ -23,9 +23,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.nio.file.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class FreedcsService {
                 query.distinct(true);  // 중복을 제거
                 Join<Freedcs, User> u1 = q.join("author", JoinType.LEFT);
                 Join<Freedcs, Answer> a = q.join("answerList", JoinType.LEFT);
-                Join<Freedcs, User> u2 = a.join("author", JoinType.LEFT);
+                Join<Answer, User> u2 = a.join("author", JoinType.LEFT);
                 return cb.or(cb.like(q.get("title"), "%" + kw + "%"), // 제목
                         cb.like(q.get("content"), "%" + kw + "%"),      // 내용
                         cb.like(u1.get("username"), "%" + kw + "%"),    // 질문 작성자
@@ -138,10 +139,29 @@ public class FreedcsService {
     }
 
 
-    public void modify(Freedcs freedcs, String title, String content, Category category) {
+    public void modify(Freedcs freedcs, String title, String content, Category category, MultipartFile thumbnail) {
         freedcs.setTitle(title);
         freedcs.setContent(content);
         freedcs.setCategory(category);
+
+        if (!thumbnail.isEmpty()) {
+            try {
+                // 기존 썸네일 파일 삭제
+                if (freedcs.getThumbnailImg() != null) {
+                    Path oldFilePath = Paths.get(fileDirPath, freedcs.getThumbnailImg());
+                    Files.deleteIfExists(oldFilePath);
+                }
+
+                // 새로운 썸네일 파일 저장
+                String originalFileName = thumbnail.getOriginalFilename();
+                String fileName = System.currentTimeMillis() + "_" + originalFileName;
+                Path filePath = Paths.get(fileDirPath, fileName);
+                Files.copy(thumbnail.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                freedcs.setThumbnailImg(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to save thumbnail file", e);
+            }
+        }
         this.freedcsRepository.save(freedcs);
     }
 
@@ -199,9 +219,7 @@ public class FreedcsService {
             throw new RuntimeException("게시글이 존재하지 않습니다.");
         }
 
-    public Page<Freedcs> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 12);
-        return this.freedcsRepository.findAll(pageable);
+
     }
 
 

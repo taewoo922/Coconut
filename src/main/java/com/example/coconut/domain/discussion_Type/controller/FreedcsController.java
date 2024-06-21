@@ -53,6 +53,8 @@ public class FreedcsController {
 
         Page<Freedcs> paging = this.freedcsService.getList(page, kw);
         model.addAttribute("paging_category", paging_category);
+
+        model.addAttribute("paging_category", paging_category);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         model.addAttribute("freedcsList", freedcsList);
@@ -122,7 +124,8 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String freedcsModify(@Valid FreedcsForm freedcsForm, BindingResult bindingResult,
-                                Principal principal, @PathVariable("id") Long id
+                                Principal principal, @PathVariable("id") Long id,
+                                @RequestParam("thumbnail") MultipartFile thumbnail
                                 ) {
         if (bindingResult.hasErrors()) {
             return "discussion/free_create_form";
@@ -135,7 +138,7 @@ public class FreedcsController {
 
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
 
-        this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category);
+        this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category, thumbnail);
         return "redirect:/discussion/free_detail/%s".formatted(id);
 
     }

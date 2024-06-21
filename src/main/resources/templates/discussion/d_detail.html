@@ -30,11 +30,11 @@
         <!-- 찬반 결과 도표 -->
         <div class="debateDetail_chart">
             <!-- 찬성 도표 -->
-            <div class="debateDetail_chart_support" style="width: calc(100% * (${supportCount} / (${supportCount} + ${oppositionCount}))); background-color: #007bff;">
+            <div class="debateDetail_chart_support">
                 찬성: <span th:text="${supportCount}"></span>
             </div>
             <!-- 반대 도표 -->
-            <div class="debateDetail_chart_opposition" style="width: calc(100% * (${oppositionCount} / (${supportCount} + ${oppositionCount}))); background-color: #ff0000;">
+            <div class="debateDetail_chart_opposition">
                 반대: <span th:text="${oppositionCount}"></span>
             </div>
         </div>
@@ -107,23 +107,6 @@
                 </div>
             </div>
         </div>
-    <!-- 답변 반복 끝  -->
-    <!-- 답변 작성 -->
-    <form class="debateDetail_create" th:action="@{|/answer/debate/create/${debate.id}|}" th:object="${answerForm}" method="post">
-        <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
-        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="debateDetail_create_text" rows="10"></textarea>
-        <div class="debateDetail_create_buttons">
-            <label>
-                <input type="radio" id="supportRadio" name="isSupport" value="true" th:checked="${answerForm.isSupport == true}"> 찬성
-            </label>
-            <label>
-                <input type="radio" id="oppositionRadio" name="isSupport" value="false" th:checked="${answerForm.isSupport == false}"> 반대
-            </label>
-        </div>
-        <button type="submit" class="debateDetail_create_btn">댓글 작성</button>
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-    </form>
-</div>
         <!-- 답변 반복 끝  -->
         <!-- 답변 작성 -->
         <form class="debateDetail_create" th:action="@{|/answer/debate/create/${debate.id}|}" th:object="${answerForm}" method="post">
