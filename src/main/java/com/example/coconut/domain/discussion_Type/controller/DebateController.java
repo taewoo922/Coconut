@@ -122,6 +122,7 @@ public class DebateController {
     public String addScrap(@PathVariable("id") Long id) {
         scrapService.addDebateScrap(id);
         return "redirect:/discussion/d_detail/{id}";
+
     }
 
 
