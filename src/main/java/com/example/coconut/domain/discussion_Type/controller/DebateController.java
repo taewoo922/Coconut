@@ -135,8 +135,8 @@ public class DebateController {
     @PostMapping("/debate/scrap/{id}")
     public String addScrap(@PathVariable("id") Long id) {
         scrapService.addDebateScrap(id);
-        return "redirect:/discussion/d_detail/{id}";
 
+        return "redirect:/discussion/d_detail/{id}";
     }
 
 
