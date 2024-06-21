@@ -18,10 +18,10 @@
           <input type="text" name="kw" placeholder="검색어를 입력하세요">
           <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <a sec:authorize="isAnonymous()" href="/user/login">로그인</a></li>
-        <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a></li>
-        <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a></li>
-        <a sec:authorize="isAuthenticated()" href="/user/profile">마이페이지</a></li>
+        <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>
+        <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a>
+        <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>
+        <a sec:authorize="isAuthenticated()" href="/user/profile">마이페이지</a>
       </ul>
       <a href="#" class="nav__bar">
         <i class="fa-solid fa-bars icon"></i>

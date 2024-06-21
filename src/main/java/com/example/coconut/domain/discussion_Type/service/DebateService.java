@@ -117,16 +117,18 @@ public class DebateService {
 
     public void d_create(String title, String content, MultipartFile thumbnail, User user, Category category){
 
-
-        String thumbnailRelPath = "debate/" + UUID.randomUUID().toString() + ".jpg";
-        File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
-
-
-
-        try {
-            thumbnail.transferTo(thumbnailFile);
-        } catch ( IOException e ) {
-            throw new RuntimeException(e);
+        String thumbnailRelPath;
+        if (!thumbnail.isEmpty()) {
+            thumbnailRelPath = UUID.randomUUID().toString() + ".jpg";
+            File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
+            try {
+                thumbnail.transferTo(thumbnailFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            // 기본 이미지 경로 설정
+            thumbnailRelPath = "freedcs/coconut.png";
         }
 
         Debate d = Debate.builder()
