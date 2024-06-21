@@ -73,7 +73,6 @@ class CoconutApplicationTests {
 	}
 
 
-
 	@Test
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {

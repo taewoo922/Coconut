@@ -116,16 +116,19 @@ public class FreedcsService {
 
     public void free_create(String title, String content, MultipartFile thumbnail, User user, Category category){
 
+        String thumbnailRelPath;
 
-        String thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
-        File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
-
-
-
-        try {
-            thumbnail.transferTo(thumbnailFile);
-        } catch ( IOException e ) {
-            throw new RuntimeException(e);
+        if (!thumbnail.isEmpty()) {
+            thumbnailRelPath = "freedcs/" + UUID.randomUUID().toString() + ".jpg";
+            File thumbnailFile = new File(fileDirPath + "/" + thumbnailRelPath);
+            try {
+                thumbnail.transferTo(thumbnailFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            // 기본 이미지 경로 설정
+            thumbnailRelPath = "freedcs/coconut.png";
         }
 
         Freedcs f = Freedcs.builder()
@@ -137,6 +140,7 @@ public class FreedcsService {
                 .build();
         freedcsRepository.save(f);
     }
+
 
 
     public void modify(Freedcs freedcs, String title, String content, Category category, MultipartFile thumbnail) {
