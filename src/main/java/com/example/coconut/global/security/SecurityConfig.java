@@ -25,7 +25,11 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+<<<<<<< HEAD
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyAuthority("ROLE_ADMIN")
+=======
+                        .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ROLE_ADMIN")
+>>>>>>> c310bc5e52005966872e090a87575ea803d64bb3
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin(
                         formLogin -> formLogin
