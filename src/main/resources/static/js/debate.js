@@ -99,5 +99,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+    // 스크랩 버튼
+        const debate_scrap_elements = document.getElementsByClassName("debateDetail_scrap");
+            Array.from(debate_scrap_elements).forEach(function(element) {
+                element.addEventListener('click', function() {
+                    var uri = element.getAttribute("data-uri");
+                                fetch(uri, {
+                                    method: "POST"
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        alert("스크랩이 완료되었습니다.");
+                                    } else {
+                                        alert("스크랩에 실패했습니다.");
+                                    }
+                                });
+                            });
+                        });
+
 
 

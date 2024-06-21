@@ -45,12 +45,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // 추천 버튼
     const free_recommend_elements = document.getElementsByClassName("freedcsDetail_vote");
     Array.from(free_recommend_elements).forEach(function(element) {
-    element.addEventListener('click', function() {
-        if(confirm("정말로 추천하시겠습니까?")) {
-            location.href = this.dataset.uri;
-        };
+        element.addEventListener('click', function() {
+            if(confirm("정말로 추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
     });
-});
+
+     // 스크랩 버튼
+    const free_scrap_elements = document.getElementsByClassName("freedcsDetail_scrap");
+        Array.from(free_scrap_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                var uri = element.getAttribute("data-uri");
+                fetch(uri, {
+                    method: "POST"
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("스크랩이 완료되었습니다.");
+                    } else {
+                        alert("스크랩에 실패했습니다.");
+                    }
+                });
+            });
+        });
 
     //alert 창 닫기
  function closeAlert_list() {
