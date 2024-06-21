@@ -6,6 +6,7 @@ import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.entity.Debate;
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.repository.DebateRepository;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.repository.UserRepository;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -102,8 +104,16 @@ public class DebateService {
         if (debate.isPresent()) {
             return debate.get();
         } else {
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("게시물을 찾을 수 없습니다.");
         }
+    }
+
+    @Transactional
+    public void incrementViews(Long id) {
+        Debate debate = debateRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("게시물을 찾을 수 없습니다."));
+        debate.setView(debate.getView() + 1);
+        debateRepository.save(debate);
     }
 
     public void d_create(String title, String content, MultipartFile thumbnail, User user, Category category){

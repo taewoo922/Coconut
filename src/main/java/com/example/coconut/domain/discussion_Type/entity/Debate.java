@@ -47,4 +47,6 @@ public class Debate extends BaseEntity {
     @Transient
     private String search;
 
+    private int view;
+
 }
