@@ -46,6 +46,9 @@
                         <div class="post-categories">
                             <span th:each="category : ${debate.category}" th:text="${category.name}"></span>
                         </div>
+                        <div class="post-view">
+                            <span th:text="${debate.view}">조회수</span> <!--//조회수 완성!-->
+                        </div>
                     </div>
                 </a>
             </div>

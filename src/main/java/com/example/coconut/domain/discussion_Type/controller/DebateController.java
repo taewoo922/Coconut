@@ -63,7 +63,8 @@ public class DebateController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/d_detail/{id}")
-    public String d_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm) {
+    public String d_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm,@RequestParam(value = "view", defaultValue = "0") int view) {
+        this.debateService.incrementViews(id);
         Debate debate = this.debateService.getDebate(id);
         List<Answer> answers = debate.getAnswerList();
 
