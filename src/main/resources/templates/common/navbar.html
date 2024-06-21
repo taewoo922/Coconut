@@ -13,14 +13,12 @@
         <li>|</li>
         <li><a href="/report/best_report">QnA</a></li>
       </ul>
-      <form class="nav__search-form" th:action="@{/discussion/search}" method="get">
-        <input type="text" name="kw" placeholder="검색어를 입력하세요" required>
-        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </form>
+
       <ul class="nav__loginAndSearch">
-        <a sec:authorize="isAuthenticated()" class="nav__search" href="/user/search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
+        <form class="nav__search-form" th:action="@{/discussion/search}" method="get">
+          <input type="text" name="kw" placeholder="검색어를 입력하세요">
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
         <a sec:authorize="isAnonymous()" href="/user/login">로그인</a></li>
         <a sec:authorize="isAnonymous()" href="/user/signup">회원가입</a></li>
         <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a></li>

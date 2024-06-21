@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -63,19 +64,16 @@ public class FreedcsService {
                 .orElseThrow(() -> new DataNotFoundException("Category not found"));
     }
 
-    public Page<Freedcs> getList(int page, String kw) {
-        Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return freedcsRepository.findAll(pageable);
-        }
-
-        return freedcsRepository.findAll((root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
-
+    public Page<Freedcs> getList(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 12, Sort.by(sorts));
+        Specification<Freedcs> spec = search(kw);
+        return  this.freedcsRepository.findAll(spec, pageable);
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
         if (kw == null || kw.isBlank()) {
             return freedcsRepository.findAllByCategory_Id(categoryId, pageable);
         }
@@ -201,6 +199,9 @@ public class FreedcsService {
             throw new RuntimeException("게시글이 존재하지 않습니다.");
         }
 
+    public Page<Freedcs> getList(int page) {
+        Pageable pageable = PageRequest.of(page, 12);
+        return this.freedcsRepository.findAll(pageable);
     }
 
 

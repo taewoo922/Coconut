@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -63,18 +64,16 @@ public class DebateService {
                 .orElseThrow(() -> new DataNotFoundException("Category not found"));
     }
 
-    public Page<Debate> getList(int page, String kw) {
-        Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
-        if (kw == null || kw.isBlank()) {
-            return debateRepository.findAll(pageable);
-        }
-
-        return debateRepository.findAll((root, query, criteriaBuilder) ->
-                criteriaBuilder.like(root.get("title"), "%" + kw + "%"), pageable);
+    public Page<Debate> getList(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 12, Sort.by(sorts));
+        Specification<Debate> spec = search(kw);
+        return  this.debateRepository.findAll(spec, pageable);
     }
 
     public Page<Debate> getListByCategory(int page, String kw, Long categoryId) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createDate"));
+        Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
         if (kw == null || kw.isBlank()) {
             return debateRepository.findAllByCategory_Id(categoryId, pageable);
         }
