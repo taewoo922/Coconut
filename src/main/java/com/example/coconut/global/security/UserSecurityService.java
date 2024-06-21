@@ -3,6 +3,7 @@ package com.example.coconut.global.security;
 import com.example.coconut.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,6 +29,7 @@ public class UserSecurityService implements UserDetailsService {
 
         com.example.coconut.domain.user.entity.User user = _user.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(user.getRole().getValue()));
 
         return new User(user.getUsername(), user.getPassword(), authorities);
     }

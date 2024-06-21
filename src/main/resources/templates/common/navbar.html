@@ -12,6 +12,8 @@
         <li><a href="/discussion/debate_list">찬반토론</a></li>
         <li>|</li>
         <li><a href="/report/best_report">QnA</a></li>
+        <li sec:authorize="hasRole('ADMIN')">|</li>
+        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/userlist}">관리자</a></li>
       </ul>
       <ul class="nav__loginAndSearch">
         <form class="nav__search-form" th:action="@{/discussion/search}" method="get">

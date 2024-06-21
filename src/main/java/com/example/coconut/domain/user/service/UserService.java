@@ -1,7 +1,6 @@
 package com.example.coconut.domain.user.service;
 
 import com.example.coconut.DataNotFoundException;
-import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.repository.ReportRepository;
 import com.example.coconut.domain.user.controller.UserController;
@@ -14,19 +13,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -39,7 +32,7 @@ public class UserService  {
     private final PasswordEncoder passwordEncoder;
     private final ReportRepository reportRepository;
 
-    public User signup(String username, String password, String nickname, String email, String phone) {
+    public User signup(String username, String password, String nickname, String email, String phone, UserRole admin) {
         User user = User
                 .builder()
                 .username(username)
@@ -47,16 +40,18 @@ public class UserService  {
                 .nickname(nickname)
                 .email(email)
                 .phone(phone)
+                .role(username.equals("admin") ? UserRole.ADMIN : UserRole.USER) // admin 사용자에게 ADMIN 역할 부여
                 .build();
         return userRepository.save(user);
     }
+
     @Transactional
     public User whenSocialLogin(String providerTypeCode, String username, String nickname) {
         Optional<User> opUser = userRepository.findByUsername(username);
 
         if (opUser.isPresent()) return opUser.get();
 
-        return signup(username, "", nickname, "", ""); // 최초 로그인 시 딱 한 번 실행
+        return signup(username, "", nickname, "", "", UserRole.ADMIN); // 최초 로그인 시 딱 한 번 실행
     }
 
     public User getUser(String username) {
