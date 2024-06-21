@@ -10,6 +10,7 @@ import com.example.coconut.domain.discussion_Type.entity.Debate;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.service.DebateService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
+import com.example.coconut.domain.scrap.service.ScrapService;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import jakarta.validation.Valid;
@@ -36,6 +37,7 @@ public class DebateController {
     private final DebateService debateService;
     private final UserService userService;
     private final CategoryService categoryService;
+    private final ScrapService scrapService;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/debate_list")
@@ -103,6 +105,23 @@ public class DebateController {
 
         return "redirect:/discussion/debate_list";
 
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/debate/scrap/{id}")
+    public String getPostById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
+        Debate debate = debateService.getDebate(id);
+
+        model.addAttribute("answerForm", answerForm);
+        model.addAttribute("debate", debate);
+        model.addAttribute("scrap", scrapService.getScrapsByDebateId(id));
+        return "discussion/d_detail";
+    }
+
+    @PostMapping("/debate/scrap/{id}")
+    public String addScrap(@PathVariable("id") Long id) {
+        scrapService.addDebateScrap(id);
+        return "redirect:/discussion/debate_detail/{id}";
     }
 
 
