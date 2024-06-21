@@ -7,6 +7,7 @@ import com.example.coconut.domain.category.repository.CategoryRepository;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
+import com.example.coconut.domain.scrap.service.ScrapService;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.data.domain.Page;
@@ -38,6 +39,7 @@ public class FreedcsController {
     private final FreedcsService freedcsService;
     private final UserService userService;
     private final CategoryService categoryService;
+    private final ScrapService scrapService;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs_list")
@@ -99,6 +101,23 @@ public class FreedcsController {
 
         return "redirect:/discussion/freedcs_list";
 
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/freedcs/scrap/{id}")
+    public String getPostById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
+        Freedcs freedcs = freedcsService.getFreedcs(id);
+
+        model.addAttribute("answerForm", answerForm);
+        model.addAttribute("freedcs", freedcs);
+        model.addAttribute("scrap", scrapService.getScrapsByFreedcsId(id));
+        return "discussion/freedcs_detail";
+    }
+
+    @PostMapping("/freedcs/scrap/{id}")
+    public String addScrap(@PathVariable("id") Long id) {
+        scrapService.addScrap(id);
+        return "redirect:/discussion/free_detail/{id}";
     }
 
     @PreAuthorize("isAuthenticated()")

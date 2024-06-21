@@ -16,6 +16,13 @@
                 추천
                 <span class="freedcsDetail_voterCount" th:text="${#lists.size(freedcs.voter)}"></span>
             </a>
+            <a href="javascript:void(0);" class="freedcsDetail_scrap"
+               th:data-uri="@{|/discussion/freedcs/scrap/${freedcs.id}|}">
+                스크랩
+            </a>
+<!--            <form th:action="@{|/discussion/scrap/${freedcs.id}|)}" method="post" style="display:inline;">-->
+<!--                <button type="submit" class="freedcsDetail_scrap">스크랩</button>-->
+<!--            </form>-->
             <div class="freedcsDetail_content_modifyAndDelete">
                 <a th:href="@{|/discussion/modify/${freedcs.id}|}" class="freedcsDetail_content_modify_btn"
                    sec:authorize="isAuthenticated()"
@@ -26,6 +33,7 @@
                    th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
                    th:text="삭제"></a>
             </div>
+
         </div>
     </div>
     <!-- 답변의 갯수 표시 -->

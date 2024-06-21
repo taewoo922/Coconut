@@ -99,5 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+    // 스크랩 버튼
+        const debate_scrap_elements = document.getElementsByClassName("debateDetail_scrap");
+            Array.from(debate_scrap_elements).forEach(function(element) {
+                element.addEventListener('click', function() {
+                    if(confirm("정말로 추천하시겠습니까?")) {
+                                location.href = this.dataset.uri;
+                            };
+                        });
+
 
 
