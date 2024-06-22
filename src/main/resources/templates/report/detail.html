@@ -6,7 +6,7 @@
         <div class="reportDetail_reportList">
             <div class="reportDetail_userData">
                 <div class="reportDetail_username">
-                    <span th:if="${report.author != null}" th:text="${report.author.username}"></span>
+                    <span th:if="${report.authorNickname != null}" th:text="${report.authorNickname}"></span>
                 </div>
                 <div class="reportDetail_createDate"
                      th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"></div>
@@ -41,7 +41,7 @@
         <a th:id="|reportReply_${reportReply.id}|"></a>
         <div class="reportDetail_userData">
             <div class="reportDetail_username">
-                <span th:if="${reportReply.author != null}" th:text="${reportReply.author.username}"></span>
+                <span th:if="${reportReply.author != null}" th:text="${reportReply.author.nickname}"></span>
             </div>
         </div>
         <div class="reportDetail_reply_content" th:text="${reportReply.content}"></div>
