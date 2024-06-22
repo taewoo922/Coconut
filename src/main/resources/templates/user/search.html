@@ -18,10 +18,10 @@
                 </div>
             </div>
 
-            <div class="search_myList">
-                <div class="search_myList_title sTitle">📚내가 쓴 게시글📚</div>
-                <div class="search_myList_section sSec">
-                    <div class="search_myList_Info sInfo" th:each="freedcs : ${freedcsList}">
+            <div class="search_myList_freedcs">
+                <div class="search_myList_title_freedcs sTitle">📚내가 쓴 자유토론 게시글📚</div>
+                <div class="search_myList_section_freedcs sSec">
+                    <div class="search_myList_Info_freedcs sInfo" th:each="freedcs : ${freedcsList}">
                         <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                             <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="search_thumbnail">
                         </a>
@@ -34,6 +34,25 @@
                     <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn2 pB">&nbsp;</button>
                     <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn2 nB">&nbsp;</button>
                     <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
+                </div>
+            </div>
+
+            <div class="search_myList_debate">
+                <div class="search_myList_title_debate sTitle">📚내가 쓴 찬/반토론 게시글📚</div>
+                <div class="search_myList_section_debate sSec">
+                    <div class="search_myList_Info_debate sInfo" th:each="debate : ${debateList}">
+                        <a th:href="@{|/discussion/d_detail/${debate.id}|}">
+                            <img th:src="@{|/file/${debate.thumbnailImg}|}" alt="썸네일" class="search_thumbnail">
+                        </a>
+                        <div class="sInfo_text">
+                            <span th:text="${#strings.length(debate.title) > 18 ? #strings.substring(debate.title, 0, 18) + '....' : debate.title}"></span>
+                        </div>
+                    </div>
+                    <button th:if="${#lists.size(debateList) > 4}" class="prevBtn7 pB">&#10094;</button>
+                    <button th:if="${#lists.size(debateList) > 4}" class="nextBtn7 nB">&#10095;</button>
+                    <button th:if="${#lists.size(debateList) <= 4}" class="prevBtn7 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(debateList) <= 4}" class="nextBtn7 nB">&nbsp;</button>
+                    <p class="nullReportText" th:if="${#lists.size(debateList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
 

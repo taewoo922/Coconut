@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -72,8 +73,13 @@ public class ReportService {
     }
 
     private boolean isCurrentUserAuthorOrAdmin(Report report) {
-        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        return currentUsername.equals(report.getAuthor().getUsername()) || currentUsername.equals("admin");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = authentication.getName();
+
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+
+        return currentUsername.equals(report.getAuthor().getUsername()) || isAdmin;
     }
 
     public Report create(String title, String content, User user, String category, boolean isSecret){
