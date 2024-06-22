@@ -42,6 +42,8 @@ public class DebateService {
     @Value("${custom.fileDirPath}")
     private String fileDirPath;
 
+
+
     private Specification<Debate> search(String kw) {
         return new Specification<>() {
             private static final long serialVersionUID = 1L;
@@ -212,6 +214,16 @@ public class DebateService {
 
     public List<Debate> findAllDiscussionsOrderByCreateDateDesc() {
         return debateRepository.findAllByOrderByCreateDateDesc();
+    }
+
+    public List<Debate> getListByUserId(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return debateRepository.findAllByAuthor(user);
+        } else {
+            throw new DataNotFoundException("User not found with id: " + id);
+        }
     }
 
 

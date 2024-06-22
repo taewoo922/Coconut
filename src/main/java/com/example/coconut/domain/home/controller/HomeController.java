@@ -30,9 +30,8 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         List<Freedcs> freedcsList = freedcsService.findAllDiscussionsOrderByCreateDateDesc();
-        model.addAttribute("freedcsList", freedcsList);
         List<Debate> debateList = debateService.findAllDiscussionsOrderByCreateDateDesc();
-        model.addAttribute("debateList", debateList);
+
 
         // 자유토론과 찬반토론을 병합
         List<Object> combinedList = new ArrayList<>();

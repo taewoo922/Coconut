@@ -13,7 +13,9 @@
 
 
     .search_report,
-    .search_myList, .search_scrap {
+    .search_myList_freedcs,
+    .search_myList_debate,
+     .search_scrap {
         display: flex;
         flex-direction: column;
         justify-content: space-between;

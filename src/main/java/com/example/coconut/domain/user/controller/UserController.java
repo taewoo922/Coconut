@@ -1,6 +1,8 @@
 package com.example.coconut.domain.user.controller;
 
+import com.example.coconut.domain.discussion_Type.entity.Debate;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
+import com.example.coconut.domain.discussion_Type.service.DebateService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.service.ReportService;
@@ -32,6 +34,7 @@ public class UserController {
     private final UserService userService;
     private final ReportService reportService;
     private final FreedcsService freedcsService;
+    private final DebateService debateService;
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
@@ -58,9 +61,13 @@ public class UserController {
         List<Report> reportList = reportService.getListByUserId(user.getId()); // 사용자 ID를 이용하여 해당 사용자의 게시물 가져오기
         model.addAttribute("reportList", reportList);
 
-        // 사용자가 작성한 freedcs 테이블의 게시물 가져오기
+        // 사용자가 작성한 자유토론 테이블의 게시물 가져오기
         List<Freedcs> freedcsList = freedcsService.getListByUserId(user.getId());
         model.addAttribute("freedcsList", freedcsList);
+
+        // 사용자가 작성한 찬/반토론 테이블의 게시물 가져오기
+        List<Debate> debateList = debateService.getListByUserId(user.getId());
+        model.addAttribute("debateList", debateList);
 
         return "user/search";
     }
