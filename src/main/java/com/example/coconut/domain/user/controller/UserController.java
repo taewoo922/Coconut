@@ -9,6 +9,8 @@ import com.example.coconut.domain.report.service.ReportService;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -17,6 +19,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -109,6 +113,13 @@ public class UserController {
         return "user/scrap";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/profile/delete")
+    public String deleteAccount(HttpServletRequest request, HttpServletResponse response) {
+        userService.deleteCurrentUser();
+        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/user/login?accountDeleted";
+    }
 
     @Getter
     @Setter
