@@ -98,7 +98,17 @@ public class ReportService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         Specification<Report> spec = search(kw);
-        return  this.reportRepository.findAll(spec, pageable);
+        Page<Report> reports = this.reportRepository.findAll(spec, pageable);
+        // 각 Report 객체에 authorNickname 설정
+        reports.forEach(report -> {
+            if (report.getAuthor() != null) {
+                report.setAuthorNickname(report.getAuthor().getNickname());
+            } else {
+                report.setAuthorNickname("Unknown");
+            }
+        });
+
+        return reports;
     }
 
     public void modify(Report report, String title, String content, String category, boolean isSecret) {
