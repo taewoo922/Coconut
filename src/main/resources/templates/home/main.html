@@ -24,10 +24,10 @@
 
     <div class="main_container">
         <div class="main_body">
-            <div class="main_Hot_Topic">
-                <div class="main_Hot_Topic_title mTitle">🔥인기 토론🔥</div>
-                    <div class="Hot_Topic_section MSec">
-                        <div class="main_Hot_Topic_Info dcsInfo" th:each="freedcs : ${freedcsBestList}">
+            <div class="main_Hot_Topic_freedcs">
+                <div class="main_Hot_Topic_title_freedcs mTitle">🔥인기 자유토론🔥</div>
+                    <div class="Hot_Topic_section_freedcs MSec">
+                        <div class="main_Hot_Topic_Info_freedcs dcsInfo" th:each="freedcs : ${freedcsBestList}">
                         <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
                             <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="main_thumbnail">
                         </a>
@@ -42,22 +42,43 @@
                     <p class="nullReportText" th:if="${#lists.size(freedcsBestList) == 0}">게시글이 없습니다.</p>
                     </div>
             </div>
+            <div class="main_Hot_Topic_debate">
+                <div class="main_Hot_Topic_title_debate mTitle">🔥인기 찬/반토론🔥</div>
+                <div class="Hot_Topic_section_debate MSec">
+                    <div class="main_Hot_Topic_Info_debate dcsInfo" th:each="debate : ${debateBestList}">
+                        <a th:href="@{|/discussion/d_detail/${debate.id}|}">
+                            <img th:src="@{|/file/${debate.thumbnailImg}|}" alt="썸네일" class="main_thumbnail">
+                        </a>
+                        <div class="dcsInfo_text">
+                            <span th:text="${#strings.length(debate.title) > 18 ? #strings.substring(debate.title, 0, 18) + '....' : debate.title}"></span>
+                        </div>
+                    </div>
+                    <button th:if="${#lists.size(debateBestList) > 4}" class="prevBtn6 pB">&#10094;</button>
+                    <button th:if="${#lists.size(debateBestList) > 4}" class="nextBtn6 nB">&#10095;</button>
+                    <button th:if="${#lists.size(debateBestList) <= 4}" class="prevBtn6 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(debateBestList) <= 4}" class="nextBtn6 nB">&nbsp;</button>
+                    <p class="nullReportText" th:if="${#lists.size(debateBestList) == 0}">게시글이 없습니다.</p>
+                </div>
+            </div>
             <div class="main_Latest">
                 <div class="main_Latest_title mTitle">🆕최신 토론🆕</div>
                 <div class="Latest_section MSec">
-                    <div class="main_Latest_Info dcsInfo" th:each="freedcs : ${freedcsList}">
-                        <a th:href="@{|/discussion/free_detail/${freedcs.id}|}">
-                            <img th:src="@{|/file/${freedcs.thumbnailImg}|}" alt="썸네일" class="main_thumbnail">
+                    <div class="main_Latest_Info dcsInfo" th:each="combine : ${combinedList}">
+                        <a th:if="${combine.getClass().simpleName == 'Freedcs'}" th:href="@{|/discussion/free_detail/${combine.id}|}">
+                            <img th:src="@{|/file/${combine.thumbnailImg}|}" alt="썸네일" class="main_thumbnail">
+                        </a>
+                        <a th:if="${combine.getClass().simpleName == 'Debate'}" th:href="@{|/discussion/d_detail/${combine.id}|}">
+                            <img th:src="@{|/file/${combine.thumbnailImg}|}" alt="썸네일" class="main_thumbnail">
                         </a>
                         <div class="dcsInfo_text">
-                            <span th:text="${#strings.length(freedcs.title) > 18 ? #strings.substring(freedcs.title, 0, 18) + '....' : freedcs.title}"></span>
+                            <span th:text="${#strings.length(combine.title) > 18 ? #strings.substring(combine.title, 0, 18) + '....' : combine.title}"></span>
                         </div>
                     </div>
-                    <button th:if="${#lists.size(freedcsList) > 4}" class="prevBtn4 pB">&#10094;</button>
-                    <button th:if="${#lists.size(freedcsList) > 4}" class="nextBtn4 nB">&#10095;</button>
-                    <button th:if="${#lists.size(freedcsList) <= 4}" class="prevBtn4 pB">&nbsp;</button>
-                    <button th:if="${#lists.size(freedcsList) <= 4}" class="nextBtn4 nB">&nbsp;</button>
-                    <p class="nullReportText" th:if="${#lists.size(freedcsList) == 0}">게시글이 없습니다.</p>
+                    <button th:if="${#lists.size(combinedList) > 4}" class="prevBtn4 pB">&#10094;</button>
+                    <button th:if="${#lists.size(combinedList) > 4}" class="nextBtn4 nB">&#10095;</button>
+                    <button th:if="${#lists.size(combinedList) <= 4}" class="prevBtn4 pB">&nbsp;</button>
+                    <button th:if="${#lists.size(combinedList) <= 4}" class="nextBtn4 nB">&nbsp;</button>
+                    <p class="nullReportText" th:if="${#lists.size(combinedList) == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
         </div>

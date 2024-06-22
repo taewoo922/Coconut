@@ -55,7 +55,8 @@
     }
 
 
-    .main_Hot_Topic,
+    .main_Hot_Topic_debate,
+    .main_Hot_Topic_freedcs,
     .main_Latest {
         display: flex;
         flex-direction: column;
@@ -155,7 +156,7 @@
 .free_Sec_Title {
     position: absolute;
     width: 250px;
-    top: 1500px;
+    top: 1900px;
     left: 400px;
     font-family: sans-serif;
     color: black;
@@ -165,7 +166,7 @@
 
 .free_Sec_Content {
     position: absolute;
-    top: 2000px;
+    top: 2400px;
     left: 400px;
     text-decoration: none;
     font-size: 30px;
@@ -177,7 +178,7 @@
 .pcd_Sec_Title {
     position: absolute;
     width: 400px;
-    top: 2600px;
+    top: 3000px;
     left: 1000px;
     font-family: sans-serif;
     color: white;
@@ -187,7 +188,7 @@
 
 .pcd_Sec_Content {
     position: absolute;
-    top: 3100px;
+    top: 3500px;
     left: 1000px;
     text-decoration: none;
     font-size: 30px;

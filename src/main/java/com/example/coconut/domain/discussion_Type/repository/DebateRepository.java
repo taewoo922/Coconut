@@ -20,7 +20,7 @@ public interface DebateRepository extends JpaRepository<Debate, Long>, JpaSpecif
     Page<Debate> findAllByCategory_Id(Long categoryId, Pageable pageable);
     Page<Debate> findAll(Specification<Debate> spec, Pageable pageable);
 
-    List<Debate> findAllByOrderByCreateDateDesc(); //자유토론의 모든 게시글을 최신순으로 가져와 줌
+    List<Debate> findAllByOrderByCreateDateDesc(); //찬반/토론의 모든 게시글을 최신순으로 가져와 줌
 
     List<Debate> findAllByAuthor(User user);
 
@@ -33,4 +33,6 @@ public interface DebateRepository extends JpaRepository<Debate, Long>, JpaSpecif
 
     @Query("SELECT f FROM Debate f WHERE LOWER(f.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(f.content) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Debate> findByKeyword(@Param("keyword") String keyword);
+
+    List<Debate> findAllByOrderByViewDesc(); //자유토론이 조회수 순으로 가져와 줌
 }

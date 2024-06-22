@@ -206,6 +206,14 @@ public class DebateService {
         }
     }
 
+    public List<Debate> findAllDiscussionsOrderByViewDesc() {
+        return debateRepository.findAllByOrderByViewDesc();
+    }
+
+    public List<Debate> findAllDiscussionsOrderByCreateDateDesc() {
+        return debateRepository.findAllByOrderByCreateDateDesc();
+    }
+
 
 //    //메인 페이지에 최신순으로 게시글 나열
 //    public List<Freedcs> findAllDiscussionsOrderByCreateDateDesc() {
