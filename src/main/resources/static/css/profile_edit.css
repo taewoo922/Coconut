@@ -52,6 +52,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -66,4 +67,13 @@ button:hover {
     border-radius: 50%;
     width: 100px;
     height: 100px;
+}
+
+.delete-btn {
+    background-color: red;
+    margin-top: 20px;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
 }

@@ -139,4 +139,10 @@ public class UserService  {
         }
 
     }
+
+    @Transactional
+    public void deleteCurrentUser() {
+        User user = getCurrentUser();
+        userRepository.delete(user);
+    }
 }
