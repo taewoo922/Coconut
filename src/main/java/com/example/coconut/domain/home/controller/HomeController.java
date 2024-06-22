@@ -32,7 +32,6 @@ public class HomeController {
         List<Freedcs> freedcsList = freedcsService.findAllDiscussionsOrderByCreateDateDesc();
         List<Debate> debateList = debateService.findAllDiscussionsOrderByCreateDateDesc();
 
-
         // 자유토론과 찬반토론을 병합
         List<Object> combinedList = new ArrayList<>();
         combinedList.addAll(freedcsList);
