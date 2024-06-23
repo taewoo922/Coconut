@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #fcba03; /* Optional: Background color for the container  #f8f9fa*/
+    background-color: #fff; /* Optional: Background color for the container  #f8f9fa*/
 }
 
 /* 자유토론 전체 메뉴 컨테이너 */
@@ -43,7 +43,7 @@ body {
     color: #717171;
     font-size: 12px;
     font-weight: 600;
-    background-color: #e9ecef;
+    background-color: #c8d8e8;
     border: none;
     border-radius: 4px;
     padding: 8px 12px;
@@ -52,7 +52,7 @@ body {
 }
 
 .category-button:hover {
-    background-color: #ced4da;
+    background-color: #b1c9e0;
 }
 
 /* 카테고리 만들기 버튼 */
@@ -114,13 +114,6 @@ body {
     cursor: pointer;
 }
 
-/* .add-category-btn,
-.freedcsList_head_row {
-    margin: 20px 0;
-    width: 100%;
-    text-align: center;
-} */
-
 /* 게시물 목록 컨테이너*/
 .freedcs-container {
     max-width: 1280px;
@@ -128,7 +121,8 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #869960; /* Optional: Background color for the container */
+    background-color: #c7ebe5; /* Optional: Background color for the container */
+    border-radius: 5px;
 }
 
 .freedcs_body {

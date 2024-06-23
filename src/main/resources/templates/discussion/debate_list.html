@@ -21,7 +21,7 @@
             </div>
 
             <!-- 질문 등록하기 버튼 -->
-            <div class="freedcsList_head_row">
+            <div class="freedcsList_head_row" sec:authorize="hasRole('ADMIN')">
                 <a class="freedcsList_create_btn" th:href="@{/discussion/d_create}">질문 등록하기</a>
             </div>
             <!-- 검색 창 -->
@@ -66,7 +66,7 @@
                 </a>
             </li>
             <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
-                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                th:if="${page >= paging.number-2 and page <= paging.number+2}"
                 th:class="${page == paging.number} ? 'active' : ''">
                 <a class="debate_page_link" th:text="${page}" href="javascript:void(0)" th:data-page="${page}"></a>
             </li>
