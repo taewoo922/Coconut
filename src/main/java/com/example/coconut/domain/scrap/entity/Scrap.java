@@ -25,5 +25,11 @@ public class Scrap extends BaseEntity {
     @ManyToOne
     private Debate debate;
 
+    private String thumbnailImg;
+    private String title;
+    private String content;
+
+    @ManyToOne
+    private User author;
 
 }

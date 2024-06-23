@@ -5,16 +5,17 @@
             <div class="search_scrap">
                 <div class="search_scrap_title sTitle">⭐스크랩 게시글⭐</div>
                 <div class="search_scrap_section sSec">
-                    <div class="search_scrap_Info sInfo" th:each="report, loop : ${reportList}">
-                         <a th:href="@{|/report/detail/${report.id}|}">스크랩 게시글</a>
-
-                         <div class="sInfo_text" th:text="${report.title}"></div>
+                    <div class="search_scrap_Info sInfo" th:each="scrap : ${scrapList}">
+                         <a th:href="@{|scrap_list/${scrap.id}|}">
+                             <img th:src="@{|/file/${scrap.thumbnailImg}|}" alt="썸네일" class="search_thumbnail">
+                         </a>
+                         <div class="sInfo_text" th:text="${scrap.title}"></div>
                     </div>
-                         <button th:if="${#lists.size(reportList) > 4}" class="prevBtn1 pB">&#10094;</button>
-                         <button th:if="${#lists.size(reportList) > 4}" class="nextBtn1 nB">&#10095;</button>
-                        <button th:if="${#lists.size(reportList) <= 4}" class="prevBtn1 pB">&nbsp;</button>
-                        <button th:if="${#lists.size(reportList) <= 4}" class="nextBtn1 nB">&nbsp;</button>
-                        <p class="nullReportText" th:if="${#lists.size(reportList) == 0}">게시글이 없습니다.</p>
+                        <button th:if="${scrapList != null and scrapList.size() > 4}" class="prevBtn1 pB">&#10094;</button>
+                        <button th:if="${scrapList != null and scrapList.size() > 4}" class="nextBtn1 nB">&#10095;</button>
+                        <button th:if="${scrapList != null and scrapList.size() <= 4}" class="prevBtn1 pB">&nbsp;</button>
+                        <button th:if="${scrapList != null and scrapList.size() <= 4}" class="nextBtn1 nB">&nbsp;</button>
+                        <p class="nullReportText" th:if="${scrapList != null and scrapList.size() == 0}">게시글이 없습니다.</p>
                 </div>
             </div>
 
