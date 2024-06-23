@@ -103,13 +103,18 @@ public class ReportController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String reportModify(@Valid ReportForm reportForm, BindingResult bindingResult,
-                               Principal principal, @PathVariable("id") Long id) {
+                               Principal principal,RedirectAttributes redirectAttributes, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "report/form";
         }
         Report report = this.reportService.getReport(id);
         if(!report.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        if (ProfanityFilter.containsProfanity(reportForm.getTitle()) || ProfanityFilter.containsProfanity(reportForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return "redirect:/report/modify/%s".formatted(report.getId());
         }
         this.reportService.modify(report, reportForm.getTitle(), reportForm.getContent(), reportForm.getCategory(), reportForm.isSecret());
         return "redirect:/report/detail/%s".formatted(id);

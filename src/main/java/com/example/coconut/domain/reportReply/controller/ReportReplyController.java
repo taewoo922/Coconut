@@ -2,6 +2,7 @@ package com.example.coconut.domain.reportReply.controller;
 
 
 
+import com.example.coconut.domain.ProfanityFilter;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.report.repository.ReportRepository;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -35,13 +37,20 @@ public class ReportReplyController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
     public String createReply(Model model, @PathVariable("id") Long id, @Valid ReportReplyForm reportReplyForm,
-                              BindingResult bindingResult, Principal principal){
+                              BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal){
         Report report = this.reportService.getReport(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("report", report);
             return "report/detail";
         }
+
+        if (ProfanityFilter.containsProfanity(reportReplyForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/report/detail/%s".formatted(report.getId());
+        }
+
         ReportReply reportReply = this.reportReplyService.create(report, reportReplyForm.getContent(), user);
         return "redirect:/report/detail/%s#reportReply_%s".formatted(reportReply.getReport().getId(), reportReply.getId());
     }
@@ -53,6 +62,7 @@ public class ReportReplyController {
         if(!reportReply.getAuthor().getUsername().equals(principal.getName())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
+
         reportReplyForm.setContent(reportReply.getContent());
         return "report/reply_form";
     }
@@ -60,13 +70,18 @@ public class ReportReplyController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String reportReplyModify(@Valid ReportReplyForm reportReplyForm, BindingResult bindingResult,
-                               @PathVariable("id") Long id, Principal principal) {
+                               @PathVariable("id") Long id,RedirectAttributes redirectAttributes, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "report/reply_form";
         }
         ReportReply reportReply = this.reportReplyService.getReportReply(id);
         if (!reportReply.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        if (ProfanityFilter.containsProfanity(reportReplyForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/reportReply/modify/%s".formatted(reportReply.getId());
         }
         this.reportReplyService.modify(reportReply, reportReplyForm.getContent());
         return String.format("redirect:/report/detail/%s#reportReply_%s", reportReply.getReport().getId(), reportReply.getId());

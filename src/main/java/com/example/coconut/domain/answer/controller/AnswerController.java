@@ -1,5 +1,6 @@
 package com.example.coconut.domain.answer.controller;
 
+import com.example.coconut.domain.ProfanityFilter;
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.answer.service.AnswerService;
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -39,12 +41,18 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free/create/{id}")
     public String f_createAnswer(Model model, @PathVariable("id") Long id,
-                                 @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
+                                 @Valid AnswerForm answerForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Principal principal) {
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("freedcs", freedcs);
-            return "discussion/freedcs_detail";
+            return "discussion/free_detail";
+        }
+
+        if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/discussion/free_detail/%s".formatted(freedcs.getId());
         }
 
         Answer answer = this.answerService.f_create(freedcs, answerForm.getContent(), user);
@@ -54,13 +62,19 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/debate/create/{id}")
     public String d_createAnswer(Model model, @PathVariable("id") Long id,
-                                 @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal,
+                                 @Valid AnswerForm answerForm,RedirectAttributes redirectAttributes, BindingResult bindingResult, Principal principal,
                                  @RequestParam("isSupport") boolean isSupport) {
         Debate debate = this.debateService.getDebate(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("debate", debate);
             return "discussion/d_detail";
+        }
+
+        if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/discussion/d_detail/%s".formatted(debate.getId());
         }
 
         Answer answer = this.answerService.d_create(debate, answerForm.getContent(), user, isSupport);
@@ -81,13 +95,18 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-                               @PathVariable("id") Long id, Principal principal) { //자유토론댓글 수정
+                               @PathVariable("id") Long id,RedirectAttributes redirectAttributes, Principal principal) { //자유토론댓글 수정
         if (bindingResult.hasErrors()) {
             return "discussion/freedcs_reply";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/answer/modify/%s".formatted(answer.getId());
         }
         this.answerService.modify(answer, answerForm.getContent());
         return String.format("redirect:/discussion/free_detail/%s#answer_%s", answer.getFreedcs().getId(), answer.getId());
@@ -107,13 +126,18 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/support/modify/{id}")
     public String supportAnswerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-                                 @PathVariable("id") Long id, Principal principal) {
+                                 @PathVariable("id") Long id,RedirectAttributes redirectAttributes, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "/discussion/debate_reply";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/answer/support/modify/%s".formatted(answer.getId());
         }
         this.answerService.modify(answer, answerForm.getContent());
         return String.format("redirect:/discussion/d_detail/%s#answer_%s", answer.getDebate().getId(), answer.getId());
@@ -133,13 +157,18 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/opposition/modify/{id}")
     public String oppositionAnswerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-                                 @PathVariable("id") Long id, Principal principal) {
+                                 @PathVariable("id") Long id,RedirectAttributes redirectAttributes, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "/discussion/debate_reply";
         }
         Answer answer = this.answerService.getAnswer(id);
         if (!answer.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return  "redirect:/answer/opposition/modify/%s".formatted(answer.getId());
         }
         this.answerService.modify(answer, answerForm.getContent());
         return String.format("redirect:/discussion/d_detail/%s#answer_%s", answer.getDebate().getId(), answer.getId());

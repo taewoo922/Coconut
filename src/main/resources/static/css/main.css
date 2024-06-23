@@ -156,7 +156,7 @@
 .free_Sec_Title {
     position: absolute;
     width: 250px;
-    top: 1900px;
+    top: 2100px;
     left: 400px;
     font-family: sans-serif;
     color: black;
@@ -166,7 +166,7 @@
 
 .free_Sec_Content {
     position: absolute;
-    top: 2400px;
+    top: 2600px;
     left: 400px;
     text-decoration: none;
     font-size: 30px;
@@ -178,8 +178,8 @@
 .pcd_Sec_Title {
     position: absolute;
     width: 400px;
-    top: 3000px;
-    left: 1000px;
+    top: 3200px;
+    left: 1100px;
     font-family: sans-serif;
     color: white;
     font-size: 5em;
@@ -188,8 +188,8 @@
 
 .pcd_Sec_Content {
     position: absolute;
-    top: 3500px;
-    left: 1000px;
+    top: 3700px;
+    left: 1100px;
     text-decoration: none;
     font-size: 30px;
     color: white;
@@ -234,22 +234,22 @@
 
 @keyframes slide2{
     from{
-        left: -1000px;
+        left: -1100px;
         opacity: 0;
     }
     to{
-        left: 1000px;
+        left: 1100px;
         opacity: 1;
     }
 }
 
 @keyframes disappear2{
     from{
-        left: 1000px;
+        left: 1100px;
         opacity: 1;
     }
     to{
-        left: -1000px;
+        left: -1100px;
         opacity: 0;
     }
 }

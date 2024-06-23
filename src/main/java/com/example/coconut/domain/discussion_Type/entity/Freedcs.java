@@ -53,4 +53,10 @@ public class Freedcs extends BaseEntity {
 
 //    @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
+
+    @Transient
+    private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
+
+    @OneToMany(mappedBy = "freedcs", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Scrap> scraps;
 }

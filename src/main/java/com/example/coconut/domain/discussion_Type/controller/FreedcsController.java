@@ -1,5 +1,6 @@
 package com.example.coconut.domain.discussion_Type.controller;
 
+import com.example.coconut.domain.ProfanityFilter;
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.discussion_Type.FreedcsForm;
@@ -26,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -86,14 +88,19 @@ public class FreedcsController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
-    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal,
+    public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal, RedirectAttributes redirectAttributes,
                               @RequestParam("thumbnail") MultipartFile thumbnail) {
         if (bindingResult.hasErrors()) {
             return "discussion/free_create_form";
         }
 
-        User user = this.userService.getUser(principal.getName());
+        if (ProfanityFilter.containsProfanity(freedcsForm.getTitle()) || ProfanityFilter.containsProfanity(freedcsForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return "redirect:/discussion/free_create";
+        }
 
+        User user = this.userService.getUser(principal.getName());
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
         this.freedcsService.free_create(freedcsForm.getTitle(), freedcsForm.getContent(), freedcsForm.getThumbnail(), user, category);
 
@@ -145,7 +152,7 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String freedcsModify(@Valid FreedcsForm freedcsForm, BindingResult bindingResult,
-                                Principal principal, @PathVariable("id") Long id,
+                                Principal principal, @PathVariable("id") Long id,RedirectAttributes redirectAttributes,
                                 @RequestParam("thumbnail") MultipartFile thumbnail
                                 ) {
         if (bindingResult.hasErrors()) {
@@ -156,9 +163,12 @@ public class FreedcsController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
 
-
         Category category = this.categoryService.getCategoryById(freedcsForm.getCategory());
-
+        if (ProfanityFilter.containsProfanity(freedcsForm.getTitle()) || ProfanityFilter.containsProfanity(freedcsForm.getContent())) {
+            // 비속어가 포함되어 있으면 리다이렉트하여 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "⚠\uFE0F 비속어 사용 금지 ⚠\uFE0F");
+            return "redirect:/discussion/modify/%s".formatted(freedcs.getId());
+        }
         this.freedcsService.modify(freedcs, freedcsForm.getTitle(), freedcsForm.getContent(), category, thumbnail);
         return "redirect:/discussion/free_detail/%s".formatted(id);
 

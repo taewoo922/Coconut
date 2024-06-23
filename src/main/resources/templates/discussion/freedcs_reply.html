@@ -4,7 +4,11 @@
     <form th:object="${answerForm}" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
-
+        <!-- Error message alert -->
+        <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+            <span class="close" onclick="closeAlert_form()">&times;</span>
+        </div>
         <div class="reportForm_body">
             <label for="content" class="reportForm_content_label">내용</label>
             <textarea th:field="*{content}" name="content" id="content" class="reportForm_content_input" rows="10"></textarea>

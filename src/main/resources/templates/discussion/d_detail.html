@@ -5,7 +5,7 @@
         <div class="debateDetail_debateList">
             <div class="debateDetail_userData">
                 <div class="debateDetail_username">
-                    <span th:if="${debate.author != null}" th:text="${debate.author.username}"></span>
+                    <span th:if="${debate.authorNickname != null}" th:text="${debate.authorNickname}"></span>
                 </div>
                 <div class="debateDetail_createDate" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm')}"></div>
             </div>
@@ -42,6 +42,12 @@
                 반대: <span th:text="${oppositionCount}"></span>
             </div>
         </div>
+
+        <!-- Error message alert -->
+        <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+            <span class="close" onclick="closeAlert_form()">&times;</span>
+        </div>
         <!-- 답변 반복 시작 -->
         <div class="debateDetail_answers">
             <div class="debateDetail_support">
@@ -50,7 +56,7 @@
                     <div class="debateDetail_answer">
                         <div class="debateDetail_userData">
                             <div class="debateDetail_username">
-                                <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                                <span th:if="${answer.author != null}" th:text="${answer.author.nickname}"></span>
                             </div>
                             <div class="debateDetail_createDate">
                                 <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
@@ -83,7 +89,7 @@
                     <div class="debateDetail_answer">
                         <div class="debateDetail_userData">
                             <div class="debateDetail_username">
-                                <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                                <span th:if="${answer.author != null}" th:text="${answer.author.nickname}"></span>
                             </div>
                             <div class="debateDetail_createDate">
                                 <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
