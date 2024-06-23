@@ -6,6 +6,8 @@ import com.example.coconut.domain.discussion_Type.service.DebateService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.service.ReportService;
+import com.example.coconut.domain.scrap.entity.Scrap;
+import com.example.coconut.domain.scrap.service.ScrapService;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.service.UserService;
@@ -39,6 +41,7 @@ public class UserController {
     private final ReportService reportService;
     private final FreedcsService freedcsService;
     private final DebateService debateService;
+    private final ScrapService scrapService;
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
@@ -72,6 +75,9 @@ public class UserController {
         // 사용자가 작성한 찬/반토론 테이블의 게시물 가져오기
         List<Debate> debateList = debateService.getListByUserId(user.getId());
         model.addAttribute("debateList", debateList);
+
+        List<Scrap> scrapList = scrapService.getListByUserId(user.getId());
+        model.addAttribute("scrapList", scrapList);
 
         return "user/search";
     }

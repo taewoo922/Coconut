@@ -32,11 +32,6 @@ public class SecurityConfig {
                                 .loginPage("/user/login")
                                 .defaultSuccessUrl("/")
                 )
-//               .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-//                        .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
-//                        .requestMatchers("/oauth-login/info").authenticated()
-//                        .anyRequest().permitAll()
-//                )
                 .formLogin((auth) -> auth.loginPage("/user/login")
                         .loginProcessingUrl("/login")
                         .usernameParameter("username")

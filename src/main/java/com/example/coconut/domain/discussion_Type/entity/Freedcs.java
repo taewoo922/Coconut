@@ -2,6 +2,7 @@ package com.example.coconut.domain.discussion_Type.entity;
 
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.scrap.entity.Scrap;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
@@ -45,6 +46,7 @@ public class Freedcs extends BaseEntity {
     @ManyToMany
     Set<User> voter;
 //    Set<User> voter = new LinkedHashSet<>();
+
 
     @Transient
     private String search;

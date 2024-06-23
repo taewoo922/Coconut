@@ -118,9 +118,12 @@ public class DebateController {
         return "discussion/d_detail";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/debate/scrap/{id}")
-    public String addScrap(@PathVariable("id") Long id) {
-        scrapService.addDebateScrap(id);
+    public String addScrap(@PathVariable("id") Long id, Principal principal) {
+        User user = this.userService.getUser(principal.getName());
+
+        scrapService.addDebateScrap(id, user);
 
         return "redirect:/discussion/d_detail/{id}";
     }
