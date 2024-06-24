@@ -1,6 +1,7 @@
 package com.example.coconut.domain.scrap.controller;
 
 
+<<<<<<< HEAD
 import com.example.coconut.domain.answer.AnswerForm;
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
@@ -29,3 +30,4 @@ public class ScrapController {
 
 
 
+}

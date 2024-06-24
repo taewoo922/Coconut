@@ -111,7 +111,6 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/freedcs/scrap/{id}")
     public String getFreedcsById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
-    public String getPostById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
         Freedcs freedcs = freedcsService.getFreedcs(id);
 
         model.addAttribute("answerForm", answerForm);
@@ -127,9 +126,6 @@ public class FreedcsController {
 
         scrapService.addScrap(id,user);
 
-    @PostMapping("/freedcs/scrap/{id}")
-    public String addScrap(@PathVariable("id") Long id) {
-        scrapService.addScrap(id);
         return "redirect:/discussion/free_detail/{id}";
     }
 
