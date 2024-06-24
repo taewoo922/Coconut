@@ -15,9 +15,7 @@
         <div class="right-container">
             <!-- 관리자 권한이 있을때만 보이게 해주는 코드-->
             <div class="category_create" >
-                <th:block sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/category/create}">카테고리 만들기</a>
-                </th:block>
+                <a th:href="@{/category/create}">카테고리 만들기</a>
             </div>
 
             <!-- 질문 등록하기 버튼 -->
