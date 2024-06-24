@@ -40,13 +40,13 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free/create/{id}")
-    public String f_createAnswer(Model model, @PathVariable("id") Long id,
-                                 @Valid AnswerForm answerForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Principal principal) {
+    public String f_createAnswer(Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,
+                                 BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) {
         Freedcs freedcs = this.freedcsService.getFreedcs(id);
         User user = this.userService.getUser(principal.getName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("freedcs", freedcs);
-            return "discussion/free_detail";
+            return "discussion/freedcs_detail";
         }
 
         if (ProfanityFilter.containsProfanity(answerForm.getContent())) {
@@ -61,8 +61,8 @@ public class AnswerController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/debate/create/{id}")
-    public String d_createAnswer(Model model, @PathVariable("id") Long id,
-                                 @Valid AnswerForm answerForm,RedirectAttributes redirectAttributes, BindingResult bindingResult, Principal principal,
+    public String d_createAnswer(Model model, @PathVariable("id") Long id, @Valid AnswerForm answerForm,
+                                 BindingResult bindingResult,RedirectAttributes redirectAttributes, Principal principal,
                                  @RequestParam("isSupport") boolean isSupport) {
         Debate debate = this.debateService.getDebate(id);
         User user = this.userService.getUser(principal.getName());
