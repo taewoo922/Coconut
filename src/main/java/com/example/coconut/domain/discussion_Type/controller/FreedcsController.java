@@ -116,6 +116,7 @@ public class FreedcsController {
         model.addAttribute("answerForm", answerForm);
         model.addAttribute("freedcs", freedcs);
         model.addAttribute("scrap", scrapService.getScrapsByFreedcsId(id));
+
         return "discussion/freedcs_detail";
     }
 

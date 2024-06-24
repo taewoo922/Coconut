@@ -62,7 +62,7 @@ public class User extends BaseEntity {
     private List<Debate> debateList;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReportReply> reportReplyList;
+    private List<ReportReply> replyList;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answerList;

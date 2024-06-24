@@ -132,6 +132,7 @@ public class DebateController {
         scrapService.addDebateScrap(id, user);
 
         return "redirect:/discussion/d_detail/{id}";
+
     }
 
 

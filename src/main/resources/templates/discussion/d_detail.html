@@ -6,6 +6,7 @@
             <div class="debateDetail_userData">
                 <div class="debateDetail_username">
                     <span th:if="${debate.authorNickname != null}" th:text="${debate.authorNickname}"></span>
+                    <span th:if="${debate.author != null}" th:text="${debate.author.username}"></span>
                 </div>
                 <div class="debateDetail_createDate" th:text="${#temporals.format(debate.createDate, 'yyyy-MM-dd HH:mm')}"></div>
             </div>
