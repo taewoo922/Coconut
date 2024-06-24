@@ -16,11 +16,11 @@
                     추천
                     <span class="debateDetail_voterCount" th:text="${#lists.size(debate.voter)}"></span>
                 </a>
-                <a href="javascript:void(0);" class="debateDetail_scrap"
-                   th:data-uri="@{|/discussion/debate/scrap/${debate.id}|}">
-                    스크랩
-                </a>
+
                 <div class="debateDetail_content_modifyAndDelete">
+                    <a href="javascript:void(0);" class="debateDetail_scrap" th:data-uri="@{|/discussion/debate/scrap/${debate.id}|}">
+                        스크랩
+                    </a>
                     <a th:href="@{|/discussion/d_modify/${debate.id}|}" class="debateDetail_content_modify_btn" sec:authorize="isAuthenticated()"
                        th:if="${debate.author != null and #authentication.getPrincipal().getUsername() == debate.author.username}"
                        th:text="수정"></a>
