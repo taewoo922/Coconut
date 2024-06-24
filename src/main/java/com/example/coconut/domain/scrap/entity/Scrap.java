@@ -19,6 +19,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 public class Scrap extends BaseEntity {
 
+
     @ManyToOne
     private Freedcs freedcs;
 
@@ -31,5 +32,6 @@ public class Scrap extends BaseEntity {
 
     @ManyToOne
     private User author;
+
 
 }

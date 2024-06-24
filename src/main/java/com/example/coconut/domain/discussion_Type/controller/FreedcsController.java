@@ -113,9 +113,12 @@ public class FreedcsController {
     public String getFreedcsById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
         Freedcs freedcs = freedcsService.getFreedcs(id);
 
+        freedcsForm.setTitle(freedcs.getTitle());
+
         model.addAttribute("answerForm", answerForm);
         model.addAttribute("freedcs", freedcs);
         model.addAttribute("scrap", scrapService.getScrapsByFreedcsId(id));
+
         return "discussion/freedcs_detail";
     }
 
