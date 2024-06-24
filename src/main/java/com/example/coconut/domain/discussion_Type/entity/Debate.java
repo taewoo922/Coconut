@@ -53,6 +53,6 @@ public class Debate extends BaseEntity {
     @Transient
     private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
 
-    @OneToMany(mappedBy = "debate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Scrap> scraps;
+    @OneToMany(mappedBy = "debate", cascade = CascadeType.REMOVE)
+    private List<Scrap> scrapList;
 }

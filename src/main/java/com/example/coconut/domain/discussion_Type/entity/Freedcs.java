@@ -45,18 +45,15 @@ public class Freedcs extends BaseEntity {
 
     @ManyToMany
     Set<User> voter;
-//    Set<User> voter = new LinkedHashSet<>();
-
 
     @Transient
     private String search;
 
-//    @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
 
     @Transient
     private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
 
-    @OneToMany(mappedBy = "freedcs", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Scrap> scraps;
+    @OneToMany(mappedBy = "freedcs", cascade = CascadeType.REMOVE)
+    private List<Scrap> scrapList;
 }

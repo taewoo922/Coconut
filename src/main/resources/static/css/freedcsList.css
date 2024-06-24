@@ -93,11 +93,12 @@ body {
 /* 검색 창과 아이콘 */
 .freedcsList_input_group {
     position: relative;
-    width: 50%; /* 가로로 차지할 공간 */
+    width: 100%; /* 가로로 차지할 공간 */
 }
 
 .freedcsList_input_group input[type="text"] {
     width: 100%;
+    min-width: 200px;
     padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가 */
     font-size: 1rem;
     border: 1px solid #ccc;
