@@ -20,8 +20,32 @@ function previewImage(event) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
-document.querySelector('.delete-btn').addEventListener('click', function(event) {
-   if (!confirm('정말로 회원 탈퇴를 하시겠습니까?')) {
-        event.preventDefault();
-   }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var editSubmitBtn = document.querySelector('#edit-submit-btn');
+    var backButton = document.querySelector('#back-btn');
+
+    if (editSubmitBtn) {
+        editSubmitBtn.addEventListener('click', function(event) {
+            if (confirm('정말 수정하시겠습니까?')) {
+                document.querySelector('#edit-profile-form').submit();
+            }
+        });
+    }
+
+    if (backButton) {
+        backButton.addEventListener('click', function(event) {
+            history.back(); // 뒤로가기
+        });
+    }
+
+    var deleteBtn = document.querySelector('.delete-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function(event) {
+            if (!confirm('정말로 회원 탈퇴를 하시겠습니까?')) {
+                event.preventDefault();
+            }
+        });
+    }
 });
