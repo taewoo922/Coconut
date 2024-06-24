@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,4 +29,3 @@ public class ScrapController {
 
 
 
-}

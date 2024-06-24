@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }
                                 });
                             });
+                    if(confirm("정말로 추천하시겠습니까?")) {
+                                location.href = this.dataset.uri;
+                            };
                         });
 
 

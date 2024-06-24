@@ -16,6 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +59,21 @@ public class ScrapService {
     }
 
 
+
+
+    public void addScrap(Long freedcsId) {
+        Freedcs freedcs = freedcsRepository.findById(freedcsId).orElseThrow(() -> new IllegalArgumentException("유효하지 않는 id 입니다:" + freedcsId));
+        Scrap scrap = new Scrap();
+        scrap.setFreedcs(freedcs);
+        scrapRepository.save(scrap);
+    }
+
+    public void addDebateScrap(Long debateId) {
+        Debate debate = debateRepository.findById(debateId).orElseThrow(() -> new IllegalArgumentException("유효하지 않는 id 입니다:" + debateId));
+        Scrap scrap = new Scrap();
+        scrap.setDebate(debate);
+        scrapRepository.save(scrap);
+    }
 
     public List<Scrap> getScrapsByFreedcsId(Long freedcsId) {
         return scrapRepository.findByFreedcsId(freedcsId);

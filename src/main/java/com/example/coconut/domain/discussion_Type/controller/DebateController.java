@@ -116,6 +116,7 @@ public class DebateController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/debate/scrap/{id}")
     public String getDebateById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
+    public String getPostById(@PathVariable("id") Long id, Model model, AnswerForm answerForm) {
         Debate debate = debateService.getDebate(id);
 
         model.addAttribute("answerForm", answerForm);
@@ -132,6 +133,10 @@ public class DebateController {
         scrapService.addDebateScrap(id, user);
 
         return "redirect:/discussion/d_detail/{id}";
+    @PostMapping("/debate/scrap/{id}")
+    public String addScrap(@PathVariable("id") Long id) {
+        scrapService.addDebateScrap(id);
+        return "redirect:/discussion/debate_detail/{id}";
     }
 
 
