@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,8 @@ public class CustomOauth2UserService extends DefaultOAuth2UserService {
         else if (provider.equals("kakao")) {
             log.info("카카오 로그인");
             oAuth2UserInfo = new KakaoUserDetails(oAuth2User.getAttributes());
+
+
         }
         else if (provider.equals("naver")) {
             log.info("네이버 로그인");
@@ -47,6 +50,7 @@ public class CustomOauth2UserService extends DefaultOAuth2UserService {
         String email = oAuth2UserInfo.getEmail();
         String username = provider + "_" + providerId;
         String nickname = oAuth2UserInfo.getName();
+
 
         Optional<User> findUserOpt = userRepository.findByUsername(username);
         User user;

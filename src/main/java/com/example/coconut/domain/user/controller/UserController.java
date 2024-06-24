@@ -104,21 +104,6 @@ public class UserController {
         return "redirect:/user/profile";
     }
 
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/posts")
-    public String myPostsPage(Model model) {
-        // 사용자의 게시물
-        return "user/posts";
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/scrap")
-    public String myScrapPage(Model model) {
-        // 사용자의 스크랩 목록
-        return "user/scrap";
-    }
-
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/profile/delete")
     public String deleteAccount(HttpServletRequest request, HttpServletResponse response) {

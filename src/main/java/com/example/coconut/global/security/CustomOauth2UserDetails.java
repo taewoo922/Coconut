@@ -66,6 +66,7 @@ public class CustomOauth2UserDetails implements UserDetails, OAuth2User{
         return true;
     }
 
+
     public interface OAuth2UserInfo {
         String getProvider();
         String getProviderId();
