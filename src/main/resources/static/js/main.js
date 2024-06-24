@@ -90,7 +90,7 @@ window.addEventListener('scroll', function(){
         free_Sec_Title.style.animation= "slide 1s ease-out";
     }
 
-     if(value>2200 || value < 1600){
+     if(value>2350 || value < 1600){
         free_Sec_Content.style.animation= "disappear 1s ease-out forwards";
     }else if(value>1600){
         free_Sec_Content.style.animation= "slide 1s ease-out";
@@ -102,7 +102,7 @@ window.addEventListener('scroll', function(){
         pcd_Sec_Title.style.animation= "slide2 1s ease-out";
     }
 
-     if(value>3200 || value < 2400){
+     if(value>3350 || value < 2400){
         pcd_Sec_Content.style.animation= "disappear2 1s ease-out forwards";
     }else if(value>2400){
         pcd_Sec_Content.style.animation= "slide2 1s ease-out";

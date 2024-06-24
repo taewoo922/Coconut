@@ -24,6 +24,7 @@
 }
 
 .freedcsDetail_vote,
+.freedcsDetail_scrap,
 .freedcsDetail_content_modify_btn,
 .freedcsDetail_content_delete_btn {
     display: inline-block;
@@ -40,6 +41,7 @@
 }
 
 .freedcsDetail_vote:hover,
+.freedcsDetail_scrap:hover,
 .freedcsDetail_content_modify_btn:hover,
 .freedcsDetail_content_delete_btn:hover {
     background-color: #0056b3;
