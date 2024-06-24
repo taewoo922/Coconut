@@ -70,7 +70,17 @@ public class FreedcsService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 12, Sort.by(sorts));
         Specification<Freedcs> spec = search(kw);
-        return  this.freedcsRepository.findAll(spec, pageable);
+        Page<Freedcs> freedcss = this.freedcsRepository.findAll(spec, pageable);
+
+        freedcss.forEach(freedcs -> {
+            if (freedcs.getAuthor() != null) {
+                freedcs.setAuthorNickname(freedcs.getAuthor().getNickname());
+            } else {
+                freedcs.setAuthorNickname("Unknown");
+            }
+        });
+
+        return freedcss;
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {

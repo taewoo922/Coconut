@@ -42,7 +42,7 @@
                     </div>
                     <div class="post-info">
                         <div class="post-title" th:text="${freedcs.title}"></div>
-                        <div class="post-author" th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></div>
+                        <div class="post-author" th:if="${freedcs.authorNickname != null}" th:text="${freedcs.authorNickname}"></div>
                         <div class="post-categories">
                             <span th:each="category : ${freedcs.category}" th:text="${category.name}"></span>
                         </div>

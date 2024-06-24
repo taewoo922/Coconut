@@ -1,5 +1,11 @@
 package com.example.coconut.domain.user.entity;
 
+import com.example.coconut.domain.answer.entity.Answer;
+import com.example.coconut.domain.discussion_Type.entity.Debate;
+import com.example.coconut.domain.discussion_Type.entity.Freedcs;
+import com.example.coconut.domain.report.entity.Report;
+import com.example.coconut.domain.reportReply.entity.ReportReply;
+import com.example.coconut.domain.scrap.entity.Scrap;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -46,6 +52,23 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Report> reportList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Freedcs> freedcsList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Debate> debateList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReportReply> reportReplyList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answer> answerList;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Scrap> scrapList;
 
     // 사용자 권한을 GrantedAuthority 리스트로 변환
     public Collection<? extends GrantedAuthority> getAuthorities() {

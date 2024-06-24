@@ -73,7 +73,17 @@ public class DebateService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 12, Sort.by(sorts));
         Specification<Debate> spec = search(kw);
-        return  this.debateRepository.findAll(spec, pageable);
+        Page<Debate> debates = this.debateRepository.findAll(spec, pageable);
+
+        debates.forEach(debate -> {
+            if (debate.getAuthor() != null) {
+                debate.setAuthorNickname(debate.getAuthor().getNickname());
+            } else {
+                debate.setAuthorNickname("Unknown");
+            }
+        });
+
+        return debates;
     }
 
     public Page<Debate> getListByCategory(int page, String kw, Long categoryId) {

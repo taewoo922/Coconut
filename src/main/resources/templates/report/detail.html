@@ -34,6 +34,11 @@
     <!-- 답변의 갯수 표시 -->
     <h5 class="reportDetail_replyList"
         th:text="|${#lists.size(report.replyList)}개의 답변이 있습니다.|"></h5>
+    <!-- Error message alert -->
+    <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+        <span class="close" onclick="closeAlert_form()">&times;</span>
+    </div>
     <!-- 답변 반복 시작 -->
     <div th:each="reportReply : ${report.replyList}"
          th:classappend="${reportReply.author != null and #authentication.getPrincipal().getUsername() == reportReply.author.username} ? 'myReply' : 'otherReply'"

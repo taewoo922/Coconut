@@ -6,7 +6,7 @@
         <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
         <div class="freedcsDetail_userData">
             <div class="freedcsDetail_username">
-                <span th:if="${freedcs.author != null}" th:text="${freedcs.author.username}"></span>
+                <span th:if="${freedcs.authorNickname != null}" th:text="${freedcs.authorNickname}"></span>
             </div>
             <div class="freedcsDetail_createDate" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
         </div>
@@ -39,13 +39,18 @@
     <!-- 답변의 갯수 표시 -->
     <h5 class="freedcsDetail_answerList"
         th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>
+    <!-- Error message alert -->
+    <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+        <span class="close" onclick="closeAlert_form()">&times;</span>
+    </div>
     <!-- 답변 반복 시작 -->
     <div class="freedcsDetail_answer" th:each="answer : ${freedcs.answerList}">
         <a th:id="|answer_${answer.id}|"></a>
         <div class="freedcsDetail_answer">
             <div class="freedcsDetail_userData">
                 <div class="freedcsDetail_username">
-                    <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
+                    <span th:if="${answer.author != null}" th:text="${answer.author.nickname}"></span>
                 </div>
                 <div class="freedcsDetail_createDate">
                     <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>

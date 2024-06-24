@@ -2,6 +2,7 @@ package com.example.coconut.domain.discussion_Type.entity;
 
 import com.example.coconut.domain.answer.entity.Answer;
 import com.example.coconut.domain.category.entity.Category;
+import com.example.coconut.domain.scrap.entity.Scrap;
 import com.example.coconut.domain.user.entity.User;
 import com.example.coconut.global.jpa.BaseEntity;
 import jakarta.persistence.*;
@@ -49,4 +50,9 @@ public class Debate extends BaseEntity {
 
     private int view;
 
+    @Transient
+    private String authorNickname; // 작성자의 닉네임을 임시로 저장하기 위한 필드
+
+    @OneToMany(mappedBy = "debate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Scrap> scraps;
 }

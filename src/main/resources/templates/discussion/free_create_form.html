@@ -5,6 +5,11 @@
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
+        <!-- Error message alert -->
+        <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+            <span class="close" onclick="closeAlert_form()">&times;</span>
+        </div>
         <div class="freedcsForm_category">
             <label for="category" class="freedcsForm_category_label">카테고리</label>
             <select id="category" th:field="*{category}" class="freedcsForm_category_select">
