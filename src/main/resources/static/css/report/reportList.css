@@ -14,7 +14,6 @@
     padding-left: 200px;
     padding-right: 200px;
     background-color: white;
-    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     min-height: 100vh;
 }
@@ -33,7 +32,7 @@
     color: #fff;
     background-color: #4CAF50;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     padding: 10px 20px;
     text-align: center;
@@ -55,7 +54,7 @@
     padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가 */
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box; /* 내용 영역을 패딩과 테두리를 포함한 크기로 지정 */
 }
 
@@ -70,7 +69,7 @@
 
 /* 테이블 스타일 */
 .reportList_table {
-    width: 100%;
+    width: 1000px;
     border-collapse: collapse;
 }
 
@@ -82,7 +81,6 @@
 
 /* 헤드 데이터 */
 .RHList {
-    border-radius: 10px 10px 0 0;
     background-color: var(--coconut-brown);
     color: var(--beige);
 }
@@ -108,7 +106,6 @@
     margin-left: 10px;
 }
 
-/* 작성 데이터 버튼 */
 .reportList_create_btn {
     background: var(--coconut-brown);
     border: none;
@@ -121,7 +118,11 @@
     margin-top: 20px;
     display: inline-block;
     text-align: center;
+    margin-left: 850px; /* 추가된 부분 */
+    margin-bottom: 20px;
 }
+
+
 
 .reportList_create_btn:hover {
     background: var(--coconut-green);

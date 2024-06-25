@@ -16,9 +16,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
  Page<Report> findAll(Pageable pageable);
  Page<Report> findAll(Specification<Report> spec, Pageable pageable);
 
- @Query("SELECT r FROM Report r ORDER BY SIZE(r.voter) DESC")
- List<Report> findTop5ByOrderByVoterCountDesc(Pageable pageable);
-
  List<Report> findAllByAuthorId(Long userId);
 
  List<Report> findAllByAuthor(User user);

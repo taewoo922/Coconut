@@ -10,15 +10,9 @@
                 </div>
                 <div class="reportDetail_createDate"
                      th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-
             </div>
             <div class="reportDetail_content" style="white-space: pre-line;" th:text="${report.content}"></div>
             <div class="reportDetail_content_function">
-                <a href="javascript:void(0);" class="reportDetail_vote"
-                   th:data-uri="@{|/report/vote/${report.id}|}">
-                    추천
-                    <span class="reportDetail_voterCount" th:text="${#lists.size(report.voter)}"></span>
-                </a>
                 <div class="reportDetail_content_modifyAndDelete">
                 <a th:href="@{|/report/modify/${report.id}|}" class="reportDetail_content_modify_btn"
                    sec:authorize="isAuthenticated()"
@@ -54,11 +48,6 @@
             <div th:text="${#temporals.format(reportReply.createDate, 'yyyy-MM-dd HH:mm')}"></div>
         </div>
         <div class="reportDetail_content_function">
-            <a href="javascript:void(0);" class="reportDetail_vote"
-               th:data-uri="@{|/reportReply/vote/${reportReply.id}|}">
-                추천
-                <span class="reportDetail_voterCount" th:text="${#lists.size(reportReply.voter)}"></span>
-            </a>
             <div class="reportDetail_content_modifyAndDelete">
                 <a th:href="@{|/reportReply/modify/${reportReply.id}|}" class="reportDetail_content_modify_btn"
                    sec:authorize="isAuthenticated()"

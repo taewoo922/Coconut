@@ -61,3 +61,40 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeAlert_form() {
              document.getElementById('error').style.display = 'none';
          }
+
+
+
+  // JavaScript 코드 추가: 클릭 시 답변 펼치기/접기 기능 구현
+    const questions = document.querySelectorAll('.question_bestReport');
+
+    questions.forEach(question => {
+        question.addEventListener('click', () => {
+            question.nextElementSibling.classList.toggle('show');
+            // 화살표 변경
+            const arrow = question.querySelector('.arrow');
+            arrow.textContent = arrow.textContent === '▼' ? '▲' : '▼';
+        });
+    });
+
+ function search() {
+            var kw = document.getElementById("searchInput").value;
+            window.location.href = "/report/list?kw=" + kw;
+        }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.baseReport_tab a');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function(event) {
+
+
+            // 모든 탭에서 active 클래스 제거
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // 클릭한 탭에 active 클래스 추가
+            this.classList.add('active');
+        });
+    });
+});
+
+

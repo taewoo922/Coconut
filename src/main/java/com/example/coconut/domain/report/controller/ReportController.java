@@ -4,6 +4,7 @@ package com.example.coconut.domain.report.controller;
 
 import com.example.coconut.UnauthorizedAccessException;
 import com.example.coconut.domain.ProfanityFilter;
+import com.example.coconut.domain.discussion_Type.entity.Debate;
 import com.example.coconut.domain.report.entity.Report;
 import com.example.coconut.domain.report.form.ReportForm;
 import com.example.coconut.domain.report.service.ReportService;
@@ -36,7 +37,16 @@ public class ReportController {
     private final ReportService reportService;
     private final UserService userService;
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/base")
+    public String bestlist(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw) {
+        Page<Report> paging = this.reportService.getList(page, kw);
+        model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
+        return "report/base";
+    }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Report> paging = this.reportService.getList(page, kw);
@@ -46,6 +56,7 @@ public class ReportController {
     }
 
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Long id, ReportReplyForm reportReplyForm, RedirectAttributes redirectAttributes){
         try {
@@ -131,25 +142,5 @@ public class ReportController {
         return "redirect:/report/list";
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/vote/{id}")
-    public String reportVote(Principal principal, @PathVariable("id") Long id) {
-        Report report = this.reportService.getReport(id);
-        User user = this.userService.getUser(principal.getName());
-        this.reportService.vote(report, user);
-        return "redirect:/report/detail/%s".formatted(id);
-    }
 
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/best_report")
-    public String getTopReports(Model model,Principal principal) {
-        List<Report> topReports = reportService.getTop5ReportsByVoterCount();
-        model.addAttribute("topReports", topReports);
-
-        String username = principal.getName(); // 현재 로그인된 사용자의 이름
-        User user = userService.getUserByUsername(username); // 사용자 이름을 이용하여 사용자 정보 가져오기
-        model.addAttribute("user", user);
-        return "report/best_report"; // View name
-    }
 }

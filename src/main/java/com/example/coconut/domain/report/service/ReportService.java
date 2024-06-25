@@ -123,16 +123,6 @@ public class ReportService {
         this.reportRepository.delete(report);
     }
 
-    public void vote(Report report, User user){
-        report.getVoter().add(user);
-        this.reportRepository.save(report);
-    }
-
-    public List<Report> getTop5ReportsByVoterCount() {
-        Pageable topFive = PageRequest.of(0, 5);
-        return reportRepository.findTop5ByOrderByVoterCountDesc(topFive);
-    }
-
     public List<Report> getListByUserId(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {

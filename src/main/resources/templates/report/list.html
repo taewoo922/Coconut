@@ -1,87 +1,114 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="reportList_container">
-    <div class="reportList_head_row">
-        <!-- 질문 등록하기 버튼 -->
-        <a class="reportList_create_btn" th:href="@{/report/create}">
-            질문 등록하기
-        </a>
-        <!-- 검색 창과 버튼 -->
-        <div class="reportList_input_group">
-            <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="검색어 입력">
-             <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass search-icon"></i>
+    <div class="baseReport_sec">
+        <div class="baseReport_nav">
+            <h1 class="baseReport_title">문의하기</h1>
+            <div class="baseReport_search_form_wrap">
+                <div class="baseReport_search_form">
+            <span class="baseReport_search_form_text">
+                <span class="baseReport_search_form_input">
+                    <input type="text" id="search_kw" class="form-control" placeholder="질문을 작성해주세요" th:value="${kw}" title="문의하기">
+                    <i type="button" id="btn_search" class="fa-solid fa-magnifying-glass report_search_icon"></i>
+                </span>
+            </span>
+                    <nav>
+                        <div class="baseReport_tab" role="tablist">
+                            <a class="baseReport_base" id="nav-best-tab" data-toggle="tab" href="/report/base" role="tab" aria-controls="nav-best" >자주 묻는 질문</a>
+                            <a class="baseReport_list active" id="nav-list-tab" data-toggle="tab" href="/report/list" role="tab" aria-controls="nav-list" >유저의 소리</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+                    <a class="reportList_create_btn" th:href="@{/report/create}">
+                        질문 등록하기
+                    </a>
+
+                    <!-- is secret Error message alert-->
+                    <div th:if="${errorMessage}" id="errorMessage" class="alert alert-danger" role="alert">
+                        <span th:text="${errorMessage}"></span>
+                        <span class="close" onclick="closeAlert_list()">&times;</span>
+                    </div>
+
+                    <table class="reportList_table">
+                        <thead class="reportList_table_head">
+                        <tr class="reportList_head_data">
+                            <th class="reportList_head_id RHList">번호</th>
+                            <th class="reportList_head_category RHList">카테고리</th>
+                            <th style="width:48%" class="reportList_head_title RHList">제목</th>
+                            <th class="reportList_head_username RHList">작성자</th>
+                            <th class="reportList_head_createDate RHList">작성일</th>
+                            <th class="reportList_head_isSecret RHList">공개 여부</th>
+                        </tr>
+                        </thead>
+                        <tbody class="reportList_table_body">
+                        <!-- paging이 비어 있는 경우 메시지 표시 -->
+                        <div th:if="${paging.empty}">
+                            <tr>
+                                <td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
+                            </tr>
+                        </div>
+                        <!-- paging에 데이터가 있는 경우 반복 출력 -->
+                        <div th:unless="${paging.empty}">
+                            <tr th:each="report, loop : ${paging}" class="reportList_body_data">
+                                <td class="reportList_id RBList"
+                                    th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+                                <td class="reportList_category RBList"><span th:text="${report.category}"></span></td>
+                                <td class="reportList_title RBList">
+                                    <a th:href="@{|/report/detail/${report.id}|}">
+                                        <span th:text="${report.title}"></span>
+                                        <span class="reportList_reply_count"
+                                              th:if="${#lists.size(report.replyList) > 0}"
+                                              th:text="${#lists.size(report.replyList)}">
+                </span>
+                                    </a>
+                                </td>
+                                <td class="reportList_username RBList"><span th:if="${report.authorNickname != null}"
+                                                                             th:text="${report.authorNickname}"></span></td>
+                                <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
+                                    class="reportList_createDate RBList"></td>
+                                <td class="reportList_secret RBList"><span th:text="${report.secret ? '비밀' : '공개'}"></span></td>
+                            </tr>
+                        </div>
+                        </tbody>
+
+                    </table>
+                    <!-- 페이징처리 시작 -->
+                    <div th:if="${!paging.isEmpty()}" class="report_pagination_container">
+                        <ul class="report_pagination">
+                            <li th:class="${!paging.hasPrevious} ? 'disabled' : ''">
+                                <a class="report_page_link" href="javascript:void(0)"
+                                   th:attr="data-page=${paging.number > 0} ? ${paging.number-1} : 0" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                                th:class="${page == paging.number} ? 'active' : ''">
+                                <a class="report_page_link" th:text="${page}" href="javascript:void(0)"
+                                   th:data-page="${page}"></a>
+                            </li>
+                            <li th:class="${!paging.hasNext} ? 'disabled' : ''">
+                                <a class="report_page_link" href="javascript:void(0)"
+                                   th:attr="data-page=${paging.number < paging.totalPages-1} ? ${paging.number+1} : ${paging.totalPages-1}"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- 페이징처리 끝 -->
+                    <form th:action="@{/report/list}" method="get" id="searchForm">
+                        <input type="hidden" id="kw" name="kw" th:value="${kw}">
+                        <input type="hidden" id="page" name="page" th:value="${paging.number}">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- is secret Error message alert-->
-    <div th:if="${errorMessage}" id="errorMessage" class="alert alert-danger" role="alert">
-        <span th:text="${errorMessage}"></span>
-        <span class="close" onclick="closeAlert_list()">&times;</span>
-    </div>
-
-    <table class="reportList_table">
-        <thead class="reportList_table_head">
-        <tr class="reportList_head_data">
-            <th class="reportList_head_id RHList">번호</th>
-            <th class="reportList_head_category RHList">카테고리</th>
-            <th style="width:50%" class="reportList_head_title RHList">제목</th>
-            <th class="reportList_head_username RHList">작성자</th>
-            <th class="reportList_head_createDate RHList">작성일</th>
-            <th class="reportList_head_recommendation RHList">추천수</th>
-            <th class="reportList_head_isSecret RHList">공개 여부</th>
-        </tr>
-        </thead>
-        <tbody class="reportList_table_body">
-        <tr th:each="report, loop : ${paging}" class="reportList_body_data">
-            <td class="reportList_id RBList"
-                th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-            <td class="reportList_category RBList"><span th:text="${report.category}"></span></td>
-            <td class="reportList_title RBList">
-                <a th:href="@{|/report/detail/${report.id}|}">
-                    <span th:text="${report.title}"></span>
-                    <span class="reportList_reply_count"
-                          th:if="${#lists.size(report.replyList) > 0}"
-                          th:text="${#lists.size(report.replyList)}">
-                    </span>
-                </a>
-            </td>
-            <td class="reportList_username RBList"><span th:if="${report.authorNickname != null}" th:text="${report.authorNickname}"></span></td>
-            <td th:text="${#temporals.format(report.createDate, 'yyyy-MM-dd HH:mm')}"
-                class="reportList_createDate RBList"></td>
-            <td class="reportList_recommendation RBList"><span th:text="${#lists.size(report.voter)}"></span></td>
-            <td class="reportList_secret RBList"><span th:text="${report.secret ? '비밀' : '공개'}"></span></td>
-        </tr>
-        </tbody>
-    </table>
-    <!-- 페이징처리 시작 -->
-    <div th:if="${!paging.isEmpty()}" class="report_pagination_container">
-        <ul class="report_pagination">
-            <li th:class="${!paging.hasPrevious} ? 'disabled' : ''">
-                <a class="report_page_link" href="javascript:void(0)" th:attr="data-page=${paging.number > 0} ? ${paging.number-1} : 0" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
-                th:if="${page >= paging.number-5 and page <= paging.number+5}"
-                th:class="${page == paging.number} ? 'active' : ''">
-                <a class="report_page_link" th:text="${page}" href="javascript:void(0)" th:data-page="${page}"></a>
-            </li>
-            <li th:class="${!paging.hasNext} ? 'disabled' : ''">
-                <a class="report_page_link" href="javascript:void(0)" th:attr="data-page=${paging.number < paging.totalPages-1} ? ${paging.number+1} : ${paging.totalPages-1}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
-    <!-- 페이징처리 끝 -->
-    <form th:action="@{/report/list}" method="get" id="searchForm">
-        <input type="hidden" id="kw" name="kw" th:value="${kw}">
-        <input type="hidden" id="page" name="page" th:value="${paging.number}">
-    </form>
-
 </div>
-
 </html>
-
