@@ -8,16 +8,16 @@
     min-height:100vh;
 }
 
-h1, h2 {
+.category_h1, .category_h2 {
     color: #333;
     text-align: center;
 }
 
-form {
+.category_form {
     margin-bottom: 20px;
 }
 
-label {
+.category_label {
     font-weight: bold;
     display: block;
     margin-bottom: 8px;

@@ -1,16 +1,16 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="category_create_container">
     <div class="container">
-        <h1>카테고리 관리</h1>
-        <form action="/add-category" method="post">
+        <h1 class="category_h1">카테고리 관리</h1>
+        <form class="category_form" action="/add-category" method="post">
             <div>
-                <label for="categoryName">카테고리 이름:</label>
+                <label class="category_label" for="categoryName">카테고리 이름:</label>
                 <input type="text" id="categoryName" name="categoryName" required>
             </div>
             <button type="submit" id="categoryadd">카테고리 추가</button>
         </form>
 
-        <h2>카테고리 목록</h2>
+        <h2 class="category_h2">카테고리 목록</h2>
         <ul class="category_list">
             <li th:each="category : ${categories}">
                 <a th:href="@{|/category/${category.id}|}" th:text="${category.name}"></a>

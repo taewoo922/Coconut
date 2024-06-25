@@ -56,7 +56,7 @@
         }
 
         .nav__main li:hover {
-            transform: scale(1.5, 1.5);
+            transform: scale(1.3, 1.3);
             transition: transform 0.5s;
 
             font-weight: bold; /* 글자 굵기 조정 */
@@ -114,7 +114,7 @@
              background: white; /* 배경색 */
              cursor: pointer;
              right: 10px;
-             top: 50%;
+             top: 60%;
              padding: 5px 10px; /* 패딩 */
              border-radius: 5px; /* 모서리 둥글게 */
              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 */
