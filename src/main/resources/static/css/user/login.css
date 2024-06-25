@@ -4,8 +4,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
+    overflow-x: hidden; /* 가로 스크롤 숨김 */
 }
 
 .container {
@@ -16,6 +17,7 @@ body {
     width: 100%;
     max-width: 400px;
     text-align: center;
+    margin: 0 auto;
 }
 
 .logo {
@@ -68,9 +70,9 @@ h1 {
 button {
     width: 100%;
     padding: 0.75em;
-    background-color: black;
+    background-color: #8B4513;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -78,11 +80,11 @@ button {
 }
 
 button:hover {
-    background-color: gray;
+    background-color: #7A3C12;
 }
 
 a {
-    display: block;
+    display: inline-block;
     margin-top: 1em;
     color: #555;
     text-decoration: none;
@@ -101,7 +103,7 @@ a:hover {
     align-items: center;
     padding: 0.75em;
     margin-bottom: 0.5em;
-    border-radius: 4px;
+    border-radius: 5px;
     color: white;
     text-decoration: none;
     transition: background-color 0.3s;
