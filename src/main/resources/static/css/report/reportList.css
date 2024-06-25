@@ -14,8 +14,7 @@
     padding-left: 200px;
     padding-right: 200px;
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 100vh;
+    border-radius: 5px;
 }
 
 /* 질문 등록하기 버튼과 검색창 */
