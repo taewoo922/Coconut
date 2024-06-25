@@ -32,6 +32,7 @@ public class Dev {
             categoryService.addCategory("사회");
             categoryService.addCategory("연예");
             categoryService.addCategory("스포츠");
+            categoryService.addCategory("음식");
             categoryService.addCategory("환경");
         };
     }
