@@ -41,7 +41,7 @@ public class DebateController {
     private final CategoryService categoryService;
     private final ScrapService scrapService;
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping("/debate_list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw,
@@ -65,7 +65,7 @@ public class DebateController {
 
     }
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping(value = "/d_detail/{id}")
     public String d_detail(Model model, @PathVariable("id") Long id, AnswerForm answerForm,@RequestParam(value = "view", defaultValue = "0") int view) {
         this.debateService.incrementViews(id);
