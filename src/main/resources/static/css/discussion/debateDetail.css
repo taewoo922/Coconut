@@ -1,9 +1,21 @@
 /* 전체 컨테이너 */
 .debateDetail_container {
-    width: 80%;
-    margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+    background-color: #fff;
+    background-color: #fff;
+    align-items: center;
+    display:flex;
+}
+
+.debateDetail_box{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    align-item: center;
+    min-height:83vh;
 }
 
 /* 제목 */
@@ -39,7 +51,7 @@
 /* 추천 버튼 */
 .debateDetail_vote {
     cursor: pointer;
-    color: #007bff;
+    color: #8B4513;
 }
 
 /* 수정, 삭제 링크 */
@@ -204,7 +216,7 @@
     display: inline-flex; /* 아이콘과 텍스트를 가로로 정렬합니다 */
     align-items: center; /* 세로 정렬을 맞춥니다 */
     gap: 5px; /* 아이콘과 텍스트 사이의 간격을 조정합니다 */
-    background-color: #007bff;
+    background-color: #8B4513;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -215,7 +227,7 @@
 
 /* 댓글 작성 버튼 호버 효과 */
 .debateDetail_create_btn:hover {
-    background-color: #0056b3;
+    background-color: #70360c;
 }
 
 .debateDetail_chart {

@@ -120,11 +120,11 @@ body {
 /* 게시물 목록 컨테이너*/
 .freedcs-container {
     max-width: 1280px;
-    width: 100%; /* Added to ensure it takes full available width */
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    background-color: white; /* Optional: Background color for the container */
+    background-color: white;
     border-radius: 5px;
     min-height:100vh;
 }

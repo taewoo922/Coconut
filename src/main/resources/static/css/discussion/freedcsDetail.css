@@ -1,10 +1,20 @@
 .freedcsDetail_container {
-    margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    max-width: 1280px;
+    background-color: #fff;
+    align-items: center;
+    display:flex;
 }
+
+.freedcsDetail_box{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    align-item: center;
+    min-height:83vh;
+}
+
 
 .freedcsDetail_title,
 .freedcsDetail_content {
@@ -29,7 +39,7 @@
 .freedcsDetail_content_delete_btn {
     display: inline-block;
     margin-right: 10px;
-    background-color: #007bff;
+    background-color: #8B4513;
     color: #fff;
     padding: 5px 10px;
     border-radius: 3px;
@@ -44,7 +54,7 @@
 .freedcsDetail_scrap:hover,
 .freedcsDetail_content_modify_btn:hover,
 .freedcsDetail_content_delete_btn:hover {
-    background-color: #0056b3;
+    background-color: #70360c;
 }
 
 .freedcsDetail_answerList {
@@ -91,7 +101,7 @@
 
 .freedcsDetail_create_btn {
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #8B4513;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -99,5 +109,5 @@
 }
 
 .freedcsDetail_create_btn:hover {
-    background-color: #218838;
+    background-color: #70360c;
 }
