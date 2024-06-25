@@ -381,14 +381,14 @@
     left: 0;
     width: 8px;
     height: 5px;
-    background: #cce5ff;
+    background: #FFFFE0;
     border-radius: 5px;
     transition: background-color 1s ease;
 }
 
 /* 스크롤바가 마우스 오버 시 색상 */
 ::-webkit-scrollbar-thumb:hover {
-    background: #0099ff;
+    background: #8B4513;
 }
 
 
