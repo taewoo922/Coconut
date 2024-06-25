@@ -1,7 +1,7 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsForm_container">
-    <div class="my-3 border-bottom pb-2">자유토론 주제</div>
-    <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data">
+    <h5 class="freedcsForm_create">자유토론 주제</h5>
+    <form th:object="${freedcsForm}" method="post" enctype="multipart/form-data" class="">
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>

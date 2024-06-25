@@ -43,7 +43,7 @@ public class FreedcsController {
     private final CategoryService categoryService;
     private final ScrapService scrapService;
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping("/freedcs_list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "kw", defaultValue = "") String kw,
@@ -69,7 +69,7 @@ public class FreedcsController {
 
     }
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping(value = "/free_detail/{id}")
     public String free_detail(Model model, @PathVariable("id") Long id, @RequestParam(value = "view", defaultValue = "0") int view, AnswerForm answerForm) {
         this.freedcsService.incrementViews(id);

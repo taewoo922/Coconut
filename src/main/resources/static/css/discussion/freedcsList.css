@@ -28,23 +28,24 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
+
 
 /* 오른쪽 컨테이너 */
 .right-container {
     display: flex;
     align-items: center;
-    gap: 20px; /* 버튼 간의 간격을 조절 */
+    gap: 20px; /* 버튼 간의 간격 조절 */
 }
 
 /* 카테고리 버튼 */
 .category-button {
-    color: #717171;
+    color: black;
     font-size: 12px;
     font-weight: 600;
-    background-color: #c8d8e8;
-    border: none;
+    background-color: white;
+    border: 1px solid black;
     border-radius: 4px;
     padding: 8px 12px;
     cursor: pointer;
@@ -52,7 +53,8 @@ body {
 }
 
 .category-button:hover {
-    background-color: #b1c9e0;
+    background-color: black;
+    color:white;
 }
 
 /* 카테고리 만들기 버튼 */
@@ -62,8 +64,8 @@ body {
 
 .category_create a {
     display: inline-block;
-    background-color: #28a745; /* 예시 색상 */
-    color: #fff; /* 텍스트 색상 */
+    background-color: #61753b;
+    color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
@@ -71,13 +73,13 @@ body {
 }
 
 .category_create a:hover {
-    background-color: #218838; /* 호버 시 배경색 변경 */
+    background-color: #61753b; /* 호버 시 배경색 변경 */
 }
 
 /* 질문 등록하기 버튼 */
 .freedcsList_create_btn {
     display: inline-block;
-    background-color: #17a2b8; /* 예시 색상 */
+    background-color: #8B4513;
     color: #fff; /* 텍스트 색상 */
     padding: 10px 20px;
     border-radius: 5px;
@@ -87,7 +89,7 @@ body {
 }
 
 .freedcsList_create_btn:hover {
-    background-color: #138496; /* 호버 시 배경색 변경 */
+    background-color: #70360c; /* 호버 시 배경색 변경 */
 }
 
 /* 검색 창과 아이콘 */
@@ -102,7 +104,7 @@ body {
     padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가 */
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 2px;
     box-sizing: border-box; /* 내용 영역을 패딩과 테두리를 포함한 크기로 지정 */
 }
 
@@ -122,22 +124,23 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #c7ebe5; /* Optional: Background color for the container */
+    background-color: white; /* Optional: Background color for the container */
     border-radius: 5px;
+    min-height:100vh;
 }
 
 .freedcs_body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center; /* Center align the posts */
+    justify-content: start;
 }
 
 .post {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
     padding: 20px;
     width: calc((100% - 80px) / 4); /* 80px is the total gap space (4 gaps of 20px each) */
     box-sizing: border-box;

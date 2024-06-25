@@ -36,7 +36,7 @@ public class ReportController {
     private final ReportService reportService;
     private final UserService userService;
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Report> paging = this.reportService.getList(page, kw);
@@ -45,7 +45,7 @@ public class ReportController {
         return "report/list";
     }
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Long id, ReportReplyForm reportReplyForm, RedirectAttributes redirectAttributes){
         try {
@@ -140,9 +140,10 @@ public class ReportController {
         return "redirect:/report/detail/%s".formatted(id);
     }
 
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/best_report")
-    public String getTopReports(Model model, Principal principal) {
+    public String getTopReports(Model model,Principal principal) {
         List<Report> topReports = reportService.getTop5ReportsByVoterCount();
         model.addAttribute("topReports", topReports);
 
