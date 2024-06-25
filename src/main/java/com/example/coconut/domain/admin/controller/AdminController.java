@@ -116,7 +116,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "질문 삭제 중 오류가 발생했습니다.");
         }
-        return "redirect:/questionlist";
+        return "redirect:/freedcslist";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -143,7 +143,7 @@ public class AdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "질문 삭제 중 오류가 발생했습니다.");
         }
-        return "redirect:/questionlist";
+        return "redirect:/debatelist";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.coconut.global.initData;
 
+import com.example.coconut.domain.category.service.CategoryService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
 import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.service.UserService;
@@ -18,12 +19,18 @@ public class Dev {
     PasswordEncoder passwordEncoder;
 
     @Bean
-    public ApplicationRunner init(UserService userService, FreedcsService freedcsService) {
+    public ApplicationRunner init(UserService userService, CategoryService categoryService) {
         return args -> {
             userService.signup("test", "1234", "testnickname", "test@test.com", "01012341234", UserRole.USER);
             userService.signup("user", "1234", "usernickname", "user@test.com", "01012341234", UserRole.USER);
             userService.signup("esong", "1234", "esongnickname", "esong@test.com", "01012341234", UserRole.USER);
             userService.signup("admin", "1234", "admin", "admin@test.com", "01012341234", UserRole.ADMIN);
+
+            categoryService.addCategory("경제");
+            categoryService.addCategory("사회");
+            categoryService.addCategory("연예");
+            categoryService.addCategory("스포츠");
+            categoryService.addCategory("환경");
         };
     }
 }
