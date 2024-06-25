@@ -89,8 +89,10 @@ public class FreedcsController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/free_create")
     public String free_create(@Valid FreedcsForm freedcsForm, BindingResult bindingResult, Principal principal, RedirectAttributes redirectAttributes,
-                              @RequestParam("thumbnail") MultipartFile thumbnail) {
+                              @RequestParam("thumbnail") MultipartFile thumbnail, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.getAllCategories();
+            model.addAttribute("categories", categories);
             return "discussion/free_create_form";
         }
 
@@ -155,8 +157,10 @@ public class FreedcsController {
     public String freedcsModify(@Valid FreedcsForm freedcsForm, BindingResult bindingResult,
                                 Principal principal, @PathVariable("id") Long id,RedirectAttributes redirectAttributes,
                                 @RequestParam("thumbnail") MultipartFile thumbnail
-                                ) {
+                                , Model model) {
         if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.getAllCategories();
+            model.addAttribute("categories", categories);
             return "discussion/free_create_form";
         }
         Freedcs freedcs = this.freedcsService.getFreedcs(id);

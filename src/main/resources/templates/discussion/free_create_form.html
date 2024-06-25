@@ -13,7 +13,11 @@
         <div class="freedcsForm_category">
             <label for="category" class="freedcsForm_category_label">카테고리</label>
             <select id="category" th:field="*{category}" class="freedcsForm_category_select">
-                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}"
+                        >
+                </option>
             </select>
         </div>
         <div class="freedcsForm_title">
