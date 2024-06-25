@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
 }
 
@@ -25,23 +25,34 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     text-align: left;
 }
-
 .form-group label {
     display: block;
     margin-bottom: 0.5em;
     font-weight: bold;
 }
 
-.form-group input {
+.form-group input, .form-group span {
     width: 100%;
     padding: 0.75em;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.form-group span {
+    display: inline-block;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    line-height: 1.5;
+}
+
+
 button.back-btn {
     position: absolute;
     top: 20px;
@@ -64,18 +75,19 @@ button.back-btn {
 button {
     width: 100%;
     padding: 0.75em;
-    background-color: black;
+    background-color: #8B4513;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 10px;
+
 }
 
 button:hover {
-    background-color: gray;
+    background-color: #7A3C12;
 }
 
 .profile-img-preview {
@@ -97,3 +109,12 @@ button:hover {
 .delete-btn:hover {
     background-color: darkred;
 }
+
+.form-group #password-message {
+    background: white;
+    border: none;
+    padding: 0.5em;
+    font-size: 0.8em;
+}
+
+
