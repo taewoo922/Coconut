@@ -6,6 +6,7 @@ body {
     height: 100vh;
     background-color: #f5f5f5;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .container {
@@ -62,16 +63,16 @@ h1 {
     width: 100%;
     padding: 0.75em;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
 button {
     width: 100%;
     padding: 0.75em;
-    background-color: black;
+    background-color: #8B4513;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -79,5 +80,5 @@ button {
 }
 
 button:hover {
-    background-color: gray;
+    background-color: #7A3C12;
 }
