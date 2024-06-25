@@ -1,90 +1,92 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="freedcsDetail_container">
-    <!-- 질문 -->
-    <h1 class="freedcsDetail_title" th:text="${freedcs.title}"></h1>
-    <div class="freedcsDetail_freedcsList">
-        <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
-        <div class="freedcsDetail_userData">
-            <div class="freedcsDetail_username">
-                <span th:if="${freedcs.authorNickname != null}" th:text="${freedcs.authorNickname}"></span>
-            </div>
-            <div class="freedcsDetail_createDate" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-        </div>
-        <div class="freedcsDetail_content_function">
-            <a href="javascript:void(0);" class="freedcsDetail_vote"
-               th:data-uri="@{|/discussion/vote/${freedcs.id}|}">
-                추천
-                <span class="freedcsDetail_voterCount" th:text="${#lists.size(freedcs.voter)}"></span>
-            </a>
-            <a href="javascript:void(0);" class="freedcsDetail_scrap"
-               th:data-uri="@{|/discussion/freedcs/scrap/${freedcs.id}|}">
-                스크랩
-            </a>
-<!--            <form th:action="@{|/discussion/scrap/${freedcs.id}|)}" method="post" style="display:inline;">-->
-<!--                <button type="submit" class="freedcsDetail_scrap">스크랩</button>-->
-<!--            </form>-->
-            <div class="freedcsDetail_content_modifyAndDelete">
-                <a th:href="@{|/discussion/modify/${freedcs.id}|}" class="freedcsDetail_content_modify_btn"
-                   sec:authorize="isAuthenticated()"
-                   th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
-                   th:text="수정"></a>
-                <a href="javascript:void(0);" th:data-uri="@{|/discussion/delete/${freedcs.id}|}"
-                   class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
-                   th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
-                   th:text="삭제"></a>
-            </div>
-
-        </div>
-    </div>
-    <!-- 답변의 갯수 표시 -->
-    <h5 class="freedcsDetail_answerList"
-        th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>
-    <!-- Error message alert -->
-    <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
-        <span th:text="${error}"></span>
-        <span class="close" onclick="closeAlert_form()">&times;</span>
-    </div>
-    <!-- 답변 반복 시작 -->
-    <div class="freedcsDetail_answer" th:each="answer : ${freedcs.answerList}">
-        <a th:id="|answer_${answer.id}|"></a>
-        <div class="freedcsDetail_answer">
+    <div class="freedcsDetail_box">
+        <!-- 질문 -->
+        <h1 class="freedcsDetail_title" th:text="${freedcs.title}"></h1>
+        <div class="freedcsDetail_freedcsList">
+            <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
             <div class="freedcsDetail_userData">
                 <div class="freedcsDetail_username">
-                    <span th:if="${answer.author != null}" th:text="${answer.author.nickname}"></span>
+                    <span th:if="${freedcs.authorNickname != null}" th:text="${freedcs.authorNickname}"></span>
                 </div>
-                <div class="freedcsDetail_createDate">
-                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                <div class="freedcsDetail_createDate" th:text="${#temporals.format(freedcs.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+            </div>
+            <div class="freedcsDetail_content_function">
+                <a href="javascript:void(0);" class="freedcsDetail_vote"
+                   th:data-uri="@{|/discussion/vote/${freedcs.id}|}">
+                    추천
+                    <span class="freedcsDetail_voterCount" th:text="${#lists.size(freedcs.voter)}"></span>
+                </a>
+                <a href="javascript:void(0);" class="freedcsDetail_scrap"
+                   th:data-uri="@{|/discussion/freedcs/scrap/${freedcs.id}|}">
+                    스크랩
+                </a>
+    <!--            <form th:action="@{|/discussion/scrap/${freedcs.id}|)}" method="post" style="display:inline;">-->
+    <!--                <button type="submit" class="freedcsDetail_scrap">스크랩</button>-->
+    <!--            </form>-->
+                <div class="freedcsDetail_content_modifyAndDelete">
+                    <a th:href="@{|/discussion/modify/${freedcs.id}|}" class="freedcsDetail_content_modify_btn"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
+                       th:text="수정"></a>
+                    <a href="javascript:void(0);" th:data-uri="@{|/discussion/delete/${freedcs.id}|}"
+                       class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                       th:if="${freedcs.author != null and #authentication.getPrincipal().getUsername() == freedcs.author.username}"
+                       th:text="삭제"></a>
                 </div>
 
             </div>
-            <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
-            <div class="freedcsDetail_content_function">
-                <a href="javascript:void(0);" class="freedcsDetail_vote"
-                   th:data-uri="@{|/answer/vote/${answer.id}|}">
-                    추천
-                    <span class="freedcsDetail_voterCount" th:text="${#lists.size(answer.voter)}"></span>
-                </a>
-                <div class="freedcsDetail_content_modifyAndDelete">
-                    <a th:href="@{|/answer/modify/${answer.id}|}" class="freedcsDetail_content_modify_btn"
-                       sec:authorize="isAuthenticated()"
-                       th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
-                       th:text="수정"></a>
-                    <a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
-                       class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
-                       th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
-                       th:text="삭제"></a>
+        </div>
+        <!-- 답변의 갯수 표시 -->
+        <h5 class="freedcsDetail_answerList"
+            th:text="|${#lists.size(freedcs.answerList)}개의 답변이 있습니다.|"></h5>
+        <!-- Error message alert -->
+        <div th:if="${error}" id="error" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+            <span class="close" onclick="closeAlert_form()">&times;</span>
+        </div>
+        <!-- 답변 반복 시작 -->
+        <div class="freedcsDetail_answer" th:each="answer : ${freedcs.answerList}">
+            <a th:id="|answer_${answer.id}|"></a>
+            <div class="freedcsDetail_answer">
+                <div class="freedcsDetail_userData">
+                    <div class="freedcsDetail_username">
+                        <span th:if="${answer.author != null}" th:text="${answer.author.nickname}"></span>
+                    </div>
+                    <div class="freedcsDetail_createDate">
+                        <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                    </div>
+
+                </div>
+                <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                <div class="freedcsDetail_content_function">
+                    <a href="javascript:void(0);" class="freedcsDetail_vote"
+                       th:data-uri="@{|/answer/vote/${answer.id}|}">
+                        추천
+                        <span class="freedcsDetail_voterCount" th:text="${#lists.size(answer.voter)}"></span>
+                    </a>
+                    <div class="freedcsDetail_content_modifyAndDelete">
+                        <a th:href="@{|/answer/modify/${answer.id}|}" class="freedcsDetail_content_modify_btn"
+                           sec:authorize="isAuthenticated()"
+                           th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                           th:text="수정"></a>
+                        <a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
+                           class="freedcsDetail_content_delete_btn" sec:authorize="isAuthenticated()"
+                           th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                           th:text="삭제"></a>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- 답변 반복 끝  -->
+        <!-- 답변 작성 -->
+        <form class="freedcsDetail_create" th:action="@{|/answer/free/create/${freedcs.id}|}" th:object="${answerForm}" method="post">
+            <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
+            <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
+            <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
+            <input class="freedcsDetail_create_btn" type="submit" value="답변등록">
+        </form>
     </div>
-    <!-- 답변 반복 끝  -->
-    <!-- 답변 작성 -->
-    <form class="freedcsDetail_create" th:action="@{|/answer/free/create/${freedcs.id}|}" th:object="${answerForm}" method="post">
-        <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
-        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
-        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="freedcsDetail_create_text" rows="10"></textarea>
-        <input class="freedcsDetail_create_btn" type="submit" value="답변등록">
-    </form>
 </div>
 <script>
 
