@@ -12,8 +12,11 @@
         <div class="debateForm_category">
             <label for="category" class="debateForm_category_label">카테고리</label>
             <select id="category" th:field="*{category}" class="debateForm_category_select">
-                <option th:each="category : ${categories}" th:value="${category.id}"
-                        th:text="${category.name}"></option>
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}"
+                        th:selected="${category.id} == *{category}">
+                </option>
             </select>
         </div>
         <div class="debateForm_title">

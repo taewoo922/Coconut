@@ -94,8 +94,10 @@ public class DebateController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/d_create")
     public String d_create(@Valid DebateForm debateForm, BindingResult bindingResult, Principal principal,
-                           @RequestParam("thumbnail") MultipartFile thumbnail, RedirectAttributes redirectAttributes) {
+                           @RequestParam("thumbnail") MultipartFile thumbnail, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.getAllCategories();
+            model.addAttribute("categories", categories);
             return "discussion/d_create_form";
         }
 
@@ -159,8 +161,10 @@ public class DebateController {
     @PostMapping("/d_modify/{id}")
     public String dModify(@Valid DebateForm debateForm, BindingResult bindingResult,
                                Principal principal, @PathVariable("id") Long id,RedirectAttributes redirectAttributes,
-                          @RequestParam("thumbnail") MultipartFile thumbnail) {
+                          @RequestParam("thumbnail") MultipartFile thumbnail, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.getAllCategories();
+            model.addAttribute("categories", categories);
             return "discussion/d_create_form";
         }
         Debate debate = this.debateService.getDebate(id);
