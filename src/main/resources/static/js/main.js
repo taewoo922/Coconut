@@ -78,11 +78,17 @@ let free_Sec_Title = document.querySelector(".free_Sec_Title");
 let free_Sec_Content = document.querySelector(".free_Sec_Content");
 let pcd_Sec_Title = document.querySelector(".pcd_Sec_Title");
 let pcd_Sec_Content = document.querySelector(".pcd_Sec_Content");
+let nav_human = document.querySelector(".human");
 
 window.addEventListener('scroll', function(){
     let value = this.window.scrollY
     console.log("scrollY", value);
 
+    if (value > 1300) {
+            nav_human.style.backgroundImage = "url('/images/main_human2.png')";
+        } else {
+            nav_human.style.backgroundImage = "";
+        }
 
     if(value>2100 || value < 1250){
         free_Sec_Title.style.animation= "disappear 1s ease-out forwards";
