@@ -1,7 +1,9 @@
 package com.example.coconut.global.initData;
 
+import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.service.CategoryService;
 import com.example.coconut.domain.discussion_Type.service.FreedcsService;
+import com.example.coconut.domain.scrap.service.ScrapService;
 import com.example.coconut.domain.user.entity.UserRole;
 import com.example.coconut.domain.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,7 @@ public class Dev {
             categoryService.addCategory("사회");
             categoryService.addCategory("연예");
             categoryService.addCategory("스포츠");
+            categoryService.addCategory("음식");
             categoryService.addCategory("환경");
         };
     }
