@@ -2,6 +2,7 @@ package com.example.coconut;
 
 import com.example.coconut.domain.category.entity.Category;
 import com.example.coconut.domain.category.repository.CategoryRepository;
+import com.example.coconut.domain.category.service.CategoryService;
 import com.example.coconut.domain.discussion_Type.repository.DebateRepository;
 import com.example.coconut.domain.discussion_Type.repository.FreedcsRepository;
 import com.example.coconut.domain.discussion_Type.service.DebateService;
@@ -59,6 +60,9 @@ class CoconutApplicationTests {
 	private UserService userService;
 
 	@Autowired
+	private CategoryService categoryService;
+
+	@Autowired
 	private CategoryRepository categoryRepository;
 
 	@Test
@@ -91,9 +95,10 @@ class CoconutApplicationTests {
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 
 			User user = userService.getUserByUsername("user");
+			Category category = categoryService.getCategoryById((long)1);
 
-			this.debateService.create(subject, content, thumbnailImg, user);
-			this.freedcsService.create(subject, content, thumbnailImg, user);
+			this.debateService.create(subject, content, thumbnailImg, user, category);
+			this.freedcsService.create(subject, content, thumbnailImg, user, category);
 		}
 	}
 }
