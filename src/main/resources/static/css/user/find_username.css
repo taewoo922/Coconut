@@ -1,10 +1,17 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
     overflow-x: hidden;
 }
@@ -35,14 +42,14 @@ button.back-btn {
     display: flex;
     align-items: center;
 }
-    button.back-btn i {
+
+button.back-btn i {
     margin-right: 5px;
 }
 
-    button.back-btn:hover {
+button.back-btn:hover {
     background-color: transparent;
 }
-
 
 h1 {
     margin-bottom: 1.5em;
@@ -81,4 +88,22 @@ button {
 
 button:hover {
     background-color: #7A3C12;
+}
+
+.message {
+    margin-top: 1em;
+    font-size: 16px;
+}
+
+.message p {
+    margin: 0;
+}
+
+.message.error p {
+    color: red;
+}
+
+.login-btn {
+    margin-top: 1em;
+    display: none;
 }

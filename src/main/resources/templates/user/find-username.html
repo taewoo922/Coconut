@@ -1,24 +1,41 @@
-<!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/user/find_username.css">
+    <script src="/js/user/back.js"></script>
 </head>
 <body>
-<h1>아이디 찾기</h1>
-<form action="/user/find-username" method="post">
-    <label for="email">등록된 이메일을 입력하세요:</label>
-    <input type="email" id="email" name="email" required>
-    <button type="submit">아이디 찾기</button>
-</form>
+<div class="container">
+    <div class="logo">
+        <img th:src="@{/images/coconut.png}" alt="이미지">
+    </div>
+    <button type="button" id="back-btn" class="back-btn"><i class="fas fa-arrow-left"></i> 뒤로가기</button>
+    <h1>아이디 찾기</h1>
+    <form action="/user/find-username" method="post">
+        <div class="form-group">
+            <label for="email">등록된 이메일을 입력하세요.</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit">아이디 찾기</button>
+    </form>
 
-<!-- 아이디 결과 출력 -->
-<div th:if="${username != null}">
-    <p>찾은 아이디는 <span th:text="${username}"></span> 입니다.</p>
+    <!-- 아이디 결과 출력 -->
+    <div class="message" th:if="${username != null}">
+        <p>찾은 아이디는 <span th:text="${username}"></span> 입니다.</p>
+        <button class="login-btn" onclick="window.location.href='/user/login'">로그인하기</button>
+    </div>
+    <!-- 에러 메시지 출력 -->
+    <div class="message error" th:if="${error != null}">
+        <p th:text="${error}"></p>
+    </div>
 </div>
-<!-- 에러 메시지 출력 -->
-<div th:if="${error != null}">
-    <p th:text="${error}" style="color: red;"></p>
-</div>
+<script>
+    // 찾은 아이디가 있을 때 로그인 버튼을 보이게
+    if (document.querySelector('.message span')) {
+        document.querySelector('.login-btn').style.display = 'block';
+    }
+</script>
 </body>
 </html>
