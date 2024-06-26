@@ -1,0 +1,133 @@
+.baseReport_sec {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: 20px;
+}
+
+.baseReport_nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* 필요에 따라 마진 조정 가능 */
+    width: 100%;
+    min-height: 100vh;
+}
+
+.baseReport_title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.baseReport_search_form_wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.baseReport_search_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+.baseReport_search_form_text {
+    width: 100%;
+}
+
+.baseReport_search_form_input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.baseReport_search_form_input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.report_search_icon {
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px; /* 아이콘과 입력 필드 사이의 간격 조정 */
+}
+
+.report_search_icon:hover {
+    color: #000;
+}
+
+  .baseReport_tab {
+      display: flex;
+      justify-content: center;
+       width: 100%;
+         margin-top: 20px;
+  }
+
+  .baseReport_base, .baseReport_list {
+      text-decoration: none;
+      color: black;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+
+
+  .baseReport_base.active, .baseReport_list.active,
+  .baseReport_base:focus, .baseReport_list:focus,
+  .baseReport_base:hover, .baseReport_list:hover {
+      border-bottom: 2px solid #8b4513;
+      color: black;
+      font-weight: bold;
+  }
+
+.faq-list {
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.faq-item {
+    margin-bottom: 20px; /* FAQ 아이템 사이 여백 추가 */
+    width: 700px;
+}
+
+.question_bestReport {
+    background-color: white;
+    border-bottom: 1px solid #8B4513;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.answer_bestReport {
+    padding: 15px;
+    display: none; /* 초기에는 답변을 숨김 */
+}
+
+.show {
+    display: block; /* 클릭 시 답변 펼쳐짐 */
+}
+/* 화살표 모양 변경 */
+span.arrow {
+    font-size: 14px; /* 아이콘 크기 조정 */
+}
+
+

@@ -36,16 +36,11 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/userlist")
-    public String userlist(Model model,
-                           @RequestParam(value = "page", defaultValue = "0") int page,
-                           @RequestParam(value = "kw", defaultValue = "") String kw
+    public String userlist(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw
     ) {
-
         Page<User> paging = this.userService.getList(page, kw);;
-
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
-
         return "manager/admin";
     }
 

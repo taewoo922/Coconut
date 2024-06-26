@@ -3,7 +3,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: white;
     border: 1px solid #e0e6ed;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@
 /* 답변 개수 표시 */
 .reportDetail_replyList {
     font-size: 1.3em;
-    color: #1a73e8;
+    color: #8B4513;
     margin: 10px 0;
     border-bottom: 2px solid #e0e6ed;
     padding-bottom: 5px;
@@ -134,7 +134,7 @@
     margin-bottom: 10px; /* Add margin to separate from the functions */
 }
 
-/* 댓글 기능 (추천, 수정, 삭제) */
+/* 댓글 기능 ( 수정, 삭제) */
 .reportDetail_content_function {
     display: flex;
     justify-content: space-between;
@@ -143,29 +143,6 @@
     gap: 140px; /* 간격 추가 */
 }
 
-.reportDetail_vote {
-    display: inline-flex;
-    align-items: center;
-    background-color: #f0f8ff; /* 코코넛 느낌의 연한 파란색 배경 */
-    color: #008080; /* 코코넛 느낌의 청록색 글자 */
-    border: 2px solid #008080; /* 테두리 색상 */
-    border-radius: 10px; /* 둥근 모서리 */
-    padding: 1px 15px; /* 패딩 */
-    font-family: 'Gasoek One', sans-serif; /* 코코넛 느낌의 폰트 */
-    font-size: 1rem; /* 폰트 크기 */
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
-}
-
-.reportDetail_vote:hover {
-    background-color: #008080; /* 호버 시 배경색 */
-    color: #f0f8ff; /* 호버 시 글자색 */
-}
-
-.reportDetail_voterCount {
-    margin-left: 10px;
-    font-weight: bold;
-}
 
 .reportDetail_content_modifyAndDelete {
     display: flex;
@@ -225,7 +202,7 @@ textarea:disabled {
     padding: 15px;
     font-size: 1em;
     color: #ffffff;
-    background-color: #1a73e8;
+    background-color: #8B4513;
     border: none;
     border-radius: 8px;
     cursor: pointer;
