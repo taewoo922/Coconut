@@ -132,7 +132,9 @@
                     <input type="radio" id="oppositionRadio" name="isSupport" value="false" th:checked="${answerForm.isSupport == false}"> 반대
                 </label>
             </div>
+            <div class="debateDetail_createBtn">
             <button type="submit" class="debateDetail_create_btn">댓글 작성</button>
+            </div>
             <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         </form>
     </div>

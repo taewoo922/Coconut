@@ -19,7 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    width: 1280px;
+    width: 1240px;
     box-sizing: border-box;
 }
 
@@ -36,11 +36,11 @@ body {
 .right-container {
     display: flex;
     align-items: center;
-    gap: 20px; /* 버튼 간의 간격 조절 */
+    gap: 10px; /* 버튼 간의 간격 조절 */
 }
 
 /* 카테고리 버튼 */
-.category-button {
+.freedcs_menu .category-button {
     color: black;
     font-size: 12px;
     font-weight: 600;
@@ -52,7 +52,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.category-button:hover {
+.freedcs_menu .category-button:hover {
     background-color: black;
     color:white;
 }
@@ -199,8 +199,8 @@ body {
  }
 
  .freedcs_pagination li.active a {
-     background-color: #007bff;
-     border-color: #007bff;
+     background-color: #8B4513;
+     border-color: #8B4513;
      color: #fff;
  }
 

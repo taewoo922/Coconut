@@ -59,7 +59,6 @@ public class FreedcsController {
         model.addAttribute("paging_category", paging_category);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
-        model.addAttribute("freedcsList", freedcsList);
 
 
         List<Category> categories = categoryService.getAllCategories();

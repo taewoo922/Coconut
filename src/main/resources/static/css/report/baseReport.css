@@ -18,9 +18,9 @@
 }
 
 .baseReport_title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .baseReport_search_form_wrap {
@@ -104,17 +104,18 @@
 
 .faq-item {
     margin-bottom: 20px; /* FAQ 아이템 사이 여백 추가 */
-    width: 700px;
+    width: 1000px;
 }
 
 .question_bestReport {
     background-color: white;
     border-bottom: 1px solid #8B4513;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width:1000px;
 }
 
 .answer_bestReport {

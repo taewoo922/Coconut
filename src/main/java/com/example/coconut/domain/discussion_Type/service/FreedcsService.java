@@ -84,6 +84,10 @@ public class FreedcsService {
     }
 
     public Page<Freedcs> getListByCategory(int page, String kw, Long categoryId) {
+        if ( categoryId == null) {
+            return getList(page, kw);
+        }
+
         Pageable pageable = PageRequest.of(page, 12, Sort.by(Sort.Direction.DESC, "createDate"));
         if (kw == null || kw.isBlank()) {
             return freedcsRepository.findAllByCategory_Id(categoryId, pageable);

@@ -101,3 +101,8 @@
 .freedcsForm_create_btn:hover {
     background-color: #70360c;
 }
+
+.freedcsForm_createBtn{
+    display:flex;
+    justify-content: end;
+}

@@ -313,8 +313,9 @@
 .pcd_Sec_Content:hover {
   color: blue;
 }
-.arrow {
+.main_arrow {
   font-size: 50px;
+  margin-right: 20px;
 }
 
 
