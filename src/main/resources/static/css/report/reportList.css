@@ -124,7 +124,7 @@
 
 
 .reportList_create_btn:hover {
-    background: var(--coconut-green);
+    background: #70360c;
     transform: translateY(-2px);
 }
 

@@ -190,11 +190,12 @@ public class DebateService {
         this.debateRepository.save(debate);
     }
 
-    public void create(String title, String content, String thumbnail) {
+    public void create(String title, String content, String thumbnail, User user) {
         Debate d = new Debate();
         d.setTitle(title);
         d.setContent(content);
         d.setThumbnailImg(thumbnail);
+        d.setAuthor(user);
 
         this.debateRepository.save(d);
 

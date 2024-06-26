@@ -90,20 +90,10 @@ class CoconutApplicationTests {
 
 //			[사진이름]자리에 본인 폴더 안에있는 사진 이름 입력
 
-			User author = null;
-			if (Math.random() < 0.5) {
-				// 사용자 이름으로 해당 사용자 객체 조회
-				String authorName = "작성자" + i;
-				Optional<User> userOptional = userRepository.findByUsername(authorName);
-				author = userOptional.orElseGet(() -> {
-					User newUser = new User();
-					newUser.setUsername(authorName);
-					// 다른 필드 설정
-					return userRepository.save(newUser); // 새로운 사용자를 저장하고 반환
-				});
-			}
-			this.debateService.create(subject, content, thumbnailImg);
-			this.freedcsService.create(subject, content, thumbnailImg);
+			User user = userService.getUserByUsername("user");
+
+			this.debateService.create(subject, content, thumbnailImg, user);
+			this.freedcsService.create(subject, content, thumbnailImg, user);
 		}
 	}
 }
