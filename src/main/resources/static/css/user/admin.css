@@ -111,7 +111,7 @@
       border: none;
       border-radius: 5px;
       background-color: #8B4513; /* 버튼 배경색 */
-      color: white; /* 버튼 텍스트 색상 */
+      color: white;
       transition: background-color 0.3s ease; /* 배경색 전환 효과 */
     }
 

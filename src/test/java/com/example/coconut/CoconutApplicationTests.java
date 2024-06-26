@@ -71,24 +71,17 @@ class CoconutApplicationTests {
 		User user = userService.getUserByUsername("test");
 		for (int i = 1; i <= 300; i++) {
 			String title = String.format("테스트 데이터입니다:[%03d]", i);
-			String content = "내용무";
+			String content = "테스트 내용입니다.";
 			this.reportService.create(title, content, user, "자유토론", true);
 		}
 	}
-
-
-
-
-
-
-
 
 	@Test
 	@DisplayName("토론 데이터 저장")
 	void freeDcsTest() {
 		for (int i = 1; i <= 300; i++) {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
-			String content = "내용무";
+			String content = "테스트 내용입니다.";
 //			String thumbnailImg = "freedcs/" + "[사진이름]" + ".jpg";
 			String thumbnailImg = "freedcs/" + "cf053209-e7d4-4167-a28e-5366090fed61" + ".jpg";
 
@@ -102,4 +95,5 @@ class CoconutApplicationTests {
 		}
 	}
 }
+
 

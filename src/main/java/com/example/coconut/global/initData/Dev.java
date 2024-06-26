@@ -29,11 +29,11 @@ public class Dev {
             userService.signup("admin", "1234", "admin", "admin@test.com", "01012341234", UserRole.ADMIN);
 
             categoryService.addCategory("경제");
-            categoryService.addCategory("사회");
             categoryService.addCategory("연예");
             categoryService.addCategory("스포츠");
             categoryService.addCategory("음식");
-            categoryService.addCategory("환경");
+            categoryService.addCategory("유머");
+            categoryService.addCategory("기타");
         };
     }
 }
