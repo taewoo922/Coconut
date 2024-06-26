@@ -145,4 +145,28 @@ public class UserService  {
         User user = getCurrentUser();
         userRepository.delete(user);
     }
+    // 이메일로 아이디 찾기
+    public String findUsernameByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            return user.getUsername();
+        }
+        throw new DataNotFoundException("해당 이메일로 등록된 사용자가 없습니다."); // 사용자가 없을 경우 예외 발생
+    }
+
+    public User findUserByUsernameAndEmail(String username, String email) {
+        User user = userRepository.findByUsernameAndEmail(username, email);
+        if (user == null) {
+            throw new DataNotFoundException("입력하신 아이디 또는 이메일로 등록된 사용자가 없습니다.");
+        }
+        return user;
+    }
+
+    @Transactional
+    public void resetPassword(String username, String email, String newPassword) {
+        User user = findUserByUsernameAndEmail(username, email);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
 }
