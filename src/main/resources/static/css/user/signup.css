@@ -19,11 +19,11 @@ body {
     text-align: center;
 }
 
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 1em;
+.logo img {
+    width: 250px;
+    height: auto;
 }
+
 button.back-btn {
     position: absolute;
     top: 20px;

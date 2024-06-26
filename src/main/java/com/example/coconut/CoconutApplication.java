@@ -10,7 +10,7 @@ import com.example.coconut.domain.category.entity.Category;
 
 @EnableJpaAuditing
 @SpringBootApplication
-public class CoconutApplication {
+public class gCoconutApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoconutApplication.class, args);
