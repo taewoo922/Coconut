@@ -20,4 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findAll(Specification<Freedcs> spec, Pageable pageable);
 
+    User findByEmail(String email);
+
+    User findByUsernameAndEmail(String username, String email);
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.coconut.domain.user.controller;
 
+import com.example.coconut.DataNotFoundException;
 import com.example.coconut.domain.discussion_Type.entity.Debate;
 import com.example.coconut.domain.discussion_Type.entity.Freedcs;
 import com.example.coconut.domain.discussion_Type.service.DebateService;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -30,7 +32,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -111,6 +115,65 @@ public class UserController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/user/login?accountDeleted";
     }
+    @GetMapping("/find-username")
+    public String showFindUsernamePage(Model model) {
+        model.addAttribute("username", null); // 초기화: 아이디 결과 없음
+        model.addAttribute("error", null); // 초기화: 에러 메시지 없음
+        return "user/find-username"; // templates/user/find-username.html 경로에 파일이 있어야 함
+    }
+
+    // 아이디 찾기 기능 처리
+    @PostMapping("/find-username")
+    public String processFindUsername(@RequestParam("email") String email, Model model) {
+        try {
+            String username = userService.findUsernameByEmail(email); // 이메일로 아이디 찾기
+            model.addAttribute("username", username); // 결과를 모델에 추가
+            model.addAttribute("error", null); // 에러 메시지 초기화
+        } catch (DataNotFoundException e) {
+            model.addAttribute("username", null); // 아이디 결과 초기화
+            model.addAttribute("error", "해당 이메일로 등록된 사용자가 없습니다."); // 에러 메시지 설정
+        }
+        return "user/find-username"; // 결과 표시 페이지로 이동
+    }
+    @GetMapping("/reset-password")
+    public String showResetPasswordPage(Model model) {
+        model.addAttribute("successMessage", null);
+        model.addAttribute("errorMessage", null);
+        return "user/reset-password";
+    }
+
+    @PostMapping("/check-user")
+    @ResponseBody
+    public ResponseEntity<Map<String, Boolean>> checkUser(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String email = request.get("email");
+
+        Map<String, Boolean> response = new HashMap<>();
+        try {
+            userService.findUserByUsernameAndEmail(username, email);
+            response.put("exists", true);
+        } catch (DataNotFoundException e) {
+            response.put("exists", false);
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/reset-password")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> resetPassword(@RequestParam("username") String username,
+                                                             @RequestParam("email") String email,
+                                                             @RequestParam("newPassword") String newPassword) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            userService.resetPassword(username, email, newPassword);
+            response.put("success", true);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("errorMessage", "비밀번호 변경 중 오류가 발생했습니다: " + e.getMessage());
+        }
+        return ResponseEntity.ok(response);
+    }
+
 
     @Getter
     @Setter
