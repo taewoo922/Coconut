@@ -189,11 +189,12 @@ public class FreedcsService {
         this.freedcsRepository.save(freedcs);
     }
 
-    public void create(String title, String content, String thumbnail) {
+    public void create(String title, String content, String thumbnail, User user) {
         Freedcs f = new Freedcs();
         f.setTitle(title);
         f.setContent(content);
         f.setThumbnailImg(thumbnail);
+        f.setAuthor(user);
 
         this.freedcsRepository.save(f);
 

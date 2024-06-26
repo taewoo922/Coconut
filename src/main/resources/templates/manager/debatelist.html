@@ -7,24 +7,29 @@
 </head>
 <body>
 <div layout:fragment="content" class="admin_container">
-    <div class="container my-3">
-        <h1 class="admin-title">Coconut 커뮤니티 관리자 페이지</h1>
-        <nav>
+    <div class="container_admin my-3">
+        <h1 class="admin-title"><span style="color: #8B4513;">Coconut</span> 커뮤니티 관리자 페이지</h1>
+        <div class="admin_body">
+        <nav class="admin_nav">
+            <div class="admin_icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="admin_icon_text">ADMIN</div>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-users-tab" data-toggle="tab" href="userlist" role="tab" aria-controls="nav-users" aria-selected="true">회원 관리</a>
+                <a class="nav-item nav-link" id="nav-users-tab" data-toggle="tab" href="userlist" role="tab" aria-controls="nav-users" aria-selected="true">회원 관리</a>
                 <a class="nav-item nav-link" id="nav-freedcs-tab" data-toggle="tab" href="freedcslist" role="tab" aria-controls="nav-discussions" aria-selected="false">자유토론 관리</a>
-                <a class="nav-item nav-link" id="nav-debate-tab" data-toggle="tab" href="debatelist" role="tab" aria-controls="nav-discussions" aria-selected="false">찬반토론 관리</a>
+                <a class="nav-item nav-link active" id="nav-debate-tab" data-toggle="tab" href="debatelist" role="tab" aria-controls="nav-discussions" aria-selected="false">찬반토론 관리</a>
                 <a class="nav-item nav-link" id="nav-questions-tab" data-toggle="tab" href="questionlist" role="tab" aria-controls="nav-questions" aria-selected="false">질문 게시물 관리</a>
             </div>
         </nav>
         <!-- Discussions Management -->
-        <div class="tab-pane fade" id="nav-discussions" role="tabpanel" aria-labelledby="nav-discussions-tab">
-            <div class="row my-3">
-                <div class="col-6">토론 게시물 관리</div>
+        <div class="tab-pane fade admin_show" id="nav-discussions" role="tabpanel" aria-labelledby="nav-discussions-tab">
+            <div class="row my-31">
+                <div class="col-6 admin_select">찬/반 토론 게시물 관리</div>
                 <div class="col-6">
                     <form>
                         <div class="input-group">
-                            <input type="text" name="kw" id="search_kw" class="form-control" th:value="${param.kw}">
+                            <input type="text" name="kw" id="search_kw" class="admin_form_control" th:value="${param.kw}"  placeholder="제목 또는 작성자를 입력해주세요.">
                             <button class="btn btn-outline-secondary" id="btn_search">찾기</button>
                         </div>
                     </form>
@@ -44,7 +49,7 @@
                 <tr class="text-center" th:each="discussion, loop : ${paging}">
                     <td class="text-center" th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                     <td class="text-center" th:text="${discussion.title}"></td>
-                    <td class="text-center" th:if="${discussion.author != null}" th:text="${discussion.author.username}"></td>
+                    <td class="text-center" th:if="${discussion.author != null}" th:text="${discussion.author.nickname}"></td>
                     <td class="text-center" th:text="${#temporals.format(discussion.createDate, 'yyyy-MM-dd')}"></td>
                     <td>
                         <form th:action="@{/admin/debate/delete/{id}(id=${discussion.id})}" method="post"
@@ -73,6 +78,7 @@
                     </li>
                 </ul>
             </nav>
+        </div>
         </div>
     </div>
 </div>
