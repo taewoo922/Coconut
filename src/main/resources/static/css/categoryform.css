@@ -71,3 +71,8 @@
 .category_list li a:hover {
     text-decoration: underline;
 }
+
+.category_createBtn{
+    display:flex;
+    justify-content: end;
+}

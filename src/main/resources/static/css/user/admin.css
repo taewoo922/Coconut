@@ -87,13 +87,13 @@
             padding: 0.5rem 0.75rem;
             margin-left: -1px;
             line-height: 1.25;
-            color: #007bff;
+            color: #8B4513;
             background-color: #fff;
             border: 1px solid #dee2e6;
         }
 
         .page-item.disabled .page-link {
-            color: #6c757d;
+            color: #8B4513;
             pointer-events: none;
             cursor: auto;
             background-color: #fff;
@@ -103,19 +103,20 @@
         .page-item.active .page-link {
             z-index: 1;
             color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #8B4513;
+            border-color: #8B4513;
         }
 
     .input-group button {
-        border-radius: 5px;
-      background-color: #007bff; /* 버튼 배경색 */
+      border: none;
+      border-radius: 5px;
+      background-color: #8B4513; /* 버튼 배경색 */
       color: white; /* 버튼 텍스트 색상 */
       transition: background-color 0.3s ease; /* 배경색 전환 효과 */
     }
 
     .input-group button:hover {
-      background-color: #0056b3; /* 호버 시 배경색 변경 */
+      background-color: #70360c; /* 호버 시 배경색 변경 */
     }
 
     .my-31{

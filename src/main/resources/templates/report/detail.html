@@ -68,7 +68,9 @@
         <div th:replace="~{common/form_errors :: formErrorsFragment}"></div>
         <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="reportDetail_create_text" rows="10"></textarea>
         <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="reportDetail_create_text" rows="10"></textarea>
+        <div class="reportDetail_createBtn">
         <input class="reportDetail_create_btn" type="submit" value="답변등록">
+        </div>
     </form>
 </div>
 </html>

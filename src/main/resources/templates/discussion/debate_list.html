@@ -41,7 +41,7 @@
     <!--게시물-->
     <div class="freedcs-container">
         <div class="freedcs_body">
-            <div th:each="debate, loop : ${paging}" class="post">
+            <div th:each="debate, loop : ${paging_category}" class="post">
                 <td class="debateList_id RBList"
                     th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                 <a th:href="@{|/discussion/d_detail/${debate.id}|}">

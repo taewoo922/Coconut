@@ -182,15 +182,6 @@
     border: 1px solid #ddd;
 }
 
-/* 답변 작성 텍스트 영역 */
-.debateDetail_create_text {
-    width: 98%;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-}
 
 /* 찬반 라디오 버튼 그룹 */
 .debateDetail_create_buttons {
@@ -212,6 +203,11 @@
     position: relative;
     padding-left: 3px;
 
+}
+
+.debateDetail_createBtn{
+    display:flex;
+    justify-content: end;
 }
 
 
@@ -381,6 +377,11 @@
     margin-bottom: 10px;
 }
 
+.debateForm_createBtn{
+    display: flex;
+    justify-content: end;
+}
+
 @media (max-width: 768px) {
     .debateDetail_create_buttons {
         flex-direction: column;
@@ -391,6 +392,8 @@
         margin-top: 5px;
     }
 }
+
+
 
 /*
 여기부터 debate list*/
@@ -420,8 +423,8 @@
  }
 
  .debate_pagination li.active a {
-     background-color: #007bff;
-     border-color: #007bff;
+     background-color: #8B4513;
+     border-color: #8B4513;
      color: #fff;
  }
 
