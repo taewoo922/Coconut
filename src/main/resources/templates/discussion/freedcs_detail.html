@@ -4,7 +4,7 @@
         <!-- 질문 -->
         <h1 class="freedcsDetail_title" th:text="${freedcs.title}"></h1>
         <div class="freedcsDetail_freedcsList">
-            <div class="freedcsDetail_content" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
+            <div class="freedcsDetail_content_title" style="white-space: pre-line;" th:text="${freedcs.content}"></div>
             <div class="freedcsDetail_userData">
                 <div class="freedcsDetail_username">
                     <span th:if="${freedcs.authorNickname != null}" th:text="${freedcs.authorNickname}"></span>
@@ -46,7 +46,7 @@
             <span class="close" onclick="closeAlert_form()">&times;</span>
         </div>
         <!-- 답변 반복 시작 -->
-        <div class="freedcsDetail_answer" th:each="answer : ${freedcs.answerList}">
+        <div class="freedcsDetail_answer_head" th:each="answer : ${freedcs.answerList}">
             <a th:id="|answer_${answer.id}|"></a>
             <div class="freedcsDetail_answer">
                 <div class="freedcsDetail_userData">

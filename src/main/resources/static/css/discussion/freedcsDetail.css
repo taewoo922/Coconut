@@ -16,9 +16,23 @@
 }
 
 
-.freedcsDetail_title,
+.freedcsDetail_title{
+         text-align: center;
+}
+
 .freedcsDetail_content {
-    text-align: center;
+    text-align: start;
+    word-wrap: break-word;
+        width: 50%;
+        margin: 30px;
+}
+
+.freedcsDetail_content_title{
+text-align: center;
+word-wrap: break-word;
+    width: 50%;
+        margin: 30px auto;
+
 }
 
 .freedcsDetail_userData {
@@ -28,9 +42,9 @@
 
 .freedcsDetail_content_function {
     display: flex;
-    flex-direction: row;
-    text-align: left;
-   /* margin-top: 10px;*/
+    justify-content: center;
+
+    margin-top: 40px;
 }
 
 .freedcsDetail_vote,
@@ -38,7 +52,7 @@
 .freedcsDetail_content_modify_btn,
 .freedcsDetail_content_delete_btn {
     display: inline-block;
-    margin-right: 10px;
+    margin-left: 10px;
     background-color: #8B4513;
     color: #fff;
     padding: 5px 10px;
@@ -69,6 +83,12 @@
     margin-top: 20px;
 }
 
+.freedcsDetail_answer_head{
+
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
 .freedcsDetail_answer .freedcsDetail_userData {
     text-align: right;
     margin-bottom: 0;
@@ -80,8 +100,7 @@
 
 .freedcsDetail_answer .freedcsDetail_content_function {
     display: flex; /* 요소들을 가로로 배치 */
-    flex-direction: row;
-    text-align: left;
+    justify-content: end;
     margin-top: 5px;
 }
 
