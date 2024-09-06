@@ -46,7 +46,7 @@ Coconut은 특정 주제나 분야에 관심이 있는 사람들이 모여 이�
 
 |      김태우       |          송현지         |       김민섭         |                                                                                                               
 | :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | 
-|   <img width="160px" src="https://orgthumb.mt.co.kr/06/2024/02/2024020118023374242_1.jpg" />    |                      <img width="160px" src="https://media.bunjang.co.kr/product/274166908_1_1718981909_w%7Bres%7D.jpg" />    |                   <img width="160px" src="https://source.boringavatars.com/beam/minseop"/>   |
+|   <img width="160px" src="https://orgthumb.mt.co.kr/06/2024/02/2024020118023374242_1.jpg" />    |                      <img width="160px" src="https://media.bunjang.co.kr/product/274166908_1_1718981909_w%7Bres%7D.jpg" />    |                   <img width="160px" src="https://mblogthumb-phinf.pstatic.net/MjAyMDA5MTJfODkg/MDAxNTk5OTA0NzY5ODA4.vzOYyQGLs27lTkhPEziGYjLT-TlNrrWWSuolakxwTaEg.g7U60IhKW7_4s7yCp7lPutvlAEmHRGSnMkH7j8KqBAog.JPEG.kn010123/IMG_1507.JPG?type=w800"/>   |
 |   [@taewoo](https://github.com/taewoo922)   |    [@hyunji](https://github.com/hyunji1205)  | [@minseop](https://github.com/kimminseop99)  |
 
 ## ☁️ ERD
@@ -166,7 +166,7 @@ Coconut은 특정 주제나 분야에 관심이 있는 사람들이 모여 이�
 | <img src="src/main/resources/static/images/projectFunctionImage/로그인 페이지.png"> |
 </br>
 
-### [게시글]
+### [토론]
 
 #### 1. 게시글 작성
 - 자유토론 페이지에서 원하는 주제의 게시물을 작성할 수 있습니다.
